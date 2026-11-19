@@ -13,10 +13,10 @@ Written in Rust, drawn for e-ink, hosted on GitHub.
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/6d1f2ed124bb48fbc2162d9ff7d513d6346f9f7d/docs/images/home.png" alt="Home screen" width="200"><br><sub>Home screen</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/6d1f2ed124bb48fbc2162d9ff7d513d6346f9f7d/docs/images/quick-settings.png" alt="Quick settings" width="200"><br><sub>Quick settings</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/6d1f2ed124bb48fbc2162d9ff7d513d6346f9f7d/docs/images/settings.png" alt="Settings" width="200"><br><sub>Settings</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/6d1f2ed124bb48fbc2162d9ff7d513d6346f9f7d/docs/images/dark-home.png" alt="Dark mode" width="200"><br><sub>Dark mode</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/905724f817202a3dae96e44762069b3ad14ac662/docs/images/home.png" alt="Home screen" width="200"><br><sub>Home screen</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/905724f817202a3dae96e44762069b3ad14ac662/docs/images/quick-settings.png" alt="Quick settings" width="200"><br><sub>Quick settings</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/905724f817202a3dae96e44762069b3ad14ac662/docs/images/settings.png" alt="Settings" width="200"><br><sub>Settings</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/905724f817202a3dae96e44762069b3ad14ac662/docs/images/dark-home.png" alt="Dark mode" width="200"><br><sub>Dark mode</sub></td>
   </tr>
 </table>
 
@@ -95,13 +95,14 @@ Crossword, Blocks, Ships, and Cascade. [Public catalog](https://doannguyentrong.
 
 | Game | How to play |
 |---|---|
-| [Starship](https://github.com/DoanNguyenTrong/kindle-primitive-starship) | Dodge incoming fire, time your shields, and clear four waves. |
-| [Tidefork](https://github.com/DoanNguyenTrong/kindle-primitive-tidefork) | Slide a single line of tiles to merge numbers and solve short challenges. |
-| [Trail Carrier](https://github.com/DoanNguyenTrong/kindle-primitive-trailcarrier) | Collect parcels and reach the exit as your trail grows. |
-| [Picture Logic](https://github.com/DoanNguyenTrong/kindle-primitive-picturelogic) | Reveal pictures from row and column clues. |
+| [Starship](https://github.com/DoanNguyenTrong/kindle-primitive-starship) | Steer in real time, dodge incoming fire, and defeat the flagship. |
+| [2048](https://github.com/DoanNguyenTrong/kindle-primitive-tidefork) | Swipe the board, merge matching numbers, and beat your best score. |
+| [Nonogram](https://github.com/DoanNguyenTrong/kindle-primitive-picturelogic) | Reveal pictures from row and column clues. |
 | [Switchyard](https://github.com/DoanNguyenTrong/kindle-primitive-switchyard) | Set track junctions and dispatch a train to the depot. |
-| [Crate Shift](https://github.com/DoanNguyenTrong/kindle-primitive-crateshift) | Push crates onto marked docks across eight puzzles. |
-| [Memory Pairs](https://github.com/DoanNguyenTrong/kindle-primitive-memorypairs) | Match all the symbols in as few turns as possible. |
+| [Crate Shift](https://github.com/DoanNguyenTrong/kindle-primitive-crateshift) | Swipe to move and push crates onto marked docks across eight puzzles. |
+| [Memory Match](https://github.com/DoanNguyenTrong/kindle-primitive-memorypairs) | Match all the symbols in as few turns as possible. |
+
+See the [gameplay references](docs/gameplay-reference.md) for the original rules and Kindle controls.
 
 Shared code: [kindle-primtitive-tools](https://github.com/DoanNguyenTrong/kindle-primtitive-tools) holds the on-screen
 keyboard and the quick settings figures and icons, under AGPL-3.0 or PolyForm Noncommercial 1.0.0 at your choice.
