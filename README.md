@@ -91,11 +91,22 @@ installation guide explains how to remove its files. [Launcher installation guid
 First-party apps in Store include Notes, Focus, Cards, Calculator, Words, Sudoku, Chess, Minesweeper, Solitaire,
 Crossword, Blocks, Ships, and Cascade. [Public catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
 
+### Games
+
+| Game | How to play |
+|---|---|
+| [Starship](https://github.com/DoanNguyenTrong/kindle-primitive-starship) | Dodge incoming fire, time your shields, and clear four waves. |
+| [Tidefork](https://github.com/DoanNguyenTrong/kindle-primitive-tidefork) | Slide a single line of tiles to merge numbers and solve short challenges. |
+| [Trail Carrier](https://github.com/DoanNguyenTrong/kindle-primitive-trailcarrier) | Collect parcels and reach the exit as your trail grows. |
+| [Picture Logic](https://github.com/DoanNguyenTrong/kindle-primitive-picturelogic) | Reveal pictures from row and column clues. |
+| [Switchyard](https://github.com/DoanNguyenTrong/kindle-primitive-switchyard) | Set track junctions and dispatch a train to the depot. |
+| [Crate Shift](https://github.com/DoanNguyenTrong/kindle-primitive-crateshift) | Push crates onto marked docks across eight puzzles. |
+| [Memory Pairs](https://github.com/DoanNguyenTrong/kindle-primitive-memorypairs) | Match all the symbols in as few turns as possible. |
+
 Shared code: [kindle-primtitive-tools](https://github.com/DoanNguyenTrong/kindle-primtitive-tools) holds the on-screen
 keyboard and the quick settings figures and icons, under AGPL-3.0 or PolyForm Noncommercial 1.0.0 at your choice.
 
-The apps are tested on a **Kindle Oasis 3**. The store is designed for every jailbroken Kindle e-reader, and each app says
-which Kindles it supports.
+PrimitiveOS has been tested on a **Kindle Oasis 3**. Each Store listing shows its Kindle requirements and device test status.
 
 ## How it fits together
 
