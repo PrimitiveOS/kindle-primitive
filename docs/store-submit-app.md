@@ -169,15 +169,17 @@ Set each flag that is true. Reviewers check them against the package.
 | `stops_kindle_ui` | Stops the Kindle's own interface while it runs (as Primitive Launcher does). |
 | `starts_at_boot` | Starts when the Kindle starts (an upstart job or similar). |
 | `root_filesystem` | Writes to the Kindle's system files (anything outside `/mnt/us` and `/var/tmp`). |
-| `hooks` | Has `post-install.sh` or `pre-uninstall.sh`. |
+| `hooks` | Declares both `post-install.sh` and `pre-uninstall.sh`. |
 
 Use `notes` for one sentence of detail, for example "Writes /etc/upstart/primitive-launcher.conf".
 
-Hooks are shell scripts that run as root with a 60-second limit. They must be idempotent, must not download anything,
-and must undo in `pre-uninstall.sh` what `post-install.sh` did.
+Hooks are shell scripts of up to 64 KiB each. They run as root with a 60-second limit, must complete in the
+foreground, and must avoid network access. Both scripts must be idempotent. The uninstall script must undo what
+the install script did, including after a partial failure.
 
-The manifest validator requires the uninstall hook when a package declares a post-install hook. The current Store
-accepts file-copy packages and keeps reviewed hook execution pending.
+The manifest and archive require the exact pair when either hook is declared. The Kindle runtime requires a
+root-owned approval for the exact release and both script digests. The Mac Store fixtures exercise the transaction
+without executing package scripts. [Runtime approval format](store-architecture.md#64-hooks)
 
 ## 5. Check and open the pull request
 

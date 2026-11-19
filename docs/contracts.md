@@ -44,8 +44,8 @@ Name: `<id>-<version>-<arch>.zip`, with one top folder `<id>-<version>/`:
   documents/...          optional: library entries (header contract §1)
   <dir>/...              optional: the module folder (§2)
   extensions/<dir>/...   optional: a KUAL extension
-  hooks/post-install.sh  optional, reviewed in the catalog pull request
-  hooks/pre-uninstall.sh optional, reviewed
+  hooks/post-install.sh  optional pair, reviewed in the catalog pull request
+  hooks/pre-uninstall.sh optional pair, reviewed in the catalog pull request
 ```
 
 Rules the installer enforces, and CI checks before publishing:
@@ -53,8 +53,9 @@ Rules the installer enforces, and CI checks before publishing:
 - Only the roots above are written. No absolute paths, no `..`, no backslashes, no links that leave the package.
 - Every file in the zip except `manifest.json`, `LICENSE`, `INSTALL.md` and `hooks/` is listed in `manifest.files`.
 - `arch` is `armhf` (hard-float, the Oasis 3 and newer) or `armel` (soft-float, older Kindles). Each package holds one arch.
-- Hooks run as root with `/` as the working directory, a 60 s limit, and no downloads. They are declared in the listing
-  (`changes.hooks`).
+- Hook packages declare both scripts and set `changes.hooks` in the listing. Store verifies an exact root-owned
+  approval before running either script with `/` as its working directory, a 60 s limit, and separate PID and
+  network namespaces. [Reviewed hook contract](store-architecture.md#64-hooks)
 
 ## 4. `manifest.json` (inside the package)
 

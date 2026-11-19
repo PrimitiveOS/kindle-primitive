@@ -33,9 +33,9 @@ owner's go-ahead. Device findings go into each repo's `docs/device-notes.md`.
 | [C1 Catalog repo and pipeline](#c1-catalog-repo-and-pipeline) | C Catalog / `kindle-primitive-catalog` | Pages is live. The feature branch's catalog and deep archive checks run locally. |
 | [C2 First listings](#c2-first-listings) | C / `kindle-primitive-catalog` | Browser and KOReader are live. All current candidates have a private review catalog. |
 | [D1 Shared network crate](#d1-shared-network-crate) | D Store / tools | `primitive-net` on tools `main` (`241a527`), tested on the Mac |
-| [D2 Store engine](#d2-store-engine) | D / launcher (`kl-store`) | On launcher `main`: catalog refresh (`0f9154b`) and install (`083c9d8`), 40 store tests; not deployed |
-| [D3 Store screens](#d3-store-screens) | D / launcher | On launcher `main`: App Store layout (Today, Apps, Updates, product page), icons and screenshots; reviewed screens in `docs/store-screens/` |
-| [D4 Store on the Kindle](#d4-store-on-the-kindle) | D / device | Code on `main`, tested on the Mac; the device test waits for the 0.4.0 build |
+| [D2 Store engine](#d2-store-engine) | D / shared Tools | The engine passes Mac tests for refresh, install, removal, recovery, and signed verification. |
+| [D3 Store screens](#d3-store-screens) | D / standalone Store | Today, Apps, Updates, Search, and product pages are covered by desktop captures in `docs/store-screens/` and the simulation. |
+| [D4 Store on the Kindle](#d4-store-on-the-kindle) | D / device | The standalone ARMHF Store package and the bootstrap fixture pass on the Mac. The device gate needs the owner present. |
 | [D5 Our apps through the store](#d5-our-apps-through-the-store) | D / launcher, browser, terminal | Local package installs, Launcher update trial, and boot-copy recovery checks passed. |
 | [E1 Device layer in the kit](#e1-device-layer-in-the-kit) | E App kit / tools | Three SDK crates share the Oasis 3 profile and cross-check on both ARM targets. |
 | [E2 Interface components](#e2-interface-components) | E / tools | Shared components and Hello gallery render on the Mac. |
@@ -44,7 +44,7 @@ owner's go-ahead. Device findings go into each repo's `docs/device-notes.md`.
 | [E5 App template](#e5-app-template) | E / `kindle-primitive-app-template` | Hello is packaged and its desktop driver verifies the lifecycle. |
 | [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Desktop previews and verified ARMHF packages are available. Owner and device gates remain. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
-| [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, asset verification, and package safety. Reviewed hooks, signing, and hardware gates remain. |
+| [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
 
 Order of work:
 
@@ -125,8 +125,7 @@ Each answer goes into the launcher's `docs/device-notes.md` with the date.
 - [ ] A4.9 Fast e-ink updates for a falling-blocks game: how often a small rectangle can be redrawn with the fastest
       waveforms (DU, A2) on the Oasis 3, how much ghosting builds up, and how often a full refresh is needed; decides
       the speed levels of F13.
-- [ ] **Gate A**: contracts read by the owner; licences complete; spikes A4.1–A4.4 answered (A4.1, A4.2 answered; A4.3,
-      A4.4 open).
+- [ ] **Gate A**: owner review of the contracts and licences. Measure the full package download on Kindle for A4.4.
 
 ---
 
@@ -136,22 +135,22 @@ Each answer goes into the launcher's `docs/device-notes.md` with the date.
 
 Repo `kindle-primitive-build` (local `doannt-kindle-build`).
 
-- [ ] Reusable workflow `package.yml`: inputs `id`, `dir`, `binary-crate`, `arches`; pins zig and cargo-zigbuild as the
+- [x] Reusable workflow `package.yml`: inputs `id`, `dir`, `binary-crate`, `arches`; pins zig and cargo-zigbuild as the
       launcher's release workflow does; checks out submodules.
-- [ ] Steps: test, build per architecture (`armv7-unknown-linux-musleabihf`; `armel` target after B3), run the app's
+- [x] Steps: test, build per architecture (`armv7-unknown-linux-musleabihf`; `armel` target after B3), run the app's
       `scripts/package.sh`, write `manifest.json` (file list, sha256), zip as `<id>-<version>-<arch>.zip`, `.sha256`.
-- [ ] Tag check: the tag equals the version in `Cargo.toml` and `manifest.json`.
+- [x] Tag check: the workflow checks the crate version before the packager writes the manifest.
 - [ ] Publish the GitHub Release on a `v*` tag; attach zips and `.sha256`.
-- [ ] Secret scan step (fails the job if a configured pattern appears in the package).
+- [x] Secret scan step fails the job if a configured pattern appears in the package.
 - [ ] Versioned with tags (`@v1`), so apps pin it.
 
 ### B2 Our three apps packaged
 
-- [ ] Launcher: `scripts/package.sh` for the new layout (`launcher-<v>/manifest.json`, `launcher/`, `documents/Launcher.sh`,
+- [x] Launcher candidate via `scripts/stage.sh` and the shared packager (`primitive-launcher-<v>/manifest.json`, `launcher/`, `documents/Launcher.sh`,
       `LICENSE`, `LICENSE-DOCS`, `INSTALL.md`); `changes`: network, stops the Kindle UI, starts at boot, system files
       (boot job). `release.yml` calls B1.
-- [ ] Browser: the same (`dir` = `browser`; FBInk and its GPL-3.0 licence inside); `changes`: network.
-- [ ] Terminal: the same (`dir` = `terminal`); first release workflow; `changes`: none beyond its folder.
+- [x] Browser candidate (`dir` = `browser`, with FBInk and its GPL-3.0 licence). Declares network access.
+- [x] Terminal candidate (`dir` = `terminal`) and release workflow.
 - [ ] Each app's zip unpacked and checked by the owner (**Gate B**).
 
 ### B3 Soft-float builds
@@ -169,14 +168,14 @@ Repo `kindle-primitive-build` (local `doannt-kindle-build`).
 
 Repo `kindle-primitive-catalog` (local `doannt-kindle-catalog`).
 
-- [ ] Layout: `apps/<id>/app.json`, `icon.png`, `shots/`; `collections.json`; `schema/`; `scripts/`.
-- [ ] `scripts/check-app.sh`: schema, ids, categories, text lengths, images (256 × 256 icon; 632 × 840 grayscale shots).
-- [ ] Pull request CI: download each new asset, check sha256 and size, open the zip, compare `manifest.json`, check
+- [x] Layout: `apps/<id>/app.json`, `icon.png`, `shots/`; `collections.json`; `schema/`; `scripts/`.
+- [x] `scripts/check-app.sh`: schema, ids, categories, text lengths, images (256 × 256 icon; 632 × 840 grayscale shots).
+- [x] Pull request CI configuration: download each asset, check sha256 and size, open the zip, compare `manifest.json`, check
       allowed roots and paths, find hooks, check the licence against the allow list; post a summary comment.
-- [ ] `scripts/build-index.sh`: `site/v1/index.json`, `collections.json`, `apps/<id>.json`, icons, shots.
+- [x] `scripts/build-index.py` writes `site/v1/index.json`, `collections.json`, `apps/<id>.json`, icons, and shots.
 - [ ] Publish `site/` to GitHub Pages on merge to `main` (`doannguyentrong.github.io/kindle-primitive-catalog/v1/`).
 - [ ] Nightly job: every asset URL still answers with the same sha256; open an issue if not.
-- [ ] Pull request template with the submission checklist (store-submit-app §1).
+- [x] Pull request template with the submission checklist (store-submit-app §1).
 
 ### C2 First listings
 
@@ -210,12 +209,14 @@ Crate `kl-store` in the launcher.
 - [x] Models for the index, listings, manifests, `installed.json`; parsers with tests (Mac).
 - [x] Cache the catalog in `launcher/store/cache/`. Support Refresh, refresh on open, and a daily check over Wi-Fi.
       Keep the saved catalog available offline (Mac).
-- [ ] Device facts (A4.1–A4.3): architecture, firmware, model; free space.
+- [x] The Store reads the device architecture, firmware and free space. The shared Oasis 3 build reports the
+      `KindleOasis3` profile name. Additional device profiles need hardware evidence.
 - [x] Resolver: newest version for the architecture and firmware; `requires` with `>=`; withdrawn versions skipped (Mac).
 - [x] Installer (Mac): verify sha256 and size (`verify.rs`), unpack in-process to `staging/` with path checks and the
       manifest's file list (`unpack.rs`), journal, rename into place keeping `.prev`, record, clean up (`install.rs`).
 - [x] Download through `primitive-net`, checks, install, and the library reload (apps and icons), done on the Mac (`083c9d8`).
-- [ ] Reviewed root hooks with a 60 s limit. The current installer refuses hooks.
+- [x] Reviewed hook transactions with a 60 s runtime limit, exact root-owned approvals, and Mac fixtures for
+      install, update, rollback, and removal. The device gate covers the Kindle runtime and its kernel isolation.
 - [x] Update keeps the previous files until a new version is recorded. Update all processes requirements first (Mac).
 - [x] Remove through the product page. The Store preserves packages another app requires and refuses to remove
       Launcher or Store through this flow (Mac).
@@ -273,24 +274,24 @@ like the rest of tools.
 
 ### E2 Interface components
 
-- [ ] `primitive-ui` crate: the renderer (vello_cpu and parley, as `kl-render`), tokens from the skill as constants.
-- [ ] Components: text, buttons, cards and rows, switches, chevrons, section headers, pop-ups with halo, sheets, tab
+- [x] `primitive-ui` uses the shared vello_cpu and parley renderer and the Primitive UI tokens.
+- [x] Components include text, buttons, cards and rows, switches, chevrons, section headers, pop-ups with halo, sheets, tab
       bar, paged lists, status bar, block progress, full-screen message, icons (24-unit paths).
-- [ ] Dark mode inversion that keeps pictures; pressed state; rectangle refresh hints.
-- [ ] Desktop output to PNG for every component (a gallery page for review).
+- [x] Dark mode preserves pictures. Native controls submit pressed feedback before dispatching the action, using
+      the changed rectangle. Physical visibility and cadence remain part of the panel check.
+- [x] The Hello desktop driver renders the component gallery and verifies localized feedback before dispatch.
 
 ### E3 Text editing
 
 - [x] The shared single-line field tracks the caret, clips long text, and supports masking. Launcher Wi-Fi and SSH
       screens use it (Mac).
-- [ ] Multi-line editor: cursor, insert and delete, line wrap, scrolling by page, cursor moves by tap; tuned for e-ink
-      (redraw only the changed lines). Needed by Notes.
+- [x] Notes uses the shared multiline editor with cursor placement by tap, insert/delete, wrapping and page scrolling.
 
 ### E4 App lifecycle
 
-- [ ] Event loop with timers that only fire when something changes on screen.
-- [ ] Start from the library entry and from the launcher's grid; leaving returns to the launcher (supervisor exit codes).
-- [ ] State saved on sleep and exit; settings file per app in its folder; log file.
+- [x] Event loop with app-supplied deadlines and redraws when the app reports a visible change.
+- [x] Packages include library entries. The supervisor exercises the grid launch and return protocol in Mac fixtures.
+- [x] Native lifecycle invokes save on sleep and exit and reads app settings and log paths from each app directory.
 - [x] Native app entries run from RAM and let the supervised app reserve the user volume during file access (Mac).
 - [ ] Confirm native apps let the Kindle drive mount while idle and resume after eject on an Oasis 3.
 
@@ -298,10 +299,10 @@ like the rest of tools.
 
 Repo `kindle-primitive-app-template`.
 
-- [ ] Workspace: `<x>-core` (state, logic, tests), `<x>-render`, `<x>-kindle`, `<x>-desktop`, using E1–E4.
-- [ ] `scripts/package.sh`, `release.yml` calling B1, `app.json` stub, icon, README (licences: PolyForm Noncommercial
+- [x] Workspace: `<x>-core` (state, logic, tests), `<x>-render`, `<x>-kindle`, `<x>-desktop`, using E1–E4.
+- [x] `scripts/stage.sh`, `release.yml` calling B1, `app.json` draft, icon, README (licences: PolyForm Noncommercial
       for code, CC BY-NC-SA 4.0 for docs), `CHANGELOG.md`, `docs/device-notes.md`.
-- [ ] A "Hello" app made from it.
+- [x] A "Hello" app made from it.
 - [ ] **Gate E**: the Hello app installs from the store, opens from the grid, sleeps and wakes, returns to the launcher,
       and is removed.
 
@@ -316,73 +317,71 @@ its own versions from 0.1.0. Every app milestone includes the **definition of do
 
 - [ ] Desktop screenshots of every screen reviewed by the owner before the first device build.
 - [ ] The `primitive-ui` review checklist passed (tokens, touch targets, way back, refresh, dark mode, upside down).
-- [ ] Core logic covered by tests on the Mac.
+- [x] Core logic covered by tests on the Mac.
 - [ ] Works with Primitive Launcher in front; leaving returns to the launcher; sleep and wake keep the state.
 - [ ] Packaged by B1; listing in the catalog with icon, screenshots, `changes`, `tested_on`.
 - [ ] Device gate: the owner installs it from the store, uses it for a day, and removes it.
 
 ### F1 Primitive Notes (productivity; like Apple Notes)
 
-- [ ] Notes list (newest first, pinned on top), new note, open, edit with the multi-line editor (E3), delete with Undo.
-- [ ] Search across notes. Plain text files in `/mnt/us/notes/` (copyable over USB), names from the first line.
-- [ ] Autosave; nothing lost on sleep, power off, or leaving.
+- [x] Notes list (newest first, pinned on top), new note, open, edit with the multi-line editor (E3), delete with Undo.
+- [x] Search across notes. Plain text files in `/mnt/us/notes/` (copyable over USB), names from the first line.
+- [x] Autosave and durable file handling pass Mac fixtures.
+- [ ] Verify Notes across Kindle sleep, power loss, and USB eject.
 
 ### F2 Primitive Focus (productivity; like the Clock app's timer and Pomodoro apps)
 
-- [ ] Focus and break timer, presets 25/5 and 50/10, custom lengths; start, pause, reset.
-- [ ] Large countdown redrawn once a minute (calm e-ink); keep awake while running (A4.5); a clear end screen.
-- [ ] Today's focus count and total.
+- [x] Focus and break timer, presets 25/5 and 50/10, custom lengths; start, pause, reset.
+- [x] Large minute-based countdown, end screen, and today's focus count and total.
+- [ ] Verify keep-awake behavior while Focus runs on the Kindle (A4.5).
 
 ### F3 Primitive Words (game; like Wordle)
 
-- [ ] Six guesses for a five-letter word, shared keyboard with letter states, marks that read in black and white.
-- [ ] Daily word and free play; statistics and streak.
+- [x] Six guesses for a five-letter word, shared keyboard with letter states, marks that read in black and white.
+- [x] Daily word and free play with statistics and streaks.
 - [x] English answer and guess banks ship from independent selections (Mac). The source credited by KWordle supplied
       its two datasets without a redistribution licence. The Words README records the provenance check.
 
 ### F4 Primitive Cards (productivity; like AnkiMobile, Quizlet)
 
-- [ ] Decks and cards; create cards with the keyboard; review with spaced repetition (a published algorithm, for
-      example SM-2), large card faces.
-- [ ] Import of Anki decks (`.apkg`: text fields first; media later); export.
-- [ ] Statistics per deck.
+- [x] Decks and cards, keyboard editing, SM-2 review, paged card faces, and per-deck statistics.
+- [x] Import of Anki `.apkg` text fields and export to Documents. Media remains a later extension.
 
 ### F5 Primitive Calculator (tool; like Calculator)
 
-- [ ] Standard calculator with large keys, history, copy of the result; exact decimal arithmetic.
+- [x] Standard calculator with large keys, history, result copy, and exact decimal arithmetic.
 
 ### F6 Primitive Sudoku (game)
 
-- [ ] Puzzle generator with unique solutions and difficulty levels; notes mode; mistakes check; undo.
+- [x] Puzzle generator with unique solutions and difficulty levels, notes mode, mistakes check, and Undo.
 
 ### F7 Primitive Chess (game; play against the Kindle)
 
-- [ ] Board with tap-to-move, legal moves shown, undo, levels.
-- [ ] Engine: our own search, or a move generator and engine with a licence that fits PolyForm (MIT, Apache, BSD);
-      GPL engines such as Stockfish are excluded. Licence checked before use.
-- [ ] Save and resume a game; PGN export.
+- [x] Board with tap-to-move, legal moves shown, Undo, and difficulty levels.
+- [x] Local search with the licensed Cozy Chess move generator.
+- [x] Save and resume a game and export standard PGN.
 
 ### F8 Primitive Minesweeper (game)
 
-- [ ] Classic board sizes; tap to reveal, long press to flag; first tap is safe; timer and best times.
+- [x] Classic board sizes, tap to reveal, hold to flag, safe first tap, timer, and best times.
 
 ### F9 Primitive Solitaire (game; Klondike)
 
-- [ ] Tap-to-move (no dragging needed), draw one or three, undo, auto-finish; card faces drawn for e-ink.
+- [x] Tap-to-move, draw one or three, persistent Undo, auto-finish, and card faces for e-ink.
 
 ### F10 Primitive Crossword (game; like crossword apps)
 
-- [ ] Grid and clue list; type with the shared keyboard; check and reveal.
-- [ ] Puzzles: bundled free or self-made puzzles (licence recorded for each), and opening `.puz` files the user has.
+- [x] Grid and clue list, shared keyboard, check, and reveal.
+- [x] Bundled original puzzles and import of standard unlocked `.puz` files.
 
 ### F11 Primitive Blocks (game; like 1010! and Woodoku)
 
-- [ ] Place three pieces per turn on a 9 × 9 grid; clear rows, columns and boxes; score and best score.
-- [ ] Our own visual design (no copy of other games' look).
+- [x] Place three pieces per turn on a 9 × 9 grid, clear rows, columns and boxes, and track scores.
+- [x] Original visual design in the local candidate.
 
 ### F12 Primitive Ships (game; Battleship)
 
-- [ ] Place ships (manual or random), play against the Kindle at three levels, hot-seat for two.
+- [x] Place ships manually or randomly, play against the Kindle at three levels, and play two-person hot-seat.
 
 ### F13 Falling-blocks game (game; like Tetris) (owner, 2026-11-19)
 
@@ -391,10 +390,10 @@ its own versions from 0.1.0. Every app milestone includes the **definition of do
       before the first public listing.
 - [ ] A4.9 answered first; the game's speed levels follow what the panel can show (pieces move in clear steps, not
       smooth motion).
-- [ ] Controls for touch and the page buttons: left, right, rotate, soft drop, hard drop; large touch zones.
+- [x] Touch actions for movement, rotation, and drops, with page buttons for movement.
 - [ ] Only the changed cells are redrawn with a fast waveform; a full refresh at line clears or every few seconds to
       clear ghosting; pause on sleep.
-- [ ] Scoring, levels, next piece, hold, best scores.
+- [x] Scoring, levels, next piece, hold, and best scores in the Cascade candidate.
 
 ---
 
@@ -406,9 +405,9 @@ its own versions from 0.1.0. Every app milestone includes the **definition of do
 
 ### G2 Wi-Fi file transfer
 
-- [ ] A Settings page that starts a small web server while it is open, shows an address and a code, and accepts files
+- [x] A Settings page starts a small web server while it is open, shows an address and a code, and accepts files
       from a phone or computer on the same network into `documents/`.
-- [ ] Stops when the page closes; refuses everything without the code; size limit; no path outside `documents/`.
+- [x] Host fixtures cover session closure, code checks, transfer limits, and restricting writes to `documents/`.
 
 ### G3 Bluetooth keyboard
 
@@ -418,12 +417,13 @@ its own versions from 0.1.0. Every app milestone includes the **definition of do
 
 ## H. Hardening (phase S7)
 
-- [ ] H1 Signatures on packages and the index (D7, later): key handling, verification in the store.
+- [x] H1 Local Ed25519 signing and opt-in verification of the index, listings, and packages in Store and Launcher.
+      Production key provisioning and publication require owner approval. See [Store signatures](store-signatures.md).
 - [ ] H2 Other Kindles: architecture and firmware checks on a soft-float Kindle and a second hard-float model.
 - [ ] H3 Recovery: bad packages (wrong sha, wrong device, missing file, bad paths) refused; the launcher still starts;
       the boot guard after a failed self-update.
 - [ ] H4 Catalog health: the nightly check's issues are answered; withdrawn versions handled.
-- [x] H5 Review of the file-copy installer's paths, archive limits, unsupported hooks, and network allow list (Mac).
+- [x] H5 Review of install paths, archive limits, hook declarations and approvals, and the network allow list (Mac).
 - [ ] **Gate H**: a bad package is refused on the Kindle and the launcher still starts.
 
 ---

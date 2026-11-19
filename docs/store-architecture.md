@@ -288,18 +288,32 @@ longer has are removed after the record. **Update all** runs updates one at a ti
 
 ### 6.3 Remove
 
-Run `pre-uninstall.sh` if present, delete exactly the files in `installed.json` (and their folders if empty), and
-reload the launcher's apps. Files the app created at run time inside its own folder go with the folder; user data
-outside it stays. The store refuses to remove an app that another installed app requires, and never removes the launcher.
+Run the reviewed `pre-uninstall.sh` if present, delete the files listed in `installed.json`, prune empty folders,
+and reload the launcher's apps. User files outside the recorded file list stay in place. The Store refuses to remove
+Launcher, Store, or an app that another installed app requires.
 
 ### 6.4 Hooks
 
-The current Store installs file-copy packages. It rejects hook files before extracting the payload. The future hook
-contract requires a `pre-uninstall.sh` alongside `post-install.sh` so the review can check how the system change is undone.
+A package declares both `post-install.sh` and `pre-uninstall.sh` in its manifest and sets `changes.hooks` in its
+listing. Review each script and the affected system files in the catalog pull request. Both scripts are limited to
+64 KiB each. Launcher and Store use their dedicated update paths.
 
-Hooks are shell scripts inside the package, for steps a file copy cannot do (for example writing an upstart job). They
-are reviewed in the catalog pull request, run as root with `/` as the working directory and a 60 s limit, and are
-declared in `changes`. A hook must be idempotent and must not download anything.
+The Kindle runtime needs an exact approval in the protected root-owned
+`/var/local/primitive-launcher/package-hooks.json` before it can use a script. The document has `schema` set to
+`1` and a `packages` array. Each entry has `id`, `version`, `arch`, `sha256`, `post_install`, and `pre_uninstall`.
+The last three fields are SHA-256 digests of the archive and both scripts, respectively. Keep the installed
+version's approval available until its cleanup and any update recovery have finished. Catalog review and package
+signatures provide separate checks.
+
+The Linux runner copies verified script bytes into a clean shell invocation with `/` as the working directory,
+dedicated PID and network namespaces, and a 60 s limit. A monitor is bound to the Store worker. When the PID
+namespace stops, the kernel stops its remaining processes. Scripts run as root. They must be idempotent,
+complete in the foreground, avoid network access, and make their changes durable before reporting success.
+The installer journals each attempted system effect so interrupted work
+can undo the candidate's changes, restore the tracked files and receipt, and reapply the previous version's
+system changes if needed. Mac fixtures exercise this order with a fake runner. Kindle kernel support and real
+device behavior still need verification.
+[Linux PID namespaces](https://man7.org/linux/man-pages/man7/pid_namespaces.7.html)
 
 ### 6.5 The launcher's own update
 

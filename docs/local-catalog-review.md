@@ -1,11 +1,11 @@
 # Private Store catalog review
 
-Start with a Mac simulation directory containing the ARMHF packages and desktop captures. Run these commands from
-the umbrella checkout with Pillow and `jsonschema` installed in the Python environment. [Local verification guide](local-verification.md)
+Run the ARMHF simulation from the umbrella checkout with Pillow and `jsonschema` installed. It builds the review,
+refreshes and installs from it in both verification modes, and renders the desktop Store captures.
+[Local verification guide](local-verification.md)
 
 ```sh
 sh scripts/simulate.sh build/simulation --packages
-python3 scripts/build-local-catalog.py build/simulation
 ```
 
 The generator uses the catalog's listing, image, index and archive checks. It reads each package's manifest,
@@ -19,26 +19,12 @@ and native icons use the artwork proposals in `build/simulation/proposals/` when
 proposals uses letter tiles. Public listing text, artwork, compatibility claims, and Terminal's inclusion require
 owner approval.
 
-Run a Store cache refresh from the generated API and install each real archive using its cached listing.
+To rebuild the review and repeat the signed verification from existing simulation output, run these commands.
 
 ```sh
-simulation=$(cd build/simulation && pwd)
-(
-    cd doannt-kindle-tools
-    KL_TEST_PACKAGE_SET="$simulation/packages" \
-    KL_TEST_CATALOG_SITE="$simulation/catalog-review/site/v1" \
-        cargo test --offline --locked -p kl-store --test local_package_set -- --nocapture
-)
+python3 scripts/build-local-catalog.py build/simulation
+python3 scripts/verify-signed-local-catalog.py build/simulation
 ```
 
-To see the listings in the desktop Store, render the review catalog in a separate capture folder.
-
-```sh
-(
-    cd doannt-kindle-launcher
-    cargo run --offline --locked -q -p kl-desktop -- \
-        --documents "$simulation/documents" \
-        --catalog "$simulation/catalog-review" \
-        --out "$simulation/previews/catalog-review"
-)
-```
+The signed check creates and removes its own temporary key and proofs. The unsigned API, receipts, screenshots, and
+the signed and unsigned test logs remain in the simulation output. [Store signature format](store-signatures.md)

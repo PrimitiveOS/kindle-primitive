@@ -128,6 +128,23 @@ verify_packages() {
         KL_STORE_BOOTSTRAP_PACKAGE="$store" cargo test --offline --locked -p kl-launcher bootstrap_installs_the_staged_store_archive)
 }
 
+build_review_catalog() {
+    python3 "$root/scripts/build-local-catalog.py" "$output"
+}
+
+check_review_catalog() (
+    cd "$root/doannt-kindle-tools"
+    unset KL_TEST_CATALOG_PUBLIC_KEY
+    KL_TEST_PACKAGE_SET="$output/packages" KL_TEST_CATALOG_SITE="$output/catalog-review/site/v1" \
+        cargo test --offline --locked -p kl-store --test local_package_set -- --nocapture
+)
+
+review_catalog_preview() (
+    cd "$root/doannt-kindle-launcher"
+    cargo run --offline --locked -q -p kl-desktop -- --documents "$output/documents" \
+        --catalog "$output/catalog-review" --out "$output/previews/catalog-review"
+)
+
 if [ "$mode" = --armel-packages ]; then
     run package-launcher-armel package launcher primitive-launcher launcher kl-launcher docs/INSTALL.md LICENSE-DOCS armel
     run package-browser-armel package browser primitive-browser browser kb-kindle docs/INSTALL.md LICENSE-DOCS armel
@@ -167,5 +184,9 @@ if [ "$mode" = --packages ]; then
         run "package-$app" package "$repo" "primitive-$app" "$app" "$app-kindle" INSTALL.md LICENSE-DOCS
     done
     run package-verification verify_packages
+    run local-catalog-build build_review_catalog
+    run local-catalog-store check_review_catalog
+    run signed-catalog-store python3 "$root/scripts/verify-signed-local-catalog.py" "$output"
+    run local-catalog-preview review_catalog_preview
 fi
 printf 'Simulation output: %s\n' "$output"

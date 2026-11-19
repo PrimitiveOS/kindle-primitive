@@ -183,7 +183,8 @@ published (tag, release, catalog entry) without the owner's go-ahead.
       lists the models it was tested on.
 - [x] D6 — Umbrella repo: **yes**, `https://github.com/DoanNguyenTrong/kindle-primitive.git` (git initialised locally on
       `main`, the four app repos ignored).
-- [x] D7 — Integrity: **sha256 only** for now; signatures later.
+- [x] D7 — Deployed integrity uses SHA-256. The later H1 candidate adds opt-in Ed25519 verification for local
+      review. Enabling production trust and publishing signed releases require owner approval. [Store signatures](store-signatures.md)
 - [x] Gate S0: passed.
 
 Documents to write before implementation (owner's order of request; written in this order):
@@ -253,7 +254,7 @@ focus timer and word and puzzle games are rebuilt as native Primitive apps).
 
 ### Phase S7: hardening
 
-- [ ] Signature check (D7), if decided.
+- [ ] Production signature rollout, if approved. The H1 candidate has a local signing and verification fixture.
 - [ ] Architecture and firmware checks against the manifest (`arch`, `firmware`), on hard-float and soft-float Kindles.
 - [ ] A recovery path: the store never removes the launcher. The launcher's boot guard (`DISABLE`, `BOOT_KINDLE`) still
       works after a bad install.

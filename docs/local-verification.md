@@ -9,7 +9,8 @@ sh scripts/simulate.sh build/simulation --packages
 sh scripts/simulate.sh build/simulation-armel --armel-packages
 ```
 
-Use the Rust toolchain and schema-checking Python environment described in [the handoff](handoff/ENVIRONMENT.md).
+Use the Rust toolchain and schema-checking Python environment described in the handoff. The ARMHF review also
+uses Pillow to generate the private catalog images. [Environment](handoff/ENVIRONMENT.md)
 The package run also requires Zig, cargo-zigbuild, and the installed Rust target
 `armv7-unknown-linux-musleabihf`. Fetch dependencies for the app workspaces with `cargo fetch --locked` if their
 locked crates are missing from the local cache. For the ARMEL run, install `armv7-unknown-linux-musleabi` and build
@@ -22,24 +23,28 @@ the ARM floating-point ABI, and passes each archive to the Store's Rust unpacker
 the staged set into a temporary Kindle filesystem, makes the Launcher pass through its update trial, and removes
 the removable apps while preserving a personal document. The ARMHF run tests Launcher bootstrap with the actual
 Store archive. The [private catalog review](local-catalog-review.md) feeds the actual ARMHF candidates through
-the catalog's validation and the Store's cache and installer.
+the catalog's validation and the Store's cache and installer in both SHA-256 mode and opt-in Ed25519 mode.
 
 | Track | Local coverage | Device or release gate |
 | --- | --- | --- |
 | Foundations and contracts | Schema examples, local fixtures, and current device profiles. | Owner review of the contracts. Older hardware, Bluetooth, active hotfix status, keep-awake, and fast panel measurements need devices. |
 | Packaging and catalog | Local ARMHF archives, checksums, package validation, CI workflows, catalog collections, and release asset verification. Complete ARMEL archives for Launcher, Browser, and Terminal also pass validation and Store unpacking. | Approve public listings, artwork, releases, and merges. Verify the ARMEL archives on a soft-float Kindle before advertising soft-float compatibility. |
 | Store and launcher | Refresh, offline cache, Search, install confirmation and progress, Open, update and removal, resumable downloads, bootstrap, Launcher Store preferences, Store idle/write USB transitions, and interrupted transaction recovery. | Open the Store on the Kindle. Install, open, update, and remove Browser. Check Wi-Fi, USB drive mode and flash writes, sleep and wake, display orientation, and memory. Then exercise the Store bootstrap from a launcher build with a published Store asset. |
-| SDK and native apps | Shared `primitive-device`, `primitive-eink`, and `primitive-input` crates. Hello plus the thirteen native apps have desktop drivers and opt in to Launcher idle USB support. Host fixtures cover USB pauses, scoped file access, and Notes edits across eject. | Review previews and artwork. Install, open, sleep, wake, and remove each app. Check native app USB remounts, Focus idle behavior, and Cascade refresh cadence and ghosting. |
+| SDK and native apps | Shared device, e-ink, input, and UI crates. Hello and the thirteen native apps have desktop drivers and opt in to Launcher idle USB support. Host fixtures cover USB pauses, scoped file access, Notes edits across eject, and localized feedback before a control runs. | Review previews and artwork. Install, open, sleep, wake, and remove each app. Check pressed feedback timing, native app USB remounts, Focus idle behavior, and Cascade refresh cadence and ghosting. |
 | Wi-Fi file transfer | Host loopback verifies the displayed session code, upload limits and path validation, conflict handling, and incomplete transfer cleanup. | On a Kindle, check LAN access on the chosen Wi-Fi network and confirm transfer ends when the Settings page closes or USB drive mode starts. |
-| Hardening | Host verifies architecture/firmware refusal, file ownership, archive limits, checksums, cache and network policy, journal recovery, and catalog asset checks. | The second hardware profile, the launcher update under power loss, and boot fallback need Kindle testing. The platform plan keeps signatures for a later signing decision. |
+| Hardening | Host verifies architecture and firmware refusal, ownership, archive limits, checksums, cache and network policy, reviewed hook transactions, and signed catalog and package proofs. | The second hardware profile, Launcher recovery under power loss, boot fallback, and approved hook execution need Kindle testing. Production trust provisioning and signed publication require owner approval. |
 
 Prototype app listing JSON files are drafts. The catalog should receive actual release URL, SHA-256, byte count,
 approved art and copy, and observed `tested_on` models when an owner-approved release reaches that step. The package
 stage and simulation do not need those claims.
 
-The installer accepts schema-1 file-copy packages with catalog SHA-256 checks and resumes an interrupted package
-transfer against the same catalog size and checksum. It refuses root hooks. The platform plan keeps signing after
-the current phase. The ARMEL archives use static Dropbear with zlib for Launcher and static FBInk for Browser.
+The installer checks schema-1 packages against the catalog's size and SHA-256 and can resume an interrupted
+transfer against the same metadata. An optional root-owned key authenticates the index, exact listing bytes,
+and package fingerprints. The opt-in reviewed hook path requires both scripts and an exact release approval.
+Mac fixtures exercise install, update, removal, and interruption recovery with a fake hook runner. The ARMEL
+archives use static Dropbear with zlib for Launcher and static FBInk for Browser.
+[Store signatures](store-signatures.md) · [Reviewed hooks](store-architecture.md#64-hooks)
+
 The installer checks archive contents against the manifest before extraction. It recognizes specific unmodified
 legacy Launcher, Browser, Store, and Terminal entries. A path already
 holding a customized script or another unrecorded file in `documents/` or `extensions/` stays protected.
@@ -66,22 +71,22 @@ datasets copied from the original game without an upstream redistribution licens
 
 | Checkout | Branch | Commit |
 | --- | --- | --- |
-| Shared Tools and Store engine | `feature/store-device` | `ab62ec5` |
-| Primitive Store | `feature/store-device` | `3836ff2` |
-| Primitive Launcher | `feature/bootstrap` | `3b88740` |
+| Shared Tools and Store engine | `feature/store-device` | `529e2cb` |
+| Primitive Store | `feature/store-device` | `708a84b` |
+| Primitive Launcher | `feature/bootstrap` | `a3de750` |
 | Primitive Browser | `feature/armel-build` | `4af7987` |
 | Primitive Terminal | `feature/terminal-package` | `5680e46` |
-| Catalog | `feature/catalog-validation` | `c8d2309` |
-| Shared packaging | `feature/package-validation` | `f9b0cd5` |
-| Hello template | `feature/app-template` | `c7e66d2` |
-| Notes, Focus, Words | `feature/notes`, `feature/focus`, `feature/words` | `21e4169`, `3318999`, `a355f53` |
-| Cards, Calculator, Sudoku | `feature/cards`, `feature/calculator`, `feature/sudoku` | `80b08a4`, `37c26cf`, `1683a52` |
-| Chess, Minesweeper, Solitaire | `feature/chess`, `feature/minesweeper`, `feature/solitaire` | `36c2d54`, `2c36a31`, `b458c26` |
-| Crossword, Blocks, Ships, Cascade | `feature/crossword`, `feature/blocks`, `feature/ships`, `feature/cascade` | `7b349ce`, `452c92f`, `7f53111`, `bfe1626` |
+| Catalog | `feature/catalog-validation` | `4378a4c` |
+| Shared packaging | `feature/package-validation` | `5e17708` |
+| Hello template | `feature/app-template` | `3071a2c` |
+| Notes, Focus, Words | `feature/notes`, `feature/focus`, `feature/words` | `37cdc33`, `f2186a2`, `2feb0dd` |
+| Cards, Calculator, Sudoku | `feature/cards`, `feature/calculator`, `feature/sudoku` | `0bac649`, `9a0593b`, `dd64405` |
+| Chess, Minesweeper, Solitaire | `feature/chess`, `feature/minesweeper`, `feature/solitaire` | `da8cd3c`, `c3bc41e`, `1c5cf38` |
+| Crossword, Blocks, Ships, Cascade | `feature/crossword`, `feature/blocks`, `feature/ships`, `feature/cascade` | `663e494`, `41452b9`, `cdc66a9`, `e1564b6` |
 
-The Launcher and Store share the Tools pin. For GitHub CI, make the pinned Tools commit available to both consumers
-before publishing their branches. The new app checkouts use the adjacent Tools checkout for local builds and the
-reusable package workflow for releases once its version tag is approved.
+Launcher and Store pin Tools at `9e9815a` for signed Store verification and reviewed system changes. GitHub CI
+needs that commit available before publishing those branches. The native candidate builds use the adjacent
+Tools checkout at `529e2cb` for shared controls. Native releases use the reusable workflow after tag approval.
 
 ## Primitive Store listing proposal
 
