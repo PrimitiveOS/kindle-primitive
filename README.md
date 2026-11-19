@@ -13,10 +13,10 @@ Written in Rust, drawn for e-ink, hosted on GitHub.
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/905724f817202a3dae96e44762069b3ad14ac662/docs/images/home.png" alt="Home screen" width="200"><br><sub>Home screen</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/905724f817202a3dae96e44762069b3ad14ac662/docs/images/quick-settings.png" alt="Quick settings" width="200"><br><sub>Quick settings</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/905724f817202a3dae96e44762069b3ad14ac662/docs/images/settings.png" alt="Settings" width="200"><br><sub>Settings</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/905724f817202a3dae96e44762069b3ad14ac662/docs/images/dark-home.png" alt="Dark mode" width="200"><br><sub>Dark mode</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/fdd81fd0a76fb596b3094f251e9a93a5e5c08070/docs/images/home.png" alt="Home screen" width="200"><br><sub>Home screen</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/fdd81fd0a76fb596b3094f251e9a93a5e5c08070/docs/images/quick-settings.png" alt="Quick settings" width="200"><br><sub>Quick settings</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/fdd81fd0a76fb596b3094f251e9a93a5e5c08070/docs/images/settings.png" alt="Settings" width="200"><br><sub>Settings</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/fdd81fd0a76fb596b3094f251e9a93a5e5c08070/docs/images/dark-home.png" alt="Dark mode" width="200"><br><sub>Dark mode</sub></td>
   </tr>
 </table>
 
@@ -97,6 +97,7 @@ Crossword, Blocks, Ships, and Cascade. [Public catalog](https://doannguyentrong.
 |---|---|
 | [Starship](https://github.com/DoanNguyenTrong/kindle-primitive-starship) | Steer in real time, dodge incoming fire, and defeat the flagship. |
 | [2048](https://github.com/DoanNguyenTrong/kindle-primitive-tidefork) | Swipe the board, merge matching numbers, and beat your best score. |
+| [Snake](https://github.com/DoanNguyenTrong/kindle-primitive-snake) | Pick a speed, steer continuously, and eat to grow your tail. |
 | [Nonogram](https://github.com/DoanNguyenTrong/kindle-primitive-picturelogic) | Reveal pictures from row and column clues. |
 | [Switchyard](https://github.com/DoanNguyenTrong/kindle-primitive-switchyard) | Set track junctions and dispatch a train to the depot. |
 | [Crate Shift](https://github.com/DoanNguyenTrong/kindle-primitive-crateshift) | Swipe to move and push crates onto marked docks across eight puzzles. |
