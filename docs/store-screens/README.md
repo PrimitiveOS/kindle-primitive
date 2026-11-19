@@ -10,6 +10,7 @@ its draft listings. The Updates and Required apps screens use demonstration stat
 | [Updates](store-updates.png) | Installed apps and available updates |
 | [Update all](store-update-all.png) | Batch update confirmation |
 | [Product page](store-app.png) | Primitive Browser with screenshots |
+| [Installed product](store-open-installed.png) | Primitive Browser with the Open action |
 | [Product details](store-app-scrolled.png) | About, history, and information |
 | [Link listing](store-link.png) | KOReader instructions |
 | [Search](store-search.png) | Filtered app results |
@@ -20,6 +21,7 @@ its draft listings. The Updates and Required apps screens use demonstration stat
 | [Dark mode](store-install-sheet-dark.png) | Dark interface with grayscale pictures |
 | [Upside-down panel](store-install-sheet-turned.png) | Raw 180° panel frame in dark mode |
 | [Settings](store-settings.png) | Daily checks and cache options |
+| [Launcher Settings › Store](settings-store.png) | The shared Store preference and cache controls |
 
 Run `sh scripts/simulate.sh build/simulation` from the umbrella checkout to regenerate the previews. See the
 [local verification guide](../local-verification.md) for the full package and review workflow.

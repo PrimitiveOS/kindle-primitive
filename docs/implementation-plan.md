@@ -155,8 +155,9 @@ Repo `kindle-primitive-build` (local `doannt-kindle-build`).
 
 ### B3 Soft-float builds
 
-- [ ] Choose the Rust target for `armel` (soft-float ARMv7 or ARMv6 musl) and check zig's support.
-- [ ] Build launcher, browser and terminal for it in CI; note anything that does not build (vello's SIMD paths, QuickJS).
+- [x] Build the `armv7-unknown-linux-musleabi` target with Zig and stage complete Launcher, Browser, and Terminal ZIPs.
+      Launcher includes static Dropbear with zlib and Browser includes static FBInk (Mac).
+- [ ] Confirm the GitHub CI result for the soft-float builds after the changes reach GitHub.
 - [ ] Test on a soft-float Kindle (needs a device; until then listings declare `armhf` only).
 
 ---
@@ -195,7 +196,8 @@ The store is a new phase of the launcher: its first device build starts a new mi
 
 - [x] `primitive-net` in `doannt-kindle-tools` (branch `feature/primitive-net`, `241a527`): downloads with an allow list,
       HTTPS only, redirects checked by hand, size limits, progress, `.part` files (Mac).
-- [ ] Not done: resume of partial downloads; bundled root certificates on the Kindle (A4.4 device check).
+- [x] Resume partial Store and bootstrap downloads only against the same expected size and SHA-256 (Mac).
+- [ ] Check the bundled root certificates on the Kindle with a full package download (A4.4 device check).
 - [x] Tests on a local HTTP server (Mac); HTTPS on the Kindle is still to check (A4.4).
 - [ ] The browser uses `primitive-net` where it overlaps (later, no behaviour change).
 
@@ -204,15 +206,17 @@ The store is a new phase of the launcher: its first device build starts a new mi
 Crate `kl-store` in the launcher.
 
 - [x] Models for the index, listings, manifests, `installed.json`; parsers with tests (Mac).
-- [x] Catalog cache in `launcher/store/cache/` (index, listings, icons, screenshots); refresh by the Refresh button, on a thread, refused without Wi-Fi (Mac tests; the catalog's own build output is checked by a test). Not yet: refresh on open and the daily check.
+- [x] Cache the catalog in `launcher/store/cache/`. Support Refresh, refresh on open, and a daily check over Wi-Fi.
+      Keep the saved catalog available offline (Mac).
 - [ ] Device facts (A4.1–A4.3): architecture, firmware, model; free space.
 - [x] Resolver: newest version for the architecture and firmware; `requires` with `>=`; withdrawn versions skipped (Mac).
 - [x] Installer (Mac): verify sha256 and size (`verify.rs`), unpack in-process to `staging/` with path checks and the
       manifest's file list (`unpack.rs`), journal, rename into place keeping `.prev`, record, clean up (`install.rs`).
 - [x] Download through `primitive-net`, checks, install, and the library reload (apps and icons), done on the Mac (`083c9d8`).
-- [ ] Installer, still to do: hooks with a 60 s limit, and Remove on the product page (the engine's remove exists).
-- [ ] Update (old files kept until the new version is recorded) and Update all (requirements first).
-- [x] Remove (exact files; refuses an app another app requires) (Mac). The launcher is refused by the caller, not yet wired.
+- [ ] Reviewed root hooks with a 60 s limit. The current installer refuses hooks.
+- [x] Update keeps the previous files until a new version is recorded. Update all processes requirements first (Mac).
+- [x] Remove through the product page. The Store preserves packages another app requires and refuses to remove
+      Launcher or Store through this flow (Mac).
 - [x] Journal recovery: an unfinished install is undone, or finished when the record was saved (Mac; `recover`).
 - [x] Tests (Mac, 30): install, update, remove, sha and size mismatch, bad paths, `//` in names, links, two top
       folders, size limits, rollback at each step, power-cut recovery in both states, dependency refusal, damaged record;
@@ -222,25 +226,23 @@ Crate `kl-store` in the launcher.
 
 Following the `primitive-ui` skill; reviewed as desktop screenshots before any device build.
 
-- [x] Store tile on the grid, after Settings (Mac, `a4e47f7`). The badge for updates is not done.
-- [ ] Floating tab bar: Today, Apps, Updates, Search; Refresh at the top right of each tab.
-- [ ] Today: collection cards. Apps: category cards, then app rows. App row: icon, name, subtitle, action capsule
-      (Get, Update, Open, Link).
-- [x] App page: icon, subtitle, developer and licence, status, description, what the app changes, action (Mac).
-      Not yet: the information strip, screenshots with Previous and Next, What's New, Version history, Information.
-- [x] The action on the page: Get asks the device for the download; until D2's download is wired the screen says it is
-      not in this build (Mac). Not yet: the install sheet, its warnings and confirmation, the progress steps.
-- [ ] Updates: Update all, per-app Update, installed list with Remove (confirmation pop-up).
-- [ ] Search with the shared keyboard; results as app rows.
-- [ ] Settings › Store page: daily update check (default on), clear the cache.
-- [ ] Dark mode and upside-down checked; desktop screenshots in `docs/images/` (Mac).
+- [x] Store tile with a cached update badge (Mac).
+- [x] Floating tab bar for Today, Apps, Updates, and Search. Refresh is at the top right (Mac).
+- [x] Collections on Today, category selection in Apps, and install, update and Open actions on rows (Mac).
+- [x] Product page with app details, capabilities, screenshots, release notes, version history, and information (Mac).
+- [x] Install sheet, changes and requirement review, confirmation, and download and install progress (Mac).
+- [x] Update all, per-app updates, and removal confirmation (Mac).
+- [x] Search with the shared keyboard and app-row results (Mac).
+- [x] Launcher Settings › Store and the Store gear share the daily check preference and provide cache clearing (Mac).
+- [x] Dark mode and upside-down renders captured in [`docs/store-screens/`](store-screens/README.md) (Mac).
 
 ### D4 Store on the Kindle
 
 - [ ] Install the browser from the store (from a test catalog first), open it, return, update it, remove it.
 - [ ] A package for the wrong architecture is refused with the reason.
 - [ ] Power off during an install; the next start finishes or undoes it.
-- [ ] USB drive mode while the store is idle (the store holds nothing open on `/mnt/us`).
+- [ ] USB drive mode while the store is idle on the Kindle. The Store and supervisor pass idle, write, cleanup, and
+      handoff tests (Mac).
 - [ ] Memory with the store open stays under the launcher's budget + 20 MB.
 - [ ] **Gate D**: the owner installs, updates and removes an app from the store on the Kindle.
 
@@ -278,7 +280,8 @@ like the rest of tools.
 
 ### E3 Text editing
 
-- [ ] Single-line field (exists in the launcher for Wi-Fi; moved to the kit).
+- [x] The shared single-line field tracks the caret, clips long text, and supports masking. Launcher Wi-Fi and SSH
+      screens use it (Mac).
 - [ ] Multi-line editor: cursor, insert and delete, line wrap, scrolling by page, cursor moves by tap; tuned for e-ink
       (redraw only the changed lines). Needed by Notes.
 
@@ -332,7 +335,8 @@ its own versions from 0.1.0. Every app milestone includes the **definition of do
 
 - [ ] Six guesses for a five-letter word, shared keyboard with letter states, marks that read in black and white.
 - [ ] Daily word and free play; statistics and streak.
-- [ ] Word lists: from KWordle's MIT lists (credited), English first; the answer and guess lists' licences checked.
+- [x] English answer and guess banks ship from independent selections (Mac). The source credited by KWordle supplied
+      its two datasets without a redistribution licence. The Words README records the provenance check.
 
 ### F4 Primitive Cards (productivity; like AnkiMobile, Quizlet)
 

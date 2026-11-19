@@ -117,6 +117,8 @@ verify_package_archives() {
         (cd "$root/doannt-kindle-tools" &&
             KL_TEST_PACKAGE="$archive" cargo test --offline --locked -p kl-store accepts_a_package_from_the_build_packager)
     done
+    (cd "$root/doannt-kindle-tools" &&
+        KL_TEST_PACKAGE_SET="$output/packages" cargo test --offline --locked -p kl-store --test local_package_set -- --nocapture)
 }
 
 verify_packages() {

@@ -107,6 +107,7 @@ An app installed by hand is not in the store's installed list. Install it once f
 | The Kindle turned off during an install | Open the launcher. The store finishes or undoes the cut install by itself. |
 | An installed app does not show | Close and reopen the Store tile, or restart the launcher (Settings > Device > Restart the launcher). |
 | The store shows old information | Tap **Refresh** at the top of the store. Over USB, you can also delete `launcher/store/cache` to start fresh. |
+| A file already exists and is unmanaged | Move the existing file somewhere safe before retrying. This can happen with customized entries from a manual install. |
 | The launcher does not start after an update | The Kindle shows its own home screen. Open **Launcher** in the library. If that fails three times, the launcher turns its boot start off by itself; see its `INSTALL.md`. |
 
 The launcher's log is `launcher/log-launcher.txt` on the Kindle drive. To report a problem, open an issue on the app's

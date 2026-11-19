@@ -43,7 +43,7 @@ wanted, so we build our own, §5), **Skip for now**, **Remove**, **Excluded**.
 |---|---|---|---|---|---|---|
 | 1 | KOReader | E-book and document reader | Native (Lua, own UI) | AGPL-3.0 | **Reference** (owner) | The reader most jailbroken Kindles use, with a full interface, and it already starts from our launcher. The store links to KOReader's own site and releases; we do not repackage it. |
 | 2 | RAnki | Anki flashcards with AnkiWeb sync | GTK2, WebKitGTK | GPL-3.0 | **Remove** (owner) | Below the owner's quality bar (beta, the author warns of data loss). Flashcards come from our own app, Primitive Cards (§5). |
-| 3 | KWordle | Wordle | Illusion (HTML) | MIT | **Rebuild** | The game is wanted, but it needs the Kindle's own interface and its UI is basic. Its MIT word lists (9 languages) can seed our game, with credit. |
+| 3 | KWordle | Wordle | Illusion (HTML) | MIT for the app | **Rebuild** | Primitive Words uses independent English word banks. The upstream English datasets KWordle credits lack their own redistribution licence. |
 | 4 | KShips | Battleship | Illusion (HTML) | GPL-3.0 | **Rebuild** (later) | A classic; needs the Kindle's own interface; not updated lately. |
 | 5 | KNotes | Notes and a kanban board | Illusion (HTML) | none | **Rebuild** | Notes are essential; this one needs the Kindle's own interface and has no licence. |
 | 6 | KPomo | Pomodoro timer | Illusion (HTML) | none | **Rebuild** | A focus timer is wanted; same limits as KNotes. |
@@ -106,7 +106,7 @@ order (M-D7).
 
 | App | Like | Replaces |
 |---|---|---|
-| Primitive Words | Wordle | KWordle (its MIT word lists reused, credited) |
+| Primitive Words | Wordle | Independent English answer and guess banks |
 | Primitive Sudoku | Sudoku apps | — |
 | Primitive Chess | Chess against the device | Gnome Chess |
 | Primitive Minesweeper | Minesweeper | Gnome Mines |
