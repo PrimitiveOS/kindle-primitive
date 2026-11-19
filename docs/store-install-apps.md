@@ -1,7 +1,7 @@
-# Install apps with Store
+# Install apps with Store on PrimitiveOS
 
-Store is a standalone app for **jailbroken Kindle e-readers**. It downloads apps over Wi-Fi, checks each package,
-and manages installs, updates, and removals. Open it from the **Store** tile in Primitive Launcher.
+Store is the app store for PrimitiveOS on **jailbroken Kindle e-readers**. It downloads apps over Wi-Fi, checks each
+package, and manages installs, updates, and removals. Open it from the **Store** tile in Primitive Launcher.
 
 ## 1. What you need
 
@@ -16,19 +16,16 @@ Apps say which Kindles they run on. Newer Kindles are **hard-float** (`armhf`), 
 
 ## 2. Install Primitive Launcher (once)
 
-1. On a computer, open the launcher's latest release:
-   `https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases/latest`, and download
-   `primitive-launcher-<version>.zip` and its `.sha256` file.
-2. Optional, to check the download: compare the zip's SHA-256 with the `.sha256` file
-   (`shasum -a 256 <zip>` on macOS and Linux, `certutil -hashfile <zip> SHA256` on Windows).
-3. Unzip it. Connect the Kindle by USB while its normal home screen is showing.
-4. Copy the `launcher` and `documents` folders onto the Kindle drive. Merge `documents` with the one already there;
-   your books stay.
-5. Eject the Kindle and unplug it.
-6. Open **Launcher** in the Kindle library. The first time, it also sets itself up to start with the Kindle.
+Primitive Launcher is the only manual app install for initial setup. If Launcher is already installed, go to
+[Find an app](#3-find-an-app) or [Update apps](#5-update-apps).
 
-The full guide, including how to leave the launcher and how to uninstall it, is the launcher's `INSTALL.md` (inside the
-zip).
+1. Download and extract the Launcher ZIP for your Kindle. Check it against the matching `.sha256` file.
+   [Latest Launcher release](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases/latest)
+2. Connect the Kindle by USB while Amazon's Kindle interface is open. Copy `launcher/` to the root of the Kindle
+   drive and `documents/Launcher.sh` into your existing Kindle `documents/` folder.
+3. Eject and unplug the Kindle. Open **Launcher** in the Kindle library.
+
+The release includes the full guide and checksum commands. [Launcher installation guide](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/blob/main/docs/INSTALL.md)
 
 ## 3. Find an app
 
@@ -75,8 +72,8 @@ computer). Their page explains how to install them and links to their author's i
   Wi-Fi is on (you can turn the daily check off in the launcher's Settings > Store).
 - Open **Updates**. Tap **Update** next to one app, or **Update all**.
 - An update keeps the old version until the new one is in place. If anything fails, the old version stays.
-- Updating **Primitive Launcher** restarts the launcher. If the new version does not start, the Kindle falls back to its
-  own home screen; open **Launcher** in the library to return.
+- For a **Primitive Launcher** update, tap **Done** when Store says the update is ready. Launcher restarts and
+  checks the new version. It restores the previous version if the startup trial fails.
 
 ## 6. Remove an app
 
@@ -87,18 +84,10 @@ stay.
 The store will not remove an app that another installed app needs; remove that one first. It never removes Primitive
 Launcher; to uninstall the launcher, follow its `INSTALL.md`.
 
-## 7. Install by hand (without the store)
+## 7. Apps you installed before Store
 
-Apps with a **Get** button publish ZIPs for the architectures listed on their Store page. Each ZIP includes an
-`INSTALL.md`. To install by hand:
-
-1. Download the zip for your Kindle and its `.sha256` file from the app's releases page, and check it (§2 step 2).
-2. Connect the Kindle by USB and copy the folders from the zip onto the Kindle drive, as its `INSTALL.md` says.
-3. Eject and unplug. The app appears in the library and on the launcher's home screen.
-
-An app installed by hand is not in the store's installed list. Install it once from the store to let the store update it.
-
-Store itself can also be installed over USB. [Install Store](https://github.com/DoanNguyenTrong/kindle-primitive-store/blob/main/INSTALL.md)
+Store manages apps it has installed. For apps previously installed by hand, check their product page and follow any
+prompts in Store to bring them under Store management.
 
 ## 8. When something goes wrong
 

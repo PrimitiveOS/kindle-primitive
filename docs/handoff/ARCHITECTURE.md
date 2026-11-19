@@ -2,7 +2,7 @@
 
 ## The idea
 
-Primitive is a small set of apps for a jailbroken Kindle. The **launcher** is the home screen and the only thing that starts
+PrimitiveOS is an operating environment for jailbroken Kindle e-readers. The **launcher** is the home screen and starts
 with the Kindle. Every other app is a separate program with its own repository, installed into the Kindle's storage, and
 opened from the launcher's grid. The **store** is one of those apps. The launcher only needs to know how to start an app and
 how to install one; it does not need the store's code to build.
@@ -18,7 +18,7 @@ how to install one; it does not need the store's code to build.
   │   │ opens an app: writes `next`, exits 10; the supervisor runs it                       │
   │   ├─ Primitive Browser      /mnt/us/browser/…   documents/Primitive Browser.sh           │
   │   ├─ Primitive Terminal     /mnt/us/terminal/…  documents/Terminal.sh                   │
-  │   ├─ Primitive Store        /mnt/us/store/bin/kl-store-app   documents/Store.sh          │
+  │   ├─ Store                  /mnt/us/store/bin/kl-store-app   documents/Store.sh          │
   │   └─ KOReader (stock UI path, library)                                                  │
   │ store data (shared with the launcher): /mnt/us/launcher/store/{cache,downloads,         │
   │   staging,installed.json,journal.json}                                                  │

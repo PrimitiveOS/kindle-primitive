@@ -1,4 +1,4 @@
-# Implementation plan: Primitive Store, our apps, and the native apps
+# PrimitiveOS implementation plan
 
 Status date: 2026-11-19. On the Kindle: Primitive Launcher **v0.3.21**, Primitive Browser **v0.2.17**, Primitive Terminal
 **v0.1.8**. Decisions D1–D7 are taken ([kindle-platform-plan.md](kindle-platform-plan.md) §4). This is the tracking
@@ -66,7 +66,7 @@ Order of work:
 - [x] Folder `doannt-kindle/` with the four app repos side by side; `git init` with the app repos ignored (Mac).
 - [x] Documents: platform plan, store architecture, submission guide, install guide, migration review, this plan (Mac).
 - [x] Skills in `.agents/skills` (`primitive-ui`, `kindle-device`, `kindle-eink`), linked as `.claude/skills` (Mac).
-- [x] README "Primitive Redefined Kindle" and the CC BY-NC-SA 4.0 `LICENSE` for docs and skills (Mac).
+- [x] Umbrella README and the CC BY-NC-SA 4.0 `LICENSE` for docs and skills (Mac).
 - [x] `.gitignore` ignores every app folder by pattern (`/doannt-kindle-*/`), so new app repos need no change.
 - [x] First commit (`8be0056`); remote `https://github.com/DoanNguyenTrong/kindle-primitive.git` (public); pushed.
 

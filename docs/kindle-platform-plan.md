@@ -1,9 +1,9 @@
-# Primitive Kindle platform: repos, architecture, and execution plan
+# PrimitiveOS platform plan
 
 Status date: 2026-11-19.
 
-This document covers three things: the repos we have and the ones we need to create, the architecture that connects
-them (launcher as host, apps as modules, a GitHub-hosted app store), and the order of work with a gate per phase.
+This plan covers the PrimitiveOS repositories, their architecture, and the order of work. Primitive Launcher hosts
+independently packaged apps and opens Store, which uses a GitHub-hosted catalog.
 The reference for the wider Kindle ecosystem is [Awesome-Kindle](https://github.com/KindleTweaks/Awesome-Kindle)
 (cloned to `/tmp/kl-research/Awesome-Kindle` at commit `ae2e041`, not kept in this workspace).
 
@@ -70,7 +70,7 @@ GitHub names follow `kindle-primitive-*`; local folders follow `doannt-kindle-*`
 
 | New repo (GitHub / local) | Purpose | Phase |
 |---|---|---|
-| `kindle-primitive` / `doannt-kindle` | The umbrella: README, docs (this plan, the store documents), and the shared skills. Git initialised locally; remote `https://github.com/DoanNguyenTrong/kindle-primitive.git` (D6). | now |
+| `kindle-primitive` / `doannt-kindle` | PrimitiveOS umbrella repository for the README, docs, and shared skills. Remote `https://github.com/DoanNguyenTrong/kindle-primitive.git` (D6). | now |
 | `kindle-primitive-catalog` / `doannt-kindle-catalog` | The public catalog: one folder per app with `app.json`, icons and screenshots; the JSON schema; CI that checks every listing and publishes the static API to GitHub Pages. Hosts no binaries. | S3 |
 | `kindle-primitive-build` / `doannt-kindle-build` | Shared CI: a reusable workflow that builds a device package (zip, `.sha256`, `manifest.json`) per architecture for any app, with the zig setup pinned as the launcher does now. Each app calls it on a `v*` tag. | S2 |
 
@@ -189,11 +189,11 @@ published (tag, release, catalog entry) without the owner's go-ahead.
 
 Documents to write before implementation (owner's order of request; written in this order):
 
-- [x] `.agents/skills/primitive-ui/SKILL.md` — the UI and UX skill for every Primitive app.
+- [x] `.agents/skills/primitive-ui/SKILL.md` — the UI and UX skill for PrimitiveOS apps.
 - [x] `docs/store-architecture.md` — the store's system architecture and requirements.
 - [x] `docs/store-submit-app.md` — how to add an app to the store.
 - [x] `docs/store-install-apps.md` — how to install apps from the store.
-- [x] `README.md` — the umbrella repo's README, "Primitive Redefined Kindle".
+- [x] `README.md` for the PrimitiveOS umbrella repository.
 
 ### Phase S1: fix the contracts and the missing basics
 
@@ -245,7 +245,7 @@ Documents to write before implementation (owner's order of request; written in t
 
 The detailed plan for KindleForge's 28 packages is [store-migration-kindleforge.md](store-migration-kindleforge.md)
 (reviewed against the owner's quality bar: nothing is migrated; KOReader is a reference listing; notes, flashcards, a
-focus timer and word and puzzle games are rebuilt as native Primitive apps).
+focus timer and word and puzzle games are rebuilt as native apps for PrimitiveOS).
 
 - [ ] Add the KOReader reference listing (`link`, with its licence shown). We host nothing of it.
 - [ ] Pick the native apps to build first (migration plan §5, M-D7). Each is its own repo and its own phase.

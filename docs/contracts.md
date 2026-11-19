@@ -1,4 +1,4 @@
-# Contracts: what an app, a package and the catalog must look like
+# PrimitiveOS app, package, and catalog contracts
 
 Status date: 2026-11-19. Status: frozen for the first store release (implementation plan A2). The machine-readable
 versions are in [schema/](../schema/): `app.schema.json` (a listing), `manifest.schema.json` (a package's manifest) and

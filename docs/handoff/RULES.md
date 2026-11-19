@@ -26,6 +26,10 @@
 
 ## Device work
 
+- Set up PrimitiveOS by manually installing Primitive Launcher once. Copy `launcher/` to the Kindle drive root and
+  `documents/Launcher.sh` to the existing `documents/` folder. Use Store for subsequent app installs.
+- Leave an installed Launcher in place unless the owner directly requests a Launcher change. Use the existing Launcher
+  to open and verify Store and other apps.
 - Every device build bumps the patch version (`scripts/build-device.sh`); a new phase starts a minor version
   (`--minor`). The store app has its own version (`0.1.0` now), bumped by hand in its `Cargo.toml` and CHANGELOG.
 - A device deploy changes what the owner tests. The owner asked: do not deploy until the owner has said so; the owner

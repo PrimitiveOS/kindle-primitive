@@ -1,6 +1,6 @@
 # Private Store catalog review
 
-Run the ARMHF simulation from the umbrella checkout with Pillow and `jsonschema` installed. It builds the review,
+Run the ARMHF simulation from the PrimitiveOS checkout with Pillow and `jsonschema` installed. It builds the review,
 refreshes and installs from it in both verification modes, and renders the desktop Store captures.
 [Local verification guide](local-verification.md)
 

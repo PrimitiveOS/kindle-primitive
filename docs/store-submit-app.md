@@ -1,6 +1,6 @@
 # Add an app to Store
 
-Use this guide to list a Kindle app in Store, the standalone app opened from the Primitive Launcher grid. Listings
+Use this guide to list a Kindle app in Store for PrimitiveOS. Open Store from the Primitive Launcher grid. Listings
 live in the shared catalog, and hosted packages are published as GitHub release assets. [Store architecture](store-architecture.md)
 
 ## 1. Before you start
@@ -21,13 +21,13 @@ Your app can be listed when:
       Android (productivity, games, everyday tools); and it works with **Primitive Launcher in front**, the Kindle's own
       interface stopped. Apps that run inside the Kindle's own interface (Illusion and other HTML booklets) do not.
 
-Primitive apps (ours) must also follow the `primitive-ui` skill and pass its review checklist.
+First-party PrimitiveOS apps must also follow the `primitive-ui` skill and pass its review checklist.
 
 ## 2. Choose how the store gets your app
 
 | Your licence and wishes | `source` | What the store does |
 |---|---|---|
-| A licence that allows redistribution (AGPL, GPL, LGPL, MPL, MIT, BSD, Apache, ISC, Unlicense), and you publish packages in our format; or a Primitive app (PolyForm Noncommercial 1.0.0) | `hosted` | Downloads your release asset, checks it, installs it. |
+| A licence that allows redistribution (AGPL, GPL, LGPL, MPL, MIT, BSD, Apache, ISC, Unlicense), and you publish packages in our format; or a first-party PrimitiveOS app (PolyForm Noncommercial 1.0.0) | `hosted` | Downloads your release asset, checks it, installs it. |
 | Any licence; you publish your own release files and do not want them re-hosted, or the licence does not allow it (for example CC BY-NC-SA) | `upstream` | Downloads from **your** release URL, pinned by sha256; we host nothing. Your files must still be in our package format, or installable by the file list and hooks you declare. |
 | The app cannot be installed by file copy and reviewed hooks (it needs manual steps, a different jailbreak, or a firmware change) | `link` | Shows the app page with your instructions and a link. No install button. |
 
@@ -220,7 +220,7 @@ By a reviewer:
 - **Remove the app**: open a pull request that deletes `apps/<id>/` and says why. Installed copies stay on Kindles and can
   be removed from the store's Updates tab; the `id` stays reserved.
 
-## 8. Extra steps for Primitive apps
+## 8. Extra steps for first-party PrimitiveOS apps
 
 - Version rules: every device build bumps the patch version; a new phase bumps the minor; tags `vX.Y.Z` are never moved.
 - Before a release: tests pass, the desktop screenshots are reviewed by the owner, and the owner has tested the device

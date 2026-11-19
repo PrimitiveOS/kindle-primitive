@@ -1,6 +1,6 @@
 # Store screens for review
 
-Desktop renders of Primitive Store at the Kindle Oasis 3 size of 1264 × 1680. The preview uses the local catalog and
+Desktop renders of Store for PrimitiveOS at the Kindle Oasis 3 size of 1264 × 1680. The preview uses the local catalog and
 its draft listings. The Updates and Required apps screens use demonstration state.
 
 | File | Screen |

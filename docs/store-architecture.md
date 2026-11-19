@@ -1,11 +1,11 @@
 # Store architecture and requirements
 
-Status date: 2026-11-19. Status: design, not built. Decisions D1–D7 are in
+Status date: 2026-11-19. This document records the Store design and requirements. Decisions D1–D7 are in
 [kindle-platform-plan.md](kindle-platform-plan.md) §4 (S0).
 
-Store is an app store for **jailbroken Kindle e-readers**, built and run by us, hosted entirely on GitHub. It
-lists apps by category, installs them with a checked download, keeps them up to date, and removes them cleanly. It lives
-inside Primitive Launcher as a screen with its own tile.
+Store is the standalone app store for PrimitiveOS on **jailbroken Kindle e-readers**. Primitive Launcher opens it
+from the **Store** tile. Its GitHub-hosted catalog lists apps by category. Store checks downloads before installation
+and manages updates and removals.
 
 How to read the requirements: `FR-n` is a functional requirement, `NFR-n` a non-functional one. Each has a priority:
 **M** (must, first release), **S** (should), **L** (later). Track them in the checklists in §11.
@@ -17,7 +17,7 @@ How to read the requirements: `FR-n` is a functional requirement, `NFR-n` a non-
 | Apple App Store (iOS) | Tabs (Today, Apps, Games, Search); categories; the product page (icon, name, subtitle, one action button, screenshots, description, What's New, version history, an information block, a privacy label); an Updates list. | No accounts, payments, ratings or reviews. Our "privacy label" becomes **What this app changes** (§5.3), since on a Kindle the risk is system changes, not data collection. |
 | KindleForge (`KindleTweaks/KindleForge`, `KindleTweaks/Repository`) | A single catalog file (`registry.json`, 28 entries) with name, folder, description, author, ABI (`hf`, `sf`), dependencies by name, and tags (UTILITY, MEDIA, PRODUCTIVITY, DEVELOPMENT, GAMES, EDITORS). Hard-float is detected by `/lib/ld-linux-armhf.so.3`. One folder per package with `install.sh`, `uninstall.sh` and `assets/`. | We pin **versions** and **sha256** for every download (KindleForge's scripts fetch whatever is newest at install time and check nothing). Installs are **declarative** (a file list), with scripts only as reviewed hooks. Versions history, updates and rollback. |
 | KPM (`Gingrspacecadet/KPM`) | A shell package manager (needs `curl`, `unzip` or `tar`). Package format on its wiki (not read yet: plan O3). | No dependency on a terminal or `curl` on the device; the store downloads and unpacks in-process. |
-| Primitive Launcher | The host: grid, single-instance reload of apps (`set_apps`), library entries, KUAL discovery, Wi-Fi, the boot copy on `/var/local`, and the UI language (the `primitive-ui` skill). | The store is a new screen of the launcher, not a separate program. |
+| Primitive Launcher | The host: grid, single-instance reload of apps (`set_apps`), library entries, KUAL discovery, Wi-Fi, the boot copy on `/var/local`, and the UI language (the `primitive-ui` skill). | The Launcher grid opens the standalone Store program. |
 
 ## 2. Scope
 
@@ -160,7 +160,7 @@ Field rules:
 
 - `id`: lower case, `a-z 0-9 -`, unique, never changed.
 - `dir`: the app's folder name under `/mnt/us/` (and `/mnt/us/extensions/` for a KUAL part). Defaults to `id`; unique in
-  the catalog; never changed. Existing Primitive apps keep their folders: `launcher`, `browser`, `terminal`. Reserved
+  the catalog; never changed. Existing PrimitiveOS apps keep their folders: `launcher`, `browser`, `terminal`. Reserved
   and refused: `documents`, `extensions`, `system`, `koreader`, `fonts`, `screensaver`, and any folder the Kindle itself
   uses on `/mnt/us`.
 - `source`: `hosted` (our release assets), `upstream` (the author's own release URL, pinned by sha256; we host nothing),
@@ -334,7 +334,7 @@ On a pull request:
 2. For each new version and architecture: download the asset, check the sha256 and size, open the zip, compare its
    `manifest.json` with the listing, check the file list and the allowed roots, look for hooks.
 3. Check the licence: `hosted` needs a licence that allows redistribution (allow list: AGPL, GPL, LGPL, MPL, MIT, BSD,
-   Apache, ISC, Unlicense), or an app published by Primitive itself (PolyForm Noncommercial 1.0.0, our licence; we
+   Apache, ISC, Unlicense), or an app published by Primitive AI for PrimitiveOS (PolyForm Noncommercial 1.0.0; we
    hold the copyright). Others must be `upstream` or `link`.
 4. Check images: icon 256 × 256 grayscale PNG; screenshots 632 × 840 grayscale PNG; size limits.
 5. Post a summary on the pull request: what changed, sizes, flags, hooks to review.
@@ -389,7 +389,7 @@ A nightly job re-checks that every asset URL still answers with the same sha256 
 
 | Repo (GitHub) | Local folder | Role |
 |---|---|---|
-| `kindle-primitive` | `doannt-kindle/` | Umbrella: docs, skills, the plan. |
+| `kindle-primitive` | `doannt-kindle/` | PrimitiveOS umbrella repository for docs, skills, and plans. |
 | `kindle-primitive-catalog` | `doannt-kindle-catalog/` | Listings, schema, CI, Pages site. |
 | `kindle-primitive-build` | `doannt-kindle-build/` | Reusable release workflow for publishers. |
 | `kindle-primitive-launcher` | `doannt-kindle-launcher/` | Store client (`kl-store` crate) and host. |
@@ -404,7 +404,7 @@ A nightly job re-checks that every asset URL still answers with the same sha256 
   says so on older Kindles.
 - **Upstream links rot** or change their files. Mitigation: pinned sha256, the nightly check, and `link` as the fallback.
 - **Licences**: hosting is limited to the allow list (§7); KindleTweaks' Repository is CC BY-NC-SA, so its packages are
-  `upstream` or `link` only. Primitive's own apps are under PolyForm Noncommercial 1.0.0 (code) and CC BY-NC-SA 4.0
+  `upstream` or `link` only. First-party PrimitiveOS apps may use PolyForm Noncommercial 1.0.0 (code) and CC BY-NC-SA 4.0
   (docs and pictures); the store's listings text, icons and screenshots in the catalog are under CC BY-NC-SA 4.0 unless
   a publisher's own licence says otherwise.
 - **Hooks run as root**. Mitigation: reviewed in pull requests, declared on the app page, time-limited, no downloads.

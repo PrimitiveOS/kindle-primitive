@@ -1,4 +1,4 @@
-# Kindle platform verification on a Mac
+# PrimitiveOS verification on a Mac
 
 Run these commands from the umbrella checkout with the sibling repositories present. The local run uses desktop devices,
 temporary user-storage fixtures, and cross-compiled packages.

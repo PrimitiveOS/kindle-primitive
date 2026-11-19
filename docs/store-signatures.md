@@ -1,6 +1,6 @@
 # Store signature format
 
-Store and Launcher use SHA-256 by default. They opt in to signed verification when the protected root-owned file
+Store and Launcher in PrimitiveOS use SHA-256 by default. They opt in to signed verification when the protected root-owned file
 `/var/local/primitive-launcher/catalog-ed25519.pub` contains a trusted 32-byte public key as 64 hexadecimal digits.
 Keep the private PKCS#8 key on the signing host and provision the public key through a separate trusted channel.
 A signed catalog uses one key for its index and every package it offers.

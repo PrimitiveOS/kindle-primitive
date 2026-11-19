@@ -1,4 +1,4 @@
-# Handoff: Primitive Store and the Kindle apps
+# PrimitiveOS handoff
 
 Status date: 2026-11-19. Written for: one autonomous agent that continues the work without stopping, until it needs the
 owner. The owner is away for a while.

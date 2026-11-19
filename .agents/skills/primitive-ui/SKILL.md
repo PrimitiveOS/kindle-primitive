@@ -1,11 +1,11 @@
 ---
 name: primitive-ui
-description: Use when designing, building or reviewing any screen of a Primitive app on a Kindle (Launcher, Browser, Terminal, Store, or a new app). Defines the Primitive design language (Apple's Liquid Glass adapted to e-ink), its tokens (canvas, grays, type, radii, sizes), its components (status bar, icon grid, settings cards and rows, switches, buttons, pop-ups, quick settings, keyboard, icons), interaction and e-ink refresh rules, dark mode, wording, and a review checklist.
+description: Use when designing, building or reviewing any PrimitiveOS app on a Kindle (Launcher, Browser, Terminal, Store, or a new app). Defines the PrimitiveOS design language (Apple's Liquid Glass adapted to e-ink), its tokens (canvas, grays, type, radii, sizes), its components (status bar, icon grid, settings cards and rows, switches, buttons, pop-ups, quick settings, keyboard, icons), interaction and e-ink refresh rules, dark mode, wording, and a review checklist.
 metadata:
   type: reference
 ---
 
-# Primitive UI: the design language of every Primitive app
+# Primitive UI for PrimitiveOS
 
 The reference implementation is Primitive Launcher (`doannt-kindle-launcher`): its home grid, Settings, and quick
 settings are the look every app follows. The values below are taken from its code (`crates/kl-core/src/layout.rs`,
@@ -20,7 +20,7 @@ about what to draw.
 Apple's Liquid Glass (iOS 26) is built on translucent layers, concentric shapes, controls that float above content, and
 capsule-shaped buttons. E-ink has no colour, no translucency, and no smooth motion, so each idea is translated:
 
-| Liquid Glass idea | Primitive on e-ink |
+| Liquid Glass idea | PrimitiveOS on e-ink |
 |---|---|
 | Content first; chrome recedes | A thin status bar; no dock; controls grouped in cards and sheets, not spread over the screen. |
 | Glass layers float over content | Pop-ups and sheets sit **over** the screen they came from, with a 6 px black border and a 10 px **white halo** that separates them from what is underneath. The screen behind stays visible. Never a full-screen page for a small question. |

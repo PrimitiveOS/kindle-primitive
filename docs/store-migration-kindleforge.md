@@ -1,4 +1,4 @@
-# KindleForge's packages and Primitive Store: review and migration plan
+# Review of KindleForge packages for PrimitiveOS
 
 Status date: 2026-11-19 (third review, after the owner's feedback). Status: decided; nothing to migrate. Belongs to
 phase S6 of [kindle-platform-plan.md](kindle-platform-plan.md); builds on [store-architecture.md](store-architecture.md)
@@ -6,7 +6,7 @@ and [store-submit-app.md](store-submit-app.md).
 
 Result: **no KindleForge package is migrated.** KOReader is listed in the store as a **reference** (a `link` listing to
 KOReader's own site and releases; we package nothing). Every other package is removed, skipped or excluded. What people
-expect from a store (notes, flashcards, a focus timer, word and puzzle games) comes from **native Primitive apps** that
+expect from a store (notes, flashcards, a focus timer, word and puzzle games) comes from **native apps for PrimitiveOS** that
 we build (§5).
 
 ## 1. Starting point
@@ -42,8 +42,8 @@ wanted, so we build our own, §5), **Skip for now**, **Remove**, **Excluded**.
 | # | Package | What it is | Built with | Licence | Verdict | Why |
 |---|---|---|---|---|---|---|
 | 1 | KOReader | E-book and document reader | Native (Lua, own UI) | AGPL-3.0 | **Reference** (owner) | The reader most jailbroken Kindles use, with a full interface, and it already starts from our launcher. The store links to KOReader's own site and releases; we do not repackage it. |
-| 2 | RAnki | Anki flashcards with AnkiWeb sync | GTK2, WebKitGTK | GPL-3.0 | **Remove** (owner) | Below the owner's quality bar (beta, the author warns of data loss). Flashcards come from our own app, Primitive Cards (§5). |
-| 3 | KWordle | Wordle | Illusion (HTML) | MIT for the app | **Rebuild** | Primitive Words uses independent English word banks. The upstream English datasets KWordle credits lack their own redistribution licence. |
+| 2 | RAnki | Anki flashcards with AnkiWeb sync | GTK2, WebKitGTK | GPL-3.0 | **Remove** (owner) | Below the owner's quality bar (beta, the author warns of data loss). Flashcards come from our own app, Cards (§5). |
+| 3 | KWordle | Wordle | Illusion (HTML) | MIT for the app | **Rebuild** | Words uses independent English word banks. The upstream English datasets KWordle credits lack their own redistribution licence. |
 | 4 | KShips | Battleship | Illusion (HTML) | GPL-3.0 | **Rebuild** (later) | A classic; needs the Kindle's own interface; not updated lately. |
 | 5 | KNotes | Notes and a kanban board | Illusion (HTML) | none | **Rebuild** | Notes are essential; this one needs the Kindle's own interface and has no licence. |
 | 6 | KPomo | Pomodoro timer | Illusion (HTML) | none | **Rebuild** | A focus timer is wanted; same limits as KNotes. |
@@ -63,7 +63,7 @@ wanted, so we build our own, §5), **Skip for now**, **Remove**, **Excluded**.
 | 20 | kTerm | Terminal emulator | GTK | GPL-3.0 | **Remove** | Primitive Terminal is our terminal. kTerm was needed only by Textadept, Wordgrinder, JarLauncher and KindleFetch, which are all out (M-D6 closed). |
 | 21 | Kindle HID Passthrough | Bluetooth keyboards and gamepads | Background service | GPL-3.0 | **Remove** | No interface; its own README says another tool must map the buttons. Bluetooth keyboards may become a launcher feature (§5). |
 | 22 | Kindle Button Mapper | Button mapping | Background service, config files | GPL-3.0 | **Remove** | No interface. |
-| 23 | KPM | Package manager | Terminal | MIT | **Remove** | Primitive Store does this job. |
+| 23 | KPM | Package manager | Terminal | MIT | **Remove** | Store does this job. |
 | 24 | KUAL (PEKI) | Menu of extensions | Kindle's own interface | KindleTweaks terms | **Remove** | Primitive Launcher already shows KUAL extensions behind its Extensions tile. |
 | 25 | HotfixUpdater | Jailbreak hotfix updater | Scriptlet | CC BY-NC-SA 4.0 | **Remove** from the store | Jailbreak upkeep, not an app. The install guide links the KindleModding wiki for the hotfix. |
 | 26 | UpdateBlock Status | Checks that updates are blocked | Scriptlet | unknown | **Remove** | Jailbreak upkeep; could become a line in the launcher's Settings › About (§5). |
@@ -97,38 +97,38 @@ order (M-D7).
 
 | App | Like | First scope | Replaces |
 |---|---|---|---|
-| Primitive Notes | Apple Notes, Google Keep | A list of notes, writing with the shared keyboard, search, pin, delete with Undo. Plain text files in `/mnt/us/notes/`, so they can be copied over USB. | KNotes |
-| Primitive Focus | the Clock app's timer, Pomodoro apps | Focus and break timer with presets (25/5, 50/10), a large calm countdown refreshed once a minute, the screen kept awake while it runs. | KPomo |
-| Primitive Cards | AnkiMobile, Quizlet | Flashcard decks with spaced repetition, import of Anki decks, review on large cards. | KAnki, RAnki |
-| Primitive Calculator | Calculator | A standard calculator with history. | — |
+| Notes | Apple Notes, Google Keep | A list of notes, writing with the shared keyboard, search, pin, delete with Undo. Plain text files in `/mnt/us/notes/`, so they can be copied over USB. | KNotes |
+| Focus | the Clock app's timer, Pomodoro apps | Focus and break timer with presets (25/5, 50/10), a large calm countdown refreshed once a minute, the screen kept awake while it runs. | KPomo |
+| Cards | AnkiMobile, Quizlet | Flashcard decks with spaced repetition, import of Anki decks, review on large cards. | KAnki, RAnki |
+| Calculator | Calculator | A standard calculator with history. | — |
 
 **Games** (turn-based, which e-ink suits)
 
 | App | Like | Replaces |
 |---|---|---|
-| Primitive Words | Wordle | Independent English answer and guess banks |
-| Primitive Sudoku | Sudoku apps | — |
-| Primitive Chess | Chess against the device | Gnome Chess |
-| Primitive Minesweeper | Minesweeper | Gnome Mines |
-| Primitive Solitaire | Klondike solitaire | — |
-| Primitive Ships | Battleship | KShips |
-| Primitive Crossword | NYT Crossword, crossword apps | `crossword.koplugin` (KOReader plugin, on Awesome-Kindle) |
-| Primitive Blocks | 1010!, Woodoku (turn-based block puzzles) | — |
+| Words | Wordle | Independent English answer and guess banks |
+| Sudoku | Sudoku apps | — |
+| Chess | Chess against the device | Gnome Chess |
+| Minesweeper | Minesweeper | Gnome Mines |
+| Solitaire | Klondike solitaire | — |
+| Ships | Battleship | KShips |
+| Crossword | NYT Crossword, crossword apps | `crossword.koplugin` (KOReader plugin, on Awesome-Kindle) |
+| Blocks | 1010!, Woodoku (turn-based block puzzles) | — |
 | Falling-blocks game (name to choose) | Tetris | Tetris (terminal, on Awesome-Kindle) |
 
 Also seen on Awesome-Kindle, not in KindleForge's catalog: **IllusionChess** (an Illusion app, so it needs the Kindle's own
-interface; Primitive Chess replaces it), **Tetris** (runs in a terminal) and **Crossword** (a KOReader plugin, so only
+interface; Chess replaces it), **Tetris** (runs in a terminal) and **Crossword** (a KOReader plugin, so only
 inside KOReader).
 
 Not built, with reasons:
 
 - **Tetris** (not migrated; **built as our own falling-blocks game**, owner's decision 2026-11-19): it gets its own name
   and look, since "Tetris" is The Tetris Company's trademark and clones that copy its look have lost in court, and its
-  speed follows what e-ink can show (a device spike first). See implementation plan F13. Primitive Blocks (turn-based)
+  speed follows what e-ink can show (a device spike first). See implementation plan F13. Blocks (turn-based)
   stays as well.
 - **KindleCraft (bareiron).** It is a Minecraft server: people join it from a computer, and the Kindle shows nothing. The
   name also leans on Minecraft's trademark.
-- **Crossword puzzles from newspapers** are copyrighted. Primitive Crossword ships free or self-made puzzles and opens
+- **Crossword puzzles from newspapers** are copyrighted. Crossword ships free or self-made puzzles and opens
   standard `.puz` files the user already has.
 
 **Everyday tools as launcher features** (not separate apps)
@@ -148,6 +148,6 @@ Not built, with reasons:
 - **M-D2 — Package repos**: none needed; KOReader is a reference listing.
 - **M-D3 — Toggle ADs**: removed.
 - **M-D4 — KUAL**: removed (the launcher shows KUAL extensions itself).
-- **M-D5 — RAnki**: removed (owner); Primitive Cards instead.
+- **M-D5 — RAnki**: removed (owner); Cards instead.
 - **M-D6 — kTerm**: removed; no remaining app needs it.
 - **M-D7 — Which native apps first** (§5): the owner's choice. A suggested first set: Notes, Focus, Words.
