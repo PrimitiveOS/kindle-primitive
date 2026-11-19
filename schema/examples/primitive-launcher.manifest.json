@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "primitive-launcher",
+  "dir": "launcher",
+  "version": "0.3.21",
+  "arch": "armhf",
+  "firmware": { "min": "5.16.3", "max": null },
+  "requires": {},
+  "files": [
+    "launcher/kl-launcher",
+    "launcher/supervisor.sh",
+    "launcher/boot.sh",
+    "launcher/fonts/NotoSans-Regular.ttf",
+    "documents/Launcher.sh"
+  ],
+  "hooks": []
+}

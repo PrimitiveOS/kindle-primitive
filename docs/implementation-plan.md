@@ -20,10 +20,10 @@ owner's go-ahead. Device findings go into each repo's `docs/device-notes.md`.
 
 | Milestone | Track / repo | State |
 |---|---|---|
-| [A1 Umbrella repo](#a1-umbrella-repo) | A Foundations / `kindle-primitive` | Written locally, not committed |
-| [A2 Contracts and schemas](#a2-contracts-and-schemas) | A / `kindle-primitive` | Not started |
+| [A1 Umbrella repo](#a1-umbrella-repo) | A Foundations / `kindle-primitive` | **Done**, on GitHub (`8be0056`) |
+| [A2 Contracts and schemas](#a2-contracts-and-schemas) | A / `kindle-primitive` | **Done** (contracts, three schemas, examples, tests); owner's read pending |
 | [A3 Repo upkeep and licences](#a3-repo-upkeep-and-licences) | A / all repos | Licences done for launcher, browser, tools |
-| [A4 Device spikes](#a4-device-spikes) | A / device | Not started |
+| [A4 Device spikes](#a4-device-spikes) | A / device | 4 of 9 answered (2026-11-19); model code open |
 | [B1 Shared build workflow](#b1-shared-build-workflow) | B Packaging / `kindle-primitive-build` | Not started |
 | [B2 Our three apps packaged](#b2-our-three-apps-packaged) | B / launcher, browser, terminal | Launcher zip exists (old format) |
 | [B3 Soft-float builds](#b3-soft-float-builds) | B / all apps | Not started |
@@ -64,16 +64,20 @@ Order of work:
 - [x] Documents: platform plan, store architecture, submission guide, install guide, migration review, this plan (Mac).
 - [x] Skills in `.agents/skills` (`primitive-ui`, `kindle-device`, `kindle-eink`), linked as `.claude/skills` (Mac).
 - [x] README "Primitive Redefined Kindle" and the CC BY-NC-SA 4.0 `LICENSE` for docs and skills (Mac).
-- [ ] `.gitignore` ignores every app folder by pattern (`/doannt-kindle-*/`), so new app repos need no change.
-- [ ] First commit; remote `https://github.com/DoanNguyenTrong/kindle-primitive.git`; push (owner's go-ahead).
+- [x] `.gitignore` ignores every app folder by pattern (`/doannt-kindle-*/`), so new app repos need no change.
+- [x] First commit (`8be0056`); remote `https://github.com/DoanNguyenTrong/kindle-primitive.git` (public); pushed.
 
 ### A2 Contracts and schemas
 
-- [ ] `docs/contracts.md`: library entry header, module folder and `dir`, package layout, manifest, catalog index,
-      version rules (store-architecture §4 as the source).
-- [ ] JSON schemas: `schema/app.schema.json` (listing), `schema/manifest.schema.json` (inside a package),
-      `schema/index.schema.json` (catalog API). Kept in the catalog repo, copied here for reference.
-- [ ] Example files that pass the schemas: a hosted app (Primitive Browser), a `link` app (KOReader).
+- [x] `docs/contracts.md`: library entry header, module folder and `dir`, package layout, manifest, listing, catalog
+      index, device choice of package, versions (Mac).
+- [x] JSON schemas: `schema/app.schema.json`, `schema/manifest.schema.json`, `schema/index.schema.json` (Mac).
+- [x] Examples that pass the schemas: `schema/examples/primitive-launcher.app.json` (hosted),
+      `koreader.app.json` (link), `primitive-launcher.manifest.json` (Mac). Validated by `schema/scripts/validate.py`.
+- [x] Negative tests: absolute paths, `..`, reserved folders, unknown architectures, missing or insecure assets,
+      over-long subtitles, duplicate categories and link listings with assets are all refused (Mac).
+      Found and fixed while testing: KOReader's date versions (`2026.10`) were refused, so the version pattern now allows
+      them; `system/` was accepted in a manifest, so reserved folders are now excluded in the pattern.
 - [ ] The owner reads the contracts (Gate A).
 
 ### A3 Repo upkeep and licences
@@ -96,21 +100,27 @@ Order of work:
 
 Each answer goes into the launcher's `docs/device-notes.md` with the date.
 
-- [ ] A4.1 Architecture: `/lib/ld-linux-armhf.so.3` present on the Oasis 3 (hard-float); find a soft-float Kindle or a
-      firmware image to confirm the `armel` case.
-- [ ] A4.2 Firmware version: which file gives it with the framework stopped (for example `/etc/prettyversion.txt`).
-- [ ] A4.3 Model: the device code and how to map it to a name (KOReader's device detection as the reference).
+- [x] A4.1 Architecture (2026-11-19): the Oasis 3 is `armv7l` with `/lib/ld-linux-armhf.so.3` present (hard-float). A
+      soft-float Kindle is still needed to confirm the `armel` case.
+- [x] A4.2 Firmware (2026-11-19): `/etc/prettyversion.txt` reads `Kindle 5.18.2 (…)`; `/etc/version.txt` reads
+      `System Software Version: 025-juno_1802_stinger_zelda-…`. Both read with the stock UI running; reading with the
+      framework stopped is still to check.
+- [ ] A4.3 Model: not answered. `/proc/usid` and `lipc-get-prop com.lab126.system devicecode` returned nothing; the
+      launcher names the model in code (`KindleOasis3`). Next: read the serial number from the stock UI's device info,
+      or find the model file KOReader uses.
 - [ ] A4.4 HTTPS from a Rust binary on the Kindle: TLS with bundled root certificates (as the browser's `kb-net` does);
       download speed and memory for a 5 MB file.
 - [ ] A4.5 Keep the screen awake with the framework stopped (for Focus): the launcher's own sleep handling, or
       `com.lab126.powerd preventScreenSaver`.
 - [ ] A4.6 Bluetooth radio on the Oasis 3: from the stock UI first (the launcher plan's "Later" item); decides G3.
 - [ ] A4.7 Jailbreak status signals: how to tell the hotfix is installed and updates are blocked; decides G1.
-- [ ] A4.8 Free space and write speed on `/mnt/us` and `/var/local` (installer needs about 3× the package size).
+- [x] A4.8 Free space (2026-11-19): `/mnt/us` 4.9 GB free of 6.1 GB; `/var/local` 164 MB free of 240 MB. Write speed
+      not measured yet. The installer needs about 3× the package size.
 - [ ] A4.9 Fast e-ink updates for a falling-blocks game: how often a small rectangle can be redrawn with the fastest
       waveforms (DU, A2) on the Oasis 3, how much ghosting builds up, and how often a full refresh is needed; decides
       the speed levels of F13.
-- [ ] **Gate A**: contracts read by the owner; licences complete; spikes A4.1–A4.4 answered.
+- [ ] **Gate A**: contracts read by the owner; licences complete; spikes A4.1–A4.4 answered (A4.1, A4.2 answered; A4.3,
+      A4.4 open).
 
 ---
 
