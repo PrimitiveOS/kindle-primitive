@@ -294,6 +294,9 @@ outside it stays. The store refuses to remove an app that another installed app 
 
 ### 6.4 Hooks
 
+The current Store installs file-copy packages. It rejects hook files before extracting the payload. The future hook
+contract requires a `pre-uninstall.sh` alongside `post-install.sh` so the review can check how the system change is undone.
+
 Hooks are shell scripts inside the package, for steps a file copy cannot do (for example writing an upstart job). They
 are reviewed in the catalog pull request, run as root with `/` as the working directory and a 60 s limit, and are
 declared in `changes`. A hook must be idempotent and must not download anything.

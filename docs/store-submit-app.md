@@ -176,6 +176,9 @@ Use `notes` for one sentence of detail, for example "Writes /etc/upstart/primiti
 Hooks are shell scripts that run as root with a 60-second limit. They must be idempotent, must not download anything,
 and must undo in `pre-uninstall.sh` what `post-install.sh` did.
 
+The manifest validator requires the uninstall hook when a package declares a post-install hook. The current Store
+accepts file-copy packages and keeps reviewed hook execution pending.
+
 ## 5. Check and open the pull request
 
 1. Run the catalog's local check *(planned)*: `scripts/check-app.sh apps/<id>`. It runs the same checks as CI (§6).

@@ -25,26 +25,26 @@ owner's go-ahead. Device findings go into each repo's `docs/device-notes.md`.
 |---|---|---|
 | [A1 Umbrella repo](#a1-umbrella-repo) | A Foundations / `kindle-primitive` | **Done**, on GitHub (`8be0056`) |
 | [A2 Contracts and schemas](#a2-contracts-and-schemas) | A / `kindle-primitive` | **Done** (contracts, three schemas, examples, tests); owner's read pending |
-| [A3 Repo upkeep and licences](#a3-repo-upkeep-and-licences) | A / all repos | Licences done for launcher, browser, tools |
-| [A4 Device spikes](#a4-device-spikes) | A / device | 5 of 9 answered (2026-11-19); A4.4 HTTPS, A4.5 keep awake, A4.6 Bluetooth, A4.7 jailbreak status, A4.9 fast updates open |
-| [B1 Shared build workflow](#b1-shared-build-workflow) | B Packaging / `kindle-primitive-build` | Packager and workflow written and tested locally; repo not on GitHub yet |
-| [B2 Our three apps packaged](#b2-our-three-apps-packaged) | B / launcher, browser, terminal | Launcher zip exists (old format) |
-| [B3 Soft-float builds](#b3-soft-float-builds) | B / all apps | Not started |
-| [C1 Catalog repo and pipeline](#c1-catalog-repo-and-pipeline) | C Catalog / `kindle-primitive-catalog` | Built and tested locally (commit `c83704c`); repo not on GitHub yet |
-| [C2 First listings](#c2-first-listings) | C / `kindle-primitive-catalog` | Not started |
+| [A3 Repo upkeep and licences](#a3-repo-upkeep-and-licences) | A / all repos | Launcher, Browser, Tools, and Terminal licences present. Historical Launcher releases checked. |
+| [A4 Device spikes](#a4-device-spikes) | A / device | Oasis 3 identity and storage recorded. HTTPS package transfer, keep-awake, Bluetooth, jailbreak status, and fast-refresh measurements remain. |
+| [B1 Shared build workflow](#b1-shared-build-workflow) | B Packaging / `kindle-primitive-build` | The GitHub repo exists. The feature branch is tested locally. Publishing the workflow tag requires approval. |
+| [B2 Our three apps packaged](#b2-our-three-apps-packaged) | B / launcher, browser, terminal | Complete local ARMHF candidates verified by the packager and Store engine. |
+| [B3 Soft-float builds](#b3-soft-float-builds) | B / launcher, browser, terminal | Complete local ARMEL candidates verified. Soft-float Kindle checks are pending. |
+| [C1 Catalog repo and pipeline](#c1-catalog-repo-and-pipeline) | C Catalog / `kindle-primitive-catalog` | Pages is live. The feature branch's catalog and deep archive checks run locally. |
+| [C2 First listings](#c2-first-listings) | C / `kindle-primitive-catalog` | Browser and KOReader are live. All current candidates have a private review catalog. |
 | [D1 Shared network crate](#d1-shared-network-crate) | D Store / tools | `primitive-net` on tools `main` (`241a527`), tested on the Mac |
 | [D2 Store engine](#d2-store-engine) | D / launcher (`kl-store`) | On launcher `main`: catalog refresh (`0f9154b`) and install (`083c9d8`), 40 store tests; not deployed |
 | [D3 Store screens](#d3-store-screens) | D / launcher | On launcher `main`: App Store layout (Today, Apps, Updates, product page), icons and screenshots; reviewed screens in `docs/store-screens/` |
 | [D4 Store on the Kindle](#d4-store-on-the-kindle) | D / device | Code on `main`, tested on the Mac; the device test waits for the 0.4.0 build |
-| [D5 Our apps through the store](#d5-our-apps-through-the-store) | D / launcher, browser, terminal | Not started |
-| [E1 Device layer in the kit](#e1-device-layer-in-the-kit) | E App kit / tools | Not started |
-| [E2 Interface components](#e2-interface-components) | E / tools | Not started |
-| [E3 Text editing](#e3-text-editing) | E / tools | Not started |
-| [E4 App lifecycle](#e4-app-lifecycle) | E / tools | Not started |
-| [E5 App template](#e5-app-template) | E / `kindle-primitive-app-template` | Not started |
-| [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Not started |
-| [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Not started |
-| [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Not started |
+| [D5 Our apps through the store](#d5-our-apps-through-the-store) | D / launcher, browser, terminal | Local package installs, Launcher update trial, and boot-copy recovery checks passed. |
+| [E1 Device layer in the kit](#e1-device-layer-in-the-kit) | E App kit / tools | Three SDK crates share the Oasis 3 profile and cross-check on both ARM targets. |
+| [E2 Interface components](#e2-interface-components) | E / tools | Shared components and Hello gallery render on the Mac. |
+| [E3 Text editing](#e3-text-editing) | E / tools | Shared editable fields and multiline editor have host coverage. |
+| [E4 App lifecycle](#e4-app-lifecycle) | E / tools | Host lifecycle coverage for input, sleep, wake, save, and app exit. |
+| [E5 App template](#e5-app-template) | E / `kindle-primitive-app-template` | Hello is packaged and its desktop driver verifies the lifecycle. |
+| [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Desktop previews and verified ARMHF packages are available. Owner and device gates remain. |
+| [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
+| [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, asset verification, and package safety. Reviewed hooks, signing, and hardware gates remain. |
 
 Order of work:
 
@@ -88,13 +88,14 @@ Order of work:
 - [x] Launcher: PolyForm Noncommercial 1.0.0 (code), CC BY-NC-SA 4.0 (docs, pictures); v0.3.21 on `main` (`cdc09c2`).
 - [x] Browser: the same licences; v0.2.17 on `main` (`f3ae822`).
 - [x] Tools: AGPL-3.0 or PolyForm Noncommercial 1.0.0 (`1ed99a0`).
-- [ ] Terminal: add the AGPL-3.0 `LICENSE` file (its engine is ported from KOReader's terminal) and a README licence
-      section; move its `tools` submodule to `1ed99a0`.
-- [ ] Terminal and tools: CI (`cargo test`, clippy) on GitHub Actions, as the launcher and browser have.
-- [ ] Release tags for launcher `v0.3.21` and browser `v0.2.17`, if the owner wants published releases with the new
-      licences.
-- [ ] Check the release CI result for launcher `v0.3.12` and `v0.3.20` (Actions tab; `gh` is not installed here).
-- [ ] Browser: decide on `deploy/fix-hosts-truyendich.sh` (keep out of releases, or remove from the repo) (R4).
+- [x] Terminal includes the AGPL-3.0 `LICENSE` file (its engine is ported from KOReader's terminal) and a README licence
+      section. Its Tools submodule is pinned to the dual-licensed `1ed99a0` revision.
+- [x] Terminal and Tools have local GitHub Actions workflows for `cargo test` and Clippy (Mac).
+- [ ] Decide whether to release Launcher `v0.3.21` with the new licence. Browser `v0.2.17` is already published.
+- [x] The Launcher release jobs completed successfully for [v0.3.12](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/actions/runs/44313351840)
+      and [v0.3.20](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/actions/runs/44438661847).
+- [x] The Browser keeps `deploy/fix-hosts-truyendich.sh` outside the release package. Both ARM package inventories
+      were checked locally (R4).
 - [ ] Browser: the untracked `docs/tinhte/` folder is the owner's; commit it or leave it out.
 - [ ] Tools: keep the remote name `kindle-primtitive-tools` or rename it (GitHub redirects the old name).
 - [ ] Decide whether Primitive Terminal is a store app (it is a developer tool; the quality bar favours everyday apps).
@@ -179,11 +180,12 @@ Repo `kindle-primitive-catalog` (local `doannt-kindle-catalog`).
 
 ### C2 First listings
 
-- [ ] Primitive Launcher, Primitive Browser (and Primitive Terminal if A3 says so): `app.json`, icon, 2–5 screenshots
-      from the desktop targets, What's New from the changelog.
-- [ ] KOReader as a `link` listing (category `reading`, links to `koreader.rocks` and its releases).
-- [ ] Collections: "Start here" (launcher, browser, KOReader), "Made by Primitive".
-- [ ] **Gate C**: Pages serves `index.json`; each listed asset's sha256 matches its release.
+- [ ] Approve the public Primitive Launcher listing and decide on Terminal. The private review catalog has
+      candidate listings and captures. Primitive Browser 0.2.17 is published and its live asset passed validation.
+- [x] KOReader is published as a link under Reading.
+- [x] The private catalog builds the Start here and Made by Primitive collections (Mac).
+- [x] **Gate C, current publication**. Pages served `index.json`. Its one hosted asset, Primitive Browser 0.2.17
+      ARMHF, passed checksum, size, and archive validation on 2026-11-19 (Mac).
 
 ---
 
@@ -249,9 +251,9 @@ Following the `primitive-ui` skill; reviewed as desktop screenshots before any d
 ### D5 Our apps through the store
 
 - [ ] Browser and terminal (if listed) install and update from the public catalog.
-- [ ] Launcher self-update: unpack to staging, marker, restart through the supervisor, files moved before the start,
-      `setup-boot.sh` refreshes `/var/local`, `.prev` restored after three failed starts.
-- [ ] Each app's `INSTALL.md` puts the store first and keeps USB and SSH as fallbacks.
+- [x] Launcher self-update stages the candidate, restarts through the supervisor and retains the previous files during
+      the trial. Boot-copy fixtures cover insufficient space and an interrupted write (Mac).
+- [x] Launcher, Browser and Terminal installation guides explain Store updates and USB and SSH fallbacks (Mac).
 - [ ] **Gate D5**: all our listed apps install, update and remove through the store; one launcher self-update on the
       Kindle.
 
@@ -264,10 +266,9 @@ like the rest of tools.
 
 ### E1 Device layer in the kit
 
-- [ ] `primitive-eink`: framebuffer, the Oasis 3 update call, waveforms, rectangle and full refreshes (from
-      `kl-kindle/eink.rs`).
-- [ ] `primitive-input`: touch (tap, long press, swipe), buttons, rotation of touch points (from `kl-kindle/input.rs`).
-- [ ] `primitive-device`: battery, Wi-Fi state, accelerometer turn, sleep and wake, keep awake (A4.5).
+- [x] `primitive-eink` exposes the framebuffer driver, waveforms, rectangle and full refreshes (Mac).
+- [x] `primitive-input` exposes touch, page buttons and rotation using the shared Oasis 3 profile (Mac).
+- [x] `primitive-device` exposes the shared battery, Wi-Fi, rotation, sleep and wake, and idle refresh code (Mac).
 - [ ] Device profiles beyond the Oasis 3 (screen size, rotation, input device), filled as devices are tested.
 
 ### E2 Interface components
@@ -290,7 +291,8 @@ like the rest of tools.
 - [ ] Event loop with timers that only fire when something changes on screen.
 - [ ] Start from the library entry and from the launcher's grid; leaving returns to the launcher (supervisor exit codes).
 - [ ] State saved on sleep and exit; settings file per app in its folder; log file.
-- [ ] Runs from a copy in `/var/tmp`, so `/mnt/us` stays free for USB drive mode (the launcher's rule).
+- [x] Native app entries run from RAM and let the supervised app reserve the user volume during file access (Mac).
+- [ ] Confirm native apps let the Kindle drive mount while idle and resume after eject on an Oasis 3.
 
 ### E5 App template
 
@@ -421,7 +423,7 @@ its own versions from 0.1.0. Every app milestone includes the **definition of do
 - [ ] H3 Recovery: bad packages (wrong sha, wrong device, missing file, bad paths) refused; the launcher still starts;
       the boot guard after a failed self-update.
 - [ ] H4 Catalog health: the nightly check's issues are answered; withdrawn versions handled.
-- [ ] H5 Review of the installer's security (paths, archive limits, hooks, network allow list).
+- [x] H5 Review of the file-copy installer's paths, archive limits, unsupported hooks, and network allow list (Mac).
 - [ ] **Gate H**: a bad package is refused on the Kindle and the launcher still starts.
 
 ---
