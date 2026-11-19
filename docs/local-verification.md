@@ -74,7 +74,7 @@ datasets copied from the original game without an upstream redistribution licens
 | Catalog | `feature/catalog-validation` | `c8d2309` |
 | Shared packaging | `feature/package-validation` | `f9b0cd5` |
 | Hello template | `feature/app-template` | `c7e66d2` |
-| Notes, Focus, Words | `feature/notes`, `feature/focus`, `feature/words` | `1624f15`, `3318999`, `a355f53` |
+| Notes, Focus, Words | `feature/notes`, `feature/focus`, `feature/words` | `21e4169`, `3318999`, `a355f53` |
 | Cards, Calculator, Sudoku | `feature/cards`, `feature/calculator`, `feature/sudoku` | `80b08a4`, `37c26cf`, `1683a52` |
 | Chess, Minesweeper, Solitaire | `feature/chess`, `feature/minesweeper`, `feature/solitaire` | `36c2d54`, `2c36a31`, `b458c26` |
 | Crossword, Blocks, Ships, Cascade | `feature/crossword`, `feature/blocks`, `feature/ships`, `feature/cascade` | `7b349ce`, `452c92f`, `7f53111`, `bfe1626` |
