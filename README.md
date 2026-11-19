@@ -13,10 +13,10 @@ Written in Rust, drawn for e-ink, hosted on GitHub.
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/main/docs/images/home.png" alt="Home screen" width="200"><br><sub>Your apps, not a shop window</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/main/docs/images/quick-settings.png" alt="Quick settings" width="200"><br><sub>Quick settings</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/main/docs/images/settings.png" alt="Settings" width="200"><br><sub>Settings</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/main/docs/images/dark-home.png" alt="Dark mode" width="200"><br><sub>Dark mode</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/6d1f2ed124bb48fbc2162d9ff7d513d6346f9f7d/docs/images/home.png" alt="Home screen" width="200"><br><sub>Home screen</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/6d1f2ed124bb48fbc2162d9ff7d513d6346f9f7d/docs/images/quick-settings.png" alt="Quick settings" width="200"><br><sub>Quick settings</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/6d1f2ed124bb48fbc2162d9ff7d513d6346f9f7d/docs/images/settings.png" alt="Settings" width="200"><br><sub>Settings</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/6d1f2ed124bb48fbc2162d9ff7d513d6346f9f7d/docs/images/dark-home.png" alt="Dark mode" width="200"><br><sub>Dark mode</sub></td>
   </tr>
 </table>
 
