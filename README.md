@@ -191,8 +191,11 @@ Details and checklists: [docs/implementation-plan.md](docs/implementation-plan.m
 
 ## Licence and trademarks
 
-Each app is under its own licence (see the table). The documents, skills and pictures in this repository are under
-[CC BY-NC-SA 4.0](LICENSE): share and adapt them for non-commercial purposes, with credit, under the same licence.
+Each app is under its own licence (see the table). The first-party software in `scripts/`, `schema/scripts/`,
+and the three JSON schemas in `schema/` use the [PolyForm Noncommercial License 1.0.0](LICENSE-CODE).
+The documents, skills and pictures in this repository use [CC BY-NC-SA 4.0](LICENSE).
+
+The [licensing audit](docs/licence-audit.md) records the terms in each app and release package.
 
 Kindle is a trademark of Amazon.com, Inc. or its affiliates. PrimitiveOS is not affiliated with or endorsed by Amazon.
 Jailbreaking and changing a Kindle's software is at your own risk.
