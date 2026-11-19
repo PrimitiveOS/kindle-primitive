@@ -24,13 +24,13 @@ owner's go-ahead. Device findings go into each repo's `docs/device-notes.md`.
 | [A2 Contracts and schemas](#a2-contracts-and-schemas) | A / `kindle-primitive` | **Done** (contracts, three schemas, examples, tests); owner's read pending |
 | [A3 Repo upkeep and licences](#a3-repo-upkeep-and-licences) | A / all repos | Licences done for launcher, browser, tools |
 | [A4 Device spikes](#a4-device-spikes) | A / device | 4 of 9 answered (2026-11-19); model code open |
-| [B1 Shared build workflow](#b1-shared-build-workflow) | B Packaging / `kindle-primitive-build` | Not started |
+| [B1 Shared build workflow](#b1-shared-build-workflow) | B Packaging / `kindle-primitive-build` | Packager and workflow written and tested locally; repo not on GitHub yet |
 | [B2 Our three apps packaged](#b2-our-three-apps-packaged) | B / launcher, browser, terminal | Launcher zip exists (old format) |
 | [B3 Soft-float builds](#b3-soft-float-builds) | B / all apps | Not started |
-| [C1 Catalog repo and pipeline](#c1-catalog-repo-and-pipeline) | C Catalog / `kindle-primitive-catalog` | Not started |
+| [C1 Catalog repo and pipeline](#c1-catalog-repo-and-pipeline) | C Catalog / `kindle-primitive-catalog` | Built and tested locally (commit `c83704c`); repo not on GitHub yet |
 | [C2 First listings](#c2-first-listings) | C / `kindle-primitive-catalog` | Not started |
-| [D1 Shared network crate](#d1-shared-network-crate) | D Store / tools | Not started |
-| [D2 Store engine](#d2-store-engine) | D / launcher (`kl-store`) | Not started |
+| [D1 Shared network crate](#d1-shared-network-crate) | D Store / tools | `primitive-net` written and tested (branch `feature/primitive-net`) |
+| [D2 Store engine](#d2-store-engine) | D / launcher (`kl-store`) | Engine written and tested, 30 tests (branch `feature/kl-store`) |
 | [D3 Store screens](#d3-store-screens) | D / launcher | Not started |
 | [D4 Store on the Kindle](#d4-store-on-the-kindle) | D / device | Not started |
 | [D5 Our apps through the store](#d5-our-apps-through-the-store) | D / launcher, browser, terminal | Not started |
@@ -188,26 +188,30 @@ The store is a new phase of the launcher: its first device build starts a new mi
 
 ### D1 Shared network crate
 
-- [ ] `primitive-net` in `doannt-kindle-tools`: HTTPS GET with timeouts, redirects limited to the allow list, resume of
-      partial downloads, progress callback; bundled root certificates; from the browser's `kb-net`.
-- [ ] Tests against a local HTTPS server (Mac).
+- [x] `primitive-net` in `doannt-kindle-tools` (branch `feature/primitive-net`, `241a527`): downloads with an allow list,
+      HTTPS only, redirects checked by hand, size limits, progress, `.part` files (Mac).
+- [ ] Not done: resume of partial downloads; bundled root certificates on the Kindle (A4.4 device check).
+- [x] Tests on a local HTTP server (Mac); HTTPS on the Kindle is still to check (A4.4).
 - [ ] The browser uses `primitive-net` where it overlaps (later, no behaviour change).
 
 ### D2 Store engine
 
 Crate `kl-store` in the launcher.
 
-- [ ] Models for the index, listings, manifests, `installed.json`; parsers with tests.
+- [x] Models for the index, listings, manifests, `installed.json`; parsers with tests (Mac).
 - [ ] Catalog cache in `launcher/store/cache/` with dates; refresh on open and by the Refresh button.
 - [ ] Device facts (A4.1–A4.3): architecture, firmware, model; free space.
-- [ ] Resolver: newest version for the architecture and firmware; `requires` with `>=`; withdrawn versions skipped.
-- [ ] Installer: download to `.part`, verify sha256, unpack in-process to `staging/` with path checks, journal, rename
-      into place keeping `.prev`, register (reload apps and extensions), hooks with a 60 s limit, record, clean up.
+- [x] Resolver: newest version for the architecture and firmware; `requires` with `>=`; withdrawn versions skipped (Mac).
+- [x] Installer (Mac): verify sha256 and size (`verify.rs`), unpack in-process to `staging/` with path checks and the
+      manifest's file list (`unpack.rs`), journal, rename into place keeping `.prev`, record, clean up (`install.rs`).
+- [ ] Installer, still to do: the download itself (through `primitive-net`), registering with the launcher (reload apps
+      and extensions), and hooks with a 60 s limit.
 - [ ] Update (old files kept until the new version is recorded) and Update all (requirements first).
-- [ ] Remove (exact files; refuses an app another app requires; never the launcher).
-- [ ] Journal recovery at start: finish or undo a cut install.
-- [ ] Tests with a fixture catalog and zips: install, update, remove, sha mismatch, bad paths, zip bomb limits, rollback,
-      journal recovery (Mac).
+- [x] Remove (exact files; refuses an app another app requires) (Mac). The launcher is refused by the caller, not yet wired.
+- [x] Journal recovery: an unfinished install is undone, or finished when the record was saved (Mac; `recover`).
+- [x] Tests (Mac, 30): install, update, remove, sha and size mismatch, bad paths, `//` in names, links, two top
+      folders, size limits, rollback at each step, power-cut recovery in both states, dependency refusal, damaged record;
+      and a test that reads a package made by the build packager (`KL_TEST_PACKAGE`).
 
 ### D3 Store screens
 
