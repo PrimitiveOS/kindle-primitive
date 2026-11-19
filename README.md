@@ -193,7 +193,8 @@ Details and checklists: [docs/implementation-plan.md](docs/implementation-plan.m
 
 Each app is under its own licence (see the table). The first-party software in `scripts/`, `schema/scripts/`,
 and the three JSON schemas in `schema/` use the [PolyForm Noncommercial License 1.0.0](LICENSE-CODE).
-The documents, skills and pictures in this repository use [CC BY-NC-SA 4.0](LICENSE).
+Project-owned documentation, skills, artwork, screenshots, and other non-code resources use
+[CC BY-NC-SA 4.0](LICENSE). Third-party components and material have their own terms.
 
 The [licensing audit](docs/licence-audit.md) records the terms in each app and release package.
 

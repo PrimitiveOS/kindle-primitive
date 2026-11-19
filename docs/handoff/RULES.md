@@ -52,8 +52,10 @@
 
 ## Products and licences
 
-- Our code is PolyForm Noncommercial 1.0.0; our docs and pictures are CC BY-NC-SA 4.0. Do not copy third-party code or
-  pictures into our repos without the owner's decision. KindleForge's packages are CC BY-NC-SA: link, do not re-host.
+- Project-owned software uses PolyForm Noncommercial 1.0.0 where declared. Project-owned documentation, artwork,
+  screenshots, and other non-code resources use CC BY-NC-SA 4.0. Preserve the published terms for older releases and
+  the existing AGPL terms for Terminal and dual licence for Tools. Third-party material keeps its own terms. Do not copy third-party
+  code or pictures into our repos without the owner's decision. KindleForge's packages are CC BY-NC-SA: link, do not re-host.
 - Each store listing names its licence and its developer. Our apps are credited "Primitive AI" (developer) and "Packaged by
   Primitive" where it applies.
 - Documents for other people start with a one-line audience statement in the chat message that hands them over (never in
