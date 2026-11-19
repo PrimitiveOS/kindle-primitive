@@ -30,9 +30,9 @@ owner's go-ahead. Device findings go into each repo's `docs/device-notes.md`.
 | [C1 Catalog repo and pipeline](#c1-catalog-repo-and-pipeline) | C Catalog / `kindle-primitive-catalog` | Built and tested locally (commit `c83704c`); repo not on GitHub yet |
 | [C2 First listings](#c2-first-listings) | C / `kindle-primitive-catalog` | Not started |
 | [D1 Shared network crate](#d1-shared-network-crate) | D Store / tools | `primitive-net` on tools `main` (`241a527`), tested on the Mac |
-| [D2 Store engine](#d2-store-engine) | D / launcher (`kl-store`) | On launcher `main` (`788ab6f`), 30 store tests; the download itself is not wired |
+| [D2 Store engine](#d2-store-engine) | D / launcher (`kl-store`) | On launcher `main`: catalog refresh (`0f9154b`) and install (`083c9d8`), 40 store tests; not deployed |
 | [D3 Store screens](#d3-store-screens) | D / launcher | On launcher `main`: App Store layout (Today, Apps, Updates, product page), icons and screenshots; reviewed screens in `docs/store-screens/` |
-| [D4 Store on the Kindle](#d4-store-on-the-kindle) | D / device | Not started |
+| [D4 Store on the Kindle](#d4-store-on-the-kindle) | D / device | Code on `main`, tested on the Mac; the device test waits for the 0.4.0 build |
 | [D5 Our apps through the store](#d5-our-apps-through-the-store) | D / launcher, browser, terminal | Not started |
 | [E1 Device layer in the kit](#e1-device-layer-in-the-kit) | E App kit / tools | Not started |
 | [E2 Interface components](#e2-interface-components) | E / tools | Not started |
@@ -200,13 +200,13 @@ The store is a new phase of the launcher: its first device build starts a new mi
 Crate `kl-store` in the launcher.
 
 - [x] Models for the index, listings, manifests, `installed.json`; parsers with tests (Mac).
-- [ ] Catalog cache in `launcher/store/cache/` with dates; refresh on open and by the Refresh button.
+- [x] Catalog cache in `launcher/store/cache/` (index, listings, icons, screenshots); refresh by the Refresh button, on a thread, refused without Wi-Fi (Mac tests; the catalog's own build output is checked by a test). Not yet: refresh on open and the daily check.
 - [ ] Device facts (A4.1–A4.3): architecture, firmware, model; free space.
 - [x] Resolver: newest version for the architecture and firmware; `requires` with `>=`; withdrawn versions skipped (Mac).
 - [x] Installer (Mac): verify sha256 and size (`verify.rs`), unpack in-process to `staging/` with path checks and the
       manifest's file list (`unpack.rs`), journal, rename into place keeping `.prev`, record, clean up (`install.rs`).
-- [ ] Installer, still to do: the download itself (through `primitive-net`), registering with the launcher (reload apps
-      and extensions), and hooks with a 60 s limit.
+- [x] Download through `primitive-net`, checks, install, and the library reload (apps and icons), done on the Mac (`083c9d8`).
+- [ ] Installer, still to do: hooks with a 60 s limit, and Remove on the product page (the engine's remove exists).
 - [ ] Update (old files kept until the new version is recorded) and Update all (requirements first).
 - [x] Remove (exact files; refuses an app another app requires) (Mac). The launcher is refused by the caller, not yet wired.
 - [x] Journal recovery: an unfinished install is undone, or finished when the record was saved (Mac; `recover`).
