@@ -18,8 +18,10 @@ the pinned helper sources with `sh doannt-kindle-launcher/scripts/build-armel-ss
 `sh doannt-kindle-browser/scripts/build-armel-fbink.sh`. The helpers are staged only in their platform's packages.
 
 The output contains the test and build logs, PNG captures at the Oasis 3 dimensions, and per-app installer archives
-with SHA-256 sidecars. The archive verifier compares the ZIP file list with its manifest, checks executable modes and
-the ARM floating-point ABI, and passes each archive to the Store's Rust unpacker. Each package run also installs
+with SHA-256 sidecars. Package verification compares the ZIP file list with its manifest, checks executable modes
+and the ARM floating-point ABI, and compares `LICENSE` and `LICENSE-DOCS` byte for byte with the matching app
+checkout. Each run records these checks in `logs/package-licenses.log` under its output directory. The simulation
+also passes each archive to the Store's Rust unpacker. Each package run installs
 the staged set into a temporary Kindle filesystem, makes the Launcher pass through its update trial, and removes
 the removable apps while preserving a personal document. The ARMHF run tests Launcher bootstrap with the actual
 Store archive. The [private catalog review](local-catalog-review.md) feeds the actual ARMHF candidates through
@@ -72,17 +74,17 @@ datasets copied from the original game without an upstream redistribution licens
 | Checkout | Branch | Commit |
 | --- | --- | --- |
 | Shared Tools and Store engine | `feature/store-device` | `529e2cb` |
-| Primitive Store | `feature/store-device` | `708a84b` |
+| Primitive Store | `feature/store-device` | `ffbc91d` |
 | Primitive Launcher | `feature/bootstrap` | `a3de750` |
 | Primitive Browser | `feature/armel-build` | `4af7987` |
-| Primitive Terminal | `feature/terminal-package` | `5680e46` |
+| Primitive Terminal | `feature/terminal-package` | `b8f12c2` |
 | Catalog | `feature/catalog-validation` | `4378a4c` |
-| Shared packaging | `feature/package-validation` | `5e17708` |
-| Hello template | `feature/app-template` | `3071a2c` |
-| Notes, Focus, Words | `feature/notes`, `feature/focus`, `feature/words` | `37cdc33`, `f2186a2`, `2feb0dd` |
-| Cards, Calculator, Sudoku | `feature/cards`, `feature/calculator`, `feature/sudoku` | `0bac649`, `9a0593b`, `dd64405` |
-| Chess, Minesweeper, Solitaire | `feature/chess`, `feature/minesweeper`, `feature/solitaire` | `da8cd3c`, `c3bc41e`, `1c5cf38` |
-| Crossword, Blocks, Ships, Cascade | `feature/crossword`, `feature/blocks`, `feature/ships`, `feature/cascade` | `663e494`, `41452b9`, `cdc66a9`, `e1564b6` |
+| Shared packaging | `feature/package-validation` | `7c2221f` |
+| Hello template | `feature/app-template` | `426fd31` |
+| Notes, Focus, Words | `feature/notes`, `feature/focus`, `feature/words` | `b14dbd7`, `7206e09`, `59e6910` |
+| Cards, Calculator, Sudoku | `feature/cards`, `feature/calculator`, `feature/sudoku` | `67bfeb8`, `c47d3d6`, `729c0dd` |
+| Chess, Minesweeper, Solitaire | `feature/chess`, `feature/minesweeper`, `feature/solitaire` | `83b83e7`, `7c6db7d`, `7784917` |
+| Crossword, Blocks, Ships, Cascade | `feature/crossword`, `feature/blocks`, `feature/ships`, `feature/cascade` | `2ca182f`, `da9b135`, `3e9110b`, `dc8c1ba` |
 
 Launcher and Store pin Tools at `9e9815a` for signed Store verification and reviewed system changes. GitHub CI
 needs that commit available before publishing those branches. The native candidate builds use the adjacent

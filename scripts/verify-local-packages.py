@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Verify the local packages and the executable architecture they declare."""
+"""Verify local packages, their executable architecture, and optionally their licence files."""
 
+import argparse
 import hashlib
 import json
 import stat
 import struct
-import sys
 import zipfile
 from pathlib import Path, PurePosixPath
 
@@ -50,7 +50,19 @@ def verify_elf(archive, entry, arch, must_be_static, required):
                 require(segment_type not in (2, 3), f"ELF needs a dynamic loader: {entry.filename}")
 
 
-def verify(archive):
+def verify_licenses(package, base, app_id):
+    app = "app-template" if app_id == "primitive-hello" else app_id.removeprefix("primitive-")
+    checkout = ROOT / f"doannt-kindle-{app}"
+    names = package.namelist()
+    for name in ("LICENSE", "LICENSE-DOCS"):
+        member = f"{base}/{name}"
+        require(member in names, f"missing {name}")
+        expected = (checkout / name).read_bytes()
+        with package.open(member) as contents:
+            require(contents.read(len(expected) + 1) == expected, f"{name} differs from {checkout.name}/{name}")
+
+
+def verify(archive, check_licenses=False):
     checksum = archive.with_suffix(".zip.sha256").read_text().split()
     require(len(checksum) == 2 and checksum[1] == archive.name, "invalid checksum sidecar")
     with archive.open("rb") as data:
@@ -84,6 +96,8 @@ def verify(archive):
             installed.add(rel)
         require(installed == set(manifest["files"]), "ZIP entries and manifest file list differ")
         app_id = manifest["id"]
+        if check_licenses:
+            verify_licenses(package, base, app_id)
         binary_name = MAIN_BINARIES.get(app_id, manifest["dir"] + "-kindle")
         binaries = [name for name in installed if name.rsplit("/", 1)[-1] == binary_name]
         require(len(binaries) == 1, f"missing executable {binary_name}")
@@ -108,15 +122,21 @@ def verify(archive):
                     header = source.read(256)
                 require(header.startswith(b"#!/bin/sh\n# Name:") and b"\n# Author:" in header, f"invalid scriptlet header: {name}")
         print(f"{archive.name}\t{archive.stat().st_size}\t{actual}")
+        if check_licenses:
+            print(f"Verified LICENSE and LICENSE-DOCS for {archive.name}")
 
 
 def main():
-    root = Path(sys.argv[1])
-    packages = sorted(root.rglob("*.zip"))
-    require(packages, f"no packages in {root}")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("packages", type=Path)
+    parser.add_argument("--check-licenses", action="store_true",
+                        help="compare LICENSE and LICENSE-DOCS to each app checkout")
+    args = parser.parse_args()
+    packages = sorted(args.packages.rglob("*.zip"))
+    require(packages, f"no packages in {args.packages}")
     for archive in packages:
         try:
-            verify(archive)
+            verify(archive, args.check_licenses)
         except (ValueError, OSError, zipfile.BadZipFile) as error:
             raise SystemExit(f"{archive}: {error}") from None
 

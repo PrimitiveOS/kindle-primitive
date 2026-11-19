@@ -112,7 +112,8 @@ package() (
 
 verify_package_archives() {
     cd "$root"
-    python3 scripts/verify-local-packages.py "$output/packages"
+    python3 scripts/verify-local-packages.py "$output/packages" --check-licenses > "$output/logs/package-licenses.log"
+    cat "$output/logs/package-licenses.log"
     find "$output/packages" -name '*.zip' -type f | while IFS= read -r archive; do
         (cd "$root/doannt-kindle-tools" &&
             KL_TEST_PACKAGE="$archive" cargo test --offline --locked -p kl-store accepts_a_package_from_the_build_packager)
