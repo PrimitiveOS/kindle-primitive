@@ -73,7 +73,7 @@ def system_draft(module):
         "schema": 1,
         "id": f"primitive-{module}",
         "dir": module,
-        "name": f"Primitive {module.title()}",
+        "name": "Store" if is_store else f"Primitive {module.title()}",
         "subtitle": "Find apps for your Kindle" if is_store else "Run shell commands on Kindle",
         "developer": {"name": "Primitive AI", "url": "https://github.com/DoanNguyenTrong"},
         "categories": ["system" if is_store else "developer"],

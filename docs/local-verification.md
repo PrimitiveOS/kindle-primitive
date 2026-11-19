@@ -74,7 +74,7 @@ datasets copied from the original game without an upstream redistribution licens
 | Checkout | Branch | Commit |
 | --- | --- | --- |
 | Shared Tools and Store engine | `feature/store-device` | `529e2cb` |
-| Primitive Store | `feature/store-device` | `ffbc91d` |
+| Store | `feature/store-device` | `ffbc91d` |
 | Primitive Launcher | `feature/bootstrap` | `a3de750` |
 | Primitive Browser | `feature/armel-build` | `4af7987` |
 | Primitive Terminal | `feature/terminal-package` | `b8f12c2` |
@@ -90,9 +90,9 @@ Launcher and Store pin Tools at `9e9815a` for signed Store verification and revi
 needs that commit available before publishing those branches. The native candidate builds use the adjacent
 Tools checkout at `529e2cb` for shared controls. Native releases use the reusable workflow after tag approval.
 
-## Primitive Store listing proposal
+## Store listing
 
-- Name **Primitive Store**, offered by **Primitive AI**
+- Name **Store**, offered by **Primitive AI**
 - Subtitle **Find apps for your Kindle**
 - Primary category **System**
 - Description **Browse apps, see what they change and install them over Wi-Fi. Use Updates to keep your apps current or remove apps you no longer want.**

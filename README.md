@@ -56,7 +56,7 @@ interface:
 | | Amazon's interface | Primitive |
 |---|---|---|
 | Home screen | Shop shelves and recommendations | Your apps on a calm grid |
-| Apps | Only what Amazon ships | Anything from Primitive Store, or your own |
+| Apps | Only what Amazon ships | Apps from Store, or your own |
 | Web | A basic browser | Primitive Browser, made for e-ink |
 | Settings | A few switches | Wi-Fi, SSH, DNS, display, warmth, sleep, power, start at boot |
 | Memory for apps | The stock interface takes it | About 140 MB more, with the stock interface stopped (Oasis 3) |
@@ -65,7 +65,7 @@ interface:
 
 Primitive Launcher is the home screen and starts with the Kindle. It handles what the stock interface did: Wi-Fi,
 sleep and wake, rotation, the battery, USB drive mode, power off and restart. Apps are modules that install, update and
-uninstall on their own, and Primitive Store, now being built, installs them from the Kindle itself.
+uninstall on their own, and the standalone Store installs them from the Kindle itself.
 
 What we keep from Amazon, on purpose: the Linux kernel and its drivers. That is what keeps Primitive safe and
 reversible. Amazon's own interface is one tap away, it comes back by itself if Primitive fails to start, and removing
@@ -88,7 +88,7 @@ Primitive's folders returns the Kindle to Amazon's interface.
 | **Primitive Launcher** | The home screen and settings: app grid, quick settings, Wi-Fi, SSH and DNS, display, sleep, power, USB drive mode, start at boot. The host of every other app and of the store. | [kindle-primitive-launcher](https://github.com/DoanNguyenTrong/kindle-primitive-launcher) | 0.3.21 | PolyForm Noncommercial 1.0.0 (AGPL-3.0 up to v0.3.20) |
 | **Primitive Browser** | A web browser made for e-ink, with its own engine, night mode and an image switch. | [kindle-primitive-browser](https://github.com/DoanNguyenTrong/kindle-primitive-browser) | 0.2.17 | PolyForm Noncommercial 1.0.0 (AGPL-3.0 up to v0.2.16) |
 | **Primitive Terminal** | A shell on the Kindle, with the shared keyboard, history and Ctrl. | [kindle-primitive-terminal](https://github.com/DoanNguyenTrong/kindle-primitive-terminal) | 0.1.8 | AGPL-3.0 (its engine is ported from KOReader's terminal) |
-| **Primitive Store** | Browse, install, update and remove apps on the Kindle, every download checked. | inside the launcher | being designed | PolyForm Noncommercial 1.0.0 |
+| **Store** | Standalone app to browse, install, update and remove Kindle apps. Launcher opens it from one Store tile. | [kindle-primitive-store](https://github.com/DoanNguyenTrong/kindle-primitive-store) | 0.1.1 | PolyForm Noncommercial 1.0.0 |
 
 Coming as native apps (see the [implementation plan](docs/implementation-plan.md)): Notes, Focus, Cards, Calculator,
 Words, Sudoku, Chess, Minesweeper, Solitaire, Crossword, Blocks, Ships, and a falling-blocks game.
@@ -139,7 +139,7 @@ Other apps install the same way today. When the store ships, installing anything
 |---|---|
 | [docs/kindle-platform-plan.md](docs/kindle-platform-plan.md) | The plan: repos, architecture, decisions, phases and gates. |
 | [docs/implementation-plan.md](docs/implementation-plan.md) | The tracking plan: every milestone and task with checklists and gates. |
-| [docs/store-architecture.md](docs/store-architecture.md) | Primitive Store's system design and requirements. |
+| [docs/store-architecture.md](docs/store-architecture.md) | Store design and requirements. |
 | [docs/store-submit-app.md](docs/store-submit-app.md) | Developers: how to add an app to the store. |
 | [docs/store-install-apps.md](docs/store-install-apps.md) | Kindle owners: how to install, update and remove apps. |
 | [docs/store-migration-kindleforge.md](docs/store-migration-kindleforge.md) | KindleForge's 28 packages reviewed against our quality bar: KOReader as a reference, the rest rebuilt natively or left out. |
@@ -169,7 +169,7 @@ phase bumps the minor, and release tags are never moved.
 | A | Foundations: this repo, contracts, licences, device checks | This repo done; the rest next |
 | B | Every app packaged by a shared release workflow | Planned |
 | C | The catalog on GitHub Pages | Planned |
-| D | Primitive Store in the launcher; our apps through the store | Planned |
+| D | Standalone Store and its Launcher entry | See local verification |
 | E | An app kit and template, so new apps are small | Planned |
 | F | Native apps: productivity tools and games | Planned |
 | G | Launcher features: jailbreak status, Wi-Fi file transfer, Bluetooth keyboard | Planned |

@@ -1,9 +1,9 @@
-# Primitive Store: system architecture and requirements
+# Store architecture and requirements
 
 Status date: 2026-11-19. Status: design, not built. Decisions D1–D7 are in
 [kindle-platform-plan.md](kindle-platform-plan.md) §4 (S0).
 
-Primitive Store is an app store for **jailbroken Kindle e-readers**, built and run by us, hosted entirely on GitHub. It
+Store is an app store for **jailbroken Kindle e-readers**, built and run by us, hosted entirely on GitHub. It
 lists apps by category, installs them with a checked download, keeps them up to date, and removes them cleanly. It lives
 inside Primitive Launcher as a screen with its own tile.
 
