@@ -32,6 +32,11 @@ Prototype app listing JSON files are drafts. The catalog should receive actual r
 approved art and copy, and observed `tested_on` models when an owner-approved release reaches that step. The package
 stage and simulation do not need those claims.
 
+The installer accepts the schema-1 file-copy format with catalog SHA-256 checks. Packages that declare root hooks
+are refused. Signature trust policy and resumable downloads remain open. The complete ARMEL Terminal candidate can
+be checked separately from `doannt-kindle-terminal/dist/`. Launcher and Browser need soft-float builds of their bundled
+helpers before offering equivalent ARMEL packages.
+
 ## Device-review sequence
 
 1. Review [the Store captures](store-screens/README.md) plus the generated native app previews.

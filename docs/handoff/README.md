@@ -3,6 +3,8 @@
 Status date: 2026-11-19. Written for: one autonomous agent that continues the work without stopping, until it needs the
 owner. The owner is away for a while.
 
+The [local verification report](../local-verification.md) records the implementation and simulation that followed this snapshot.
+
 Read in this order:
 
 1. [STATE.md](STATE.md): every repo, its branch, its last commit, the versions, and what is on the Kindle.
