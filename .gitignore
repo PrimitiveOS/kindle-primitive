@@ -1,0 +1,4 @@
+# Each app is its own git repository; the umbrella repo tracks only the shared parts (docs, skills, README).
+/doannt-kindle-*/
+
+.DS_Store
