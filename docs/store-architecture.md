@@ -96,14 +96,17 @@ format breaks).
 
 | File | Content | Size target |
 |---|---|---|
-| `index.json` | Every app's card: id, name, subtitle, categories, icon URL, latest version per arch, size, source kind, `updated_at`. Plus `categories` and `generated_at`. | < 100 KB |
+| `index.json` | Every app's card includes its name, categories, latest version, and optional `revision`. The index also lists `categories` and `generated_at`. | < 100 KB |
 | `collections.json` | The Today tab's collections. | < 10 KB |
 | `apps/<id>.json` | The full listing: description, screenshots, What's New, every version with its assets, requirements, What this app changes. | < 50 KB each |
 | `icons/<id>.png` | 256 × 256 grayscale PNG. | < 20 KB |
-| `shots/<id>/<n>.png` | Screenshots, 632 × 840 (half of 1264 × 1680), grayscale. | < 80 KB each |
+| `shots/<id>-<n>.png` | Screenshots, 632 × 840 (half of 1264 × 1680), grayscale. Numbering starts at zero. | < 80 KB each |
 
-The device downloads `index.json` and `collections.json` on refresh, and an app's file, icon and screenshots when the
-user opens it.
+Store checks the index and collections on refresh. A card's revision is the SHA-256 of the published listing, icon,
+and up to two screenshots, in that order, with an eight-byte big-endian length before each file. A complete cache
+matching that revision needs no file downloads. Changed or incomplete entries are refreshed with a bounded worker pool.
+Store keeps the catalog available offline, draws the first page from local metadata, and decodes nearby page icons in
+the background. It decodes screenshots when a product page is opened.
 
 ### 4.4 The app listing: `apps/<id>/app.json`
 
