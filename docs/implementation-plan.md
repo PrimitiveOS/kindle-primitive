@@ -46,6 +46,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Published with desktop previews and ARMHF packages. Device gates remain. |
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
+| [G4–G6 Launcher settings](#g4-battery) | G / launcher and shared Tools | Settings audit and design complete. Battery and display controls are the first implementation milestones. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
 
 Open release verification starts with the [study and work device checks](#study-and-work-release), using the installed
@@ -473,6 +474,31 @@ approved icons. The first-party app directory links every current Store release.
 ### G3 Bluetooth keyboard
 
 - [ ] Only if A4.6 finds a working radio: pair a keyboard in Settings; typing in the shared text fields.
+
+### G4 Battery
+
+- [x] Review current Launcher settings and device capabilities alongside Apple and Amazon guidance.
+      [Launcher settings plan](launcher-settings-plan.md)
+- [ ] Add Settings › Battery with charge level and source-aware charging state. Reuse the existing alerts and awake
+      refresh path. Link to Front light, Wi-Fi, and automatic Store checks.
+- [ ] Verify the new page in the desktop simulator and on the Oasis 3. Cover missing telemetry, USB, normal sleep,
+      and charging transitions.
+- [ ] Pilot local battery history and opt-in Low power mode after the status page works. Verify user overrides,
+      manual Store refresh, and file transfer. Measure battery use before claiming savings.
+
+### G5 Display and accessibility
+
+- [ ] Share direct front-light and warmth selection and single-step buttons between Display and Quick Settings.
+      Show controls supported by the active device profile.
+- [ ] Add a Launcher text-size preview, stronger contrast, and the shared opening-animation preference. Verify that
+      rows, tabs, and button labels remain readable and reachable in light and dark mode and both portrait orientations.
+
+### G6 Storage and settings navigation
+
+- [ ] Add used and total storage, a link to installed apps, and available model and firmware information. Keep package
+      removal and cache clearing in their existing flows.
+- [ ] Make grid controls easier to find. Group related settings or add page controls before the top-level list
+      exceeds the screen. Update the startup and sleep screen descriptions to reflect current behaviour.
 
 ---
 
