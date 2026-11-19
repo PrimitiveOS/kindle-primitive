@@ -1,17 +1,19 @@
 #!/bin/sh
-# Run host tests and desktop drivers. Optionally build and verify ARMHF package candidates.
+# Run host and desktop tests, or build and check Kindle package candidates.
 set -eu
 root=$(cd "$(dirname "$0")/.." && pwd)
-output=${1:?usage: scripts/simulate.sh OUTPUT_DIR [--packages]}
+output=${1:?usage: scripts/simulate.sh OUTPUT_DIR [--packages|--armel-packages]}
 mode=${2:-}
-[ -z "$mode" ] || [ "$mode" = --packages ] || { echo "Unknown option: $mode" >&2; exit 2; }
+case "$mode" in
+    ""|--packages|--armel-packages) ;;
+    *) echo "Unknown option: $mode" >&2; exit 2 ;;
+esac
 mkdir -p "$output"
 output=$(cd "$output" && pwd)
 mkdir -p "$output/logs" "$output/previews" "$output/documents" "$output/packages"
 export CARGO_INCREMENTAL=0
 export CARGO_PROFILE_DEV_STRIP=none CARGO_PROFILE_TEST_STRIP=none
 build=$root/doannt-kindle-build/scripts/package.py
-target=armv7-unknown-linux-musleabihf
 
 run() {
     name=$1
@@ -86,6 +88,12 @@ package() (
     crate=$4
     install_file=$5
     docs_license=$6
+    arch=${7:-armhf}
+    case "$arch" in
+        armhf) target=armv7-unknown-linux-musleabihf ;;
+        armel) target=armv7-unknown-linux-musleabi ;;
+        *) echo "Unsupported package architecture: $arch" >&2; exit 1 ;;
+    esac
     cd "$root/doannt-kindle-$dir"
     case "$dir" in
         launcher|store|browser|terminal) ;;
@@ -94,25 +102,38 @@ package() (
     cargo zigbuild --offline --locked --release -p "$crate" --target "$target"
     version=$(cargo metadata --offline --locked --no-deps --format-version 1 |
         python3 -c 'import json, sys; print(next(p["version"] for p in json.load(sys.stdin)["packages"] if p["name"] == sys.argv[1]))' "$crate")
-    sh scripts/stage.sh armhf
+    sh scripts/stage.sh "$arch"
     set --
     if [ -n "$docs_license" ]; then set -- --docs-license "$docs_license"; fi
-    python3 "$build" --id "$id" --dir "$module" --version "$version" --arch armhf \
+    python3 "$build" --id "$id" --dir "$module" --version "$version" --arch "$arch" \
         --stage build/stage --license LICENSE "$@" --install "$install_file" --out "$output/packages/$id"
-    find "$output/packages/$id" -name '*-armhf.zip' -type f | sort | tail -n 1
+    find "$output/packages/$id" -name "*-$arch.zip" -type f | sort | tail -n 1
 )
 
-verify_packages() {
+verify_package_archives() {
     cd "$root"
     python3 scripts/verify-local-packages.py "$output/packages"
     find "$output/packages" -name '*.zip' -type f | while IFS= read -r archive; do
         (cd "$root/doannt-kindle-tools" &&
             KL_TEST_PACKAGE="$archive" cargo test --offline --locked -p kl-store accepts_a_package_from_the_build_packager)
     done
+}
+
+verify_packages() {
+    verify_package_archives
     store=$(find "$output/packages/primitive-store" -name '*.zip' -type f | sort | tail -n 1)
     (cd "$root/doannt-kindle-launcher" &&
         KL_STORE_BOOTSTRAP_PACKAGE="$store" cargo test --offline --locked -p kl-launcher bootstrap_installs_the_staged_store_archive)
 }
+
+if [ "$mode" = --armel-packages ]; then
+    run package-launcher-armel package launcher primitive-launcher launcher kl-launcher docs/INSTALL.md LICENSE-DOCS armel
+    run package-browser-armel package browser primitive-browser browser kb-kindle docs/INSTALL.md LICENSE-DOCS armel
+    run package-terminal-armel package terminal primitive-terminal terminal kt-kindle INSTALL.md "" armel
+    run package-verification-armel verify_package_archives
+    printf 'Simulation output: %s\n' "$output"
+    exit
+fi
 
 run schema schema
 run catalog catalog
