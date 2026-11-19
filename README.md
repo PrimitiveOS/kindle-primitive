@@ -98,20 +98,32 @@ the releases currently listed in Store.
 |---|---|---|
 | [Primitive Browser](https://github.com/DoanNguyenTrong/kindle-primitive-browser) | Browse the web with e-ink page controls, night mode, and an image switch. | [0.2.18](https://github.com/DoanNguyenTrong/kindle-primitive-browser/releases/tag/v0.2.18) |
 
+### Education and study
+
+| App on GitHub | What it does | Store version |
+|---|---|---|
+| [Reading Practice](https://github.com/DoanNguyenTrong/kindle-primitive-reading-practice) | Read short passages, answer questions, and retry missed answers. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-reading-practice/releases/tag/v0.1.0) |
+| [Math Practice](https://github.com/DoanNguyenTrong/kindle-primitive-math-practice) | Read examples and practice arithmetic, fractions, and percentages. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-math-practice/releases/tag/v0.1.0) |
+| [Language Practice](https://github.com/DoanNguyenTrong/kindle-primitive-language-practice) | Practice beginner English using Vietnamese prompts and short tap exercises. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-language-practice/releases/tag/v0.1.0) |
+
 ### Productivity
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Cards](https://github.com/DoanNguyenTrong/kindle-primitive-cards) | Create flashcards, import Anki decks, and review with spaced repetition. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-cards/releases/tag/v0.1.0) |
-| [Focus](https://github.com/DoanNguyenTrong/kindle-primitive-focus) | Run focus and break timers with presets or your own intervals. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-focus/releases/tag/v0.1.0) |
-| [Notes](https://github.com/DoanNguyenTrong/kindle-primitive-notes) | Write, pin, and search plain-text notes stored on your Kindle. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-notes/releases/tag/v0.1.0) |
+| [Cards](https://github.com/DoanNguyenTrong/kindle-primitive-cards) | Create or import flashcards, review on a schedule, and run short self-tests. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-cards/releases/tag/v0.1.1) |
+| [Focus](https://github.com/DoanNguyenTrong/kindle-primitive-focus) | Run focus and break timers, label sessions, and review a weekly study log. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-focus/releases/tag/v0.1.1) |
+| [Notes](https://github.com/DoanNguyenTrong/kindle-primitive-notes) | Write and search plain-text notes, check off lists, and keep a reading journal. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-notes/releases/tag/v0.1.1) |
+| [Agenda](https://github.com/DoanNguyenTrong/kindle-primitive-agenda) | Read a chronological calendar and import supported events from an iCalendar file. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-agenda/releases/tag/v0.1.0) |
+| [Habits](https://github.com/DoanNguyenTrong/kindle-primitive-habits) | Log check-ins and review daily or weekly habits. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-habits/releases/tag/v0.1.0) |
+| [Tasks](https://github.com/DoanNguyenTrong/kindle-primitive-tasks) | Manage today’s tasks, due dates, lists, and repeating items. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-tasks/releases/tag/v0.1.0) |
 
 ### Utilities
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Calculator](https://github.com/DoanNguyenTrong/kindle-primitive-calculator) | Use large keys for decimal arithmetic and revisit your calculation history. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-calculator/releases/tag/v0.1.0) |
+| [Calculator](https://github.com/DoanNguyenTrong/kindle-primitive-calculator) | Calculate and revisit history, convert units, see worked steps, and plot a graph. | [0.1.3](https://github.com/DoanNguyenTrong/kindle-primitive-calculator/releases/tag/v0.1.3) |
 | [Hello](https://github.com/DoanNguyenTrong/kindle-primitive-app-template) | Try a small native example app and use its repository as an app template. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-app-template/releases/tag/v0.1.0) |
+| [Dictionary](https://github.com/DoanNguyenTrong/kindle-primitive-dictionary) | Look up definitions, import a glossary, and export favorites for Cards. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-dictionary/releases/tag/v0.1.1) |
 
 ### Developer tools
 
@@ -202,6 +214,7 @@ open **Store** from the Launcher home screen and use **Updates** for newer relea
 |---|---|
 | [docs/kindle-platform-plan.md](docs/kindle-platform-plan.md) | The plan: repos, architecture, decisions, phases and gates. |
 | [docs/implementation-plan.md](docs/implementation-plan.md) | The tracking plan: every milestone and task with checklists and gates. |
+| [Education and productivity research](docs/education-productivity-apps.md) | App designs, benchmarks, and Kindle controls. |
 | [docs/store-architecture.md](docs/store-architecture.md) | Store design and requirements. |
 | [docs/store-submit-app.md](docs/store-submit-app.md) | Developers: how to add an app to the store. |
 | [docs/store-install-apps.md](docs/store-install-apps.md) | Kindle owners: how to install, update and remove apps. |
