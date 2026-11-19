@@ -1,11 +1,7 @@
-# Add an app to Primitive Store
+# Add an app to Store
 
-Status date: 2026-11-19. **Status: draft.** The catalog repo, its checks and the shared build workflow do not exist yet
-(plan phases S2 and S3). The steps below are the process they will implement; steps marked *(planned)* name tools that
-are still to be built.
-
-This guide is for anyone who wants an app listed in Primitive Store: our own apps (Launcher, Browser, Terminal) and
-other developers' Kindle apps. The format behind it is in [store-architecture.md](store-architecture.md).
+Use this guide to list a Kindle app in Store, the standalone app opened from the Primitive Launcher grid. Listings
+live in the shared catalog, and hosted packages are published as GitHub release assets. [Store architecture](store-architecture.md)
 
 ## 1. Before you start
 
@@ -47,6 +43,7 @@ Make one zip per architecture, named `<id>-<version>-<arch>.zip`, holding one fo
 <id>-<version>/
   manifest.json
   LICENSE
+  LICENSE-DOCS                  when documentation has its own licence
   INSTALL.md
   documents/<Name>.sh           optional: library entry
   <dir>/...                     your app's files, installed to /mnt/us/<dir>/
@@ -84,13 +81,13 @@ The version's entry from your listing (§4) plus the list of files the package i
 }
 ```
 
-`files` lists every file in the zip except `manifest.json`, `LICENSE`, `INSTALL.md` and `hooks/`. The store installs
+`files` lists every file in the zip except `manifest.json`, `LICENSE`, `LICENSE-DOCS`, `INSTALL.md` and `hooks/`. The store installs
 exactly these and removes exactly these.
 
-### 3.3 Build it in CI *(planned)*
+### 3.3 Build it in CI
 
-The shared workflow in `kindle-primitive-build` will build, test and package for each architecture, write the `.sha256`,
-and publish the release on a tag. A publisher's `.github/workflows/release.yml` will call it:
+The shared workflow in `kindle-primitive-build` tests and builds the app, packages each selected architecture, writes
+the `.sha256` files, and publishes on a version tag. Pin an approved workflow revision in `.github/workflows/release.yml`:
 
 ```yaml
 on:
@@ -98,15 +95,20 @@ on:
     tags: ["v*"]
 jobs:
   release:
-    uses: DoanNguyenTrong/kindle-primitive-build/.github/workflows/package.yml@v1
+    uses: DoanNguyenTrong/kindle-primitive-build/.github/workflows/package.yml@9533d481058f4d67b29568f40b30017ddcb32c8e
+    permissions:
+      contents: write
     with:
       id: primitive-browser
+      dir: browser
       binary-crate: kb-kindle
       arches: armhf
+      install-file: docs/INSTALL.md
+      changelog-file: docs/CHANGELOG.md
+      docs-licence-file: LICENSE-DOCS
 ```
 
-Until it exists, package with your own script (the launcher's `scripts/package-release.sh` is the model) and attach the
-zip and its `.sha256` to a GitHub Release.
+To package locally, use the shared packager with your staged files. [Build guide](https://github.com/DoanNguyenTrong/kindle-primitive-build)
 
 ### 3.4 Release
 
@@ -134,7 +136,7 @@ The full schema and an example are in [store-architecture.md](store-architecture
 
 | Field | Write |
 |---|---|
-| `name` | The app's name, as on the Kindle's grid. |
+| `name` | The app's display name, as on the Kindle's grid. Keep its existing package ID when changing this label. |
 | `subtitle` | One line, at most 40 characters, that says what it is for. |
 | `developer` | Your name and a link (your GitHub profile). |
 | `categories` | One primary category from the store's list, and at most one more (§4.3). |
@@ -183,7 +185,7 @@ without executing package scripts. [Runtime approval format](store-architecture.
 
 ## 5. Check and open the pull request
 
-1. Run the catalog's local check *(planned)*: `scripts/check-app.sh apps/<id>`. It runs the same checks as CI (§6).
+1. Run `sh scripts/check-app.sh apps/<id>` from the catalog repository.
 2. Commit only your app's folder and open a pull request titled `Add <name> <version>` or `Update <name> to <version>`.
 3. The pull request template asks you to confirm the checklist in §1 and to say on which Kindle you tested.
 4. CI posts a summary: sizes, flags, hooks, licence result. Fix anything it reports.

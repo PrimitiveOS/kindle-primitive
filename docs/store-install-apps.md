@@ -1,16 +1,13 @@
-# Install apps with Primitive Store
+# Install apps with Store
 
-Status date: 2026-11-19. **Status: draft.** Primitive Store is designed but not built yet (plan phases S3 and S4). Until
-it ships, install each Primitive app by hand from its GitHub release (§7). This guide describes how the store will work.
-
-Primitive Store installs apps on a **jailbroken Kindle e-reader** over Wi-Fi, checks every download, keeps apps up to
-date, and removes them cleanly. It is part of Primitive Launcher.
+Store is a standalone app for **jailbroken Kindle e-readers**. It downloads apps over Wi-Fi, checks each package,
+and manages installs, updates, and removals. Open it from the **Store** tile in Primitive Launcher.
 
 ## 1. What you need
 
 - A **jailbroken** Kindle e-reader. The store does not jailbreak a Kindle; see the KindleModding wiki
   (kindlemodding.org) for that. Keep your jailbreak's hotfix up to date.
-- **Primitive Launcher**, installed once by USB (§2). The store comes with it.
+- **Primitive Launcher 0.4.6 or later**, installed once by USB (§2).
 - **Wi-Fi** for installing and updating. Browsing what you have already opened works without it.
 - Free space on the Kindle: about three times the size of the app while it installs.
 
@@ -35,7 +32,12 @@ zip).
 
 ## 3. Find an app
 
-Tap the **Store** tile on the launcher's home screen. Four tabs are at the bottom:
+Tap **Store** on the Launcher home screen. If Store is already installed, the tile opens it. Otherwise, connect to
+Wi-Fi and eject the Kindle drive before tapping **Store**. Launcher finds a compatible Store release in the catalog,
+checks the download's size and SHA-256, and installs it. Store opens when installation finishes if you stay on the
+home screen. You can also tap **Store** again to open it. Tap **Done** in Store to return to Launcher.
+
+Four tabs are at the bottom:
 
 - **Today**: collections picked by us, such as "Start here" and "New and updated".
 - **Apps**: categories (Reading, Productivity, Internet, Games, Music & Audio, Drawing & Design, Developer Tools,
@@ -87,14 +89,16 @@ Launcher; to uninstall the launcher, follow its `INSTALL.md`.
 
 ## 7. Install by hand (without the store)
 
-Every app in the store also has a GitHub release with a zip for each kind of Kindle (`armhf` or `armel`) and an
-`INSTALL.md` inside. To install by hand:
+Apps with a **Get** button publish ZIPs for the architectures listed on their Store page. Each ZIP includes an
+`INSTALL.md`. To install by hand:
 
 1. Download the zip for your Kindle and its `.sha256` file from the app's releases page, and check it (§2 step 2).
 2. Connect the Kindle by USB and copy the folders from the zip onto the Kindle drive, as its `INSTALL.md` says.
 3. Eject and unplug. The app appears in the library and on the launcher's home screen.
 
 An app installed by hand is not in the store's installed list. Install it once from the store to let the store update it.
+
+Store itself can also be installed over USB. [Install Store](https://github.com/DoanNguyenTrong/kindle-primitive-store/blob/main/INSTALL.md)
 
 ## 8. When something goes wrong
 
@@ -104,7 +108,7 @@ An app installed by hand is not in the store's installed list. Install it once f
 | "Not enough space" | Free space on the Kindle (remove books or apps) and try again. The store needs about three times the app's size while it installs. |
 | "Download failed" | Check Wi-Fi and try again. GitHub may be busy; try later. |
 | "Check failed" | The download did not match its fingerprint and was deleted. Try again later; if it keeps failing, report it (below). |
-| The Kindle turned off during an install | Open the launcher. The store finishes or undoes the cut install by itself. |
+| The Kindle turned off during an install | Open **Store**. It checks the interrupted install and finishes or undoes it when possible. |
 | An installed app does not show | Close and reopen the Store tile, or restart the launcher (Settings > Device > Restart the launcher). |
 | The store shows old information | Tap **Refresh** at the top of the store. Over USB, you can also delete `launcher/store/cache` to start fresh. |
 | A file already exists and is unmanaged | Move the existing file somewhere safe before retrying. This can happen with customized entries from a manual install. |
