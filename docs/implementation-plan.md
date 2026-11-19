@@ -322,64 +322,64 @@ its own versions from 0.1.0. Every app milestone includes the **definition of do
 - [ ] Packaged by B1; listing in the catalog with icon, screenshots, `changes`, `tested_on`.
 - [ ] Device gate: the owner installs it from the store, uses it for a day, and removes it.
 
-### F1 Primitive Notes (productivity; like Apple Notes)
+### F1 Notes (productivity; like Apple Notes)
 
 - [x] Notes list (newest first, pinned on top), new note, open, edit with the multi-line editor (E3), delete with Undo.
 - [x] Search across notes. Plain text files in `/mnt/us/notes/` (copyable over USB), names from the first line.
 - [x] Autosave and durable file handling pass Mac fixtures.
 - [ ] Verify Notes across Kindle sleep, power loss, and USB eject.
 
-### F2 Primitive Focus (productivity; like the Clock app's timer and Pomodoro apps)
+### F2 Focus (productivity; like the Clock app's timer and Pomodoro apps)
 
 - [x] Focus and break timer, presets 25/5 and 50/10, custom lengths; start, pause, reset.
 - [x] Large minute-based countdown, end screen, and today's focus count and total.
 - [ ] Verify keep-awake behavior while Focus runs on the Kindle (A4.5).
 
-### F3 Primitive Words (game; like Wordle)
+### F3 Words (game; like Wordle)
 
 - [x] Six guesses for a five-letter word, shared keyboard with letter states, marks that read in black and white.
 - [x] Daily word and free play with statistics and streaks.
 - [x] English answer and guess banks ship from independent selections (Mac). The source credited by KWordle supplied
       its two datasets without a redistribution licence. The Words README records the provenance check.
 
-### F4 Primitive Cards (productivity; like AnkiMobile, Quizlet)
+### F4 Cards (productivity; like AnkiMobile, Quizlet)
 
 - [x] Decks and cards, keyboard editing, SM-2 review, paged card faces, and per-deck statistics.
 - [x] Import of Anki `.apkg` text fields and export to Documents. Media remains a later extension.
 
-### F5 Primitive Calculator (tool; like Calculator)
+### F5 Calculator (tool; like Calculator)
 
 - [x] Standard calculator with large keys, history, result copy, and exact decimal arithmetic.
 
-### F6 Primitive Sudoku (game)
+### F6 Sudoku (game)
 
 - [x] Puzzle generator with unique solutions and difficulty levels, notes mode, mistakes check, and Undo.
 
-### F7 Primitive Chess (game; play against the Kindle)
+### F7 Chess (game; play against the Kindle)
 
 - [x] Board with tap-to-move, legal moves shown, Undo, and difficulty levels.
 - [x] Local search with the licensed Cozy Chess move generator.
 - [x] Save and resume a game and export standard PGN.
 
-### F8 Primitive Minesweeper (game)
+### F8 Minesweeper (game)
 
 - [x] Classic board sizes, tap to reveal, hold to flag, safe first tap, timer, and best times.
 
-### F9 Primitive Solitaire (game; Klondike)
+### F9 Solitaire (game; Klondike)
 
 - [x] Tap-to-move, draw one or three, persistent Undo, auto-finish, and card faces for e-ink.
 
-### F10 Primitive Crossword (game; like crossword apps)
+### F10 Crossword (game; like crossword apps)
 
 - [x] Grid and clue list, shared keyboard, check, and reveal.
 - [x] Bundled original puzzles and import of standard unlocked `.puz` files.
 
-### F11 Primitive Blocks (game; like 1010! and Woodoku)
+### F11 Blocks (game; like 1010! and Woodoku)
 
 - [x] Place three pieces per turn on a 9 × 9 grid, clear rows, columns and boxes, and track scores.
 - [x] Original visual design in the local candidate.
 
-### F12 Primitive Ships (game; Battleship)
+### F12 Ships (game; Battleship)
 
 - [x] Place ships manually or randomly, play against the Kindle at three levels, and play two-person hot-seat.
 

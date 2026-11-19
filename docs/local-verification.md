@@ -55,7 +55,7 @@ The public catalog index was reachable on 2026-11-19. Primitive Browser 0.2.17 A
 and archive-content checks. The larger local catalog has `.invalid` package URLs and no device compatibility claims.
 [Public catalog index](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
 
-Primitive Words uses independently selected English banks. KWordle's English answer and guess lists trace to
+Words uses independently selected English banks. KWordle's English answer and guess lists trace to
 datasets copied from the original game without an upstream redistribution license, as recorded in the Words README.
 
 ## Device-review sequence

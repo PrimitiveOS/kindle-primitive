@@ -13,7 +13,7 @@ The first lines of a `.sh` file in `/mnt/us/documents/` are its header, in this 
 
 ```sh
 #!/bin/sh
-# Name: Primitive Notes
+# Name: Notes
 # Author: Primitive AI
 # Icon: data:image/png;base64,...     (optional: a PNG, used when the app has no icon file)
 # DontUseFBInk
