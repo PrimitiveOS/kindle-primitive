@@ -23,15 +23,15 @@ owner's go-ahead. Device findings go into each repo's `docs/device-notes.md`.
 | [A1 Umbrella repo](#a1-umbrella-repo) | A Foundations / `kindle-primitive` | **Done**, on GitHub (`8be0056`) |
 | [A2 Contracts and schemas](#a2-contracts-and-schemas) | A / `kindle-primitive` | **Done** (contracts, three schemas, examples, tests); owner's read pending |
 | [A3 Repo upkeep and licences](#a3-repo-upkeep-and-licences) | A / all repos | Licences done for launcher, browser, tools |
-| [A4 Device spikes](#a4-device-spikes) | A / device | 4 of 9 answered (2026-11-19); model code open |
+| [A4 Device spikes](#a4-device-spikes) | A / device | 5 of 9 answered (2026-11-19); A4.4 HTTPS, A4.5 keep awake, A4.6 Bluetooth, A4.7 jailbreak status, A4.9 fast updates open |
 | [B1 Shared build workflow](#b1-shared-build-workflow) | B Packaging / `kindle-primitive-build` | Packager and workflow written and tested locally; repo not on GitHub yet |
 | [B2 Our three apps packaged](#b2-our-three-apps-packaged) | B / launcher, browser, terminal | Launcher zip exists (old format) |
 | [B3 Soft-float builds](#b3-soft-float-builds) | B / all apps | Not started |
 | [C1 Catalog repo and pipeline](#c1-catalog-repo-and-pipeline) | C Catalog / `kindle-primitive-catalog` | Built and tested locally (commit `c83704c`); repo not on GitHub yet |
 | [C2 First listings](#c2-first-listings) | C / `kindle-primitive-catalog` | Not started |
-| [D1 Shared network crate](#d1-shared-network-crate) | D Store / tools | `primitive-net` written and tested (branch `feature/primitive-net`) |
-| [D2 Store engine](#d2-store-engine) | D / launcher (`kl-store`) | Engine written and tested, 30 tests (branch `feature/kl-store`) |
-| [D3 Store screens](#d3-store-screens) | D / launcher | First slice on `feature/kl-store` (`a4e47f7`): tile, list, app page; desktop screenshots await the owner's review |
+| [D1 Shared network crate](#d1-shared-network-crate) | D Store / tools | `primitive-net` on tools `main` (`241a527`), tested on the Mac |
+| [D2 Store engine](#d2-store-engine) | D / launcher (`kl-store`) | On launcher `main` (`788ab6f`), 30 store tests; the download itself is not wired |
+| [D3 Store screens](#d3-store-screens) | D / launcher | On launcher `main`: App Store layout (Today, Apps, Updates, product page), icons and screenshots; reviewed screens in `docs/store-screens/` |
 | [D4 Store on the Kindle](#d4-store-on-the-kindle) | D / device | Not started |
 | [D5 Our apps through the store](#d5-our-apps-through-the-store) | D / launcher, browser, terminal | Not started |
 | [E1 Device layer in the kit](#e1-device-layer-in-the-kit) | E App kit / tools | Not started |
@@ -105,9 +105,10 @@ Each answer goes into the launcher's `docs/device-notes.md` with the date.
 - [x] A4.2 Firmware (2026-11-19): `/etc/prettyversion.txt` reads `Kindle 5.18.2 (…)`; `/etc/version.txt` reads
       `System Software Version: 025-juno_1802_stinger_zelda-…`. Both read with the stock UI running; reading with the
       framework stopped is still to check.
-- [ ] A4.3 Model: not answered. `/proc/usid` and `lipc-get-prop com.lab126.system devicecode` returned nothing; the
-      launcher names the model in code (`KindleOasis3`). Next: read the serial number from the stock UI's device info,
-      or find the model file KOReader uses.
+- [x] A4.3 Device identity (2026-11-19): there is no model code the store can read. The device type is "Kindle Oasis –
+      10th Gen" in the stock help, which is the Oasis 3, so the store uses the name `KindleOasis3`. Wi-Fi MAC and serial
+      number exist (`/sys/class/net/wlan0/address`, `androidboot.serialno`) and are never recorded. Details in the
+      launcher's `docs/device-notes.md`.
 - [ ] A4.4 HTTPS from a Rust binary on the Kindle: TLS with bundled root certificates (as the browser's `kb-net` does);
       download speed and memory for a 5 MB file.
 - [ ] A4.5 Keep the screen awake with the framework stopped (for Focus): the launcher's own sleep handling, or
