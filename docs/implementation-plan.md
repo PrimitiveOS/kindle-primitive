@@ -109,7 +109,8 @@ Each answer goes into the launcher's `docs/device-notes.md` with the date.
       10th Gen" in the stock help, which is the Oasis 3, so the store uses the name `KindleOasis3`. Wi-Fi MAC and serial
       number exist (`/sys/class/net/wlan0/address`, `androidboot.serialno`) and are never recorded. Details in the
       launcher's `docs/device-notes.md`.
-- [ ] A4.4 HTTPS from a Rust binary on the Kindle: TLS with bundled root certificates (as the browser's `kb-net` does);
+- [x] A4.4 HTTPS from the Kindle (2026-11-19, launcher 0.4.0): the store's Refresh read the catalog's index and
+      KOReader's listing and icon from GitHub Pages and wrote them to `store/cache` (1 app, 0 failed). Still open:
       download speed and memory for a 5 MB file.
 - [ ] A4.5 Keep the screen awake with the framework stopped (for Focus): the launcher's own sleep handling, or
       `com.lab126.powerd preventScreenSaver`.
