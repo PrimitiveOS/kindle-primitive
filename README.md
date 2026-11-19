@@ -81,27 +81,78 @@ installation guide explains how to remove its files. [Launcher installation guid
 
 ## The apps
 
-| App | What it is | Repository | Latest | Licence |
-|---|---|---|---|---|
-| **Primitive Launcher** | The home screen and device settings for PrimitiveOS. Opens Store and the apps you install. | [kindle-primitive-launcher](https://github.com/DoanNguyenTrong/kindle-primitive-launcher) | [0.4.10](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases/tag/v0.4.10) | PolyForm Noncommercial 1.0.0 (AGPL-3.0 up to v0.3.20) |
-| **Primitive Browser** | A web browser made for e-ink, with its own engine, night mode and an image switch. | [kindle-primitive-browser](https://github.com/DoanNguyenTrong/kindle-primitive-browser) | [0.2.18](https://github.com/DoanNguyenTrong/kindle-primitive-browser/releases/tag/v0.2.18) | PolyForm Noncommercial 1.0.0 (AGPL-3.0 up to v0.2.16) |
-| **Primitive Terminal** | A shell on the Kindle, with the shared keyboard, history and Ctrl. | [kindle-primitive-terminal](https://github.com/DoanNguyenTrong/kindle-primitive-terminal) | 0.1.8 | AGPL-3.0 (its engine is ported from KOReader's terminal) |
-| **Store** | Browse, install, update and remove Kindle apps. Open the Store tile in Launcher. | [kindle-primitive-store](https://github.com/DoanNguyenTrong/kindle-primitive-store) | [0.1.4](https://github.com/DoanNguyenTrong/kindle-primitive-store/releases/tag/v0.1.4) | PolyForm Noncommercial 1.0.0 |
+The tables cover every first-party app in Store. App names link to GitHub repositories, and version numbers link to
+the releases currently listed in Store.
+[Live Store catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
 
-First-party apps in Store include Notes, Focus, Cards, Calculator, Words, Sudoku, Chess, Minesweeper, Solitaire,
-Crossword, Blocks, Ships, and Cascade. [Public catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
+### System
+
+| App on GitHub | What it does | Store version |
+|---|---|---|
+| [Primitive Launcher](https://github.com/DoanNguyenTrong/kindle-primitive-launcher) | Home screen, quick settings, and device controls. Opens Store and installed apps. | [0.4.10](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases/tag/v0.4.10) |
+| [Store](https://github.com/DoanNguyenTrong/kindle-primitive-store) | Browse and install apps over Wi-Fi, manage updates, and remove apps. | [0.1.4](https://github.com/DoanNguyenTrong/kindle-primitive-store/releases/tag/v0.1.4) |
+
+### Internet
+
+| App on GitHub | What it does | Store version |
+|---|---|---|
+| [Primitive Browser](https://github.com/DoanNguyenTrong/kindle-primitive-browser) | Browse the web with e-ink page controls, night mode, and an image switch. | [0.2.18](https://github.com/DoanNguyenTrong/kindle-primitive-browser/releases/tag/v0.2.18) |
+
+### Productivity
+
+| App on GitHub | What it does | Store version |
+|---|---|---|
+| [Cards](https://github.com/DoanNguyenTrong/kindle-primitive-cards) | Create flashcards, import Anki decks, and review with spaced repetition. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-cards/releases/tag/v0.1.0) |
+| [Focus](https://github.com/DoanNguyenTrong/kindle-primitive-focus) | Run focus and break timers with presets or your own intervals. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-focus/releases/tag/v0.1.0) |
+| [Notes](https://github.com/DoanNguyenTrong/kindle-primitive-notes) | Write, pin, and search plain-text notes stored on your Kindle. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-notes/releases/tag/v0.1.0) |
+
+### Utilities
+
+| App on GitHub | What it does | Store version |
+|---|---|---|
+| [Calculator](https://github.com/DoanNguyenTrong/kindle-primitive-calculator) | Use large keys for decimal arithmetic and revisit your calculation history. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-calculator/releases/tag/v0.1.0) |
+| [Hello](https://github.com/DoanNguyenTrong/kindle-primitive-app-template) | Try a small native example app and use its repository as an app template. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-app-template/releases/tag/v0.1.0) |
+
+### Developer tools
+
+| App on GitHub | What it does | Store version |
+|---|---|---|
+| [Primitive Terminal](https://github.com/DoanNguyenTrong/kindle-primitive-terminal) | Run shell commands with the shared on-screen keyboard and command history. | [0.1.8](https://github.com/DoanNguyenTrong/kindle-primitive-terminal/releases/tag/v0.1.8) |
 
 ### Games
 
-| Game | How to play |
-|---|---|
-| [Starship](https://github.com/DoanNguyenTrong/kindle-primitive-starship) | Steer in real time, dodge incoming fire, and defeat the flagship. |
-| [2048](https://github.com/DoanNguyenTrong/kindle-primitive-tidefork) | Swipe the board, merge matching numbers, and beat your best score. |
-| [Snake](https://github.com/DoanNguyenTrong/kindle-primitive-snake) | Pick a speed, steer continuously, and eat to grow your tail. |
-| [Nonogram](https://github.com/DoanNguyenTrong/kindle-primitive-picturelogic) | Reveal pictures from row and column clues. |
-| [Switchyard](https://github.com/DoanNguyenTrong/kindle-primitive-switchyard) | Set track junctions and dispatch a train to the depot. |
-| [Crate Shift](https://github.com/DoanNguyenTrong/kindle-primitive-crateshift) | Swipe to move and push crates onto marked docks across eight puzzles. |
-| [Memory Match](https://github.com/DoanNguyenTrong/kindle-primitive-memorypairs) | Match all the symbols in as few turns as possible. |
+#### Puzzles and word games
+
+| App on GitHub | What it does | Store version |
+|---|---|---|
+| [2048](https://github.com/DoanNguyenTrong/kindle-primitive-tidefork) | Swipe the board, merge matching numbers, and beat your best score. | [0.1.2](https://github.com/DoanNguyenTrong/kindle-primitive-tidefork/releases/tag/v0.1.2) |
+| [Blocks](https://github.com/DoanNguyenTrong/kindle-primitive-blocks) | Place pieces and clear full rows, columns, or 3 × 3 boxes. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-blocks/releases/tag/v0.1.0) |
+| [Crate Shift](https://github.com/DoanNguyenTrong/kindle-primitive-crateshift) | Swipe to move and push crates onto marked docks across eight puzzles. | [0.1.2](https://github.com/DoanNguyenTrong/kindle-primitive-crateshift/releases/tag/v0.1.2) |
+| [Crossword](https://github.com/DoanNguyenTrong/kindle-primitive-crossword) | Solve mini crosswords or open your own unlocked `.puz` files. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-crossword/releases/tag/v0.1.0) |
+| [Memory Match](https://github.com/DoanNguyenTrong/kindle-primitive-memorypairs) | Turn over cards and find every matching pair in as few attempts as possible. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-memorypairs/releases/tag/v0.1.1) |
+| [Minesweeper](https://github.com/DoanNguyenTrong/kindle-primitive-minesweeper) | Flag mines and beat your best time on three board sizes. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-minesweeper/releases/tag/v0.1.0) |
+| [Nonogram](https://github.com/DoanNguyenTrong/kindle-primitive-picturelogic) | Reveal pictures by solving row and column clues. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-picturelogic/releases/tag/v0.1.1) |
+| [Sudoku](https://github.com/DoanNguyenTrong/kindle-primitive-sudoku) | Solve generated puzzles with pencil marks, mistake checks, and undo. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-sudoku/releases/tag/v0.1.0) |
+| [Switchyard](https://github.com/DoanNguyenTrong/kindle-primitive-switchyard) | Set track junctions and dispatch a train to the depot. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-switchyard/releases/tag/v0.1.0) |
+| [Words](https://github.com/DoanNguyenTrong/kindle-primitive-words) | Solve a daily five-letter word puzzle or play a practice round. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-words/releases/tag/v0.1.0) |
+
+#### Card and board games
+
+| App on GitHub | What it does | Store version |
+|---|---|---|
+| [Chess](https://github.com/DoanNguyenTrong/kindle-primitive-chess) | Play against your Kindle at three levels, save games, and export PGN. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-chess/releases/tag/v0.1.0) |
+| [Ships](https://github.com/DoanNguyenTrong/kindle-primitive-ships) | Place your ships and hunt the opposing fleet against your Kindle or a second player. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-ships/releases/tag/v0.1.0) |
+| [Solitaire](https://github.com/DoanNguyenTrong/kindle-primitive-solitaire) | Play draw-one or draw-three Klondike with touch controls and undo. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-solitaire/releases/tag/v0.1.0) |
+
+#### Arcade games
+
+| App on GitHub | What it does | Store version |
+|---|---|---|
+| [Cascade](https://github.com/DoanNguyenTrong/kindle-primitive-cascade) | Guide falling pieces, clear rows, and choose from three speeds. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-cascade/releases/tag/v0.1.0) |
+| [Snake](https://github.com/DoanNguyenTrong/kindle-primitive-snake) | Choose a speed, steer a continuously moving snake, and collect food to grow. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-snake/releases/tag/v0.1.0) |
+| [Starship](https://github.com/DoanNguyenTrong/kindle-primitive-starship) | Steer in real time, dodge incoming fire, and defeat the flagship. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-starship/releases/tag/v0.1.1) |
+
+Primitive Terminal uses AGPL-3.0-only. The other current app releases use PolyForm Noncommercial 1.0.0.
 
 See the [gameplay references](docs/gameplay-reference.md) for the original rules and Kindle controls.
 
@@ -191,7 +242,7 @@ Details and checklists: [docs/implementation-plan.md](docs/implementation-plan.m
 
 ## Licence and trademarks
 
-Each app is under its own licence (see the table). The first-party software in `scripts/`, `schema/scripts/`,
+See [The apps](#the-apps) for current app licences. The first-party software in `scripts/`, `schema/scripts/`,
 and the three JSON schemas in `schema/` use the [PolyForm Noncommercial License 1.0.0](LICENSE-CODE).
 Project-owned documentation, skills, artwork, screenshots, and other non-code resources use
 [CC BY-NC-SA 4.0](LICENSE). Third-party components and material have their own terms.
