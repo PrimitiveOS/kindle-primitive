@@ -2,23 +2,18 @@
 
 # Primitive Redefined Kindle
 
-**A clean, fast, open set of apps for jailbroken Kindle e-readers, and the store that installs them.**
+**Your Kindle, set free.**
+
+A calm, open operating layer for jailbroken Kindle e-readers: a home screen, settings, apps, and an app store of our own,
+in place of Amazon's storefront.
 
 Written in Rust, drawn for e-ink, hosted on GitHub.
 
 </div>
 
-Primitive replaces the Kindle's crowded home screen with a calm grid of the apps you use, and adds what the stock Kindle
-lacks: a real web browser, a terminal, SSH, and simple settings for Wi-Fi, display and power. Every app shares one
-design language, inspired by Apple's Liquid Glass and rebuilt for black-and-white e-ink. Primitive Store, now being
-designed, will install and update them all from the Kindle itself.
-
-This repository is the umbrella: it holds the plan, the store's design, the guides, and the skills shared by every
-Primitive app. Each app has its own repository.
-
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/main/docs/images/home.png" alt="Home screen" width="200"><br><sub>Home screen</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/main/docs/images/home.png" alt="Home screen" width="200"><br><sub>Your apps, not a shop window</sub></td>
     <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/main/docs/images/quick-settings.png" alt="Quick settings" width="200"><br><sub>Quick settings</sub></td>
     <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/main/docs/images/settings.png" alt="Settings" width="200"><br><sub>Settings</sub></td>
     <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/main/docs/images/dark-home.png" alt="Dark mode" width="200"><br><sub>Dark mode</sub></td>
@@ -27,29 +22,82 @@ Primitive app. Each app has its own repository.
 
 <sub>Screenshots from Primitive Launcher's desktop build, with demo values.</sub>
 
-## Why Primitive
+## Why we started
 
-- **A clean screen.** One grid of your apps instead of shelves, banners and the store. E-ink redraws only what changed.
-- **More memory for your apps.** With the stock interface stopped, apps get about 140 MB more memory on the Kindle Oasis 3.
-- **Quick to start.** With the boot start on, the launcher opens as soon as the Kindle's start-up animation ends.
-- **One design everywhere.** The same status bar, keyboard, quick settings and wording in every app.
-- **Yours to change.** Open source, built on GitHub, installable by USB today and from the store tomorrow.
+A Kindle is a wonderful piece of hardware. Its screen reads like paper, its battery lasts for weeks, it weighs almost
+nothing, and it never buzzes for attention. It could be the calmest computer you own.
+
+Its software is built for something else: selling. The home screen is a shop window of recommendations. Ad-supported
+models show ads until you pay to remove them. You cannot install an app. The browser is basic, the settings are few, and
+the device does only what Amazon decides it should do, for as long as Amazon decides. Features can disappear: in
+early 2025, Amazon removed the option to download purchased books from its website and copy them to a Kindle over USB.
+
+We think a device you bought should work for you. So we started building the Kindle we wanted: one that opens on your own
+apps, shows no ads, asks for no account, and can grow with apps that anyone can make and share.
+
+## What we believe
+
+- **Your device, your choices.** No ads, no account, no tracking. Nothing leaves the Kindle unless you ask it to.
+- **Calm by design.** E-ink is for focus. The interface stays out of the way and redraws only what changed.
+- **Quality for everyone.** Every app has a real touch interface and works without a terminal. We hold our apps to the
+  standard of the best phone apps, and the store holds every listing to the same bar.
+- **One design everywhere.** A single design language, inspired by Apple's Liquid Glass and rebuilt for black-and-white
+  e-ink: the same status bar, keyboard, quick settings and words in every app.
+- **Open and fair.** The source is on GitHub. Our licences keep the work non-commercial and shared, and we credit the
+  community whose work made this possible.
+- **Reading comes first, and so does the law.** Primitive does not remove DRM and does not help anyone get books they
+  have not paid for.
+
+## A true OS for the Kindle
+
+Inside every Kindle is Linux, with Amazon's interface running on top of it. Primitive keeps the Linux and replaces the
+interface:
+
+| | Amazon's interface | Primitive |
+|---|---|---|
+| Home screen | Shop shelves and recommendations | Your apps on a calm grid |
+| Apps | Only what Amazon ships | Anything from Primitive Store, or your own |
+| Web | A basic browser | Primitive Browser, made for e-ink |
+| Settings | A few switches | Wi-Fi, SSH, DNS, display, warmth, sleep, power, start at boot |
+| Memory for apps | The stock interface takes it | About 140 MB more, with the stock interface stopped (Oasis 3) |
+| Ads | On ad-supported models, unless you pay | None |
+| Start-up | Into Amazon's home | Into your home screen |
+
+Primitive Launcher is the home screen and starts with the Kindle. It handles what the stock interface did: Wi-Fi,
+sleep and wake, rotation, the battery, USB drive mode, power off and restart. Apps are modules that install, update and
+uninstall on their own, and Primitive Store, now being built, installs them from the Kindle itself.
+
+What we keep from Amazon, on purpose: the Linux kernel and its drivers. That is what keeps Primitive safe and
+reversible. Amazon's own interface is one tap away, it comes back by itself if Primitive fails to start, and removing
+Primitive's folders returns the Kindle to Amazon's interface.
+
+## Inspiration
+
+- **Apple** for the design language and the quality bar: few controls, clear words, and nothing that needs a manual.
+- **Android and the custom ROM community** for the belief that hardware should keep living after its maker loses
+  interest, and that you should be able to install what you want.
+- **The Kindle community**: [KOReader](https://koreader.rocks/) proved how much a Kindle can do, and the
+  [KindleModding wiki](https://kindlemodding.org/), [Awesome-Kindle](https://github.com/KindleTweaks/Awesome-Kindle),
+  [KindleForge](https://github.com/KindleTweaks/KindleForge), [KPM](https://github.com/Gingrspacecadet/KPM) and KUAL
+  opened the door. Primitive is not affiliated with any of them.
 
 ## The apps
 
 | App | What it is | Repository | Latest | Licence |
 |---|---|---|---|---|
-| **Primitive Launcher** | The home screen and settings: app grid, quick settings, Wi-Fi, SSH and DNS, display, sleep, power, USB drive mode, start at boot. The host of every other app and of the store. | [kindle-primitive-launcher](https://github.com/DoanNguyenTrong/kindle-primitive-launcher) | [v0.3.20](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases) | PolyForm Noncommercial 1.0.0 from the next version (AGPL-3.0 up to v0.3.20) |
-| **Primitive Browser** | A web browser made for e-ink, with its own engine, night mode and image switch. | [kindle-primitive-browser](https://github.com/DoanNguyenTrong/kindle-primitive-browser) | [v0.2.16](https://github.com/DoanNguyenTrong/kindle-primitive-browser/releases) | PolyForm Noncommercial 1.0.0 from the next version (AGPL-3.0 up to v0.2.16) |
-| **Primitive Terminal** | A shell on the Kindle, with the shared keyboard, history and Ctrl. | [kindle-primitive-terminal](https://github.com/DoanNguyenTrong/kindle-primitive-terminal) | 0.1.8, not released yet | AGPL-3.0 (its engine is ported from KOReader's terminal); licence file to add |
-| **Primitive Store** | Browse, install, update and remove apps on the Kindle, with every download checked. | inside the launcher (planned) | design | PolyForm Noncommercial 1.0.0 |
+| **Primitive Launcher** | The home screen and settings: app grid, quick settings, Wi-Fi, SSH and DNS, display, sleep, power, USB drive mode, start at boot. The host of every other app and of the store. | [kindle-primitive-launcher](https://github.com/DoanNguyenTrong/kindle-primitive-launcher) | 0.3.21 | PolyForm Noncommercial 1.0.0 (AGPL-3.0 up to v0.3.20) |
+| **Primitive Browser** | A web browser made for e-ink, with its own engine, night mode and an image switch. | [kindle-primitive-browser](https://github.com/DoanNguyenTrong/kindle-primitive-browser) | 0.2.17 | PolyForm Noncommercial 1.0.0 (AGPL-3.0 up to v0.2.16) |
+| **Primitive Terminal** | A shell on the Kindle, with the shared keyboard, history and Ctrl. | [kindle-primitive-terminal](https://github.com/DoanNguyenTrong/kindle-primitive-terminal) | 0.1.8 | AGPL-3.0 (its engine is ported from KOReader's terminal) |
+| **Primitive Store** | Browse, install, update and remove apps on the Kindle, every download checked. | inside the launcher | being designed | PolyForm Noncommercial 1.0.0 |
+
+Coming as native apps (see the [implementation plan](docs/implementation-plan.md)): Notes, Focus, Cards, Calculator,
+Words, Sudoku, Chess, Minesweeper, Solitaire, Crossword, Blocks, Ships, and a falling-blocks game.
 
 Shared code: [kindle-primtitive-tools](https://github.com/DoanNguyenTrong/kindle-primtitive-tools) holds the on-screen
-keyboard (`primitive-keyboard`) and the quick settings figures and icons (`primitive-quick`), under AGPL-3.0 or PolyForm
-Noncommercial 1.0.0 at the user's choice. Each app includes it as a git submodule under `tools/`.
+keyboard and the quick settings figures and icons, under AGPL-3.0 or PolyForm Noncommercial 1.0.0 at your choice.
 
-The apps are tested on a **Kindle Oasis 3** (hard-float, firmware 5.18.2). The store is designed for every jailbroken
-Kindle e-reader; each app says which Kindles it supports.
+The apps are tested on a **Kindle Oasis 3**. The store is designed for every jailbroken Kindle e-reader, and each app says
+which Kindles it supports.
 
 ## How it fits together
 
@@ -62,26 +110,27 @@ Kindle e-reader; each app says which Kindles it supports.
                            │ HTTPS, checked by sha256
    Kindle (jailbroken)     ▼
    ┌───────────────────────────────────────────────┐
-   │ Primitive Launcher ── Store                    │
+   │ Primitive Launcher (home screen) ── Store      │
    │   ├─ Primitive Browser                         │
    │   ├─ Primitive Terminal                        │
-   │   └─ other apps, KUAL extensions, scriptlets   │
+   │   └─ native apps: Notes, Focus, Words, …       │
+   ├───────────────────────────────────────────────┤
+   │ Linux kernel and drivers (Amazon's, unchanged) │
    └───────────────────────────────────────────────┘
 ```
 
-The launcher is the only part that starts with the Kindle. Every other app is a module with its own folder and a
-library entry, so it shows on the launcher's grid and can be installed, updated and removed on its own.
-
 ## Install
 
-Today, install each app by USB from its GitHub release:
+A jailbroken Kindle is required; the [KindleModding wiki](https://kindlemodding.org/) explains how. Then install
+Primitive Launcher by USB from its latest release:
 
-1. Download the app's zip (and its `.sha256` to check it) from its releases page.
-2. Connect the Kindle by USB while its own home screen shows, and copy the folders from the zip onto the Kindle drive.
-3. Eject, unplug, and open the app from the Kindle library.
+1. Download `primitive-launcher-<version>.zip` (and its `.sha256` to check it) from the
+   [releases page](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases).
+2. Connect the Kindle by USB while its own home screen shows, and copy the `launcher` and `documents` folders onto it.
+3. Eject, unplug, and open **Launcher** in the Kindle library. The first time, it also sets itself up to start with the
+   Kindle.
 
-Start with Primitive Launcher; its `INSTALL.md` (inside the zip) has every step. A jailbroken Kindle is required; see the
-[KindleModding wiki](https://kindlemodding.org/) for jailbreaking. When the store ships, installing anything else is a tap:
+Other apps install the same way today. When the store ships, installing anything else is a tap:
 [docs/store-install-apps.md](docs/store-install-apps.md).
 
 ## Documentation
@@ -115,25 +164,18 @@ phase bumps the minor, and release tags are never moved.
 
 ## Roadmap
 
-| Phase | What | State |
+| Track | What | State |
 |---|---|---|
-| S0 | Decisions (own store, GitHub hosting, licences, scope) | Done |
-| S1 | Contracts, licences for the terminal and tools | Next |
-| S2 | Every app packaged by a shared release workflow | Planned |
-| S3 | The catalog on GitHub Pages | Planned |
-| S4 | The store in the launcher | Planned |
-| S5 | Launcher, Browser and Terminal installed from the store | Planned |
-| S6 | Other Kindle projects listed by link | Planned |
-| S7 | Hardening: architecture and firmware checks, recovery | Planned |
+| A | Foundations: this repo, contracts, licences, device checks | This repo done; the rest next |
+| B | Every app packaged by a shared release workflow | Planned |
+| C | The catalog on GitHub Pages | Planned |
+| D | Primitive Store in the launcher; our apps through the store | Planned |
+| E | An app kit and template, so new apps are small | Planned |
+| F | Native apps: productivity tools and games | Planned |
+| G | Launcher features: jailbreak status, Wi-Fi file transfer, Bluetooth keyboard | Planned |
+| H | Hardening: other Kindles, recovery, signatures | Planned |
 
-Details and checklists: [docs/kindle-platform-plan.md](docs/kindle-platform-plan.md).
-
-## Thanks
-
-Primitive learns from the Kindle community: [KOReader](https://koreader.rocks/), the
-[KindleModding wiki](https://kindlemodding.org/), [Awesome-Kindle](https://github.com/KindleTweaks/Awesome-Kindle),
-[KindleForge](https://github.com/KindleTweaks/KindleForge), [KPM](https://github.com/Gingrspacecadet/KPM), and KUAL.
-Primitive is not affiliated with any of them.
+Details and checklists: [docs/implementation-plan.md](docs/implementation-plan.md).
 
 ## Licence and trademarks
 
