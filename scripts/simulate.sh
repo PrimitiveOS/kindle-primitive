@@ -148,7 +148,7 @@ review_catalog_preview() (
 if [ "$mode" = --armel-packages ]; then
     run package-launcher-armel package launcher primitive-launcher launcher kl-launcher docs/INSTALL.md LICENSE-DOCS armel
     run package-browser-armel package browser primitive-browser browser kb-kindle docs/INSTALL.md LICENSE-DOCS armel
-    run package-terminal-armel package terminal primitive-terminal terminal kt-kindle INSTALL.md "" armel
+    run package-terminal-armel package terminal primitive-terminal terminal kt-kindle INSTALL.md LICENSE-DOCS armel
     run package-verification-armel verify_package_archives
     printf 'Simulation output: %s\n' "$output"
     exit
@@ -175,9 +175,9 @@ done
 
 if [ "$mode" = --packages ]; then
     run package-launcher package launcher primitive-launcher launcher kl-launcher docs/INSTALL.md LICENSE-DOCS
-    run package-store package store primitive-store store store-app INSTALL.md ""
+    run package-store package store primitive-store store store-app INSTALL.md LICENSE-DOCS
     run package-browser package browser primitive-browser browser kb-kindle docs/INSTALL.md LICENSE-DOCS
-    run package-terminal package terminal primitive-terminal terminal kt-kindle INSTALL.md ""
+    run package-terminal package terminal primitive-terminal terminal kt-kindle INSTALL.md LICENSE-DOCS
     for pair in $native_apps; do
         repo=${pair%:*}
         app=${pair#*:}
