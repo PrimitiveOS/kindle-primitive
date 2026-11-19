@@ -58,6 +58,8 @@ launcher_preview() {
 browser_preview() (
     cd "$root/doannt-kindle-browser"
     mkdir -p "$output/previews/browser" "$output/browser-data"
+    KB_FONTS=$(printf '%s\n' "$PWD"/assets/fonts/*.ttf | paste -sd, -)
+    export KB_FONTS
     export KB_DATA="$output/browser-data" KB_SHOTS="$output/previews/browser" KB_OUT="$output/previews/browser/current.png"
     printf 'shot home\nquit\n' | cargo run --offline --locked -q -p kb-desktop -- kbp://home
 )
