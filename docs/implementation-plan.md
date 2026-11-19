@@ -5,6 +5,9 @@ Status date: 2026-11-19. On the Kindle: Primitive Launcher **v0.3.21**, Primitiv
 document for all the work; the design behind it is in [store-architecture.md](store-architecture.md), and the app choices
 in [store-migration-kindleforge.md](store-migration-kindleforge.md).
 
+The [local verification guide](local-verification.md) records the current Mac simulation and ARM package workflow.
+The milestone checkboxes below retain their device-tested meaning.
+
 How to read the checklists (the same as the launcher's plan):
 
 - `[x]` done and confirmed on the Kindle by the owner.
