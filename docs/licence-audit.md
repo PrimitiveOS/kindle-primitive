@@ -39,6 +39,14 @@ Reviewed 19 November 2026. This audit covers the umbrella repository and all 29 
 - The archives have selected notices for native binaries, fonts, and app-specific components. I found no consolidated Rust dependency notice bundle in the inspected ZIPs. The current ARMHF normal dependency graphs expose components under terms such as MIT, Apache-2.0, and Unicode-3.0, including ICU data. Inspect the code and data included in the actual release builds and carry the applicable upstream notices with them. A Cargo dependency graph alone does not identify which code survives linking. [MIT licence](https://opensource.org/license/mit) · [Apache License 2.0, section 4](https://apache.org/licenses/LICENSE-2.0.html) · [Unicode licence](https://www.unicode.org/license.txt) · [SIL font bundling guidance](https://software.sil.org/oflt/)
 - Build's `scripts/package.py` adds `LICENSE`, `INSTALL.md`, and the optional `LICENSE-DOCS` as archive metadata. Store checks these separately from installed files in Tools' `crates/kl-store/src/unpack.rs`. A new root metadata filename would need coordinated packager, catalog, and Store support. An image notice or dependency notice can be included as a manifest-owned file under the app's existing install directory.
 
+## Study and work package check, 20 November 2026
+
+All 11 published ARMHF packages for this release contained `LICENSE` and `LICENSE-DOCS` matching their source
+repositories. Their listings identify PolyForm Noncommercial 1.0.0 for project code. The documentation licences
+cover project-owned artwork and screenshots, plus original starter content where declared. The seven new packages
+carry the same approved icons as Store. Tasks, Habits, and Agenda also carry the upstream Chrono notice in their
+installed file inventories. [Release list](education-productivity-apps.md#released-apps) · [Verification record](local-verification.md#study-and-work-release-verification)
+
 ## Confirmed policy
 
 | Material | Licence and scope |

@@ -1,5 +1,8 @@
 # The pipeline: the ordered work, the checks, and the stop points
 
+This is the 19 November 2026 standalone Store delivery plan. Follow the [implementation plan](../implementation-plan.md)
+for current work and the [current handoff](README.md) for setup and operating instructions.
+
 ## What this handoff approves (read first)
 
 This handoff lives in the umbrella repo at `docs/handoff/` (there is no separate handoff repo). Every path in this file is

@@ -31,7 +31,7 @@
 - Leave an installed Launcher in place unless the owner directly requests a Launcher change. Use the existing Launcher
   to open and verify Store and other apps.
 - Every device build bumps the patch version (`scripts/build-device.sh`); a new phase starts a minor version
-  (`--minor`). The store app has its own version (`0.1.0` now), bumped by hand in its `Cargo.toml` and CHANGELOG.
+  (`--minor`). The standalone Store has its own version in `Cargo.toml` and `CHANGELOG.md`.
 - A device deploy changes what the owner tests. The owner asked: do not deploy until the owner has said so; the owner
   reviews screens on the Mac first (desktop screenshots). When the owner is present, a deploy is fine.
 - The owner asked for fewer launcher deploys: the store must deploy by itself (its own install script), and the launcher

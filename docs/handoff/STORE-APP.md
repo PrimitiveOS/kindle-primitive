@@ -1,5 +1,8 @@
 # The store app: every function, and the design of what is not built
 
+This describes the original standalone Store implementation on 19 November 2026. See the [Store architecture](../store-architecture.md)
+and [current handoff](STATE.md) for released behaviour.
+
 Repository: `doannt-kindle-store` (folder `/Users/doannguyen/Documents/GitHub/prai-workspace/doannt-kindle/doannt-kindle-store`).
 Shared code: `doannt-kindle-tools` (folder `doannt-kindle-tools`, the store's submodule at `tools/`). Line numbers change; the
 names are the reference.

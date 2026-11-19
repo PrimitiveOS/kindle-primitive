@@ -1,7 +1,9 @@
 # PrimitiveOS verification on a Mac
 
-Run these commands from the umbrella checkout with the sibling repositories present. The local run uses desktop devices,
-temporary user-storage fixtures, and cross-compiled packages.
+Run these commands from the umbrella checkout with the sibling repositories present. The baseline simulation uses
+desktop devices, temporary user-storage fixtures, and cross-compiled packages. Its app set is defined in
+[`scripts/simulate.sh`](../scripts/simulate.sh). See [Study and work release verification](#study-and-work-release-verification)
+for the separate checks of the 20 November releases.
 
 ```sh
 sh scripts/simulate.sh build/simulation
@@ -36,9 +38,8 @@ the catalog's validation and the Store's cache and installer in both SHA-256 mod
 | Wi-Fi file transfer | Host loopback verifies the displayed session code, upload limits and path validation, conflict handling, and incomplete transfer cleanup. | On a Kindle, check LAN access on the chosen Wi-Fi network and confirm transfer ends when the Settings page closes or USB drive mode starts. |
 | Hardening | Host verifies architecture and firmware refusal, ownership, archive limits, checksums, cache and network policy, reviewed hook transactions, and signed catalog and package proofs. | The second hardware profile, Launcher recovery under power loss, boot fallback, and approved hook execution need Kindle testing. Production trust provisioning and signed publication require owner approval. |
 
-Prototype app listing JSON files are drafts. The catalog should receive actual release URL, SHA-256, byte count,
-approved art and copy, and observed `tested_on` models when an owner-approved release reaches that step. The package
-stage and simulation do not need those claims.
+App repository draft listings are used for local review. Use the public catalog for verified release URLs, SHA-256,
+byte counts, and published artwork. Only record a model in `tested_on` after testing that release on a Kindle.
 
 The installer checks schema-1 packages against the catalog's size and SHA-256 and can resume an interrupted
 transfer against the same metadata. An optional root-owned key authenticates the index, exact listing bytes,
@@ -51,25 +52,54 @@ The installer checks archive contents against the manifest before extraction. It
 legacy Launcher, Browser, Store, and Terminal entries. A path already
 holding a customized script or another unrecorded file in `documents/` or `extensions/` stays protected.
 
-The public catalog index was reachable on 2026-11-19. Primitive Browser 0.2.17 ARMHF passed live size, checksum,
-and archive-content checks. The larger local catalog has `.invalid` package URLs and no device compatibility claims.
-[Public catalog index](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
-
 Words uses independently selected English banks. KWordle's English answer and guess lists trace to
 datasets copied from the original game without an upstream redistribution license, as recorded in the Words README.
+
+## Study and work release verification
+
+On 20 November 2026, the seven new apps and four updates passed their desktop app checks. All eleven published ARMHF
+archives matched their GitHub SHA-256 sidecars, their manifests and executable ABI, and both project licence files.
+The seven new app scriptlets also matched their approved icons. [Release list](education-productivity-apps.md#released-apps) ·
+[First-party app directory](../README.md#the-apps)
+
+The Store integration fixture refreshed the eleven listings from a local catalog built from the published sources,
+installed and removed every package in temporary Kindle storage, and preserved the fixture's personal document.
+The GitHub Pages deployment passed catalog and archive validation. The public index, eleven listings, icons,
+screenshots, and collections matched the staged catalog. [Public catalog index](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json) ·
+[Catalog workflow](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/runs/44580696716)
+
+To repeat the package checks, place each published ZIP and matching SHA-256 sidecar in
+`build/study-and-work/packages/<app-id>/` and run the following from the umbrella checkout with the corresponding
+release tags checked out. This uses a temporary Kindle filesystem.
+
+```sh
+python3 scripts/verify-local-packages.py build/study-and-work/packages --check-licenses
+KL_TEST_PACKAGE_SET="$PWD/build/study-and-work/packages" \
+  cargo test --offline --locked --manifest-path doannt-kindle-tools/Cargo.toml \
+  -p kl-store --test local_package_set -- --nocapture
+```
+
+To exercise catalog refresh in that test too, set `KL_TEST_CATALOG_SITE` to a fixture `v1` site with the same
+hosted app IDs as the package set. Build it with the catalog builder using `--base-url https://catalog.invalid/v1`.
+For the live catalog and its assets, use the catalog repository's `scripts/check-assets.py --deep`.
+
+Physical Kindle testing of these eleven releases is pending. Their catalog entries leave `tested_on` empty.
 
 ## Device-review sequence
 
 1. Review [the Store captures](store-screens/README.md) plus the generated native app previews.
-2. Use the standalone Store archive for the Store device gate in [the handoff](handoff/PIPELINE.md#d1-device-gate-the-store-works-on-the-kindle-owner-present-a-stop-point). Check Search, install and removal confirmation, recovery, sleep, rotation, and Wi-Fi errors.
-3. After the device gate and the Store release, test the launcher's existing-Store and clean bootstrap paths. Test the
-   Store's Open and idle USB behavior with the matching Launcher and Store candidates. Exercise a launcher update
-   from a known healthy version and confirm the device returns to the previous launcher after a failed trial.
+2. Open Store from the existing Launcher. Refresh, find **Study and work** on **Today**, and check Search and page
+   navigation. Check installation and removal confirmation, recovery, sleep, rotation, and Wi-Fi errors.
+3. Install the new apps and check the updates from Store. Open them from Store and Launcher, then verify the
+   app-specific workflows, timing, memory, rotation, sleep and wake, and USB behavior. Record the model and firmware
+   alongside observed results in the corresponding app repository.
 4. Verify a file transfer on the Kindle. In Notes, connect the idle app to a computer, edit a saved note, eject the
-   drive and verify both the app and note can be reopened. Run the native app device checklists and record panel timing,
-   memory, USB and firmware behavior in the corresponding repository before publishing.
+   drive, and verify that both the app and note can reopen. Keep clean-bootstrap and Launcher update trials in the
+   separate Launcher device gate.
 
-## Local feature branches
+## Earlier local build references
+
+These commits identify the original Store and native app simulation work.
 
 | Checkout | Branch | Commit |
 | --- | --- | --- |
@@ -86,9 +116,9 @@ datasets copied from the original game without an upstream redistribution licens
 | Chess, Minesweeper, Solitaire | `feature/chess`, `feature/minesweeper`, `feature/solitaire` | `83b83e7`, `7c6db7d`, `7784917` |
 | Crossword, Blocks, Ships, Cascade | `feature/crossword`, `feature/blocks`, `feature/ships`, `feature/cascade` | `2ca182f`, `da9b135`, `3e9110b`, `dc8c1ba` |
 
-Launcher and Store pin Tools at `9e9815a` for signed Store verification and reviewed system changes. GitHub CI
-needs that commit available before publishing those branches. The native candidate builds use the adjacent
-Tools checkout at `529e2cb` for shared controls. Native releases use the reusable workflow after tag approval.
+Those Launcher and Store candidates pinned Tools at `9e9815a` for signed verification and reviewed system changes.
+The original native candidates used Tools at `529e2cb` for shared controls. Use each app's tagged workflow for its
+release inputs.
 
 ## Store listing
 
@@ -98,4 +128,4 @@ Tools checkout at `529e2cb` for shared controls. Native releases use the reusabl
 - Description **Browse apps, see what they change and install them over Wi-Fi. Use Updates to keep your apps current or remove apps you no longer want.**
 - Change notice **Uses the internet to check the catalog and download packages. Installs and removes app files in user storage.**
 
-The Store icon and the native app icons in the simulation's `proposals/` directory are artwork for review.
+The simulation's `proposals/` directory holds review artwork. The public catalog is the reference for approved icons.

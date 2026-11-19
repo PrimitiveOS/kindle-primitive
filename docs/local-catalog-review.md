@@ -13,11 +13,13 @@ measures the ZIP size, and verifies the SHA-256 against its sidecar. `build/simu
 results by app ID. Keep one ARMHF release candidate per app in the simulation package directory. Use
 `--date YYYY-MM-DD` to reproduce the catalog dates for a specific review.
 
-The review includes Launcher, Browser, Store, Hello, the thirteen native apps, the existing KOReader link, and
-Terminal for private review. Candidate listings use `.invalid` asset URLs and leave `tested_on` empty. The Store
-and native icons use the artwork proposals in `build/simulation/proposals/` when available. A simulation without
-proposals uses letter tiles. Public listing text, artwork, compatibility claims, and Terminal's inclusion require
-owner approval.
+The baseline review covers the package set in [`scripts/simulate.sh`](../scripts/simulate.sh) and the KOReader link.
+Candidate listings use `.invalid` asset URLs and leave `tested_on` empty. The generator looks for artwork in
+`build/simulation/proposals/` and uses letter tiles when no proposed image is available.
+
+For the 20 November 2026 **Study and work** releases, the published packages were checked with a separate fixture
+containing those eleven app IDs. See [the release checks](local-verification.md#study-and-work-release-verification).
+The public index and collections serve the approved listings and artwork. [Live Store catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
 
 To rebuild the review and repeat the signed verification from existing simulation output, run these commands.
 

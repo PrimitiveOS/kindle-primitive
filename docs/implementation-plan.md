@@ -1,23 +1,24 @@
 # PrimitiveOS implementation plan
 
-Status date: 2026-11-19. On the Kindle: Primitive Launcher **v0.3.21**, Primitive Browser **v0.2.17**, Primitive Terminal
-**v0.1.8**. Decisions D1–D7 are taken ([kindle-platform-plan.md](kindle-platform-plan.md) §4). This is the tracking
-document for all the work; the design behind it is in [store-architecture.md](store-architecture.md), and the app choices
-in [store-migration-kindleforge.md](store-migration-kindleforge.md).
+Updated 20 November 2026. The public catalog contains **33 listings**, including **32 first-party apps** and the linked
+KOReader entry. Its system releases are Primitive Launcher **0.4.10**, Store **0.1.4**, Primitive Browser **0.2.18**,
+and Primitive Terminal **0.1.8**. These versions describe the public catalog. See the [latest device evidence](handoff/STATE.md)
+for what has been confirmed on the Oasis 3. [Live catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
 
-The [local verification guide](local-verification.md) records the current Mac simulation and ARM package workflow.
-The milestone checkboxes below retain their device-tested meaning.
+The platform decisions are in the [platform plan](kindle-platform-plan.md). See the [Store architecture](store-architecture.md),
+[local verification guide](local-verification.md), and [education and productivity app designs](education-productivity-apps.md)
+for design and test details.
 
-How to read the checklists (the same as the launcher's plan):
+Checklist status
 
-- `[x]` done and confirmed on the Kindle by the owner.
-- `[x] … (Mac)` done and tested on the Mac, not yet confirmed on the Kindle.
-- `[ ]` not done.
+- `[x]` records a completed item. Where an item requires a Kindle, it needs a dated device result.
+- `[x] … (Mac)` records desktop or local package verification. `(Published)` records verified public deployment.
+- `[ ]` records work or verification still due. Keep each hardware gate open until its checks pass on a Kindle.
 
-A milestone is finished when every item is `[x]` without "(Mac)". A track ends with a gate that the owner checks on the
-Kindle. Every device build bumps the patch version; a new phase of an app starts a new minor version; new apps start at
-0.1.0; tags `vX.Y.Z` are never moved. Nothing is tagged, released, listed or pushed to a public catalog without the
-owner's go-ahead. Device findings go into each repo's `docs/device-notes.md`.
+For initial setup, manually copy Primitive Launcher onto the Kindle once. Open Store from the existing Launcher for other
+apps. Leave an installed Launcher in place unless the owner requests a Launcher change. Device builds bump the patch
+version, new phases start a minor version, and new apps start at 0.1.0. Tags `vX.Y.Z` are immutable. The owner approves
+public releases and listings. Record device findings in the relevant repo's `docs/device-notes.md` or published test record.
 
 ## Overview
 
@@ -25,37 +26,31 @@ owner's go-ahead. Device findings go into each repo's `docs/device-notes.md`.
 |---|---|---|
 | [A1 Umbrella repo](#a1-umbrella-repo) | A Foundations / `kindle-primitive` | **Done**, on GitHub (`8be0056`) |
 | [A2 Contracts and schemas](#a2-contracts-and-schemas) | A / `kindle-primitive` | **Done** (contracts, three schemas, examples, tests); owner's read pending |
-| [A3 Repo upkeep and licences](#a3-repo-upkeep-and-licences) | A / all repos | Launcher, Browser, Tools, and Terminal licences present. Historical Launcher releases checked. |
+| [A3 Repo upkeep and licences](#a3-repo-upkeep-and-licences) | A / all repos | Project licence terms documented. Both licence files verified in all 11 study and work packages. |
 | [A4 Device spikes](#a4-device-spikes) | A / device | Oasis 3 identity and storage recorded. HTTPS package transfer, keep-awake, Bluetooth, jailbreak status, and fast-refresh measurements remain. |
-| [B1 Shared build workflow](#b1-shared-build-workflow) | B Packaging / `kindle-primitive-build` | The GitHub repo exists. The feature branch is tested locally. Publishing the workflow tag requires approval. |
-| [B2 Our three apps packaged](#b2-our-three-apps-packaged) | B / launcher, browser, terminal | Complete local ARMHF candidates verified by the packager and Store engine. |
-| [B3 Soft-float builds](#b3-soft-float-builds) | B / launcher, browser, terminal | Complete local ARMEL candidates verified. Soft-float Kindle checks are pending. |
-| [C1 Catalog repo and pipeline](#c1-catalog-repo-and-pipeline) | C Catalog / `kindle-primitive-catalog` | Pages is live. The feature branch's catalog and deep archive checks run locally. |
-| [C2 First listings](#c2-first-listings) | C / `kindle-primitive-catalog` | Browser and KOReader are live. All current candidates have a private review catalog. |
+| [B1 Shared build workflow](#b1-shared-build-workflow) | B Packaging / `kindle-primitive-build` | Commit-pinned workflow publishes ZIPs and checksum sidecars on app version tags. |
+| [B2 Our three apps packaged](#b2-our-three-apps-packaged) | B / launcher, browser, terminal | ARMHF releases are listed in Store. Package and installer fixtures passed on the Mac. |
+| [B3 Soft-float builds](#b3-soft-float-builds) | B / launcher, browser, terminal | ARMEL release assets are available. Soft-float Kindle checks remain open. |
+| [C1 Catalog repo and pipeline](#c1-catalog-repo-and-pipeline) | C Catalog / `kindle-primitive-catalog` | GitHub Pages deployment, deep archive checks, and scheduled asset checks are live. |
+| [C2 Public listings and collections](#c2-public-listings-and-collections) | C / `kindle-primitive-catalog` | 32 first-party apps and linked KOReader are live across three collections. |
 | [D1 Shared network crate](#d1-shared-network-crate) | D Store / tools | `primitive-net` on tools `main` (`241a527`), tested on the Mac |
 | [D2 Store engine](#d2-store-engine) | D / shared Tools | The engine passes Mac tests for refresh, install, removal, recovery, and signed verification. |
 | [D3 Store screens](#d3-store-screens) | D / standalone Store | Today, Apps, Updates, Search, and product pages are covered by desktop captures in `docs/store-screens/` and the simulation. |
-| [D4 Store on the Kindle](#d4-store-on-the-kindle) | D / device | The standalone ARMHF Store package and the bootstrap fixture pass on the Mac. The device gate needs the owner present. |
+| [D4 Store on the Kindle](#d4-store-on-the-kindle) | D / device | A prior Oasis 3 smoke test covered Store launch and refresh. The full install, update, and removal gate remains open. |
 | [D5 Our apps through the store](#d5-our-apps-through-the-store) | D / launcher, browser, terminal | Local package installs, Launcher update trial, and boot-copy recovery checks passed. |
 | [E1 Device layer in the kit](#e1-device-layer-in-the-kit) | E App kit / tools | Three SDK crates share the Oasis 3 profile and cross-check on both ARM targets. |
 | [E2 Interface components](#e2-interface-components) | E / tools | Shared components and Hello gallery render on the Mac. |
 | [E3 Text editing](#e3-text-editing) | E / tools | Shared editable fields and multiline editor have host coverage. |
 | [E4 App lifecycle](#e4-app-lifecycle) | E / tools | Host lifecycle coverage for input, sleep, wake, save, and app exit. |
-| [E5 App template](#e5-app-template) | E / `kindle-primitive-app-template` | Hello is packaged and its desktop driver verifies the lifecycle. |
-| [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Desktop previews and verified ARMHF packages are available. Owner and device gates remain. |
+| [E5 App template](#e5-app-template) | E / `kindle-primitive-app-template` | Hello 0.1.0 is live in Store. Its desktop driver verifies the lifecycle. |
+| [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Published with desktop previews and ARMHF packages. Device gates remain. |
+| [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
 
-Order of work:
-
-1. **A1–A3** now (Mac and GitHub), **A4** when the Kindle is at hand.
-2. **B1–B2** and **E1–E2** in parallel on the Mac.
-3. **C1–C2**, then **D1–D4**: **Gate D**, the store installs an app on the Kindle.
-4. **E3–E5**: **Gate E**, a new app from the template installs from the store and runs.
-5. The first native apps: **F1 Notes**, **F2 Focus**, **F3 Words** (M-D7).
-6. **D5** (our apps and the launcher's self-update through the store) and **G1**.
-7. The other native apps and launcher features, in the owner's order.
-8. **H** last, and whenever a second Kindle is available.
+Open release verification starts with the [study and work device checks](#study-and-work-release), using the installed
+Launcher. The broader device gates cover [Store](#d4-store-on-the-kindle), [Hello](#e5-app-template),
+[additional Kindle models and recovery](#h-hardening-phase-s7), and the [device measurements](#a4-device-spikes).
 
 ---
 
@@ -85,20 +80,21 @@ Order of work:
 
 ### A3 Repo upkeep and licences
 
-- [x] Launcher: PolyForm Noncommercial 1.0.0 (code), CC BY-NC-SA 4.0 (docs, pictures); v0.3.21 on `main` (`cdc09c2`).
-- [x] Browser: the same licences; v0.2.17 on `main` (`f3ae822`).
+- [x] Launcher from 0.3.21 and Browser from 0.2.17 use PolyForm Noncommercial 1.0.0 for code and CC BY-NC-SA 4.0 for
+      project documentation and artwork. Prior releases retain their published terms. [Licence audit](licence-audit.md)
 - [x] Tools: AGPL-3.0 or PolyForm Noncommercial 1.0.0 (`1ed99a0`).
 - [x] Terminal includes the AGPL-3.0 `LICENSE` file (its engine is ported from KOReader's terminal) and a README licence
       section. Its Tools submodule is pinned to the dual-licensed `1ed99a0` revision.
 - [x] Terminal and Tools have local GitHub Actions workflows for `cargo test` and Clippy (Mac).
-- [ ] Decide whether to release Launcher `v0.3.21` with the new licence. Browser `v0.2.17` is already published.
+- [x] Terminal is published in Store as a developer tool. Its package remains under AGPL-3.0. (Published)
+- [x] All 11 study and work ARMHF releases include `LICENSE` and `LICENSE-DOCS`. The latest public ZIPs match their
+      repository licence files and published checksum sidecars. (Mac, Published)
 - [x] The Launcher release jobs completed successfully for [v0.3.12](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/actions/runs/44313351840)
       and [v0.3.20](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/actions/runs/44438661847).
 - [x] The Browser keeps `deploy/fix-hosts-truyendich.sh` outside the release package. Both ARM package inventories
       were checked locally (R4).
 - [ ] Browser: the untracked `docs/tinhte/` folder is the owner's; commit it or leave it out.
 - [ ] Tools: keep the remote name `kindle-primtitive-tools` or rename it (GitHub redirects the old name).
-- [ ] Decide whether Primitive Terminal is a store app (it is a developer tool; the quality bar favours everyday apps).
 
 ### A4 Device spikes
 
@@ -117,7 +113,8 @@ Each answer goes into the launcher's `docs/device-notes.md` with the date.
       KOReader's listing and icon from GitHub Pages and wrote them to `store/cache` (1 app, 0 failed). Still open:
       download speed and memory for a 5 MB file.
 - [ ] A4.5 Keep the screen awake with the framework stopped (for Focus): the launcher's own sleep handling, or
-      `com.lab126.powerd preventScreenSaver`.
+      `com.lab126.powerd preventScreenSaver`. The temporary session override was cleared on 20 November 2026 and
+      read back as `0` on the Oasis 3. Focus-specific behaviour remains to be tested.
 - [ ] A4.6 Bluetooth radio on the Oasis 3: from the stock UI first (the launcher plan's "Later" item); decides G3.
 - [ ] A4.7 Jailbreak status signals: how to tell the hotfix is installed and updates are blocked; decides G1.
 - [x] A4.8 Free space (2026-11-19): `/mnt/us` 4.9 GB free of 6.1 GB; `/var/local` 164 MB free of 240 MB. Write speed
@@ -140,24 +137,25 @@ Repo `kindle-primitive-build` (local `doannt-kindle-build`).
 - [x] Steps: test, build per architecture (`armv7-unknown-linux-musleabihf`; `armel` target after B3), run the app's
       `scripts/package.sh`, write `manifest.json` (file list, sha256), zip as `<id>-<version>-<arch>.zip`, `.sha256`.
 - [x] Tag check: the workflow checks the crate version before the packager writes the manifest.
-- [ ] Publish the GitHub Release on a `v*` tag; attach zips and `.sha256`.
+- [x] Publish GitHub Releases from app `v*` tags with ARM ZIPs and `.sha256` sidecars. (Published)
 - [x] Secret scan step fails the job if a configured pattern appears in the package.
-- [ ] Versioned with tags (`@v1`), so apps pin it.
+- [x] Apps pin the reusable workflow by commit SHA. The study and work releases use `9533d48`. (Published)
 
 ### B2 Our three apps packaged
 
-- [x] Launcher candidate via `scripts/stage.sh` and the shared packager (`primitive-launcher-<v>/manifest.json`, `launcher/`, `documents/Launcher.sh`,
+- [x] Launcher release via `scripts/stage.sh` and the shared packager (`primitive-launcher-<v>/manifest.json`, `launcher/`, `documents/Launcher.sh`,
       `LICENSE`, `LICENSE-DOCS`, `INSTALL.md`); `changes`: network, stops the Kindle UI, starts at boot, system files
       (boot job). `release.yml` calls B1.
-- [x] Browser candidate (`dir` = `browser`, with FBInk and its GPL-3.0 licence). Declares network access.
-- [x] Terminal candidate (`dir` = `terminal`) and release workflow.
+- [x] Browser release (`dir` = `browser`, with FBInk and its GPL-3.0 licence). Declares network access. (Published)
+- [x] Terminal release (`dir` = `terminal`) and release workflow. (Published)
 - [ ] Each app's zip unpacked and checked by the owner (**Gate B**).
 
 ### B3 Soft-float builds
 
 - [x] Build the `armv7-unknown-linux-musleabi` target with Zig and stage complete Launcher, Browser, and Terminal ZIPs.
       Launcher includes static Dropbear with zlib and Browser includes static FBInk (Mac).
-- [ ] Confirm the GitHub CI result for the soft-float builds after the changes reach GitHub.
+- [x] Checked the published ARMEL ZIPs for Launcher 0.4.10, Browser 0.2.18, and Terminal 0.1.8 in the
+      [licence audit](licence-audit.md#release-package-review). (Mac, Published)
 - [ ] Test on a soft-float Kindle (needs a device; until then listings declare `armhf` only).
 
 ---
@@ -173,42 +171,46 @@ Repo `kindle-primitive-catalog` (local `doannt-kindle-catalog`).
 - [x] Pull request CI configuration: download each asset, check sha256 and size, open the zip, compare `manifest.json`, check
       allowed roots and paths, find hooks, check the licence against the allow list; post a summary comment.
 - [x] `scripts/build-index.py` writes `site/v1/index.json`, `collections.json`, `apps/<id>.json`, icons, and shots.
-- [ ] Publish `site/` to GitHub Pages on merge to `main` (`doannguyentrong.github.io/kindle-primitive-catalog/v1/`).
-- [ ] Nightly job: every asset URL still answers with the same sha256; open an issue if not.
+- [x] Build and publish `site/` to GitHub Pages on pushes to `main`. The 20 November workflow passed schema and
+      deep release asset checks before deploying. (Published) [Catalog deployment](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/runs/44580696716)
+- [x] `catalog-health.yml` schedules a nightly check of published asset size and SHA-256 and opens an issue on failure.
 - [x] Pull request template with the submission checklist (store-submit-app §1).
 
-### C2 First listings
+### C2 Public listings and collections
 
-- [ ] Approve the public Primitive Launcher listing and decide on Terminal. The private review catalog has
-      candidate listings and captures. Primitive Browser 0.2.17 is published and its live asset passed validation.
-- [x] KOReader is published as a link under Reading.
-- [x] The private catalog builds the Start here and Made by Primitive collections (Mac).
-- [x] **Gate C, current publication**. Pages served `index.json`. Its one hosted asset, Primitive Browser 0.2.17
-      ARMHF, passed checksum, size, and archive validation on 2026-11-19 (Mac).
+- [x] Launcher, Store, Browser, Terminal, Hello, and the other first-party apps have hosted releases. KOReader is listed
+      under Reading as a third-party link. (Published)
+- [x] Start here, Made by Primitive, and Study and work are live. Study and work contains the 11 new or updated apps
+      and Primitive Browser. (Published) [Live collections](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json)
+- [x] **Gate C**. The 33-entry live index matched the generated catalog. The 11 changed listings, their icons and
+      screenshots, and the collections file matched the published assets byte for byte. (Published)
 
 ---
 
 ## D. Store (phases S4 and S5)
 
-The store is a new phase of the launcher: its first device build starts a new minor version
-(`scripts/build-device.sh --minor`).
+Store is a standalone app with its own version and release workflow. Primitive Launcher provides a single Store tile,
+can bootstrap Store when it is absent, and refreshes its app grid after installation or removal.
 
 ### D1 Shared network crate
 
 - [x] `primitive-net` in `doannt-kindle-tools` (branch `feature/primitive-net`, `241a527`): downloads with an allow list,
       HTTPS only, redirects checked by hand, size limits, progress, `.part` files (Mac).
 - [x] Resume partial Store and bootstrap downloads only against the same expected size and SHA-256 (Mac).
-- [ ] Check the bundled root certificates on the Kindle with a full package download (A4.4 device check).
-- [x] Tests on a local HTTP server (Mac); HTTPS on the Kindle is still to check (A4.4).
+- [x] Store bootstrapped and installed ARMHF packages over HTTPS on the Oasis 3 on 19 November 2026. The separate
+      download-speed and memory measurement in A4.4 remains open.
+- [x] Tests on a local HTTP server. (Mac)
 - [ ] The browser uses `primitive-net` where it overlaps (later, no behaviour change).
 
 ### D2 Store engine
 
-Crate `kl-store` in the launcher.
+Crate `kl-store` in shared Tools, used by Store and Primitive Launcher.
 
 - [x] Models for the index, listings, manifests, `installed.json`; parsers with tests (Mac).
 - [x] Cache the catalog in `launcher/store/cache/`. Support Refresh, refresh on open, and a daily check over Wi-Fi.
       Keep the saved catalog available offline (Mac).
+- [x] Store 0.1.4 opens from the cached first page, paginates lists, and preloads nearby artwork. Refresh checks listings
+      concurrently and reuses unchanged revisions. **Done** can interrupt a refresh and exit. (Mac, Published)
 - [x] The Store reads the device architecture, firmware and free space. The shared Oasis 3 build reports the
       `KindleOasis3` profile name. Additional device profiles need hardware evidence.
 - [x] Resolver: newest version for the architecture and firmware; `requires` with `>=`; withdrawn versions skipped (Mac).
@@ -241,7 +243,12 @@ Following the `primitive-ui` skill; reviewed as desktop screenshots before any d
 
 ### D4 Store on the Kindle
 
-- [ ] Install the browser from the store (from a test catalog first), open it, return, update it, remove it.
+- [x] Store 0.1.2 bootstrapped over Wi-Fi, refreshed 19 listings, installed apps, and opened Hello on the Oasis 3 on
+      19 November 2026. [Store test record](https://github.com/DoanNguyenTrong/kindle-primitive-store#status)
+- [x] Device logs for Store 0.1.4 recorded a faster first frame, a refresh that reused all 19 listings, and return to
+      Launcher through **Done** during refresh. The owner confirmed startup was faster. See `build/store-performance/`
+      in the local workspace for the run logs.
+- [ ] Complete a Browser install, open, return, update, and removal sequence on the Oasis 3.
 - [ ] A package for the wrong architecture is refused with the reason.
 - [ ] Power off during an install; the next start finishes or undoes it.
 - [ ] USB drive mode while the store is idle on the Kindle. The Store and supervisor pass idle, write, cleanup, and
@@ -251,12 +258,15 @@ Following the `primitive-ui` skill; reviewed as desktop screenshots before any d
 
 ### D5 Our apps through the store
 
-- [ ] Browser and terminal (if listed) install and update from the public catalog.
+- [x] Browser 0.2.18 and Terminal 0.1.8 installed from the public catalog and returned to Launcher in the Oasis 3 smoke test
+      on 19 November 2026. See `build/device-validation/README.md` in the local workspace.
+- [ ] Complete Browser and Terminal update and removal checks on the Oasis 3.
 - [x] Launcher self-update stages the candidate, restarts through the supervisor and retains the previous files during
       the trial. Boot-copy fixtures cover insufficient space and an interrupted write (Mac).
 - [x] Launcher, Browser and Terminal installation guides explain Store updates and USB and SSH fallbacks (Mac).
-- [ ] **Gate D5**: all our listed apps install, update and remove through the store; one launcher self-update on the
-      Kindle.
+- [x] A prior Launcher 0.4.10 supervisor trial was accepted on the Oasis 3. The installed, RAM, and boot copies matched.
+      See `build/launcher-uninstall-warning/device-verification.log` in the local workspace.
+- [ ] **Gate D5**: complete the remaining Store install, update, and removal checks on the Kindle using the existing Launcher.
 
 ---
 
@@ -302,9 +312,9 @@ Repo `kindle-primitive-app-template`.
 - [x] Workspace: `<x>-core` (state, logic, tests), `<x>-render`, `<x>-kindle`, `<x>-desktop`, using E1–E4.
 - [x] `scripts/stage.sh`, `release.yml` calling B1, `app.json` draft, icon, README (licences: PolyForm Noncommercial
       for code, CC BY-NC-SA 4.0 for docs), `CHANGELOG.md`, `docs/device-notes.md`.
-- [x] A "Hello" app made from it.
-- [ ] **Gate E**: the Hello app installs from the store, opens from the grid, sleeps and wakes, returns to the launcher,
-      and is removed.
+- [x] Hello 0.1.0 ships from the template and is listed in Store. (Published)
+- [x] The Oasis 3 smoke test installed Hello, opened it, and increased its counter by tapping **Say hello**.
+- [ ] **Gate E**: confirm the full Hello lifecycle on the Kindle, including sleep, wake, return to Launcher, and removal.
 
 ---
 
@@ -327,12 +337,14 @@ its own versions from 0.1.0. Every app milestone includes the **definition of do
 - [x] Notes list (newest first, pinned on top), new note, open, edit with the multi-line editor (E3), delete with Undo.
 - [x] Search across notes. Plain text files in `/mnt/us/notes/` (copyable over USB), names from the first line.
 - [x] Autosave and durable file handling pass Mac fixtures.
+- [x] Notes 0.1.1 adds checklist ordering and a reading journal template. See [F15](#f15-more-practice). (Mac, Published)
 - [ ] Verify Notes across Kindle sleep, power loss, and USB eject.
 
 ### F2 Focus (productivity; like the Clock app's timer and Pomodoro apps)
 
 - [x] Focus and break timer, presets 25/5 and 50/10, custom lengths; start, pause, reset.
 - [x] Large minute-based countdown, end screen, and today's focus count and total.
+- [x] Focus 0.1.1 adds reusable subjects and a weekly study log. See [F16](#f16-reference-and-routines). (Mac, Published)
 - [ ] Verify keep-awake behavior while Focus runs on the Kindle (A4.5).
 
 ### F3 Words (game; like Wordle)
@@ -346,10 +358,14 @@ its own versions from 0.1.0. Every app milestone includes the **definition of do
 
 - [x] Decks and cards, keyboard editing, SM-2 review, paged card faces, and per-deck statistics.
 - [x] Import of Anki `.apkg` text fields and export to Documents. Media remains a later extension.
+- [x] Cards 0.1.1 adds an independent Self-test and preview for two-column TSV imports. See
+      [F14](#f14-daily-planning-and-reading) and [F15](#f15-more-practice). (Mac, Published)
 
 ### F5 Calculator (tool; like Calculator)
 
 - [x] Standard calculator with large keys, history, result copy, and exact decimal arithmetic.
+- [x] Calculator 0.1.3 adds unit conversions, exact worked steps, and plots for lines and quadratics. See
+      [F16](#f16-reference-and-routines). (Mac, Published)
 
 ### F6 Sudoku (game)
 
@@ -383,17 +399,62 @@ its own versions from 0.1.0. Every app milestone includes the **definition of do
 
 - [x] Place ships manually or randomly, play against the Kindle at three levels, and play two-person hot-seat.
 
-### F13 Falling-blocks game (game; like Tetris) (owner, 2026-11-19)
+### F13 Cascade (falling-blocks game)
 
-- [ ] Name and look of our own: not called "Tetris" (The Tetris Company's trademark), and no copy of its look (its
-      colours, piece textures, screens); a working name until the owner picks one. The owner checks the name and look
-      before the first public listing.
-- [ ] A4.9 answered first; the game's speed levels follow what the panel can show (pieces move in clear steps, not
-      smooth motion).
+- [x] Cascade 0.1.0 is published with its own name and monochrome artwork. (Published)
+- [ ] Measure the panel refresh and ghosting at each pace setting on the Oasis 3 (A4.9).
 - [x] Touch actions for movement, rotation, and drops, with page buttons for movement.
-- [ ] Only the changed cells are redrawn with a fast waveform; a full refresh at line clears or every few seconds to
-      clear ghosting; pause on sleep.
-- [x] Scoring, levels, next piece, hold, and best scores in the Cascade candidate.
+- [ ] Confirm changed-cell refresh, full refresh at line clears, and pause on sleep on the Kindle.
+- [x] Scoring, levels, next piece, hold, and best scores in the release.
+
+### Study and work release
+
+All three waves shipped on 20 November 2026. The published release links and shipped features are in the
+[education and productivity release record](education-productivity-apps.md#released-apps). The seven new apps use the
+approved icons. The first-party app directory links every current Store release. [PrimitiveOS app directory](../README.md#the-apps)
+
+- [x] Core and desktop interaction checks passed across all 11 releases. Checks included persistence, import previews,
+      retry flows where applicable, and light and dark screenshots. (Mac)
+- [x] Downloaded and checked the 11 public ARMHF packages and checksum sidecars. Checked manifests and both licence
+      files, and matched the seven approved icons against the launcher entries. (Mac, Published)
+- [x] Refreshed an 11-listing fixture built from the released catalog entries. The Store engine installed and removed
+      all 11 public packages and preserved a personal document. (Mac)
+- [x] Verified public Pages after deployment. The 11 listings, catalog assets, and Study and work collection matched
+      the reviewed output. (Published)
+- [ ] **Study and work Kindle gate**. Use the existing Launcher and Store on the Oasis 3. Install the seven new apps and
+      update the four existing apps without losing existing user data. Check touch targets, both portrait orientations,
+      e-ink refresh, airplane mode, sleep and wake, USB eject, and return to Launcher. Record release-specific results
+      before adding a Kindle model to `tested_on`.
+
+#### F14 Daily planning and reading
+
+- [x] Tasks 0.1.0 covers Today, lists, due dates, recurring tasks, and Undo. (Mac, Published)
+- [x] Reading Practice 0.1.0 ships 12 passages and 36 questions, with saved progress and missed-answer review. (Mac, Published)
+- [x] Cards 0.1.1 Self-test tracks retries separately from the scheduled review. (Mac, Published)
+- [ ] On the Oasis 3, complete and undo a recurring task, resume a passage question after reopening the app, and retry
+      missed cards after reboot in airplane mode. Verify that the existing Cards review schedule survives the update.
+
+#### F15 More practice
+
+- [x] Math Practice 0.1.0 ships worked examples and five-problem sets for arithmetic, fractions, and percentages.
+      Equivalent fraction answers are accepted. (Mac, Published)
+- [x] Language Practice 0.1.0 ships ten beginner English lessons for Vietnamese speakers with tap exercises and
+      missed-answer review. (Mac, Published)
+- [x] Notes 0.1.1 saves checklists and reading journals as plain text. Cards 0.1.1 previews two-column TSV imports and
+      identifies duplicates. (Mac, Published)
+- [ ] On the Oasis 3, check the number keypad, equivalent answers, Vietnamese diacritics, and TSV import errors.
+      Verify that the Notes update preserves existing notes and that the Cards update preserves existing decks.
+
+#### F16 Reference and routines
+
+- [x] Dictionary 0.1.1 includes original starter definitions, accent-insensitive lookup, TSV import preview, and
+      a Cards-compatible favorites export. (Mac, Published)
+- [x] Habits 0.1.0 records editable daily and weekly check-ins and exports CSV. Agenda 0.1.0 lists local events and
+      previews supported one-off `.ics` imports with all-day, local, or UTC start times. (Mac, Published)
+- [x] Focus 0.1.1 adds subjects and a weekly study log. Calculator 0.1.3 adds conversions, exact steps, and static line
+      and quadratic plots with a value table. (Mac, Published)
+- [ ] On the Oasis 3, check date boundaries, duplicate and unsupported file handling, subject history, and plot redraws
+      against known examples.
 
 ---
 
@@ -446,14 +507,14 @@ Not scheduled. Each item is picked up when the owner asks for it.
 | Catalog on GitHub Pages and Releases | High | Static files; CI does the checks. |
 | Shared build workflow | High | The launcher's release workflow already builds and packages. |
 | Store engine (download, verify, install) | High | Rust in-process; the launcher already reloads apps after changes. |
-| HTTPS on the Kindle | Medium-high | The browser does HTTPS today; to confirm for downloads (A4.4). |
-| Launcher self-update | Medium | Replacing the running host needs the supervisor's help and a tested rollback. |
-| Soft-float builds | Medium | Toolchain support and a test device both needed. |
+| HTTPS on the Kindle | High | Store downloaded packages over Wi-Fi on the Oasis 3. Transfer profiling remains open (A4.4). |
+| Launcher self-update | Medium | The Oasis 3 accepted a supervisor trial. Failed trials still need a device recovery check. |
+| Soft-float compatibility | Medium | Release archives exist. A soft-float device is needed for validation. |
 | App kit from existing code | High | The device layer and renderer exist in the launcher and browser. |
-| Multi-line text editing on e-ink | Medium | New component; refresh cost while typing. |
+| Multi-line text editing on e-ink | Medium | Notes ships with the shared editor. Measure refresh cost while typing on the Kindle. |
 | Turn-based games | High | Fit e-ink; logic is testable on the Mac. |
 | Falling-blocks game (F13) | Medium | Needs fast partial updates; ghosting limits the speed (A4.9). |
-| Chess engine with a fitting licence | Medium | Must be our own or permissively licensed. |
+| Chess engine with a fitting licence | High | Chess ships with the Cozy Chess move generator and its MIT notice. |
 | Bluetooth keyboard | Unknown | The Oasis 3's radio is unconfirmed (A4.6). |
 
 ## Test strategy
@@ -475,6 +536,6 @@ Not scheduled. Each item is picked up when the owner asks for it.
 | Packages hold `/mnt/us` open | Medium | USB drive mode breaks | Run from `/var/tmp`; the store holds nothing open while idle |
 | Licence mix-ups in new apps | Medium | Cannot publish | Licence checks before using any outside code; tools dual-licensed |
 | Falling-blocks game looks like Tetris | Medium | Takedown of the listing | Own name and look; owner's check before listing |
-| Scope: 13 apps and a store | High | Slow progress | Gates per track; first set of three apps; everything else on the owner's order |
+| Growing app catalog | High | Slow device coverage | Batch desktop checks by release, then record hardware evidence per app |
 | GitHub limits (Pages, API, release sizes) | Low | Catalog or downloads slow | Static files, small images, releases per app |
 | Secrets in public repos | Low | Exposure | Secret scan before every push and in CI |

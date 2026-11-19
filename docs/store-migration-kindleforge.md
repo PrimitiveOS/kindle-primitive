@@ -139,8 +139,10 @@ Not built, with reasons:
 
 ## 6. Steps
 
-- [ ] The KOReader reference listing in the catalog, once the catalog exists (platform plan S3).
-- [ ] The native apps the owner picks from §5, each its own project with its own gate on the Kindle.
+- [x] KOReader is live as a linked listing. [Public catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
+- [x] The first native apps from §5 have independent repositories and published Store packages. See the
+      [app directory](../README.md#the-apps) for releases and the [implementation plan](implementation-plan.md#f-native-apps-phase-s6)
+      for the remaining device checks and later releases.
 
 ## 7. Decisions
 

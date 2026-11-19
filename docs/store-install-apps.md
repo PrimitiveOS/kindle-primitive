@@ -8,11 +8,11 @@ package, and manages installs, updates, and removals. Open it from the **Store**
 - A **jailbroken** Kindle e-reader. The store does not jailbreak a Kindle; see the KindleModding wiki
   (kindlemodding.org) for that. Keep your jailbreak's hotfix up to date.
 - **Primitive Launcher 0.4.6 or later**, installed once by USB (§2).
-- **Wi-Fi** for installing and updating. Browsing what you have already opened works without it.
+- **Wi-Fi** to refresh Store and to download apps. You can browse the saved catalog offline.
 - Free space on the Kindle: about three times the size of the app while it installs.
 
-Apps say which Kindles they run on. Newer Kindles are **hard-float** (`armhf`), older firmware is **soft-float**
-(`armel`). The store works this out by itself and only offers what runs on your Kindle.
+Store checks your Kindle's firmware and architecture before offering an installation. The **Study and work** releases
+published on 20 November 2026 support **hard-float** (`armhf`) on firmware 5.16.3 or later.
 
 ## 2. Install Primitive Launcher (once)
 
@@ -36,11 +36,16 @@ home screen. You can also tap **Store** again to open it. Tap **Done** in Store 
 
 Four tabs are at the bottom:
 
-- **Today**: collections picked by us, such as "Start here" and "New and updated".
+- **Today**: open a collection such as **Start here**, **Made by Primitive**, or **Study and work**. Browse
+  **Study and work** for practice, reference, and planning apps, or use **Search** to find one by name.
 - **Apps**: categories (Reading, Productivity, Internet, Games, Music & Audio, Drawing & Design, Developer Tools,
   Utilities, System). Tap one to see its apps.
 - **Updates**: what can be updated, and everything you installed.
-- **Search**: type a name or a word; results show as you search.
+- **Search**: type a name or a word. Use the page controls to see more results.
+
+Store opens the saved catalog immediately. To fetch new listings, connect to Wi-Fi and tap **Refresh**. If you tap
+**Done** during a refresh, Store stops the refresh safely and returns to Launcher.
+[Live Store collections](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json)
 
 Tap an app to open its page: what it does, pictures of it, what is new, its version history, **What this app changes**,
 and information such as its size, licence and the Kindles it was tested on.
@@ -68,8 +73,9 @@ computer). Their page explains how to install them and links to their author's i
 
 ## 5. Update apps
 
-- When updates are ready, the Store tile shows a badge. The store looks for updates when it opens, and once a day while
-  Wi-Fi is on (you can turn the daily check off in the launcher's Settings > Store).
+- When updates are ready, the Store tile shows a badge. With **Daily update check** enabled, Store checks an old or
+  missing catalog when it opens and Wi-Fi is connected. Change the setting from the Store gear or
+  **Launcher Settings › Store**.
 - Open **Updates**. Tap **Update** next to one app, or **Update all**.
 - An update keeps the old version until the new one is in place. If anything fails, the old version stays.
 - For a **Primitive Launcher** update, tap **Done** when Store says the update is ready. Launcher restarts and
@@ -77,9 +83,9 @@ computer). Their page explains how to install them and links to their author's i
 
 ## 6. Remove an app
 
-Open **Updates**, find the app in the installed list, and tap **Remove**, then confirm. The store deletes exactly the
-files it installed. Files you made with the app outside its own folder (for example books or notes in `documents`)
-stay.
+Open **Updates**, find the app in the installed list, and tap **Remove**, then confirm. Store removes the files it
+recorded when it installed that app. Personal documents outside the installed file list stay. Tap **Done** to return to
+the Launcher grid and see the updated app list.
 
 The store will not remove an app that another installed app needs; remove that one first. It never removes Primitive
 Launcher; to uninstall the launcher, follow its `INSTALL.md`.
@@ -99,7 +105,7 @@ prompts in Store to bring them under Store management.
 | "Check failed" | The download did not match its fingerprint and was deleted. Try again later; if it keeps failing, report it (below). |
 | The Kindle turned off during an install | Open **Store**. It checks the interrupted install and finishes or undoes it when possible. |
 | An installed app does not show | Close and reopen the Store tile, or restart the launcher (Settings > Device > Restart the launcher). |
-| The store shows old information | Tap **Refresh** at the top of the store. Over USB, you can also delete `launcher/store/cache` to start fresh. |
+| Store shows old information or new apps are missing | Connect to Wi-Fi and tap **Refresh**. If it still shows old information, use **Clear saved catalog** in Store settings, then tap **Refresh** again. |
 | A file already exists and is unmanaged | Move the existing file somewhere safe before retrying. This can happen with customized entries from a manual install. |
 | The launcher does not start after an update | The Kindle shows its own home screen. Open **Launcher** in the library. If that fails three times, the launcher turns its boot start off by itself; see its `INSTALL.md`. |
 
@@ -108,8 +114,9 @@ GitHub repo (its page in the store links to it) with your Kindle model, firmware
 
 ## 9. Safety
 
-What the store checks: that the app runs on your Kindle, its fingerprint (SHA-256) before anything is opened, that it
-only writes where it says it will, and, for apps in the catalog, that a reviewer read its install steps.
+Store checks the package's declared firmware and architecture, verifies its fingerprint (SHA-256) before unpacking,
+and checks which paths it can install. The app's information page lists any Kindle models verified by hands-on
+testing.
 
 What it cannot promise: jailbreaking and changing a Kindle's software carry risk, and apps from other developers are
 their own work. Read **What this app changes** before installing, and prefer apps tested on your Kindle model.

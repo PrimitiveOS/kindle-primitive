@@ -1,6 +1,6 @@
 # Education and productivity apps for PrimitiveOS
 
-Research checked on 20 November 2026. Start with **Tasks**, **Reading Practice**, and a **Self-test** update for **Cards**. Tasks fills a gap in Store. Reading Practice makes use of the Kindle's strongest interaction, reading a page at a time. Cards already has the decks and review scheduler needed to make a short test useful.
+Research and release record for 20 November 2026. The three delivery waves shipped together in Store under **Today › Study and work**. The original prioritization began with **Tasks**, **Reading Practice**, and **Cards Self-test**. [Live collection](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json)
 
 ## Widely used reference apps
 
@@ -30,12 +30,12 @@ A controlled study with prose passages found that recall tests improved later re
 | **Tasks** | Opens on **Today** with overdue and due rows, checkboxes, and one prominent **Add task** button. **Inbox**, **Upcoming**, and **Lists** are one tap away. The add sheet needs a title. **Date**, **List**, and **Repeat** are optional. Checking a row shows **Undo**. | Local tasks, date-only due dates, and named lists. Start with daily, weekdays, and weekly repeats. Completing an overdue repeating task advances it to the next scheduled date. Reminders and calendar sync can follow device validation. |
 | **Reading Practice** | Opens to **Continue** and a paged list of passages by level. A passage uses a plain reading page and one **Questions** button. Each question has three large choices and a **Passage** button that preserves the current question. After a response, show a one-sentence explanation and **Next**. | Twelve original passages across two difficulty bands, each with three reviewed questions. Save reading position, answers, and misses for an optional retry. The pilot can use the same question screen for later topic packs. |
 | **Math Practice** | Pick a skill, read one worked example, and tap **Start** for five problems. Show one problem, one answer field, a purpose-built number keypad, and **Hint** or **Check**. Feedback explains the step before **Next**. | Generated arithmetic, fractions, and percentages with checked answer keys. Accept equivalent answers where appropriate. Keep a local skill history and a short retry set. |
-| **Language Practice** | Opens to the next short lesson. A card shows one phrase or dialogue line. The learner taps a choice, fills a blank, or builds a short sentence by tapping word tiles. **Review mistakes** opens a paged list by topic. | One original beginner pack with roughly ten lessons. English for Vietnamese speakers is a suggested pilot. Use pre-authored text and tap exercises, and verify diacritics on device before requiring typed answers. Audio and speech evaluation can follow later. |
-| **Dictionary** | Search opens the shared keyboard. Submitting a query shows a paged list of headwords. Tap one to open a definition card with an example and **Save word**. Favorites can be opened without typing. | Import a UTF-8 term and definition file with a preview. Bundle a starter dictionary only after clearing its redistribution terms. A later Cards handoff can use a compatible text export. |
-| **Habits** | **Today** shows a short list of habits and a **Done** checkbox for each. Tap a title to see the last seven days as labelled boxes. **Edit day** corrects a missed or accidental entry. | Local daily and weekly targets, editable check-ins, and CSV export. Weekly totals work with a single refresh after a tap. Evaluate interest before adding a tile alongside Tasks. |
-| **Agenda** | Opens to appointments grouped by date. **Today** and **Next 7 days** show a chronological list. **Add event** collects title, date, and optional time on one sheet. Tap an event for details. | Local one-off events and all-day entries. Add bounded one-way `.ics` import after testing time zones and duplicate imports. Later releases can consider event recurrence and sync. |
+| **Language Practice** | Opens to the next short lesson. A card shows one phrase or dialogue line. The learner taps a choice, fills a blank, or builds a short sentence by tapping word tiles. **Review mistakes** opens a paged list by topic. | Ten original beginner English lessons for Vietnamese speakers. Exercises use text and word tiles. Physical Kindle verification of Vietnamese diacritics is pending. |
+| **Dictionary** | Search opens the shared keyboard. Submitting a query shows a paged list of headwords. Tap one to open its definition and save it to favorites. Favorites can be opened without typing. | 24 original English starter definitions, accent-insensitive lookup, preview for UTF-8 TSV imports, and a two-column favorites export for Cards. |
+| **Habits** | **Today** shows habits and their check-in controls. Tap a habit to view the last seven days and correct a missed or accidental entry. | Local daily and weekly targets, editable check-ins, and CSV export. |
+| **Agenda** | Opens to appointments grouped by date. **Today** and **Next 7 days** show a chronological list. **Add event** collects title, date, and optional time on one sheet. Tap an event for details. | Local events and preview for one-off `.ics` imports with all-day, local, or UTC start times. Recurrence and calendar sync are possible later work. |
 
-## Extend existing apps
+## Updates to existing apps
 
 | App | Addition | Screen and controls |
 |---|---|---|
@@ -44,7 +44,23 @@ A controlled study with prose passages found that recall tests improved later re
 | **Focus** | **Subject labels** and a **Study log** | Enter a label when useful, then start the existing timer. Add a **This week** page with minutes by subject and recent sessions. Keep the minute-based display and existing presets. Explore a Tasks handoff after both apps work independently. |
 | **Calculator** | **Convert** first, then **Steps** and **Graph** | Keep arithmetic and history as the opening screen. **Convert** selects source and destination unit with a single number field. **Steps** can reveal one transformation at a time for a supported fraction or linear equation. **Graph** starts with lines and quadratics, using **Plot**, **Table**, and stepped zoom on a static monochrome canvas. |
 
-Cards already imports the first two text fields of an Anki package. The TSV importer in this plan is new. Browser already saves HTML for offline reading, and KOReader already handles e-books. Notes is a place for the user's excerpts and takeaways, while Reading Practice supplies original questions and feedback. [Cards](https://github.com/DoanNguyenTrong/kindle-primitive-cards) · [Notes](https://github.com/DoanNguyenTrong/kindle-primitive-notes) · [Focus](https://github.com/DoanNguyenTrong/kindle-primitive-focus) · [Calculator](https://github.com/DoanNguyenTrong/kindle-primitive-calculator) · [Browser](https://github.com/DoanNguyenTrong/kindle-primitive-browser) · [KOReader](https://koreader.rocks/)
+Cards accepts a two-column TSV alongside the existing text-only Anki import. Browser saves HTML for offline reading, and KOReader handles e-books. Notes is a place for users' excerpts and takeaways, while Reading Practice supplies original questions and feedback. [Cards](https://github.com/DoanNguyenTrong/kindle-primitive-cards) · [Browser](https://github.com/DoanNguyenTrong/kindle-primitive-browser) · [KOReader](https://koreader.rocks/)
+
+## Released apps
+
+| App | Type | GitHub release |
+|---|---|---|
+| Tasks | New | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-tasks/releases/tag/v0.1.0) |
+| Reading Practice | New | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-reading-practice/releases/tag/v0.1.0) |
+| Math Practice | New | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-math-practice/releases/tag/v0.1.0) |
+| Language Practice | New | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-language-practice/releases/tag/v0.1.0) |
+| Dictionary | New | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-dictionary/releases/tag/v0.1.1) |
+| Habits | New | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-habits/releases/tag/v0.1.0) |
+| Agenda | New | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-agenda/releases/tag/v0.1.0) |
+| Cards | Update | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-cards/releases/tag/v0.1.1) |
+| Notes | Update | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-notes/releases/tag/v0.1.1) |
+| Focus | Update | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-focus/releases/tag/v0.1.1) |
+| Calculator | Update | [0.1.3](https://github.com/DoanNguyenTrong/kindle-primitive-calculator/releases/tag/v0.1.3) |
 
 ## Kindle interaction requirements
 
@@ -54,12 +70,8 @@ Cards already imports the first two text fields of an Anki package. The TSV impo
 - **Save on Kindle.** Keep the core workflows usable in airplane mode. Save completed actions and the current place in a session. Preview imports and report unsupported, malformed, oversized, or duplicate records before writing. Use the platform's storage lease so imports and saves cooperate with USB mode. Ship original or appropriately licensed starter content.
 - **Reserve heavier features for a later decision.** Camera-based problem scanning, video courses, handwriting and dense editors, team workspaces, live classroom portals, and asleep-device reminders need separate usability or platform tests. Notes, Calendar-style lists, and question pages provide the corresponding everyday workflows in a small interface. [Notion's offline editing scope](https://www.notion.com/help/use-pages-offline) · [Classroom listing](https://play.google.com/store/apps/details?id=com.google.android.apps.classroom)
 
-## Release order and validation
+## Release verification
 
-| Wave | Deliverables | Pass condition |
-|---|---|---|
-| **1. Daily planning and reading** | Tasks, Reading Practice, and Cards Self-test | Complete and undo a task, reopen an unfinished reading question, and retry missed cards after a reboot in airplane mode. Existing Cards review schedules survive the update. |
-| **2. More practice** | Math Practice, one Language Practice pilot, Notes checklists and journal template, and Cards TSV import | Math accepts supported equivalent answers, each language exercise has reviewed feedback, accented text renders on device, and imports report errors without discarding existing data. |
-| **3. Reference and routines** | Dictionary, Habits, and Agenda, plus Focus study log and Calculator units, steps, and plots | The starter dictionary has cleared terms, date boundaries and repeated logs behave correctly, and math outputs and graphs match checked fixtures. Verify repeated use in the pilot before adding the new tiles to Store. |
+Desktop interaction and persistence checks passed. The ARMHF archives matched their public SHA-256, contained both licence files, and installed and removed successfully after a simulated catalog refresh. The seven new Store icons matched the package entries, and the live Store catalog matched the published listings, screenshots, and collection. [Local verification](local-verification.md) · [Catalog deployment](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/runs/44580696716)
 
-Run desktop gesture and persistence tests in light and dark mode, then test on the Oasis 3. Cover touch targets, both portrait orientations, sleep and wake, USB eject, empty lists, and a library large enough to page. Record device results per release. Store can add a **Study and work** collection using its existing categories and collection support, starting with Notes, Cards, Focus, Calculator, and Browser. [Store architecture](store-architecture.md)
+Physical Oasis 3 checks for these versions remain open. The implementation plan tracks the app-specific checks and shared device gate. [Study and work milestones](implementation-plan.md#study-and-work-release)

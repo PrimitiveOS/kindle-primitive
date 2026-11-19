@@ -1,5 +1,8 @@
 # Architecture: how the pieces fit
 
+This is the 19 November 2026 handoff snapshot. For the released system, see the [platform plan](../kindle-platform-plan.md)
+and [Store architecture](../store-architecture.md).
+
 ## The idea
 
 PrimitiveOS is an operating environment for jailbroken Kindle e-readers. The **launcher** is the home screen and starts

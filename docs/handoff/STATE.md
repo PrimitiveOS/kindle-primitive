@@ -1,71 +1,62 @@
-# State at handoff (2026-11-19)
+# Current release state
 
-All paths are under `/Users/doannguyen/Documents/GitHub/prai-workspace/doannt-kindle/` (the umbrella folder). Each folder
-is its own git repository, ignored by the umbrella repo (`/doannt-kindle-*/` in its `.gitignore`).
+Updated 20 November 2026. Each `doannt-kindle-*` checkout is an independent Git repository in the umbrella workspace.
+The [app directory](../../README.md#the-apps) links all first-party repositories and their published versions.
 
-## Repositories
+## Platform and catalog
 
-| Folder | GitHub remote | Branch | Last commit | Role |
-|---|---|---|---|---|
-| `doannt-kindle` | `DoanNguyenTrong/kindle-primitive` | main | `582aea5`+ (see `git log`) | Umbrella: README, plans, store docs, skills (`.agents/skills`, linked `.claude/skills`), store screenshots (`docs/store-screens/`). |
-| `doannt-kindle-launcher` | `DoanNguyenTrong/kindle-primitive-launcher` | main | `b7ae2d7` | Primitive Launcher 0.4.4 (on the Kindle). Its program only; uses the shared kit from tools. Release tags `v0.3.12`, `v0.3.20`. |
-| `doannt-kindle-tools` | `DoanNguyenTrong/kindle-primtitive-tools` (sic) | main | `cdb95ae` | The shared kit: `kl-core` (screens, layout, store model), `kl-render` (renderer), `kl-kindle` (device layer, library), `kl-store` (store engine), `primitive-net` (downloads), `primitive-keyboard`, `primitive-quick`. Uncommitted: `Cargo.lock` (modified). |
-| `doannt-kindle-store` | `DoanNguyenTrong/kindle-primitive-store` | main | `2aa7465` | **Primitive Store 0.1.0**: the store app (`crates/store-app`), `deploy/Store.sh`, `deploy/install-ssh.sh`. Submodule `tools/`. No tags yet. |
-| `doannt-kindle-catalog` | `DoanNguyenTrong/kindle-primitive-catalog` | main | `b812933` | The public catalog: `apps/` (published), `drafts/` (not published), `schema/`, `scripts/`, CI `catalog.yml` (publishes GitHub Pages). |
-| `doannt-kindle-build` | `DoanNguyenTrong/kindle-primitive-build` | main | `57a873a` | The shared packager (`scripts/package.py`) and the reusable release workflow (`.github/workflows/package.yml`). |
-| `doannt-kindle-browser` | `DoanNguyenTrong/kindle-primitive-browser` | main | `bc66135` | Primitive Browser 0.2.17, tag `v0.2.17` (release published, store package asset). Uncommitted, not ours to commit: `docs/tinhte/` (owner's), `build/`, `dist-store/` (local leftovers: do not commit). |
-| `doannt-kindle-terminal` | `DoanNguyenTrong/kindle-primitive-terminal` | main | `5bd4f20` | Primitive Terminal 0.1.8. No licence file, no CI, no tags. Not touched in this session. |
-| `docs/handoff/` (inside the umbrella) | umbrella remote `DoanNguyenTrong/kindle-primitive` | main | see the umbrella's `git log` | These handoff documents. There is no separate handoff repo. |
+| Component | Published state | Source |
+|---|---|---|
+| PrimitiveOS umbrella | App directory and education and productivity design. | [Umbrella release update `9c6fa84`](https://github.com/DoanNguyenTrong/kindle-primitive/commit/9c6fa84) |
+| Primitive Launcher | 0.4.10. The first manual install supplies the home screen and a single Store tile. The tile opens standalone Store or offers to install it. | [Launcher release](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases/tag/v0.4.10) |
+| Store | 0.1.4. Opens with the saved catalog, preloads icons on nearby pages, and checks changed listings in parallel. **Done** is available during refresh. | [Store release](https://github.com/DoanNguyenTrong/kindle-primitive-store/releases/tag/v0.1.4) |
+| Primitive Browser | 0.2.18. | [Browser release](https://github.com/DoanNguyenTrong/kindle-primitive-browser/releases/tag/v0.2.18) |
+| Primitive Terminal | 0.1.8. Listed under Developer Tools. | [Terminal release](https://github.com/DoanNguyenTrong/kindle-primitive-terminal/releases/tag/v0.1.8) |
+| Store catalog | 33 listings, including 32 hosted first-party apps and one KOReader link. **Study and work** includes the eleven releases below and Primitive Browser. | [Catalog commit `c94eda1`](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/commit/c94eda1) · [Public catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json) · [Collections](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json) |
+| Tools and Build | Shared app kit, packager, and reusable release workflow. The eleven release builds use the Tools pin at `3d9026c`. | [Tools commit](https://github.com/DoanNguyenTrong/kindle-primtitive-tools/commit/3d9026c) · [Build repo](https://github.com/DoanNguyenTrong/kindle-primitive-build) |
 
-Licences: launcher, browser, store code: PolyForm Noncommercial 1.0.0 (launcher and browser releases up to v0.3.20 and
-v0.2.16 are AGPL-3.0). Docs and pictures: CC BY-NC-SA 4.0. Tools: AGPL-3.0 or PolyForm (dual). The KOReader icon in the
-catalog is KOReader's own, AGPL-3.0, credited.
+## Study and work releases
 
-## Versions
+| App | Version | Published changes |
+|---|---|---|
+| [Tasks](https://github.com/DoanNguyenTrong/kindle-primitive-tasks) | 0.1.0 | Today, upcoming items, named lists, repeating tasks, and completion with undo. |
+| [Reading Practice](https://github.com/DoanNguyenTrong/kindle-primitive-reading-practice) | 0.1.0 | Twelve original passages at two levels, saved progress, and a retry for missed questions. |
+| [Math Practice](https://github.com/DoanNguyenTrong/kindle-primitive-math-practice) | 0.1.0 | Worked examples and five-problem sessions for arithmetic, fractions, and percentages. |
+| [Language Practice](https://github.com/DoanNguyenTrong/kindle-primitive-language-practice) | 0.1.0 | Ten beginner English lessons for Vietnamese speakers and review of missed exercises. |
+| [Dictionary](https://github.com/DoanNguyenTrong/kindle-primitive-dictionary) | 0.1.1 | Offline lookup with an original starter glossary, favorites, previewed TSV import, and export for Cards. |
+| [Habits](https://github.com/DoanNguyenTrong/kindle-primitive-habits) | 0.1.0 | Daily and weekly check-ins, editable history, and CSV export. |
+| [Agenda](https://github.com/DoanNguyenTrong/kindle-primitive-agenda) | 0.1.0 | Upcoming appointments and one-way `.ics` import for one-off all-day events and events with local or UTC time. |
+| [Cards](https://github.com/DoanNguyenTrong/kindle-primitive-cards) | 0.1.1 | Self-test with retry and previewed two-column TSV import. Existing scheduled reviews keep their progress. |
+| [Notes](https://github.com/DoanNguyenTrong/kindle-primitive-notes) | 0.1.1 | Plain-text checklists and a reading journal template. |
+| [Focus](https://github.com/DoanNguyenTrong/kindle-primitive-focus) | 0.1.1 | Optional subject labels and a weekly study log. |
+| [Calculator](https://github.com/DoanNguyenTrong/kindle-primitive-calculator) | 0.1.3 | Unit conversions, worked fraction and linear-equation steps, and line and quadratic plots. |
 
-- Launcher: `0.4.4` in `Cargo.toml` (Kindle runs 0.4.4). A device build bumps the patch version (see RULES.md).
-- Store: `0.1.0` (not deployed as a package; installed by its own script onto the Kindle).
-- Browser: `0.2.17` (on the Kindle from the USB install; the store package of 0.2.17 is published).
-- Catalog listings: `koreader` (a link listing: the store shows it, installs nothing), `primitive-browser` (hosted, 0.2.17).
+All eleven published ARMHF ZIPs passed SHA-256, manifest, and licence-file checks against the app sources. The seven
+new packages carry their approved Launcher icons, which match the public Store artwork. Desktop app checks and the
+Store integration run passed. The integration run refreshed the fixture catalog, installed and removed each public
+package, and preserved a seeded personal document. GitHub Pages served the updated catalog, collection, icons, and
+screenshots. [Catalog publication run](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/runs/44580696716)
 
-## Catalog and GitHub
+Each package carries `LICENSE` and `LICENSE-DOCS`. Project-owned code uses PolyForm Noncommercial 1.0.0.
+Project-owned documentation, artwork, and bundled content use CC BY-NC-SA 4.0 where declared. The policy and the
+terms for Terminal, Tools, and earlier releases are recorded in the [licensing audit](../licence-audit.md).
 
-- Pages: live. `https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json` lists `koreader` and
-  `primitive-browser`. Icons at `.../v1/icons/<id>.png`, listings at `.../v1/apps/<id>.json`, screenshots at
-  `.../v1/shots/<id>-<n>.png`. The Pages source was set to GitHub Actions by the owner (a manual step; the workflow token
-  cannot enable Pages).
-- Browser release `v0.2.17`: `https://github.com/DoanNguyenTrong/kindle-primitive-browser/releases/download/v0.2.17/primitive-browser-0.2.17-armhf.zip`
-  (9,504,649 bytes, SHA-256 `7be3aa25ef743affac5704dcaad7c8fccf5a0180467064631e061c5ba6b6928b`). Checked by download.
-  The release also has the old USB zip (`primitive-browser`/`browser` layout from `scripts/package-release.sh`).
-- No `gh` CLI on this Mac. The GitHub API is rate-limited from this network; read run status from the public pages only
-  (or ask the owner). Actions runs: `https://github.com/DoanNguyenTrong/<repo>/actions`.
+## Kindle Oasis 3
 
-## The Kindle (Oasis 3, the only tested device)
-
-- Address `192.168.1.28`, SSH port `2222`, root login. The password is the owner's; see ENVIRONMENT.md. Never write it down.
-- Firmware `5.18.2` (`/etc/prettyversion.txt`). Hard-float (`/lib/ld-linux-armhf.so.3` present). Architecture `armhf`.
-- Storage: `/mnt/us` (user storage, FUSE `fsp`, about 4.9 GB free); `/var/local` (240 MB, 164 MB free).
-- Installed (as of this handoff; re-check with SSH): launcher `0.4.4` at `/mnt/us/launcher/kl-launcher` (deployed
-  from the build before the kit move; the kit move changed no behaviour; see the deploy log of 0.4.4); store `0.1.0` at
-  `/mnt/us/store/bin/kl-store-app` (sha256 `e3ddd257…`); library entries in `/mnt/us/documents/`: `Launcher.sh`,
-  `Primitive Browser.sh`, `Terminal.sh`, `KOReader.sh` (+ `.sdr`), `Store.sh` (the store's entry).
-- The launcher's data: `/mnt/us/launcher/` (settings, `apps.toml`, `cache/`, `store/` with `cache/`, `downloads/`,
-  `installed.json` (the record), `journal.json`, `staging/`).
-- The boot job `/etc/upstart/primitive-launcher.conf` is installed (launcher `setup-boot` writes it on open); `/var/local/
-  primitive-launcher/` is the boot-time copy of the launcher.
-- Not installed through the store yet: nothing. The browser on the Kindle came from the USB install, not the store. A store
-  install of the browser would replace the same files and then show Remove.
-
-## Store app on the Kindle: not yet tested by the owner
-
-The store `0.1.0` was installed by `deploy/install-ssh.sh` (see ENVIRONMENT.md) on 2026-11-19. The owner has not opened it
-yet. The launcher still has its own built-in Store tile (the old store inside the launcher, 0.4.4). Two Store icons therefore
-appear until the bootstrap change (PIPELINE.md, step P5).
-
-## Known open facts about the device
-
-- A4.4 HTTPS from the Kindle: works for the catalog (refresh, 1 app, 0 failed on 0.4.0). Download speed and memory for a
-  9.5 MB package: not measured.
-- A4.3 device identity: the device type text is "Kindle Oasis – 10th Gen" (stock help files), i.e. the Oasis 3, mapped to
-  the store name `KindleOasis3`. No model code file. Identifiers (serial, Wi-Fi MAC) exist and are never recorded.
-- Wi-Fi state is read from `com.lab126.wifid` `cmState` (`CONNECTED`) and `enable`.
+- The known hardware baseline is firmware 5.18.2 and ARMHF. The Store records this model as `KindleOasis3`.
+  The 19 November device run installed and smoke-tested the 18 hosted packages then available. Store 0.1.2
+  bootstrapped from Launcher, refreshed the catalog, installed apps, and opened Hello. The checks for Notes,
+  Cards, Focus, and Calculator covered their 0.1.0 builds. Local evidence is in `build/device-validation/`.
+- Subsequent device checks verified Launcher 0.4.10 in the installed, running, and boot copies after its
+  supervisor trial. They also verified Store 0.1.4 startup, cached catalog reuse, and **Done** cancelling a
+  refresh and returning to Launcher. Local evidence is in `build/launcher-uninstall-warning/device-verification.log`
+  and `build/store-performance/`.
+- On 20 November 2026, the keep-awake override was cleared. A readback of `com.lab126.powerd` returned
+  `preventScreenSaver=0`.
+- The physical-device checks for the eleven Study and work releases remain open. Check Store install or update,
+  app launch and exit, touch targets, both portrait orientations, sleep and wake, USB eject, and data persistence.
+  Record passing hardware results per release before adding a model to `tested_on`.
+- Keep the installed Launcher in place. Use the existing Store tile to open standalone Store. Reserve the manual
+  copy of `launcher/` and `documents/Launcher.sh` for first-time setup.
+- The [environment guide](ENVIRONMENT.md) has device access and log locations. The last known Store cache and
+  installed-app records are under `/mnt/us/launcher/store/`.

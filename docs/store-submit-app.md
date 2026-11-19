@@ -227,3 +227,7 @@ By a reviewer:
   build on the Kindle.
 - The app's `CHANGELOG.md` entry becomes the version's What's New, shortened to five lines at most.
 - Scan the staged files for secrets before every push (the SSH password and Wi-Fi keys must never appear).
+
+The owner approved publication of the 20 November 2026 **Study and work** release. The eleven releases went live
+after desktop and package checks with empty `tested_on` fields. Their Kindle verification remains open.
+[Study and work release verification](local-verification.md#study-and-work-release-verification)

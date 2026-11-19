@@ -1,23 +1,25 @@
 # PrimitiveOS handoff
 
-Status date: 2026-11-19. Written for: one autonomous agent that continues the work without stopping, until it needs the
-owner. The owner is away for a while.
+Updated 20 November 2026. Store is a standalone app, and Launcher offers one Store tile to open or install it.
+The **Study and work** collection is live with seven new apps and four updates. Oasis 3 testing for these eleven
+releases remains open. [Current state](STATE.md) · [Implementation plan](../implementation-plan.md)
 
-The [local verification report](../local-verification.md) records the implementation and simulation that followed this snapshot.
+## Current references
 
-Read in this order:
+1. [State](STATE.md) records the published versions, the checks that passed, and the latest device observation.
+2. [Implementation plan](../implementation-plan.md) tracks milestones and outstanding device checks.
+3. [Rules](RULES.md) records the owner's instructions for Git, releases, icons, licences, and device access.
+4. [Environment](ENVIRONMENT.md) describes the build tools, SSH helper, and log locations.
+5. [Install and update apps](../store-install-apps.md) describes the current setup and Store flows.
+6. [App directory](../../README.md#the-apps) links to each first-party GitHub repository and its Store release.
 
-1. [STATE.md](STATE.md): every repo, its branch, its last commit, the versions, and what is on the Kindle.
-2. [RULES.md](RULES.md): the owner's rules (secrets, staging, commits, deploys, icons, releases). Follow them exactly.
-3. [ENVIRONMENT.md](ENVIRONMENT.md): how to build, test, and reach the Kindle from this Mac, and the known traps.
-4. [ARCHITECTURE.md](ARCHITECTURE.md): how the pieces fit: the launcher, the store, the shared kit, the catalog, the build.
-5. [STORE-APP.md](STORE-APP.md): every function in the store app and the shared code it uses, what each does, and the
-   design of every feature not built yet.
-6. [PIPELINE.md](PIPELINE.md): the ordered work to do, with the checks and the stop points. Start at the first open item.
+Primitive Launcher is the only app installed manually during initial setup. For an existing setup, open the installed
+Launcher and use Store for the other apps. Prepare device checks on the Mac, then coordinate any required taps or
+restarts with the owner.
 
-The application to finish is **Primitive Store** (`doannt-kindle-store`). The launcher only needs a small bootstrap change
-later. Everything else (catalog, build, browser package, shared kit) is in place and tested on the Mac.
+## Original Store handoff
 
-Testing on the real Kindle: the owner must be present for every device step (the Kindle's screen is the test). Everything
-that can be built and tested on the Mac is done without the owner. A device step is prepared on the Mac first, and the
-owner is asked for the one action that needs a hand (a tap, a button press, a restart).
+The [architecture snapshot](ARCHITECTURE.md), [Store implementation notes](STORE-APP.md), and [original pipeline](PIPELINE.md)
+record the 19 November 2026 standalone Store handoff. Use the [current implementation plan](../implementation-plan.md)
+for release and milestone status. The [local verification report](../local-verification.md) records the desktop work
+that followed the original snapshot.

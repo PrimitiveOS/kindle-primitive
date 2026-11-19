@@ -1,7 +1,8 @@
 # Store architecture and requirements
 
-Status date: 2026-11-19. This document records the Store design and requirements. Decisions D1–D7 are in
-[kindle-platform-plan.md](kindle-platform-plan.md) §4 (S0).
+Updated 20 November 2026. This document records the Store design and requirements. Decisions D1–D7 are in
+[kindle-platform-plan.md](kindle-platform-plan.md) §4 (S0). Release and device verification are tracked in the
+[implementation plan](implementation-plan.md).
 
 Store is the standalone app store for PrimitiveOS on **jailbroken Kindle e-readers**. Primitive Launcher opens it
 from the **Store** tile. Its GitHub-hosted catalog lists apps by category. Store checks downloads before installation
@@ -21,11 +22,13 @@ How to read the requirements: `FR-n` is a functional requirement, `NFR-n` a non-
 
 ## 2. Scope
 
-In scope (first release):
+In scope:
 
-- Our three apps as hosted packages: Primitive Launcher (self-update), Primitive Browser, Primitive Terminal (D4).
+- First-party apps as hosted packages, including the standalone Store and subsequent catalog releases. Users install
+  Primitive Launcher manually once and use Store for subsequent apps.
 - Outside apps by **link** (D3) that meet the quality bar below: KOReader first.
-- Every jailbroken Kindle e-reader (D5), hard-float (`armhf`) and soft-float (`armel`), each package declaring which.
+- Jailbroken Kindle e-readers (D5). Each package declares its firmware range and architecture. Active hosted releases
+  use hard-float (`armhf`) while soft-float (`armel`) device validation is pending.
 - GitHub only: Releases for binaries, Pages for the catalog (D2). sha256 for integrity (D7).
 
 Quality bar (the owner's, for every listing, ours or not): a real touch interface (no terminal, command line or
@@ -42,7 +45,7 @@ tablets, apps that need a different jailbreak than the one installed.
  Publisher repos (one per app)            Catalog repo (kindle-primitive-catalog)          Kindle
  ┌──────────────────────────┐   PR with   ┌────────────────────────────────────┐  HTTPS  ┌──────────────────────┐
  │ source, tests            │  manifest   │ apps/<id>/app.json (source of truth)│ ──────▶ │ Primitive Launcher   │
- │ release.yml (shared      │ ──────────▶ │ CI: validate, download, sha256,     │ index   │  └ Store screen      │
+ │ release.yml (shared      │ ──────────▶ │ CI: validate, download, sha256,     │ index   │  └ Standalone Store  │
  │  build workflow)         │             │     unpack check, licence check     │         │     ├ catalog cache  │
  │ GitHub Release:          │             │ build: site/v1/index.json,          │         │     ├ installer      │
  │  <id>-<v>-<arch>.zip     │◀─ download ─┤        site/v1/apps/<id>.json,      │         │     └ installed.json │
@@ -59,8 +62,8 @@ Three parts, each in its own repo:
 2. **Catalog** (`kindle-primitive-catalog`): one folder per app with `app.json` (the store listing and every version),
    icons and screenshots. A pull request adds or updates an app. CI validates it and publishes a static API on GitHub
    Pages. The catalog holds **no binaries**; it points at release assets.
-3. **Store client** (in the launcher, crate `kl-store`): downloads the index, shows the store, installs, updates and
-   removes apps, and records what it installed.
+3. **Standalone Store** (`kindle-primitive-store`): shows the catalog and uses the shared `kl-store` engine from Tools
+   to refresh, install, update, remove, and track apps. Launcher opens Store and uses the same installed-app records.
 
 Nothing runs on a server of ours: GitHub Pages serves static JSON, and GitHub Releases serve the files.
 
@@ -85,9 +88,10 @@ KindleForge's tags map onto them for imported entries.
 
 ### 4.2 Collections (the "Today" tab)
 
-Curated lists in the catalog (`collections.json`): an id, a title, one sentence, and app ids. First collections:
-"Start here" (launcher, browser, terminal, KOReader), "New and updated", "Made by Primitive", "For writers",
-"Games for e-ink". Collections are edited by pull request like apps.
+Curated lists in the catalog (`collections.json`) have an ID, a title, a short description, and an ordered list of app
+IDs. The catalog has **Start here**, **Made by Primitive**, and **Study and work**. The study collection groups the 11
+education and productivity releases from 20 November 2026 with Primitive Browser. The catalog repository publishes
+collections independently of Store and Launcher builds. [Live collections](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json)
 
 ### 4.3 Static API (GitHub Pages)
 
@@ -104,9 +108,10 @@ format breaks).
 
 Store checks the index and collections on refresh. A card's revision is the SHA-256 of the published listing, icon,
 and up to two screenshots, in that order, with an eight-byte big-endian length before each file. A complete cache
-matching that revision needs no file downloads. Changed or incomplete entries are refreshed with a bounded worker pool.
-Store keeps the catalog available offline, draws the first page from local metadata, and decodes nearby page icons in
-the background. It decodes screenshots when a product page is opened.
+matching that revision needs no listing or image downloads. Up to four workers refresh changed or incomplete entries in
+parallel. A missing image can be retried on the next refresh while the listing stays available. Store keeps the catalog
+available offline, draws the first page from local metadata, and decodes current and nearby page icons in the
+background. It decodes screenshots when a product page opens.
 
 ### 4.4 The app listing: `apps/<id>/app.json`
 
@@ -208,9 +213,9 @@ The store follows the `primitive-ui` skill. It opens from a **Store** tile on th
    installed apps with their version and **Remove**.
 4. **Search**: a field with the shared keyboard; results as app rows, matched on name, subtitle, developer and category.
 
-Every tab has a **Refresh** button at the top right that downloads the index again. There is no pull-to-refresh: a
-swipe down from the top opens quick settings, as everywhere in the launcher. The store's options (daily update check)
-are a **Store** page in the launcher's Settings.
+Every tab has a **Refresh** button at the top that starts a background catalog check. During a refresh, **Done**
+requests cancellation and returns to Launcher once Store releases its storage write lease. Swiping down from the top
+opens quick settings. Store's gear and the **Store** page in Launcher Settings share the daily update preference.
 
 **App row**: icon (rounded square), name, subtitle (gray), and an action capsule at the right: **Get**, **Update**,
 **Open**, or **Link** for `link` entries.
@@ -342,6 +347,10 @@ On a pull request:
 On merge to `main`: build `site/v1/` (index, collections, app files, images) and publish it to GitHub Pages.
 A nightly job re-checks that every asset URL still answers with the same sha256 and opens an issue if not.
 
+The 20 November 2026 deployment passed the CI archive checks and published 33 listings, including 32 hosted apps
+and KOReader as a link. See [local verification](local-verification.md#study-and-work-release-verification) for the
+release and simulator checks. [Published catalog workflow](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/runs/44580696716)
+
 ## 8. Requirements
 
 ### 8.1 Functional
@@ -392,16 +401,17 @@ A nightly job re-checks that every asset URL still answers with the same sha256 
 | `kindle-primitive` | `doannt-kindle/` | PrimitiveOS umbrella repository for docs, skills, and plans. |
 | `kindle-primitive-catalog` | `doannt-kindle-catalog/` | Listings, schema, CI, Pages site. |
 | `kindle-primitive-build` | `doannt-kindle-build/` | Reusable release workflow for publishers. |
-| `kindle-primitive-launcher` | `doannt-kindle-launcher/` | Store client (`kl-store` crate) and host. |
-| `kindle-primtitive-tools` | `doannt-kindle-tools/` | Shared crates, plus `primitive-net` and the store's UI parts when shared. |
+| `kindle-primitive-launcher` | `doannt-kindle-launcher/` | Host, first-run Store bootstrap, and app grid. |
+| `kindle-primitive-store` | `doannt-kindle-store/` | Standalone Store UI and package. |
+| `kindle-primtitive-tools` | `doannt-kindle-tools/` | Shared crates, including `kl-store`, `primitive-net`, and shared UI. |
 | `kindle-primitive-browser`, `kindle-primitive-terminal` | as today | First publishers. |
 
 ## 10. Risks specific to the store
 
 - **Self-update of the launcher** can leave a Kindle without its host. Mitigation: §6.5, the boot guard, and a test on the
   Kindle before each launcher release through the store.
-- **Soft-float Kindles** need `armel` builds that we do not make yet; until then our apps list `armhf` only and the store
-  says so on older Kindles.
+- **Soft-float Kindles** need `armel` builds. Launcher, Browser, and Terminal have local ARMEL package checks. Store
+  offers hosted packages on supported `armhf` devices while soft-float device validation is pending.
 - **Upstream links rot** or change their files. Mitigation: pinned sha256, the nightly check, and `link` as the fallback.
 - **Licences**: hosting is limited to the allow list (§7); KindleTweaks' Repository is CC BY-NC-SA, so its packages are
   `upstream` or `link` only. First-party PrimitiveOS apps may use PolyForm Noncommercial 1.0.0 (code) and CC BY-NC-SA 4.0
@@ -411,12 +421,12 @@ A nightly job re-checks that every asset URL still answers with the same sha256 
 
 ## 11. Build checklist
 
-- [ ] Catalog repo with schema, `apps/` for the three apps, CI checks, Pages publishing (FR-1–4 data, NFR-9).
-- [ ] Shared release workflow producing `<id>-<version>-<arch>.zip`, `.sha256` and `manifest.json` (plan S2).
-- [ ] `primitive-net` in tools (NFR-10).
-- [ ] `kl-store` crate: catalog cache, resolver, installer, journal, `installed.json` (FR-5–11, NFR-3, NFR-6).
-- [ ] Store screens and desktop screenshots, reviewed by the owner (FR-1–4, FR-12–13, NFR-1, NFR-11).
-- [ ] Tests (NFR-12).
+- [x] Catalog schema, listings, CI checks, and Pages publishing (FR-1–4 data, NFR-9).
+- [x] Shared release workflow producing `<id>-<version>-<arch>.zip` with a manifest and a `.sha256` sidecar (plan S2).
+- [x] `primitive-net` in Tools (NFR-10).
+- [x] `kl-store` crate with catalog cache, resolver, installer, journal, and `installed.json` (FR-5–11, NFR-3, NFR-6).
+- [x] Store screens and desktop screenshots (FR-1–4, FR-12–13, NFR-1, NFR-11).
+- [x] Host fixture tests (NFR-12). [Local verification](local-verification.md)
 - [ ] Device test with the owner watching: install, update, remove the browser; refuse a wrong-architecture package;
       recover from a cut install.
 - [ ] Launcher self-update (FR-14) and its device test.
