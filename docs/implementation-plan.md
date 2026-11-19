@@ -31,7 +31,7 @@ owner's go-ahead. Device findings go into each repo's `docs/device-notes.md`.
 | [C2 First listings](#c2-first-listings) | C / `kindle-primitive-catalog` | Not started |
 | [D1 Shared network crate](#d1-shared-network-crate) | D Store / tools | `primitive-net` written and tested (branch `feature/primitive-net`) |
 | [D2 Store engine](#d2-store-engine) | D / launcher (`kl-store`) | Engine written and tested, 30 tests (branch `feature/kl-store`) |
-| [D3 Store screens](#d3-store-screens) | D / launcher | Not started |
+| [D3 Store screens](#d3-store-screens) | D / launcher | First slice on `feature/kl-store` (`a4e47f7`): tile, list, app page; desktop screenshots await the owner's review |
 | [D4 Store on the Kindle](#d4-store-on-the-kindle) | D / device | Not started |
 | [D5 Our apps through the store](#d5-our-apps-through-the-store) | D / launcher, browser, terminal | Not started |
 | [E1 Device layer in the kit](#e1-device-layer-in-the-kit) | E App kit / tools | Not started |
@@ -217,14 +217,14 @@ Crate `kl-store` in the launcher.
 
 Following the `primitive-ui` skill; reviewed as desktop screenshots before any device build.
 
-- [ ] Store tile on the grid, with a badge when updates are ready.
+- [x] Store tile on the grid, after Settings (Mac, `a4e47f7`). The badge for updates is not done.
 - [ ] Floating tab bar: Today, Apps, Updates, Search; Refresh at the top right of each tab.
 - [ ] Today: collection cards. Apps: category cards, then app rows. App row: icon, name, subtitle, action capsule
       (Get, Update, Open, Link).
-- [ ] App page: icon, name, subtitle, developer, action, information strip, screenshots with Previous and Next,
-      description, What's New, Version history, What this app changes, Information.
-- [ ] Install sheet: size, requirements, What this app changes, warning and second confirmation for `system` apps and
-      apps that start at boot or change system files; progress with Downloading, Checking, Installing.
+- [x] App page: icon, subtitle, developer and licence, status, description, what the app changes, action (Mac).
+      Not yet: the information strip, screenshots with Previous and Next, What's New, Version history, Information.
+- [x] The action on the page: Get asks the device for the download; until D2's download is wired the screen says it is
+      not in this build (Mac). Not yet: the install sheet, its warnings and confirmation, the progress steps.
 - [ ] Updates: Update all, per-app Update, installed list with Remove (confirmation pop-up).
 - [ ] Search with the shared keyboard; results as app rows.
 - [ ] Settings › Store page: daily update check (default on), clear the cache.
