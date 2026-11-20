@@ -136,13 +136,18 @@ Use the shared crates first. Copy from the launcher when a component is not shar
 - **Quick settings**: a sheet pulled down from the status bar. Header like the status bar; a row of round toggles with
   labels under them (Airplane, Auto-rotate, Dark mode, Animation, SSH, Settings, Power); Brightness and Warmth levels
   with − and +; a System section (CPU, memory, storage) with an icon, a bar and the value; a handle with "Swipe up to
-  close". On = black circle with a white glyph; off = outlined circle with a black glyph.
+  close". On = black circle with a white glyph; off = outlined circle with a black glyph. Quick settings is a
+  **system** panel: the launcher owns it and opens it over any app (`docs/system-architecture.md` §4.3). An app never
+  draws its own quick settings and never keeps its own copy of these switches.
 - **Lists.** Store app rows scroll vertically with fixed tabs and artwork preloaded around the visible rows. Settings
   and Wi-Fi also scroll vertically. Extensions use Previous and Next when their rows do not fit. A lock glyph marks
   a secured network. A chevron marks a row that opens something.
 - **Keyboard**: always `primitive-keyboard` (layers, keys, `style`, `look(def, pressed)`). Never a custom keyboard.
 - **Icons**: SVG paths on a 24-unit grid (`primitive_quick::Icon { stroke, fill }`), strokes 2 units wide. App icons are
-  PNGs, square, shown as rounded squares; a drawn icon is a black glyph on a white tile with a 4 px border.
+  PNGs, square, shown as rounded squares. Every app icon has two forms: **light** (black glyph on a white tile with a
+  4 px border, `icon.png`) and **dark** (white glyph on a black tile, `icon-dark.png`); the launcher shows the form for
+  the theme. One style per theme across the whole grid: never ship an icon as a black tile for light mode (the bundled
+  set mixed both and the grid looked half dark in either theme).
 - **Waiting**: a pop-up with a title, a sentence that says how long, and a row of 10 blocks that fill in turn. No
   spinners (they would refresh the panel constantly).
 - **Full-screen message**: centred title (64 px bold) and body (38 px), for states that end the app (for example
@@ -172,9 +177,14 @@ Use the shared crates first. Copy from the launcher when a component is not shar
 
 ## 7. Dark mode
 
-Dark mode inverts the whole interface (white on black) and keeps **pictures** as they are (PNG icons, photos, the sleep
-picture). Build every screen in light mode, then check it inverted. Grays invert too, so a gray that reads on white must
-also read on black.
+Dark mode is a **system** setting: `dark_mode` in `/mnt/us/launcher/settings.txt`, changed from quick settings or
+Settings. Every app follows it for its chrome (bars, buttons, keyboard, menus), reading it at start and again on
+`SIGUSR1`. An app may have a content option (the browser's Night for web pages), but it changes content only, is not
+called dark mode, and never overrides the system theme.
+
+Dark mode inverts the whole interface (white on black) and keeps **photos** and the sleep picture as they are. App
+icons use their dark form (§4). Build every screen in light mode, then check it inverted. Grays invert too, so a gray
+that reads on white must also read on black.
 
 ## 8. Words
 
@@ -196,5 +206,6 @@ Review checklist for a new or changed screen:
 - [ ] Pop-ups float over the screen with border and halo; concentric radii.
 - [ ] Shared components from `primitive-keyboard` and `primitive-quick` where they exist.
 - [ ] Refreshes only what changed; one full refresh per new screen; no timer redraws without new content.
-- [ ] Checked in dark mode and upside down.
+- [ ] Checked in dark mode and upside down; follows the system theme; the app icon has light and dark forms.
+- [ ] No app-owned sleep, lock screen, screensaver or quick settings; the screen redraws fully on `SIGUSR1`.
 - [ ] Desktop screenshot reviewed by the owner before the device build.
