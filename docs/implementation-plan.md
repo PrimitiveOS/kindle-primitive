@@ -1,7 +1,7 @@
 # PrimitiveOS implementation plan
 
 Updated 20 November 2026. The public catalog contains **33 listings**, including **32 first-party apps** and the linked
-KOReader entry. Its system releases are Primitive Launcher **0.4.10**, Store **0.1.4**, Primitive Browser **0.2.18**,
+KOReader entry. Its system releases are Primitive Launcher **0.5.3**, Store **0.1.6**, Primitive Browser **0.2.18**,
 and Primitive Terminal **0.1.8**. These versions describe the public catalog. See the [latest device evidence](handoff/STATE.md)
 for what has been confirmed on the Oasis 3. [Live catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
 
@@ -47,7 +47,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
 | [F17 Files and PDF Viewer](#f17-files-and-pdf-viewer) | F / Files | Standalone Files has a file browser, local operations, and a KOReader handoff. PDF Viewer has a prototype plan. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
-| [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.3 and Store 0.1.6 are local candidates. Display includes wallpaper choices for Home, Sleep, and Startup. Oasis 3 checks remain open. |
+| [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.3 and Store 0.1.6 are published and installed on the Oasis 3. Display includes wallpaper choices for Home, Sleep, and Startup. Detailed device checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
 
 Open release verification starts with the [study and work device checks](#study-and-work-release), using the installed

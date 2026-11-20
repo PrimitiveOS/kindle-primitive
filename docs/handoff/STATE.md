@@ -8,11 +8,11 @@ The [app directory](../../README.md#the-apps) links all first-party repositories
 | Component | Published state | Source |
 |---|---|---|
 | PrimitiveOS umbrella | App directory and education and productivity design. | [Umbrella release update `9c6fa84`](https://github.com/DoanNguyenTrong/kindle-primitive/commit/9c6fa84) |
-| Primitive Launcher | 0.4.10. The first manual install supplies the home screen and a single Store tile. The tile opens standalone Store or offers to install it. | [Launcher release](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases/tag/v0.4.10) |
-| Store | 0.1.4. Opens with the saved catalog, preloads icons on nearby pages, and checks changed listings in parallel. **Done** is available during refresh. | [Store release](https://github.com/DoanNguyenTrong/kindle-primitive-store/releases/tag/v0.1.4) |
+| Primitive Launcher | 0.5.3. Includes vertical Settings, expanded device and app controls, clock sync, and wallpapers. | [Launcher release](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases/tag/v0.5.3) |
+| Store | 0.1.6. Scrolls vertically, preloads nearby artwork, and shows the cached download total on app pages. | [Store release](https://github.com/DoanNguyenTrong/kindle-primitive-store/releases/tag/v0.1.6) |
 | Primitive Browser | 0.2.18. | [Browser release](https://github.com/DoanNguyenTrong/kindle-primitive-browser/releases/tag/v0.2.18) |
 | Primitive Terminal | 0.1.8. Listed under Developer Tools. | [Terminal release](https://github.com/DoanNguyenTrong/kindle-primitive-terminal/releases/tag/v0.1.8) |
-| Store catalog | 33 listings, including 32 hosted first-party apps and one KOReader link. **Study and work** includes the eleven releases below and Primitive Browser. | [Catalog commit `c94eda1`](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/commit/c94eda1) · [Public catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json) · [Collections](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json) |
+| Store catalog | 33 listings, including 32 hosted first-party apps and one KOReader link. The catalog includes a daily snapshot of package download totals. | [Public catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json) · [Collections](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json) |
 | Tools and Build | Shared app kit, packager, and reusable release workflow. The eleven release builds use the Tools pin at `3d9026c`. | [Tools commit](https://github.com/DoanNguyenTrong/kindle-primtitive-tools/commit/3d9026c) · [Build repo](https://github.com/DoanNguyenTrong/kindle-primitive-build) |
 
 ## Study and work releases
@@ -53,6 +53,8 @@ terms for Terminal, Tools, and earlier releases are recorded in the [licensing a
   and `build/store-performance/`.
 - On 20 November 2026, the keep-awake override was cleared. A readback of `com.lab126.powerd` returned
   `preventScreenSaver=0`.
+- Launcher 0.5.3 and Store 0.1.6 updated in place on 20 November. The Launcher trial passed and the boot
+  copy refreshed. Existing library scripts and Launcher preferences matched their pre-update hashes.
 - The physical-device checks for the eleven Study and work releases remain open. Check Store install or update,
   app launch and exit, touch targets, both portrait orientations, sleep and wake, USB eject, and data persistence.
   Record passing hardware results per release before adding a model to `tested_on`.
