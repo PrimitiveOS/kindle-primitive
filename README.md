@@ -102,6 +102,12 @@ The Catalog workflow saves reports in Markdown, CSV, and JSON. [Download reports
 |---|---|---|
 | [Primitive Browser](https://github.com/PrimitiveOS/kindle-primitive-browser) | Browse the web with e-ink page controls, night mode, and an image switch. | [0.2.18](https://github.com/PrimitiveOS/kindle-primitive-browser/releases/tag/v0.2.18) |
 
+### Reading
+
+| App on GitHub | What it does | Store version |
+|---|---|---|
+| [Reader](https://github.com/PrimitiveOS/kindle-primitive-reader) | Read EPUBs, PDFs, comics, and supported documents offline. Save your place, take notes, and use OCR on scanned pages. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.0) |
+
 ### Education and study
 
 | App on GitHub | What it does | Store version |
@@ -126,7 +132,7 @@ The Catalog workflow saves reports in Markdown, CSV, and JSON. [Download reports
 | App on GitHub | What it does | Store version |
 |---|---|---|
 | [Calculator](https://github.com/PrimitiveOS/kindle-primitive-calculator) | Calculate and revisit history, convert units, see worked steps, and plot a graph. | [0.1.3](https://github.com/PrimitiveOS/kindle-primitive-calculator/releases/tag/v0.1.3) |
-| [Files](https://github.com/PrimitiveOS/kindle-primitive-files) | Browse, find, and organise Kindle files. Open supported documents in Viewer or KOReader. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.1) |
+| [Files](https://github.com/PrimitiveOS/kindle-primitive-files) | Browse, find, and organise Kindle files. Open supported documents in Reader, Viewer, or KOReader. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.2) |
 | [Hello](https://github.com/PrimitiveOS/kindle-primitive-app-template) | Try a small native example app and use its repository as an app template. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-app-template/releases/tag/v0.1.0) |
 | [Dictionary](https://github.com/PrimitiveOS/kindle-primitive-dictionary) | Look up definitions, import a glossary, and export favorites for Cards. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-dictionary/releases/tag/v0.1.1) |
 | [Viewer](https://github.com/PrimitiveOS/kindle-primitive-viewer) | Read PDFs with continuous scrolling and open JPEGs and PNGs offline. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-viewer/releases/tag/v0.1.1) |

@@ -1,6 +1,6 @@
 # PrimitiveOS implementation plan
 
-Updated 20 November 2026. The public catalog contains **35 listings**, including **34 first-party apps** and the linked
+Updated 20 November 2026. The public catalog contains **36 listings**, including **35 first-party apps** and the linked
 KOReader entry. Its system releases are Primitive Launcher **0.5.5**, Store **0.1.7**, Primitive Browser **0.2.18**,
 and Primitive Terminal **0.1.8**. These versions describe the public catalog. See the [latest device evidence](handoff/STATE.md)
 for what has been confirmed on the Oasis 3. [Live catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json)
@@ -32,7 +32,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [B2 Our three apps packaged](#b2-our-three-apps-packaged) | B / launcher, browser, terminal | ARMHF releases are listed in Store. Package and installer fixtures passed on the Mac. |
 | [B3 Soft-float builds](#b3-soft-float-builds) | B / launcher, browser, terminal | ARMEL release assets are available. Soft-float Kindle checks remain open. |
 | [C1 Catalog repo and pipeline](#c1-catalog-repo-and-pipeline) | C Catalog / `kindle-primitive-catalog` | The organization’s [catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json) is live. The workflow validates archives and refreshes the download counts. |
-| [C2 Public listings and collections](#c2-public-listings-and-collections) | C / `kindle-primitive-catalog` | 34 first-party apps and the linked KOReader listing are live. |
+| [C2 Public listings and collections](#c2-public-listings-and-collections) | C / `kindle-primitive-catalog` | 35 first-party apps and the linked KOReader listing are live. |
 | [D1 Shared network crate](#d1-shared-network-crate) | D Store / tools | `primitive-net` on tools `main` (`241a527`), tested on the Mac |
 | [D2 Store engine](#d2-store-engine) | D / shared Tools | The engine passes Mac tests for refresh, install, removal, recovery, and signed verification. |
 | [D3 Store screens](#d3-store-screens) | D / standalone Store | Today, Apps, Updates, Search, and product pages are covered by desktop captures in `docs/store-screens/` and the simulation. |
@@ -46,7 +46,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Published with desktop previews and ARMHF packages. Device gates remain. |
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
 | [F17 Files and Viewer](#f17-files-and-viewer) | F / Files and Viewer | Viewer opens PDF, JPEG, and PNG offline with continuous PDF scrolling. Files can hand documents to Viewer or KOReader. |
-| [F18 Reader](#f18-reader) | F / Reader | Native EPUB, fixed-page PDF and comic workflows are in desktop development. The final automated Kindle verification and release are pending. |
+| [F18 Reader](#f18-reader) | F / Reader | Reader 0.1.0 and Files 0.1.2 are published after automated Oasis 3 checks. The offline reading feature matrix remains open. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
 | [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.5 and Store 0.1.7 are published and installed on the Oasis 3. Display previews wallpaper and adjusts opacity for Home, Sleep, and Startup. Detailed device checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
@@ -497,13 +497,18 @@ approved icons. The first-party app directory links every current Store release.
 - [x] Verify authored soft hyphens, anchored vertical EPUB pages and W3C fixed-layout viewport fixtures. (Mac)
 - [x] Verify vertical ruby, optional full refresh intervals in paged reading, and a licensed ARMHF development build. (Mac)
 - [x] Verify the generated outline for EPUBs with missing or damaged navigation, zoom for framed comic panels, and KOReader quotations containing discretionary hyphens. (Mac)
-- [ ] Complete the offline reading capability matrix in `doannt-kindle-reader/docs/reading-parity-plan.md`, including
-      scanned reading, specialist formats, and migration.
-- [ ] Run the consolidated automated Kindle verification on the completed implementation through the existing Launcher,
-      then publish the verified package to GitHub and Store.
-
-The latest Kindle access check on November 20, 2026 timed out over SSH. The Mac
-also detected no Kindle over USB. The consolidated device run remains pending.
+- [x] Install the licensed Reader 0.1.0 and Files 0.1.2 packages through the existing Launcher setup on
+      Oasis 3 with firmware 5.18.2. Verify installed file checksums, 249 native Reader tests, 15 EPUB profile runs,
+      and English OCR. Automate Markdown and DOCX handoff from Files, forward and back input, reading position
+      restore, and Exit Reader and Done. (Oasis 3, 20 November 2026)
+- [x] Publish the verified ZIPs and checksum files to GitHub and list both versions in Store. (Published)
+      [Reader 0.1.0](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.0)
+      [Files 0.1.2](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.2)
+- [x] Refresh the public catalog in Store on the Oasis 3 and confirm the two cached listings contain the
+      published versions and the exact package checksums. (Oasis 3, 20 November 2026)
+- [ ] Repeat final-release sleep, wake, USB eject, and panel refresh checks on the Oasis 3.
+- [ ] Complete the offline reading capability matrix, including scanned reading, specialist formats, and migration.
+      [Reader feature plan](https://github.com/PrimitiveOS/kindle-primitive-reader/blob/main/docs/reading-parity-plan.md)
 
 ---
 
