@@ -4,10 +4,14 @@ Reviewed 20 November 2026 against Primitive Launcher 0.4.10 and its pinned Tools
 **Settings › Battery**. Follow it with controls that improve reading and make existing settings easier to find.
 The initial device target is the Kindle Oasis 3 on firmware 5.18.2. [Implementation milestones](implementation-plan.md#g-launcher-features)
 
-The local candidates are Launcher **0.5.0** and Store **0.1.5**. Launcher Settings now has two pages with explicit
+The local candidates are Launcher **0.5.1** and Store **0.1.5**. Launcher Settings now has two pages with explicit
 navigation. **Apps › Manage installed apps** opens Store's installed list, and **App visibility** shows individual
 home-screen switches. Grid settings reuse the existing preferences in `apps.toml`. **Storage** links to the same
 installed list and to Store's saved catalog controls. Older Store versions still open at Today.
+
+**Date and time** on the second page shows the device clock and the UTC offset from the stock Kindle time zone.
+**Sync** asks the firmware's clock tool to update the time over Wi-Fi. **Refresh** re-reads the configured time zone,
+including a change made in the Kindle interface. The sync runs on request with a timeout. [Date and time milestone](implementation-plan.md#g7-date-and-time)
 
 ## What to take from Apple
 
