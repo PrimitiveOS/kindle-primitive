@@ -8,7 +8,8 @@
   (A digit-only password false-matches hex tables: check any hit by hand before reacting.)
 - Wi-Fi keys (PSK values) are never printed or logged. Serial numbers and MAC addresses are never recorded.
 - The repos are public. Scan for personal data (emails, LAN addresses other than the Kindle's own, identifiers) too.
-- Credentials for GitHub: the agent does not create releases, tags, or repos without the owner (see "Releases").
+- The owner has authorized GitHub publication for every completed PrimitiveOS app build and update. Verify on the
+  Kindle when the change needs hardware verification, then publish the corresponding source and release.
 
 ## Git
 
@@ -18,11 +19,10 @@
 - Commit along the way (the owner asked this for the handoff in `docs/handoff/`). Use short, factual messages that say what changed
   and why, and end each commit message with the attribution line:
   the attribution line the current system reminder specifies (at handoff: `Co-Authored-By: Claude Haiku 5.5 <noreply@anthropic.com>`).
-- Feature branches for each piece of work (`feature/<name>`, `fix/<name>`). Pushes: push feature branches freely. Merge to
-  `main` and push `main` only when the owner has said so in the conversation (for example "merge them to main now"). The
-  handoff's PIPELINE.md does not approve merges to `main`; report the branch ready and wait.
-- Tags and GitHub releases: only with the owner's go-ahead ("push and release" was given for the launcher; the browser's
-  `v0.2.17` was approved as "publish primitive browser as a store package").
+- Use feature branches for work in progress. Publish completed builds to GitHub with the source commit, version tag,
+  and release packages. Advance the Store listing after validating the published assets and preserve release history.
+- The owner's standing publication authorization applies to completed app updates. Show proposed new app icons for
+  approval before including them in the package or listing.
 
 ## Device work
 

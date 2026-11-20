@@ -45,6 +45,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [E5 App template](#e5-app-template) | E / `kindle-primitive-app-template` | Hello 0.1.0 is live in Store. Its desktop driver verifies the lifecycle. |
 | [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Published with desktop previews and ARMHF packages. Device gates remain. |
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
+| [F17 Files and PDF Viewer](#f17-files-and-pdf-viewer) | F / Files | Standalone Files has a file browser, local operations, and a KOReader handoff. PDF Viewer has a prototype plan. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
 | [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.3 and Store 0.1.6 are local candidates. Display includes wallpaper choices for Home, Sleep, and Startup. Oasis 3 checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
@@ -464,6 +465,16 @@ approved icons. The first-party app directory links every current Store release.
       and quadratic plots with a value table. (Mac, Published)
 - [ ] On the Oasis 3, check date boundaries, duplicate and unsupported file handling, subject history, and plot redraws
       against known examples.
+
+### F17 Files and PDF Viewer
+
+- [x] Build a standalone Files app that opens in Documents, scrolls vertically, searches filenames, and supports
+      creating folders, renaming, copying, moving, and confirmed deletion. (Mac)
+- [x] Preserve the existing Launcher setup and hand supported documents to KOReader when it is installed.
+      Simulate the package and document handoff locally. (Mac)
+- [ ] Verify Files on the Oasis 3 with sample documents, including reader handoff and return to Launcher.
+- [ ] Prototype a read-only PDF Viewer and measure page rendering and memory on the Oasis 3.
+      [PDF Viewer plan](pdf-viewer-plan.md)
 
 ---
 
