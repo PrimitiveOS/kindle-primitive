@@ -494,10 +494,15 @@ approved icons. The first-party app directory links every current Store release.
 - [x] Verify desktop annotation interchange, comic spreads, scan columns, OCR language selection, and text reflow across source pages. Build the licensed ARMHF package and native test bundle. (Mac)
 - [x] Verify chapter-spanning thumbnails, navigation history, EPUB cover and series previews, a subset of KOReader EPUB progress, and original-word scan reflow in the desktop suite. (Mac)
 - [x] Verify native DOCX, supported KF8/AZW3, CBR and CHM profiles, whole-book percentage jumps, printed EPUB page references, and StarDict synonyms. (Mac)
+- [x] Verify authored soft hyphens, anchored vertical EPUB pages and W3C fixed-layout viewport fixtures. (Mac)
+- [x] Verify vertical ruby, optional full refresh intervals in paged reading, and a licensed ARMHF development build. (Mac)
 - [ ] Complete the offline reading capability matrix in `doannt-kindle-reader/docs/reading-parity-plan.md`, including
       scanned reading, specialist formats, and migration.
 - [ ] Run the consolidated automated Kindle verification on the completed implementation through the existing Launcher,
       then publish the verified package to GitHub and Store.
+
+The latest Kindle access check on November 20, 2026 timed out over SSH. The Mac
+also detected no Kindle over USB. The consolidated device run remains pending.
 
 ---
 
