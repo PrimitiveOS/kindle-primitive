@@ -10,8 +10,9 @@ on the Kindle Oasis 3 with the owner present.
 - [x] Sleep picture while an app is open (`kl-launcher --sleep-screen`).
 - [x] Wake: redraw signal for apps with `# Wake: redraw`, restart for the others.
 - [x] Apps start in their own process group (`setsid`).
-- [ ] Device check: in the browser, the power button sleeps and the lock screen is the sleep wallpaper; wake brings
-  the browser back (restarted, until it supports the signal).
+- [x] Device check: in the browser, the power button sleeps and the lock screen is the sleep wallpaper; wake brings
+  the browser back (restarted, until it supports the signal). Passed on the Kindle, 2026-11-21 (launcher 0.6.2,
+  browser 0.2.20).
 
 ## Phase 2: one theme
 
@@ -26,7 +27,8 @@ on the Kindle Oasis 3 with the owner present.
 - [x] Theme switch over an app: two updates, not three (the app shown inverted under the panel at the switch; no
   old-screen restore before the app redraws).
 - [ ] Browser release (owner's go-ahead).
-- [ ] Device check: switch the theme in launcher Settings, open the browser, both match.
+- [x] Device check: switch the theme in launcher Settings, open the browser, both match. Passed from quick settings over the browser,
+  2026-11-21.
 
 ## Phase 3: the launcher stays running (the system layer)
 
@@ -38,7 +40,7 @@ on the Kindle Oasis 3 with the owner present.
   page buttons and every other touch.
 - [x] The supervisor's Phase 1 power watch runs only when the launcher does not stay (one owner for sleep and wake).
 - [ ] Crash safety: if the system layer crashes, the supervisor restarts it without stopping the app.
-- [ ] Device check: open an app, sleep and wake from the power button, the lock picture is right, the app comes back.
+- [x] Device check: open an app, sleep and wake from the power button, the lock picture is right, the app comes back. Passed in the browser, 2026-11-21.
 
 ## Phase 4: quick settings from every app
 
@@ -47,7 +49,9 @@ on the Kindle Oasis 3 with the owner present.
   released and the app resumed (launcher 0.6.1).
 - [x] A theme change from the panel ends with the redraw signal, for apps that declare `# Wake: redraw`.
 - [ ] Settings and Power from the panel over an app: they open full screen; check they return to the app.
-- [ ] Device check in the browser and the Store: open, change the light and the theme, close, the app is intact.
+- [x] Device check in the browser: light, Airplane, Power then Cancel, and the theme from quick settings; the browser
+  stays behind the panel and comes back intact (2026-11-21, launcher 0.6.2, browser 0.2.20).
+- [ ] Device check in the Store (it does not declare `# Wake: redraw` yet).
 
 ## Phase 5: apps follow the contracts
 
