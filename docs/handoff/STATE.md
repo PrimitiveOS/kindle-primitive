@@ -13,7 +13,7 @@ The [app directory](../../README.md#the-apps) links all first-party repositories
 | Primitive Browser | 0.2.18. | [Browser release](https://github.com/PrimitiveOS/kindle-primitive-browser/releases/tag/v0.2.18) |
 | Primitive Terminal | 0.1.8. Listed under Developer Tools. | [Terminal release](https://github.com/PrimitiveOS/kindle-primitive-terminal/releases/tag/v0.1.8) |
 | Files | 0.1.2. Browse and organise Kindle files and open supported documents in Reader, Viewer, or KOReader. | [Files release](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.2) |
-| Reader | 0.1.0. Native offline reading for EPUB, PDF, comics, and supported documents, with bookmarks, annotations, and scanned-page tools. | [Reader release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.0) |
+| Reader | 0.1.1 in Store. Adds folder browsing, compact reading bars, and a text selection popup for EPUB and PDF. The in-place Oasis 3 installation is verified. | [Reader release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.1) |
 | Viewer | 0.1.1. Opens PDFs, JPEGs and PNGs offline. Kindle page buttons scroll PDFs and navigate the file picker. | [Viewer release](https://github.com/PrimitiveOS/kindle-primitive-viewer/releases/tag/v0.1.1) |
 | Store catalog | 36 listings, including 35 hosted first-party apps and one KOReader link. The catalog includes a daily snapshot of package download totals. | [Public catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json) · [Collections](https://primitiveos.github.io/kindle-primitive-catalog/v1/collections.json) |
 | Tools and Build | Shared app kit, packager, and reusable release workflow. Apps pin Tools by commit. The Launcher and Store releases allow the organization catalog host. | [Tools repo](https://github.com/PrimitiveOS/kindle-primtitive-tools) · [Build repo](https://github.com/PrimitiveOS/kindle-primitive-build) |
@@ -91,6 +91,10 @@ terms for Terminal, Tools, and earlier releases are recorded in the [licensing a
   and return to Launcher via Done or Exit Reader. All 249 native Reader tests, 15 EPUB profiles, and an English OCR
   smoke test passed. Store refreshed the live catalog and cached both checked releases.
   [Catalog deployment](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/runs/44744121098)
+- Reader 0.1.1 passed 258 desktop tests and is live on GitHub and in Store. Desktop checks covered nested folder
+  browsing, reading bars that leave the document layout in place, and the EPUB and PDF selection popup. On the Oasis 3,
+  the in-place update verified all 23 installed files and preserved Reader state checksums. Interactive device checks
+  remain open. [Reader 0.1.1 release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.1)
 - The physical-device checks for the eleven Study and work releases remain open. Check Store install or update,
   app launch and exit, touch targets, both portrait orientations, sleep and wake, USB eject, and data persistence.
   Record passing hardware results per release before adding a model to `tested_on`.
