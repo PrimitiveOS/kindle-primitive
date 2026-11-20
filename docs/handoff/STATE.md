@@ -7,14 +7,17 @@ The [app directory](../../README.md#the-apps) links all first-party repositories
 
 | Component | Published state | Source |
 |---|---|---|
-| PrimitiveOS umbrella | App directory and education and productivity design. | [Umbrella release update `9c6fa84`](https://github.com/PrimitiveOS/kindle-primitive/commit/9c6fa84) |
-| Primitive Launcher | 0.5.3. Includes vertical Settings, expanded device and app controls, clock sync, and wallpapers. | [Launcher release](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.3) |
-| Store | 0.1.6. Scrolls vertically, preloads nearby artwork, and shows the cached download total on app pages. | [Store release](https://github.com/PrimitiveOS/kindle-primitive-store/releases/tag/v0.1.6) |
+| PrimitiveOS umbrella | App directory and implementation plan under the PrimitiveOS GitHub organization. | [Umbrella repository](https://github.com/PrimitiveOS/kindle-primitive) |
+| Primitive Launcher | 0.5.4. Bootstraps Store from the organization catalog. Includes vertical Settings, device and app controls, clock sync, and wallpapers. | [Launcher release](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.4) |
+| Store | 0.1.7. Refreshes from the organization catalog. Scrolls vertically, preloads nearby artwork, and shows the cached download total on app pages. | [Store release](https://github.com/PrimitiveOS/kindle-primitive-store/releases/tag/v0.1.7) |
 | Primitive Browser | 0.2.18. | [Browser release](https://github.com/PrimitiveOS/kindle-primitive-browser/releases/tag/v0.2.18) |
 | Primitive Terminal | 0.1.8. Listed under Developer Tools. | [Terminal release](https://github.com/PrimitiveOS/kindle-primitive-terminal/releases/tag/v0.1.8) |
 | Files | 0.1.0. Browse and organise Kindle files and hand supported documents to KOReader. | [Files release](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.0) |
 | Store catalog | 34 listings, including 33 hosted first-party apps and one KOReader link. The catalog includes a daily snapshot of package download totals. | [Public catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json) · [Collections](https://primitiveos.github.io/kindle-primitive-catalog/v1/collections.json) |
-| Tools and Build | Shared app kit, packager, and reusable release workflow. The eleven release builds use the Tools pin at `3d9026c`. | [Tools commit](https://github.com/PrimitiveOS/kindle-primtitive-tools/commit/3d9026c) · [Build repo](https://github.com/PrimitiveOS/kindle-primitive-build) |
+| Tools and Build | Shared app kit, packager, and reusable release workflow. Apps pin Tools by commit. The Launcher and Store releases allow the organization catalog host. | [Tools repo](https://github.com/PrimitiveOS/kindle-primtitive-tools) · [Build repo](https://github.com/PrimitiveOS/kindle-primitive-build) |
+
+The PrimitiveOS organization owns all 38 project repositories. The transfer preserved 70 existing GitHub releases
+and all 176 release assets, including the package ZIPs and their checksum files. [Organization profile](https://github.com/PrimitiveOS)
 
 ## Study and work releases
 
@@ -56,6 +59,13 @@ terms for Terminal, Tools, and earlier releases are recorded in the [licensing a
   `preventScreenSaver=0`.
 - Launcher 0.5.3 and Store 0.1.6 updated in place on 20 November. The Launcher trial passed and the boot
   copy refreshed. Existing library scripts and Launcher preferences matched their pre-update hashes.
+- On 20 November, Launcher 0.5.4 and Store 0.1.7 updated in place for the organization catalog migration.
+  The Launcher trial passed, and the installed, running, and boot binaries matched the published ARMHF
+  package. Store's installed binary matched its release. Both library scripts, Launcher settings, and
+  the normal sleep configuration matched their pre-update state.
+- On the same device, Store 0.1.7 fetched the new public index and showed all 34 listings. It refreshed 33
+  listings and reused one with zero listing or artwork failures. The saved index matched the live index
+  byte for byte. [Catalog publication run](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/runs/44656500321)
 - Files 0.1.0 installed and opened through the Launcher supervisor on 20 November. Desktop tests covered file
   operations. The owner opened a sample PDF from Files and confirmed that KOReader displayed the test page.
 - The physical-device checks for the eleven Study and work releases remain open. Check Store install or update,

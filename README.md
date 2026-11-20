@@ -86,15 +86,15 @@ the releases currently listed in Store.
 [Live Store catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json)
 
 The catalog's daily report totals GitHub release ZIP downloads for each first-party app. Downloads through Store,
-manual downloads, and automated checks all contribute. Store 0.1.6 shows the total on each app page when available.
+manual downloads, and automated checks all contribute. Store shows the total on each app page when available.
 The Catalog workflow saves reports in Markdown, CSV, and JSON. [Download reports](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/workflows/catalog.yml)
 
 ### System
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Primitive Launcher](https://github.com/PrimitiveOS/kindle-primitive-launcher) | Home screen, wallpaper, quick settings, and device controls. Opens Store and installed apps. | [0.5.3](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.3) |
-| [Store](https://github.com/PrimitiveOS/kindle-primitive-store) | Browse a scrolling catalog, see app download totals, and install, update, or remove apps. | [0.1.6](https://github.com/PrimitiveOS/kindle-primitive-store/releases/tag/v0.1.6) |
+| [Primitive Launcher](https://github.com/PrimitiveOS/kindle-primitive-launcher) | Home screen, wallpaper, quick settings, and device controls. Opens Store and installed apps. | [0.5.4](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.4) |
+| [Store](https://github.com/PrimitiveOS/kindle-primitive-store) | Browse a scrolling catalog, see app download totals, and install, update, or remove apps. | [0.1.7](https://github.com/PrimitiveOS/kindle-primitive-store/releases/tag/v0.1.7) |
 
 ### Internet
 

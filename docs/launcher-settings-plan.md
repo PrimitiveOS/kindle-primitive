@@ -4,7 +4,7 @@ Reviewed 20 November 2026 against Primitive Launcher 0.4.10 and its pinned Tools
 **Settings › Battery**. Follow it with controls that improve reading and make existing settings easier to find.
 The initial device target is the Kindle Oasis 3 on firmware 5.18.2. [Implementation milestones](implementation-plan.md#g-launcher-features)
 
-Launcher **0.5.3** and Store **0.1.6** are published and installed on the Oasis 3. Swipe vertically through the grouped Settings
+Launcher **0.5.4** and Store **0.1.7** are published and installed on the Oasis 3. Swipe vertically through the grouped Settings
 list. **Back** returns to the previous position. **Apps › Manage installed apps** opens Store's installed list, and
 **App visibility** is a scrollable list of individual home-screen switches. Grid settings reuse the existing
 preferences in `apps.toml`. **Storage** links to the same installed list and to Store's saved catalog controls.
