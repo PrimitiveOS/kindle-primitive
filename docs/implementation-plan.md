@@ -548,9 +548,10 @@ approved icons. The first-party app directory links every current Store release.
       independently for each screen. Cancel leaves the saved choices alone. (Mac)
 - [x] Extend the Home wallpaper behind the status bar and page indicator. Check contrast in both themes. (Mac)
 - [x] Verify the Launcher 0.5.5 in-place update and preservation of wallpaper preferences and PNGs on the Oasis 3.
+- [x] Confirm the Oasis 3 saves the Sleep opacity independently of Home and Startup.
 - [ ] On the Oasis 3, verify legibility on both Home themes and after turning the device, sleep and wake with a fixed
       image and the Kindle screensaver, and the automatic Launcher startup picture after the firmware splash.
-      Apply a preview opacity change and confirm it persists. Check the wallpaper gallery again after USB eject.
+      Check that saved opacity survives restarting Launcher and that the gallery refreshes after USB eject.
 
 ---
 
