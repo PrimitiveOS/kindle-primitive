@@ -96,6 +96,34 @@ the supervisor (`deploy/supervisor.sh`) keeps it in charge while an app is open.
   swapped; the SSH host key is kept). Check it after an install:
   `sha256sum /mnt/us/launcher/kl-launcher /var/local/primitive-launcher/kl-launcher`.
 
+- **The launcher stays running while an app is open** (0.6.1 and later). It asks the supervisor for the app with
+  SIGUSR1, pauses its own drawing, and over the app it owns only the top-edge swipe (quick settings) and the power
+  events: it freezes the app (SIGSTOP to its group), saves the screen, draws its panel over the app's picture
+  (`Renderer::set_backdrop`), and on close puts the screen back and resumes the app. Log lines: `system layer: ...`.
+- **Native apps (the `primitive-app` kit, `primitive_app::run`)**: under the launcher the kit turns SIGUSR1 into a
+  full redraw that reads the theme again, and on wake it redraws only if a redraw was asked for while it slept. An app
+  built with that kit may declare `# Wake: redraw`. Never add the header to an app whose binary does not handle
+  SIGUSR1: the signal ends it.
+- **Library entry scripts** under the launcher: put `# Wake: redraw` in the first ten lines (after the other header
+  lines), and `[ "${PRIMITIVE_LAUNCHER:-0}" = 1 ] && trap '' USR1` before the app starts. The signal goes to the
+  whole process group; a shell that runs the app as a child (not `exec`) ends on it otherwise. An ignored signal is
+  inherited through `exec`, and the app's own handler replaces it.
+- **Apps build against the kit by path** (`../doannt-kindle-tools/crates/...`), so a local build uses whatever the tools
+  working tree holds. To build against a kit branch without touching that tree: a worktree of the kit, a folder with a
+  `doannt-kindle-tools` symlink to it, and a worktree of the app beside it (`/tmp/apppilot/` was used).
+
+Lessons from the system layer (each cost a device round):
+
+- A background shell pipeline (`lipc-wait-event | while read`) survives `kill` of its subshell: stop the children too
+  (`kill_tree` in the supervisor), and make a watcher check it still serves the current app. Stale watchers set the
+  restart flag on every wake and reopened the browser when the user left it.
+- A trapped SIGUSR1 interrupts the shell's `wait` (busybox returns 138): loop `wait` until `kill -0` says the process
+  is gone, or the supervisor treats the app as ended while it still runs.
+- Child processes such as `lipc-wait-event` outlive the program that started them unless it sets
+  `PR_SET_PDEATHSIG`; count them with `ps -o pid,ppid,args | grep lipc-wait-event` (parent 1 means orphaned).
+- A new `supervisor.sh` only runs after Launcher is opened again from the Kindle library (or a restart); the
+  installer's restart reloads the launcher binary only.
+
 ## Launcher and the library
 
 - An app appears in the Kindle library through a script in `/mnt/us/documents/<Name>.sh`, with header lines
