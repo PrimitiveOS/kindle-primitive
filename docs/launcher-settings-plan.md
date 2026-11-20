@@ -4,12 +4,13 @@ Reviewed 20 November 2026 against Primitive Launcher 0.4.10 and its pinned Tools
 **Settings › Battery**. Follow it with controls that improve reading and make existing settings easier to find.
 The initial device target is the Kindle Oasis 3 on firmware 5.18.2. [Implementation milestones](implementation-plan.md#g-launcher-features)
 
-The local candidates are Launcher **0.5.1** and Store **0.1.5**. Launcher Settings now has two pages with explicit
-navigation. **Apps › Manage installed apps** opens Store's installed list, and **App visibility** shows individual
-home-screen switches. Grid settings reuse the existing preferences in `apps.toml`. **Storage** links to the same
-installed list and to Store's saved catalog controls. Older Store versions still open at Today.
+The local candidates are Launcher **0.5.2** and Store **0.1.5**. Swipe vertically through the grouped Settings
+list. **Back** returns to the previous position. **Apps › Manage installed apps** opens Store's installed list, and
+**App visibility** is a scrollable list of individual home-screen switches. Grid settings reuse the existing
+preferences in `apps.toml`. **Storage** links to the same installed list and to Store's saved catalog controls.
+Older Store versions still open at Today.
 
-**Date and time** on the second page shows the device clock and the UTC offset from the stock Kindle time zone.
+**Date and time** under System shows the device clock and the UTC offset from the stock Kindle time zone.
 **Sync** asks the firmware's clock tool to update the time over Wi-Fi. **Refresh** re-reads the configured time zone,
 including a change made in the Kindle interface. The sync runs on request with a timeout. [Date and time milestone](implementation-plan.md#g7-date-and-time)
 
@@ -38,9 +39,9 @@ ways to conserve Kindle battery. Display appearance and front-light level are se
 | Device and About | Startup, restart Launcher, open the stock Kindle UI, Launcher version, app count, memory, available storage, and Wi-Fi address. | Show firmware, the model when verified, and storage used and available. Update the old startup explanation to match the implemented switch. |
 | Battery and accessibility | The status bar shows charge and a charging bolt. Launcher already warns at 10% and 5%. Dark mode and opening animation are under Display. | Add the Battery page and a dedicated **Accessibility** page. Start with Launcher text size, stronger contrast, and a shared setting for opening animation. |
 
-Settings currently lays out nine fixed-height rows with no page navigation. A tenth row fits the 1264 × 1680 reference
-screen. Add **Battery** under **System** first. Use explicit **Previous** and **Next** or nest less-used items before
-adding more categories. Keep shared tap geometry and rendering in sync in both orientations and at larger text sizes.
+The released Launcher 0.4.10 layout uses nine fixed-height rows. The 0.5.2 Settings overview and App visibility
+scroll vertically as their content grows. Keep the title and navigation control visible during swipes, and keep tap
+geometry and rendering in sync for partly visible rows, both portrait orientations, and larger text sizes.
 [Settings layout at the released Tools pin](https://github.com/DoanNguyenTrong/kindle-primtitive-tools/blob/107f15a5cd893b66cdacdb406a3144342224b592/crates/kl-core/src/layout.rs#L51)
 
 ## First release
@@ -79,7 +80,7 @@ stock Kindle handoff have been validated.
    to Store and the existing **Clear saved catalog** action. Show model and firmware when available, with Launcher
    version and USB status. Keep cleanup explicit. Test the storage page with a full drive and while USB owns the volume.
 4. **App grid and settings navigation.** Make the existing grid layout controls easier to discover alongside Hidden apps.
-   Add settings search only when the number of pages makes paging insufficient. Preserve existing Back and Done behaviour.
+   Keep related settings together in the scrolling overview. Preserve Back and Done behaviour.
 
 Current evidence supports battery level and charger state on the Oasis 3. App use duration can be measured separately
 if it becomes useful. Per-app battery percentages need energy attribution. Battery Health and runtime estimates require
@@ -90,7 +91,8 @@ release leaves charging management to the stock firmware. [Linux power supply at
 ## Verification gates
 
 - **Desktop.** Cover charge status and missing or invalid readings, 10% and 5% alert behaviour, light and dark themes,
-  both portrait orientations, and tap targets at the smallest supported layout. Exercise paging, Back, and Done.
+  both portrait orientations, and tap targets at the smallest supported layout. Exercise scrolling, taps after scrolling,
+  Back, and Done.
   For later power mode work, verify manual overrides, pref migration, and the existing Store and USB state transitions.
 - **Oasis 3.** Compare battery state while unplugged, charging, and plugged in without charging. Verify brightness,
   warmth, USB drive and eject, normal sleep and wake, and return to the stock Kindle UI. During the Low power pilot, run
