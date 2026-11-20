@@ -1,6 +1,6 @@
 # PrimitiveOS implementation plan
 
-Updated 20 November 2026. The public catalog contains **33 listings**, including **32 first-party apps** and the linked
+Updated 20 November 2026. The public catalog contains **34 listings**, including **33 first-party apps** and the linked
 KOReader entry. Its system releases are Primitive Launcher **0.5.3**, Store **0.1.6**, Primitive Browser **0.2.18**,
 and Primitive Terminal **0.1.8**. These versions describe the public catalog. See the [latest device evidence](handoff/STATE.md)
 for what has been confirmed on the Oasis 3. [Live catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
@@ -32,7 +32,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [B2 Our three apps packaged](#b2-our-three-apps-packaged) | B / launcher, browser, terminal | ARMHF releases are listed in Store. Package and installer fixtures passed on the Mac. |
 | [B3 Soft-float builds](#b3-soft-float-builds) | B / launcher, browser, terminal | ARMEL release assets are available. Soft-float Kindle checks remain open. |
 | [C1 Catalog repo and pipeline](#c1-catalog-repo-and-pipeline) | C Catalog / `kindle-primitive-catalog` | GitHub Pages deployment, deep archive checks, and scheduled asset checks are live. |
-| [C2 Public listings and collections](#c2-public-listings-and-collections) | C / `kindle-primitive-catalog` | 32 first-party apps and linked KOReader are live across three collections. |
+| [C2 Public listings and collections](#c2-public-listings-and-collections) | C / `kindle-primitive-catalog` | 33 first-party apps and the linked KOReader listing are live. |
 | [D1 Shared network crate](#d1-shared-network-crate) | D Store / tools | `primitive-net` on tools `main` (`241a527`), tested on the Mac |
 | [D2 Store engine](#d2-store-engine) | D / shared Tools | The engine passes Mac tests for refresh, install, removal, recovery, and signed verification. |
 | [D3 Store screens](#d3-store-screens) | D / standalone Store | Today, Apps, Updates, Search, and product pages are covered by desktop captures in `docs/store-screens/` and the simulation. |
@@ -472,7 +472,9 @@ approved icons. The first-party app directory links every current Store release.
       creating folders, renaming, copying, moving, and confirmed deletion. (Mac)
 - [x] Preserve the existing Launcher setup and hand supported documents to KOReader when it is installed.
       Simulate the package and document handoff locally. (Mac)
-- [ ] Verify Files on the Oasis 3 with sample documents, including reader handoff and return to Launcher.
+- [x] Install Files and verify that it opens through the Launcher supervisor on the Oasis 3.
+- [x] Open a sample PDF from Files in KOReader on the Oasis 3. The owner confirmed the page displayed.
+- [ ] Verify the return from KOReader under both device orientations.
 - [ ] Prototype a read-only PDF Viewer and measure page rendering and memory on the Oasis 3.
       [PDF Viewer plan](pdf-viewer-plan.md)
 

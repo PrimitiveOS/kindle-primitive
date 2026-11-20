@@ -12,7 +12,8 @@ The [app directory](../../README.md#the-apps) links all first-party repositories
 | Store | 0.1.6. Scrolls vertically, preloads nearby artwork, and shows the cached download total on app pages. | [Store release](https://github.com/DoanNguyenTrong/kindle-primitive-store/releases/tag/v0.1.6) |
 | Primitive Browser | 0.2.18. | [Browser release](https://github.com/DoanNguyenTrong/kindle-primitive-browser/releases/tag/v0.2.18) |
 | Primitive Terminal | 0.1.8. Listed under Developer Tools. | [Terminal release](https://github.com/DoanNguyenTrong/kindle-primitive-terminal/releases/tag/v0.1.8) |
-| Store catalog | 33 listings, including 32 hosted first-party apps and one KOReader link. The catalog includes a daily snapshot of package download totals. | [Public catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json) · [Collections](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json) |
+| Files | 0.1.0. Browse and organise Kindle files and hand supported documents to KOReader. | [Files release](https://github.com/DoanNguyenTrong/kindle-primitive-files/releases/tag/v0.1.0) |
+| Store catalog | 34 listings, including 33 hosted first-party apps and one KOReader link. The catalog includes a daily snapshot of package download totals. | [Public catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json) · [Collections](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json) |
 | Tools and Build | Shared app kit, packager, and reusable release workflow. The eleven release builds use the Tools pin at `3d9026c`. | [Tools commit](https://github.com/DoanNguyenTrong/kindle-primtitive-tools/commit/3d9026c) · [Build repo](https://github.com/DoanNguyenTrong/kindle-primitive-build) |
 
 ## Study and work releases
@@ -55,6 +56,8 @@ terms for Terminal, Tools, and earlier releases are recorded in the [licensing a
   `preventScreenSaver=0`.
 - Launcher 0.5.3 and Store 0.1.6 updated in place on 20 November. The Launcher trial passed and the boot
   copy refreshed. Existing library scripts and Launcher preferences matched their pre-update hashes.
+- Files 0.1.0 installed and opened through the Launcher supervisor on 20 November. Desktop tests covered file
+  operations. The owner opened a sample PDF from Files and confirmed that KOReader displayed the test page.
 - The physical-device checks for the eleven Study and work releases remain open. Check Store install or update,
   app launch and exit, touch targets, both portrait orientations, sleep and wake, USB eject, and data persistence.
   Record passing hardware results per release before adding a model to `tested_on`.
