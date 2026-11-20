@@ -4,7 +4,7 @@ Reviewed 20 November 2026 against Primitive Launcher 0.4.10 and its pinned Tools
 **Settings › Battery**. Follow it with controls that improve reading and make existing settings easier to find.
 The initial device target is the Kindle Oasis 3 on firmware 5.18.2. [Implementation milestones](implementation-plan.md#g-launcher-features)
 
-The local candidates are Launcher **0.5.2** and Store **0.1.5**. Swipe vertically through the grouped Settings
+The local candidates are Launcher **0.5.3** and Store **0.1.5**. Swipe vertically through the grouped Settings
 list. **Back** returns to the previous position. **Apps › Manage installed apps** opens Store's installed list, and
 **App visibility** is a scrollable list of individual home-screen switches. Grid settings reuse the existing
 preferences in `apps.toml`. **Storage** links to the same installed list and to Store's saved catalog controls.
@@ -14,6 +14,10 @@ Older Store versions still open at Today.
 **Sync** asks the firmware's clock tool to update the time over Wi-Fi. **Refresh** re-reads the configured time zone,
 including a change made in the Kindle interface. The sync runs on request with a timeout. [Date and time milestone](implementation-plan.md#g7-date-and-time)
 
+**Display › Wallpaper** groups the Home Screen, Sleep Screen, and Startup Screen. Each keeps its own choice and can
+return to its default. The sleep picker also offers the existing rotation from `launcher/screensavers/`. Startup shows
+the chosen image when Launcher takes over automatically after the Kindle startup screen. [Wallpaper milestone](implementation-plan.md#g8-wallpaper)
+
 ## What to take from Apple
 
 | Reference | PrimitiveOS design |
@@ -22,6 +26,7 @@ including a change made in the Kindle interface. The sync runs on request with a
 | iPhone has a manual Low Power Mode with defined effects. Adaptive Power is model-specific. [Apple Power Modes](https://support.apple.com/guide/iphone/save-battery-life-with-power-modes-on-iphone-iphcab9aecd1/27/ios/27) | Pilot an explicit **Low power mode** with a short list of changes and a visible state. Keep the user’s existing brightness and Store preferences recoverable when it turns off. |
 | Apple separates current charge, battery health, and model-specific charging controls. [Battery usage and health](https://support.apple.com/en-au/guide/iphone/iphd453d043a/27/ios/27) · [Set a charge limit](https://support.apple.com/en-euro/guide/iphone/iph0777c60aa/27/ios/27) | Show measured charge now. Battery Health, cycle counts, time estimates, and a charge limit each need verified support for the Kindle model and firmware. |
 | Apple provides quick brightness control, appearance settings, and dedicated legibility options. [Brightness and color](https://support.apple.com/en-ie/guide/iphone/iph60ba71065/27/ios/27) · [Display and text settings](https://support.apple.com/en-mide/guide/iphone/-iphd6804774e/ios) | Share front-light controls between Display and Quick Settings. Offer a simple reading preview for larger text and stronger contrast. Use Kindle warmth and rotation only on models that support them. |
+| iPhone groups Lock Screen and Home Screen wallpaper in one place and allows separate choices. [Apple Wallpaper guide](https://support.apple.com/en-euro/guide/iphone/iph3d267104/27/ios/27) | Use one Wallpaper page inside Display, with an independent picker for each screen. Use grayscale composition so app icons and labels are legible on e-ink. |
 | Apple shows available storage before actions for freeing space. [Apple Storage](https://support.apple.com/en-mide/guide/iphone/iph47c931112/ios) | Show user-storage capacity first. Route removal and cache actions through the Store flows that already own those files. |
 
 Amazon identifies front-light level, avoiding unused network access, and letting the device sleep as practical
@@ -39,7 +44,7 @@ ways to conserve Kindle battery. Display appearance and front-light level are se
 | Device and About | Startup, restart Launcher, open the stock Kindle UI, Launcher version, app count, memory, available storage, and Wi-Fi address. | Show firmware, the model when verified, and storage used and available. Update the old startup explanation to match the implemented switch. |
 | Battery and accessibility | The status bar shows charge and a charging bolt. Launcher already warns at 10% and 5%. Dark mode and opening animation are under Display. | Add the Battery page and a dedicated **Accessibility** page. Start with Launcher text size, stronger contrast, and a shared setting for opening animation. |
 
-The released Launcher 0.4.10 layout uses nine fixed-height rows. The 0.5.2 Settings overview and App visibility
+The released Launcher 0.4.10 layout uses nine fixed-height rows. The current Settings overview and App visibility
 scroll vertically as their content grows. Keep the title and navigation control visible during swipes, and keep tap
 geometry and rendering in sync for partly visible rows, both portrait orientations, and larger text sizes.
 [Settings layout at the released Tools pin](https://github.com/DoanNguyenTrong/kindle-primtitive-tools/blob/107f15a5cd893b66cdacdb406a3144342224b592/crates/kl-core/src/layout.rs#L51)

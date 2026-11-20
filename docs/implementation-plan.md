@@ -46,7 +46,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Published with desktop previews and ARMHF packages. Device gates remain. |
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
-| [G4–G7 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.2 and Store 0.1.5 are local candidates. Scroll through Battery, Display, Accessibility, Storage, Device, Apps, and Date and time in Settings. Oasis 3 checks remain open. |
+| [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.3 and Store 0.1.5 are local candidates. Display includes wallpaper choices for Home, Sleep, and Startup. Oasis 3 checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
 
 Open release verification starts with the [study and work device checks](#study-and-work-release), using the installed
@@ -512,6 +512,14 @@ approved icons. The first-party app directory links every current Store release.
 - [x] Add an explicit Wi-Fi clock sync using the firmware's time tool where available. Desktop tests cover navigation,
       time-zone offsets, and timeout. (Mac)
 - [ ] On the Oasis 3, verify network sync, a changed stock Kindle time zone, and error feedback while offline.
+
+### G8 Wallpaper
+
+- [x] Group the Home, Sleep, and Startup pickers under Display. Save each choice locally, support each screen's
+      default, preserve the existing sleep rotation, and validate PNGs before use. (Mac)
+- [ ] On the Oasis 3, verify legibility on both Home themes and after turning the device, sleep and wake with a fixed
+      image and the Kindle screensaver, and the automatic Launcher startup picture after the firmware splash.
+      Check that wallpaper choices persist and refresh after USB eject.
 
 ---
 
