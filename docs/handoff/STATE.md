@@ -71,7 +71,8 @@ terms for Terminal, Tools, and earlier releases are recorded in the [licensing a
   verified ARMHF package. Library entry contents, wallpaper settings, and the PNG galleries matched their
   pre-update hashes. The desktop simulator exercised preview, opacity changes, Back, and Apply. Captures show
   full-screen Home in both themes. Device readback confirmed Sleep opacity saved at 80% while Home and Startup
-  were each saved at 100%.
+  were each saved at 100%. The owner confirmed Home wallpaper preview, opacity, and coverage behind the
+  status and bottom bars on the Oasis 3.
 - Files 0.1.0 installed and opened through the Launcher supervisor on 20 November. Desktop tests covered file
   operations. The owner opened a sample PDF from Files and confirmed that KOReader displayed the test page.
 - On 20 November, Files 0.1.1 opened a PDF through Viewer 0.1.0 on firmware 5.18.2. The owner confirmed
