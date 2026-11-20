@@ -179,8 +179,9 @@ Use the shared crates first. Copy from the launcher when a component is not shar
 
 Dark mode is a **system** setting: `dark_mode` in `/mnt/us/launcher/settings.txt`, changed from quick settings or
 Settings. Every app follows it for its chrome (bars, buttons, keyboard, menus), reading it at start and again on
-`SIGUSR1`. An app may have a content option (the browser's Night for web pages), but it changes content only, is not
-called dark mode, and never overrides the system theme.
+`SIGUSR1`. The whole app follows it, chrome and content (in dark mode the browser's pages are dark too). Under the
+launcher an app has no light or dark switch of its own (the browser's Day and Night show only without the launcher)
+and never overrides the system theme.
 
 Dark mode inverts the whole interface (white on black) and keeps **photos** and the sleep picture as they are. App
 icons use their dark form (§4). Build every screen in light mode, then check it inverted. Grays invert too, so a gray

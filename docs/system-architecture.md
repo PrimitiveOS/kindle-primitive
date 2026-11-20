@@ -46,7 +46,7 @@ the sleep and the theme do.
 | Quick settings panel | System layer, as an overlay on top of the app | Can ask for it (§4.3). Never draw their own. |
 | Theme (light or dark) | System layer (`dark_mode` in `launcher/settings.txt`) | Follow it for their chrome (§4.2). |
 | Page buttons and touch | The app in front | Theirs, except the system gesture for quick settings. |
-| App content options (for example the browser's Night mode for pages) | The app | Allowed, for content only. |
+| App content options (text size, page width) | The app | Allowed. No app has its own light or dark switch under the launcher. |
 
 ## 4. Contracts between the system layer and apps
 
@@ -67,9 +67,16 @@ group so the signal reaches the app itself, not only its launch script.
 ### 4.2 Theme
 
 The system theme is `dark_mode=on|off` in `launcher/settings.txt`. An app reads it when it starts, and again when it
-gets `SIGUSR1` (the same signal as a wake redraw). Its chrome (bars, buttons, keyboard, menus) follows the theme. An app
-may keep a content option, for example the browser's Night mode for web pages, but that option changes page content
-only, never the chrome, and it is shown as a content option, not as dark mode.
+gets `SIGUSR1` (the same signal as a wake redraw). The whole app follows the theme: its chrome and its content (the
+owner's decision, 2026-11-21: in dark mode the browser's pages are dark too). Under the launcher an app has no light
+or dark switch of its own; the browser shows Day and Night only when it is opened from the Kindle library without
+the launcher.
+
+Switching the theme over an app costs two screen updates, not three. When the switch is made in quick settings over
+an app that redraws, the launcher shows the app's saved screen inverted under the panel (dark mode is the screen
+inverted), so the one full update shows the whole screen as it will be. When the panel closes, the launcher does not
+put the old screen back: it resumes the app and sends the redraw signal, and the app draws itself in the new theme.
+An app that cannot redraw gets its saved screen back and keeps the old theme until it starts again.
 
 App icons follow the theme too. Today an icon is drawn exactly as its PNG, in both themes, and the icon set has two
 styles: some icons are a white tile, others a black tile (Store, Cards, Cascade, Chess, Crossword, Minesweeper,
@@ -83,21 +90,22 @@ tile, white glyph), and the launcher draws the form that matches the theme. An a
 The system gesture (the same swipe that opens quick settings on the home screen) belongs to the system layer in every
 app. The system layer saves the screen, draws the panel over the app, and on close puts the saved screen back, so the
 app does not need to redraw. Changes that affect the app (the theme, the rotation) end with a redraw signal (§4.1).
+Every system pop-up over an app (quick settings, the power menu, confirmations) is drawn over the app's saved screen,
+never over the home screen: the renderer takes the app's screen as the backdrop (`Renderer::set_backdrop`).
 
 ## 5. What is built today, and what is not
 
-Built (launcher 0.6.0, on the Kindle once installed):
+Built (launcher 0.6.0 and 0.6.x, browser 0.2.19 and later):
 
 - The supervisor clears `preventScreenSaver` at start.
 - Opening an app or the Store no longer hands the stock screensaver back. Only the Kindle UI does.
-- While an app is open, the supervisor follows the power events: on sleep it draws the sleep picture
-  (`kl-launcher --sleep-screen`), and on wake it sends the redraw signal or restarts the app (§4.1).
+- The launcher stays running while an app is open (0.6.1): it owns the top-edge swipe and the power events over the
+  app, freezes the app while quick settings or the sleep picture is up, and puts the app's screen back after.
+- The browser follows the contracts: `# Wake: redraw`, the whole browser follows the theme under the launcher, and
+  it leaves the top-edge swipe to the launcher.
 
 Not built yet (see the upgrade plan):
 
-- The launcher still exits when an app opens, so the quick settings panel and the system gesture are not available
-  inside apps. The supervisor covers sleep and wake meanwhile.
-- No app supports `# Wake: redraw` yet, so apps are restarted on wake.
 - Icons do not follow the theme: the bundled icon set mixes white and black tiles (§4.2).
-- Apps do not follow the system theme yet. The browser keeps its own Night mode, and its chrome does not follow the
-  launcher's theme.
+- Apps other than the browser do not support `# Wake: redraw` or the theme yet.
+- If the launcher crashes while an app is open, it starts again only when the app ends.

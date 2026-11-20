@@ -21,10 +21,10 @@ on the Kindle Oasis 3 with the owner present.
   launcher picks the form for the theme (`icon.png`, `icon-dark.png`).
 - [x] Theme contract (§4.2): apps read `dark_mode` from `launcher/settings.txt` at start and on `SIGUSR1` (browser
   `be41f3b`).
-- [x] Browser: under the launcher the bars follow the system theme and Night darkens the page only; standalone,
-  Night darkens everything as before (browser `be41f3b`).
-- [ ] Browser: rename Night (for example "Dark pages") so it is not confused with dark mode (owner to choose the
-  word).
+- [x] Browser: under the launcher the whole browser (bars and pages) follows dark mode, and the Display sheet has
+  no Day and Night; standalone, Night works as before (owner's choice; browser `016fdc0`).
+- [x] Theme switch over an app: two updates, not three (the app shown inverted under the panel at the switch; no
+  old-screen restore before the app redraws).
 - [ ] Browser release (owner's go-ahead).
 - [ ] Device check: switch the theme in launcher Settings, open the browser, both match.
 
