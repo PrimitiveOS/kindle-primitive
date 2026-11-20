@@ -46,7 +46,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Published with desktop previews and ARMHF packages. Device gates remain. |
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
-| [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.3 and Store 0.1.5 are local candidates. Display includes wallpaper choices for Home, Sleep, and Startup. Oasis 3 checks remain open. |
+| [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.3 and Store 0.1.6 are local candidates. Display includes wallpaper choices for Home, Sleep, and Startup. Oasis 3 checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
 
 Open release verification starts with the [study and work device checks](#study-and-work-release), using the installed
@@ -212,6 +212,7 @@ Crate `kl-store` in shared Tools, used by Store and Primitive Launcher.
       Keep the saved catalog available offline (Mac).
 - [x] Store 0.1.4 opens from the cached first page, paginates lists, and preloads nearby artwork. Refresh checks listings
       concurrently and reuses unchanged revisions. **Done** can interrupt a refresh and exit. (Mac, Published)
+- [x] Store 0.1.6 opens from the cached catalog and preloads icons around the visible list rows while scrolling. (Mac)
 - [x] The Store reads the device architecture, firmware and free space. The shared Oasis 3 build reports the
       `KindleOasis3` profile name. Additional device profiles need hardware evidence.
 - [x] Resolver: newest version for the architecture and firmware; `requires` with `>=`; withdrawn versions skipped (Mac).
@@ -236,9 +237,12 @@ Following the `primitive-ui` skill; reviewed as desktop screenshots before any d
 - [x] Floating tab bar for Today, Apps, Updates, and Search. Refresh is at the top right (Mac).
 - [x] Collections on Today, category selection in Apps, and install, update and Open actions on rows (Mac).
 - [x] Product page with app details, capabilities, screenshots, release notes, version history, and information (Mac).
+- [x] Show the cached GitHub package download total on each product page when the catalog provides it. (Mac)
 - [x] Install sheet, changes and requirement review, confirmation, and download and install progress (Mac).
 - [x] Update all, per-app updates, and removal confirmation (Mac).
 - [x] Search with the shared keyboard and app-row results (Mac).
+- [x] Scroll long lists vertically with the navigation tabs fixed at the bottom. Returning from a product page restores
+      its list position. [Desktop previews](store-screens/README.md) (Mac)
 - [x] Launcher Settings › Store and the Store gear share the daily check preference and provide cache clearing (Mac).
 - [x] Dark mode and upside-down renders captured in [`docs/store-screens/`](store-screens/README.md) (Mac).
 
@@ -250,6 +254,10 @@ Following the `primitive-ui` skill; reviewed as desktop screenshots before any d
       Launcher through **Done** during refresh. The owner confirmed startup was faster. See `build/store-performance/`
       in the local workspace for the run logs.
 - [ ] Complete a Browser install, open, return, update, and removal sequence on the Oasis 3.
+- [ ] Verify Store list scrolling, fixed tabs, and Back on the Oasis 3 in light and dark mode. Check a long Search
+      result list with the keyboard open and after dismissing it.
+- [ ] Check download totals after refreshing Store, including a first-party app while offline and a link listing
+      that shows Unavailable.
 - [ ] A package for the wrong architecture is refused with the reason.
 - [ ] Power off during an install; the next start finishes or undoes it.
 - [ ] USB drive mode while the store is idle on the Kindle. The Store and supervisor pass idle, write, cleanup, and

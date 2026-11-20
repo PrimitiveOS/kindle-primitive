@@ -36,7 +36,7 @@ configuration files to use it); simple for everyone, in the spirit of Apple's ap
 or Android (productivity, games, everyday tools); and it works with Primitive Launcher in front, the Kindle's own
 interface stopped. Apps that need the Kindle's own interface (Illusion and other HTML booklets) do not qualify.
 
-Out of scope: accounts, payments, ratings, reviews, analytics, push notifications, non-Kindle devices, Kindle Fire
+Out of scope: accounts, payments, ratings, reviews, device analytics, push notifications, non-Kindle devices, Kindle Fire
 tablets, apps that need a different jailbreak than the one installed.
 
 ## 3. System overview
@@ -100,7 +100,7 @@ format breaks).
 
 | File | Content | Size target |
 |---|---|---|
-| `index.json` | Every app's card includes its name, categories, latest version, and optional `revision`. The index also lists `categories` and `generated_at`. | < 100 KB |
+| `index.json` | App cards, categories, generation time, and optional GitHub package download totals. | < 100 KB |
 | `collections.json` | The Today tab's collections. | < 10 KB |
 | `apps/<id>.json` | The full listing: description, screenshots, What's New, every version with its assets, requirements, What this app changes. | < 50 KB each |
 | `icons/<id>.png` | 256 × 256 grayscale PNG. | < 20 KB |
@@ -110,8 +110,14 @@ Store checks the index and collections on refresh. A card's revision is the SHA-
 and up to two screenshots, in that order, with an eight-byte big-endian length before each file. A complete cache
 matching that revision needs no listing or image downloads. Up to four workers refresh changed or incomplete entries in
 parallel. A missing image can be retried on the next refresh while the listing stays available. Store keeps the catalog
-available offline, draws the first page from local metadata, and decodes current and nearby page icons in the
+available offline, draws the first screen from local metadata, and decodes icons for visible and nearby rows in the
 background. It decodes screenshots when a product page opens.
+
+The optional `downloads` object has an `as_of` report timestamp and a `by_app` map keyed by app ID.
+Store reads the totals from the saved index and shows them offline. The catalog's daily report
+aggregates GitHub release ZIP downloads, including Store downloads, direct downloads, updates, repeat downloads,
+and automated checks. An app with no reported total displays **Unavailable**.
+[Catalog workflow and reports](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/workflows/catalog.yml)
 
 ### 4.4 The app listing: `apps/<id>/app.json`
 
@@ -213,6 +219,9 @@ The store follows the `primitive-ui` skill. It opens from a **Store** tile on th
    installed apps with their version and **Remove**.
 4. **Search**: a field with the shared keyboard; results as app rows, matched on name, subtitle, developer and category.
 
+Swipe vertically to move through long lists. The title and tabs stay in place, and Back from a product page restores
+the list position.
+
 Every tab has a **Refresh** button at the top that starts a background catalog check. During a refresh, **Done**
 requests cancellation and returns to Launcher once Store releases its storage write lease. Swiping down from the top
 opens quick settings. Store's gear and the **Store** page in Launcher Settings share the daily update preference.
@@ -220,8 +229,9 @@ opens quick settings. Store's gear and the **Store** page in Launcher Settings s
 **App row**: icon (rounded square), name, subtitle (gray), and an action capsule at the right: **Get**, **Update**,
 **Open**, or **Link** for `link` entries.
 
-**App page** (the product page): icon, name, subtitle, developer; the action capsule; an information strip (version,
-size, category, licence); screenshots (two side by side, Previous and Next); description; What's New with the date and
+**App page** (the product page): icon, name, subtitle, developer, the action capsule, and an information strip with
+the version, download size, firmware, and download total. It also shows screenshots (two side by side, Previous and Next),
+a description, What's New with the date, and
 a **Version history** row; **What this app changes** (§5.3); **Information** (developer, repository, licence, size,
 architecture, firmware, tested on, requirements, hosted or upstream).
 

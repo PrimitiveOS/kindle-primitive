@@ -85,9 +85,9 @@ The tables cover every first-party app in Store. App names link to GitHub reposi
 the releases currently listed in Store.
 [Live Store catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
 
-The catalog's daily download report totals GitHub release ZIP downloads for each first-party app. It includes
-downloads through Store, manual downloads, and automated checks. Each run saves Markdown, CSV, and JSON.
-[Download reports](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/workflows/download-counts.yml)
+The catalog's daily report totals GitHub release ZIP downloads for each first-party app. Downloads through Store,
+manual downloads, and automated checks all contribute. Store 0.1.6 shows the total on each app page when available.
+The Catalog workflow saves reports in Markdown, CSV, and JSON. [Download reports](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/workflows/catalog.yml)
 
 ### System
 

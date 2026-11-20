@@ -137,8 +137,9 @@ Use the shared crates first. Copy from the launcher when a component is not shar
   labels under them (Airplane, Auto-rotate, Dark mode, Animation, SSH, Settings, Power); Brightness and Warmth levels
   with − and +; a System section (CPU, memory, storage) with an icon, a bar and the value; a handle with "Swipe up to
   close". On = black circle with a white glyph; off = outlined circle with a black glyph.
-- **Lists** (Wi-Fi networks, extensions, store apps): rows of 104–120 px in a card, with Previous and Next in the footer
-  when they do not fit. A lock glyph marks a secured network; a chevron marks a row that opens something.
+- **Lists.** Store app rows scroll vertically with fixed tabs and artwork preloaded around the visible rows. Settings
+  and Wi-Fi also scroll vertically. Extensions use Previous and Next when their rows do not fit. A lock glyph marks
+  a secured network. A chevron marks a row that opens something.
 - **Keyboard**: always `primitive-keyboard` (layers, keys, `style`, `look(def, pressed)`). Never a custom keyboard.
 - **Icons**: SVG paths on a 24-unit grid (`primitive_quick::Icon { stroke, fill }`), strokes 2 units wide. App icons are
   PNGs, square, shown as rounded squares; a drawn icon is a black glyph on a white tile with a 4 px border.
