@@ -496,6 +496,7 @@ approved icons. The first-party app directory links every current Store release.
 - [x] Verify native DOCX, supported KF8/AZW3, CBR and CHM profiles, whole-book percentage jumps, printed EPUB page references, and StarDict synonyms. (Mac)
 - [x] Verify authored soft hyphens, anchored vertical EPUB pages and W3C fixed-layout viewport fixtures. (Mac)
 - [x] Verify vertical ruby, optional full refresh intervals in paged reading, and a licensed ARMHF development build. (Mac)
+- [x] Verify the generated outline for EPUBs with missing or damaged navigation, zoom for framed comic panels, and KOReader quotations containing discretionary hyphens. (Mac)
 - [ ] Complete the offline reading capability matrix in `doannt-kindle-reader/docs/reading-parity-plan.md`, including
       scanned reading, specialist formats, and migration.
 - [ ] Run the consolidated automated Kindle verification on the completed implementation through the existing Launcher,
