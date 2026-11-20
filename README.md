@@ -85,6 +85,10 @@ The tables cover every first-party app in Store. App names link to GitHub reposi
 the releases currently listed in Store.
 [Live Store catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
 
+The catalog's daily download report totals GitHub release ZIP downloads for each first-party app. It includes
+downloads through Store, manual downloads, and automated checks. Each run saves Markdown, CSV, and JSON.
+[Download reports](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/workflows/download-counts.yml)
+
 ### System
 
 | App on GitHub | What it does | Store version |
@@ -137,13 +141,13 @@ the releases currently listed in Store.
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [2048](https://github.com/DoanNguyenTrong/kindle-primitive-tidefork) | Swipe the board, merge matching numbers, and beat your best score. | [0.1.2](https://github.com/DoanNguyenTrong/kindle-primitive-tidefork/releases/tag/v0.1.2) |
+| [2048](https://github.com/DoanNguyenTrong/kindle-primitive-2048) | Swipe the board, merge matching numbers, and beat your best score. | [0.1.2](https://github.com/DoanNguyenTrong/kindle-primitive-2048/releases/tag/v0.1.2) |
 | [Blocks](https://github.com/DoanNguyenTrong/kindle-primitive-blocks) | Place pieces and clear full rows, columns, or 3 × 3 boxes. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-blocks/releases/tag/v0.1.0) |
-| [Crate Shift](https://github.com/DoanNguyenTrong/kindle-primitive-crateshift) | Swipe to move and push crates onto marked docks across eight puzzles. | [0.1.2](https://github.com/DoanNguyenTrong/kindle-primitive-crateshift/releases/tag/v0.1.2) |
+| [Crate Shift](https://github.com/DoanNguyenTrong/kindle-primitive-crate-shift) | Swipe to move and push crates onto marked docks across eight puzzles. | [0.1.2](https://github.com/DoanNguyenTrong/kindle-primitive-crate-shift/releases/tag/v0.1.2) |
 | [Crossword](https://github.com/DoanNguyenTrong/kindle-primitive-crossword) | Solve mini crosswords or open your own unlocked `.puz` files. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-crossword/releases/tag/v0.1.0) |
-| [Memory Match](https://github.com/DoanNguyenTrong/kindle-primitive-memorypairs) | Turn over cards and find every matching pair in as few attempts as possible. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-memorypairs/releases/tag/v0.1.1) |
+| [Memory Match](https://github.com/DoanNguyenTrong/kindle-primitive-memory-match) | Turn over cards and find every matching pair in as few attempts as possible. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-memory-match/releases/tag/v0.1.1) |
 | [Minesweeper](https://github.com/DoanNguyenTrong/kindle-primitive-minesweeper) | Flag mines and beat your best time on three board sizes. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-minesweeper/releases/tag/v0.1.0) |
-| [Nonogram](https://github.com/DoanNguyenTrong/kindle-primitive-picturelogic) | Reveal pictures by solving row and column clues. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-picturelogic/releases/tag/v0.1.1) |
+| [Nonogram](https://github.com/DoanNguyenTrong/kindle-primitive-nonogram) | Reveal pictures by solving row and column clues. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-nonogram/releases/tag/v0.1.1) |
 | [Sudoku](https://github.com/DoanNguyenTrong/kindle-primitive-sudoku) | Solve generated puzzles with pencil marks, mistake checks, and undo. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-sudoku/releases/tag/v0.1.0) |
 | [Switchyard](https://github.com/DoanNguyenTrong/kindle-primitive-switchyard) | Set track junctions and dispatch a train to the depot. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-switchyard/releases/tag/v0.1.0) |
 | [Words](https://github.com/DoanNguyenTrong/kindle-primitive-words) | Solve a daily five-letter word puzzle or play a practice round. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-words/releases/tag/v0.1.0) |

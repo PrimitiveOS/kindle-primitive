@@ -20,6 +20,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "doannt-kindle-catalog"
 SITE = "https://catalog.invalid/v1"
+REPOSITORIES = runpy.run_path(str(ROOT / "scripts/app-repositories.py"))
 NATIVE_SCREENS = {
     "blocks": ("blocks.png", "blocks-playing-dark.png"),
     "calculator": ("calculator.png", "calculator-history.png"),
@@ -84,7 +85,7 @@ def system_draft(module):
             "Type a shell command on the on-screen keyboard and read its output. "
             "Primitive Terminal opens from the Kindle library and can also run from Primitive Launcher."
         ),
-        "repo": f"https://github.com/DoanNguyenTrong/kindle-primitive-{module}",
+        "repo": REPOSITORIES["repository_url"](ROOT, f"primitive-{module}"),
         "licence": "PolyForm-Noncommercial-1.0.0" if is_store else "AGPL-3.0-only",
         "source": "hosted",
         "icon": "icon.png",
@@ -188,7 +189,8 @@ def build_review(simulation, staging, review_date):
     dump(reference / "app.json", listing)
     receipts = {}
     for module in sorted(NATIVE_SCREENS.keys() | SYSTEM_SCREENS.keys()):
-        repo = ROOT / f"doannt-kindle-{'app-template' if module == 'hello' else module}"
+        app_id = f"primitive-{module}"
+        repo = REPOSITORIES["local_checkout"](ROOT, app_id)
         if module in NATIVE_SCREENS:
             draft = load(repo / "app.json")
             screens = [f"{module}/{name}" for name in NATIVE_SCREENS[module]]
@@ -196,9 +198,9 @@ def build_review(simulation, staging, review_date):
             draft = system_draft(module)
             screens = SYSTEM_SCREENS[module]
 
-        app_id = f"primitive-{module}"
         if draft["id"] != app_id:
             raise ValueError(f"{app_id}: draft id disagrees with its package directory")
+        draft["repo"] = REPOSITORIES["repository_url"](ROOT, app_id)
         changelog = repo / ("docs/CHANGELOG.md" if module in ("browser", "launcher") else "CHANGELOG.md")
         version, receipts[app_id] = archive_version(
             simulation, app_id, review_date, changelog, draft, checks, validator
@@ -219,11 +221,14 @@ def build_review(simulation, staging, review_date):
         print(f"ok   {app_id} {version['version']} armhf", flush=True)
 
     collections = load(CATALOG / "collections.json")
+    reviewed_ids = {"koreader", *receipts}
     for collection in collections["collections"]:
         if collection["id"] == "start-here":
             collection["apps"] = ["primitive-launcher", "primitive-browser", "koreader"]
         if collection["id"] == "made-by-primitive":
             collection["apps"] = [app for app in sorted(receipts) if app != "primitive-terminal"]
+        collection["apps"] = [app for app in collection["apps"] if app in reviewed_ids]
+    collections["collections"] = [collection for collection in collections["collections"] if collection["apps"]]
     dump(staging / "collections.json", collections)
     dump(staging / "receipts.json", receipts)
     (staging / "README.md").write_text(REVIEW_README, encoding="utf-8")

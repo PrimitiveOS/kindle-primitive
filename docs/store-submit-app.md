@@ -214,7 +214,9 @@ By a reviewer:
 ## 7. Update, withdraw, or remove an app
 
 - **Update**: release the new version (§3.4), then add it at the **top** of `versions` in `app.json` and open a pull
-  request `Update <name> to <version>`. Do not edit published versions.
+  request `Update <name> to <version>`. Preserve earlier published releases.
+- **Rename a repository**. Follow the [listing contract](contracts.md#5-the-listing-appsidappjson-in-the-catalog)
+  to move repository and asset links while preserving the package identity. Verify the package at each new URL before publishing.
 - **Withdraw a broken version**: add `"withdrawn": "<reason>"` to that version. The store stops offering it and offers
   the next older one. Installed copies are not removed; the Updates tab offers the next good version when there is one.
 - **Remove the app**: open a pull request that deletes `apps/<id>/` and says why. Installed copies stay on Kindles and can

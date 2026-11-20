@@ -4,6 +4,7 @@
 import argparse
 import hashlib
 import json
+import runpy
 import stat
 import struct
 import zipfile
@@ -12,6 +13,7 @@ from pathlib import Path, PurePosixPath
 from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
+local_checkout = runpy.run_path(str(ROOT / "scripts/app-repositories.py"))["local_checkout"]
 SCHEMA = json.loads((ROOT / "schema/manifest.schema.json").read_text())
 MAIN_BINARIES = {"primitive-launcher": "kl-launcher", "primitive-store": "kl-store-app",
                  "primitive-browser": "kb-kindle", "primitive-terminal": "kt-terminal"}
@@ -51,8 +53,7 @@ def verify_elf(archive, entry, arch, must_be_static, required):
 
 
 def verify_licenses(package, base, app_id):
-    app = "app-template" if app_id == "primitive-hello" else app_id.removeprefix("primitive-")
-    checkout = ROOT / f"doannt-kindle-{app}"
+    checkout = local_checkout(ROOT, app_id)
     names = package.namelist()
     for name in ("LICENSE", "LICENSE-DOCS"):
         member = f"{base}/{name}"
