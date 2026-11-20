@@ -93,8 +93,10 @@ terms for Terminal, Tools, and earlier releases are recorded in the [licensing a
   [Catalog deployment](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/runs/44744121098)
 - Reader 0.1.1 passed 258 desktop tests and is live on GitHub and in Store. Desktop checks covered nested folder
   browsing, reading bars that leave the document layout in place, and the EPUB and PDF selection popup. On the Oasis 3,
-  the in-place update verified all 23 installed files and preserved Reader state checksums. Interactive device checks
-  remain open. [Reader 0.1.1 release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.1)
+  the in-place update verified all 23 installed files and preserved Reader state checksums. An on-device offscreen
+  smoke rendered the picker and EPUB and PDF controls and selection actions. It checked that opening controls left
+  the middle of the page intact and that Done issued an exit. Interactive device checks remain open.
+  [Reader 0.1.1 release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.1)
 - The physical-device checks for the eleven Study and work releases remain open. Check Store install or update,
   app launch and exit, touch targets, both portrait orientations, sleep and wake, USB eject, and data persistence.
   Record passing hardware results per release before adding a model to `tested_on`.

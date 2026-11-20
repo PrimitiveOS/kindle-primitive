@@ -515,6 +515,8 @@ approved icons. The first-party app directory links every current Store release.
       [Catalog deployment](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/runs/44770901055)
 - [x] Update Reader in place on the Oasis 3, verify all 23 installed files, and compare the pre-update and post-update
       Reader state checksums. (Oasis 3, 20 November 2026)
+- [x] Run the ARMHF offscreen smoke on the Oasis 3. Render eight fixture frames for the picker, EPUB and PDF controls,
+      and selection actions. Verify stable document pixels and the Done action. (Oasis 3, 20 November 2026)
 - [ ] Verify nested folders, both reading bars, EPUB and PDF selection actions, physical page turns, Done and Exit,
       and saved reading position through the Kindle UI.
 - [ ] Repeat final-release sleep, wake, USB eject, and panel refresh checks on the Oasis 3.
