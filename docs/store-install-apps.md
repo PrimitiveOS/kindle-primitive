@@ -83,12 +83,12 @@ computer). Their page explains how to install them and links to their author's i
 
 ## 6. Remove an app
 
-Open **Updates**, find the app in the installed list, and tap **Remove**, then confirm. Store removes the files it
-recorded when it installed that app. Personal documents outside the installed file list stay. Tap **Done** to return to
-the Launcher grid and see the updated app list.
+In Launcher 0.5.9 and later, open **Settings › Apps › Installed apps**. Tap **Uninstall** beside the app and confirm.
+The list and Home refresh as soon as removal finishes. You can uninstall offline.
 
-The store will not remove an app that another installed app needs; remove that one first. It never removes Primitive
-Launcher; to uninstall the launcher, follow its `INSTALL.md`.
+The package manager removes the app’s recorded files and keeps personal files outside that list. If another installed
+app requires the package, remove the dependent app first. Launcher and Store are protected. Store’s **Updates** page
+also offers **Remove**.
 
 ## 7. Apps you installed before Store
 

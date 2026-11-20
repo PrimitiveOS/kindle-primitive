@@ -8,7 +8,7 @@ The [app directory](../../README.md#the-apps) links all first-party repositories
 | Component | Published state | Source |
 |---|---|---|
 | PrimitiveOS umbrella | App directory and implementation plan under the PrimitiveOS GitHub organization. | [Umbrella repository](https://github.com/PrimitiveOS/kindle-primitive) |
-| Primitive Launcher | 0.5.5. Previews wallpapers before Apply, keeps separate opacity for each screen, and extends Home wallpaper behind both bars. | [Launcher release](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.5) |
+| Primitive Launcher | 0.5.9. Adds offline uninstall under Apps and Storage. The licensed ARMHF, ARMEL, and first-install ZIPs passed package checks. | [Launcher release](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.9) |
 | Store | 0.1.7. Refreshes from the organization catalog. Scrolls vertically, preloads nearby artwork, and shows the cached download total on app pages. | [Store release](https://github.com/PrimitiveOS/kindle-primitive-store/releases/tag/v0.1.7) |
 | Primitive Browser | 0.2.18. | [Browser release](https://github.com/PrimitiveOS/kindle-primitive-browser/releases/tag/v0.2.18) |
 | Primitive Terminal | 0.1.8. Listed under Developer Tools. | [Terminal release](https://github.com/PrimitiveOS/kindle-primitive-terminal/releases/tag/v0.1.8) |
@@ -74,6 +74,10 @@ terms for Terminal, Tools, and earlier releases are recorded in the [licensing a
   full-screen Home in both themes. Device readback confirmed Sleep opacity saved at 80% while Home and Startup
   were each saved at 100%. The owner confirmed Home wallpaper preview, opacity, and coverage behind the
   status and bottom bars on the Oasis 3.
+- Launcher 0.5.9 passed its supervised update from 0.5.8 on 20 November. The user-storage, running, and boot copies
+  matched the GitHub ARMHF release. The existing library entry, boot job, preferences, and wallpaper galleries
+  matched their pre-update checksums. On Oasis 3 firmware 5.18.2, automated Settings taps verified that Cancel kept the
+  test package installed and Uninstall removed its payload and receipt while preserving its untracked data.
 - Files 0.1.0 installed and opened through the Launcher supervisor on 20 November. Desktop tests covered file
   operations. The owner opened a sample PDF from Files and confirmed that KOReader displayed the test page.
 - On 20 November, Files 0.1.1 opened a PDF through Viewer 0.1.0 on firmware 5.18.2. The owner confirmed

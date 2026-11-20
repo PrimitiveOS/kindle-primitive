@@ -4,11 +4,10 @@ Reviewed 20 November 2026 against Primitive Launcher 0.4.10 and its pinned Tools
 **Settings › Battery**. Follow it with controls that improve reading and make existing settings easier to find.
 The initial device target is the Kindle Oasis 3 on firmware 5.18.2. [Implementation milestones](implementation-plan.md#g-launcher-features)
 
-Launcher **0.5.5** and Store **0.1.7** are published and installed on the Oasis 3. Swipe vertically through the grouped Settings
-list. **Back** returns to the previous position. **Apps › Manage installed apps** opens Store's installed list, and
+Swipe vertically through the grouped Settings list. **Back** returns to the previous position.
+In Launcher 0.5.9, **Apps › Installed apps** lists installed package versions and offers offline uninstall.
 **App visibility** is a scrollable list of individual home-screen switches. Grid settings reuse the existing
 preferences in `apps.toml`. **Storage** links to the same installed list and to Store's saved catalog controls.
-Older Store versions still open at Today.
 
 **Date and time** under System shows the device clock and the UTC offset from the stock Kindle time zone.
 **Sync** asks the firmware's clock tool to update the time over Wi-Fi. **Refresh** re-reads the configured time zone,
@@ -83,8 +82,7 @@ stock Kindle handoff have been validated.
    animation** preference. Keep the existing normal and dark themes. Expand text scaling to independent apps when
    they use the shared control and pass their own layout tests.
 3. **Storage and device information.** Reuse Quick Settings' used and total storage reading for Kindle user storage.
-   Add an **Installed apps** link
-   to Store and the existing **Clear saved catalog** action. Show model and firmware when available, with Launcher
+   Link to **Installed apps** and the existing **Clear saved catalog** action. Show model and firmware when available, with Launcher
    version and USB status. Keep cleanup explicit. Test the storage page with a full drive and while USB owns the volume.
 4. **App grid and settings navigation.** Make the existing grid layout controls easier to discover alongside Hidden apps.
    Keep related settings together in the scrolling overview. Preserve Back and Done behaviour.

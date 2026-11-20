@@ -1,7 +1,7 @@
 # PrimitiveOS implementation plan
 
 Updated 20 November 2026. The public catalog contains **36 listings**, including **35 first-party apps** and the linked
-KOReader entry. Its system releases are Primitive Launcher **0.5.5**, Store **0.1.7**, Primitive Browser **0.2.18**,
+KOReader entry. Its system releases are Primitive Launcher **0.5.9**, Store **0.1.7**, Primitive Browser **0.2.18**,
 and Primitive Terminal **0.1.8**. These versions describe the public catalog. See the [latest device evidence](handoff/STATE.md)
 for what has been confirmed on the Oasis 3. [Live catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json)
 
@@ -48,7 +48,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [F17 Files and Viewer](#f17-files-and-viewer) | F / Files and Viewer | Viewer opens PDF, JPEG, and PNG offline with continuous PDF scrolling. Files can hand documents to Viewer or KOReader. |
 | [F18 Reader](#f18-reader) | F / Reader | Reader 0.1.0 and Files 0.1.2 are published after automated Oasis 3 checks. The offline reading feature matrix remains open. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
-| [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.5 and Store 0.1.7 are published and installed on the Oasis 3. Display previews wallpaper and adjusts opacity for Home, Sleep, and Startup. Detailed device checks remain open. |
+| [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.9 adds offline uninstall to Settings. Display previews wallpaper and adjusts opacity for Home, Sleep, and Startup. Detailed device checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
 
 Open release verification starts with the [study and work device checks](#study-and-work-release), using the installed
@@ -550,13 +550,17 @@ approved icons. The first-party app directory links every current Store release.
 ### G6 Storage and settings navigation
 
 - [x] Add used and total storage, the device profile and read firmware version, and links to installed apps and
-      Store settings. The mock supervisor opens Store's installed list only for the intended launch. (Mac)
+      Store settings. (Mac)
 - [x] Add per-app visibility, grid columns and rows, and updated startup and sleep descriptions. Scroll vertically
       through Settings and App visibility. The desktop driver checks swipes, opening a scrolled setting, and restoring
       the list position with Back. (Mac)
-- [ ] Verify Settings and App visibility scrolling, the installed-app shortcut, USB status, and storage totals on the
-      Oasis 3. Check Store updates and removal from that path and confirm that visibility and grid changes persist after
-      reboot.
+- [x] Add a scrollable Installed apps list under Apps and Storage. Read receipts offline, confirm uninstall, and
+      refresh the Home grid and list after removal. Desktop tests cover app data preservation, protected apps, and
+      removal without a catalog. [Launcher 0.5.9](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.9)
+- [x] Verify the 0.5.9 supervised update and Settings uninstall on the Oasis 3. Cancel preserved the test app.
+      Uninstall removed its receipt and package files while preserving the data sentinel. The library entry and
+      preferences matched their pre-update checksums. (Oasis 3, 20 November 2026)
+- [ ] Check USB status and storage totals and confirm visibility and grid changes persist after reboot.
 
 ### G7 Date and time
 

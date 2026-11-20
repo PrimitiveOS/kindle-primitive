@@ -306,9 +306,10 @@ longer has are removed after the record. **Update all** runs updates one at a ti
 
 ### 6.3 Remove
 
-Run the reviewed `pre-uninstall.sh` if present, delete the files listed in `installed.json`, prune empty folders,
-and reload the launcher's apps. User files outside the recorded file list stay in place. The Store refuses to remove
-Launcher, Store, or an app that another installed app requires.
+Store and Launcher Settings use the same journaled removal engine. It runs the reviewed `pre-uninstall.sh` if present,
+removes the files listed in `installed.json`, and prunes empty folders. User files outside the recorded file list stay
+in place. Both entry points protect Launcher and Store and enforce package dependencies. Settings reads local receipts
+without a catalog and reloads the installed list and Home grid after the operation.
 
 ### 6.4 Hooks
 
