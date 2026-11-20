@@ -83,9 +83,13 @@ store's categories), `description`, `repo`, `licence` (SPDX id, or the licence's
 
 - `source`: `hosted` (our release assets, sha256-checked), `upstream` (the author's own release URL, pinned by sha256;
   nothing re-hosted), or `link` (instructions and a link; no install).
-- `versions` are newest first. A published version is never edited; a broken one gets `withdrawn` with a reason.
+- `versions` are newest first. Keep each published release's package identity, contents, and checksum. Mark a broken
+  version as `withdrawn` and record the reason.
 - A `hosted` or `upstream` version lists `assets` for each architecture it has, with `url` (https), `sha256` and `size`.
   A `link` version has no `assets`.
+- App IDs identify packages and installed records independently of the GitHub repository name. When moving a first-party
+  repository, update `repo` and the repository component of its asset URLs after verifying the same assets at the new
+  address. Keep the package ID, install directory, version tags, ZIP names, sizes, and checksums.
 - `changes` states what the app does outside its own folder: `network`, `stops_kindle_ui`, `starts_at_boot`,
   `root_filesystem`, `hooks`, and a `notes` sentence. These flags are shown to the user before installing.
 - `version` is `X.Y.Z` for our apps, or the upstream's own version (`2026.10` for KOReader), with an optional `-pN` when only
