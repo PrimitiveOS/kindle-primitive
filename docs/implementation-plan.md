@@ -492,6 +492,7 @@ approved icons. The first-party app directory links every current Store release.
 - [x] Add the desktop fixed-page PDF and comics workflows, and native offline text formats. (Mac)
 - [x] Add library favorites and collections, custom reading fonts, additional accessibility controls, and continuous PDF scrolling with printed page labels. (Mac)
 - [x] Verify desktop annotation interchange, comic spreads, scan columns, OCR language selection, and text reflow across source pages. Build the licensed ARMHF package and native test bundle. (Mac)
+- [x] Verify chapter-spanning thumbnails, navigation history, EPUB cover and series previews, a subset of KOReader EPUB progress, and original-word scan reflow in the desktop suite. (Mac)
 - [ ] Complete the offline reading capability matrix in `doannt-kindle-reader/docs/reading-parity-plan.md`, including
       scanned reading, specialist formats, and migration.
 - [ ] Run the consolidated automated Kindle verification on the completed implementation through the existing Launcher,
