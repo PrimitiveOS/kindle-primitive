@@ -15,8 +15,10 @@ on the Kindle Oasis 3 with the owner present.
 
 ## Phase 2: one theme
 
-- [ ] Find why the launcher's icons show dark while the theme is light (device check of `settings.txt` and the
-  drawn screen).
+- [x] Find why the icons look dark in light mode: the icon artwork. Nine bundled icons are black tiles and the rest
+  white tiles, and icons are drawn as-is in both themes (screen captures in both themes, 2026-11-21).
+- [ ] Icon forms: a light and a dark form for every bundled icon (design first, the owner approves the set), and the
+  launcher picks the form for the theme (`icon.png`, `icon-dark.png`).
 - [ ] Theme contract (§4.2): apps read `dark_mode` from `launcher/settings.txt` at start and on `SIGUSR1`.
 - [ ] Browser: chrome follows the system theme; Night stays a page-content option, renamed so it is not confused
   with dark mode. Browser release.

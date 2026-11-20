@@ -71,6 +71,13 @@ gets `SIGUSR1` (the same signal as a wake redraw). Its chrome (bars, buttons, ke
 may keep a content option, for example the browser's Night mode for web pages, but that option changes page content
 only, never the chrome, and it is shown as a content option, not as dark mode.
 
+App icons follow the theme too. Today an icon is drawn exactly as its PNG, in both themes, and the icon set has two
+styles: some icons are a white tile, others a black tile (Store, Cards, Cascade, Chess, Crossword, Minesweeper,
+Solitaire, Sudoku, Terminal). So the grid looks half light and half dark in either theme (checked on the Kindle,
+2026-11-21, in both themes). The rule: every icon has a light form (white tile, black glyph) and a dark form (black
+tile, white glyph), and the launcher draws the form that matches the theme. An app ships `icon.png` (light) and
+`icon-dark.png` (dark); without a dark form the light one is used in both themes.
+
 ### 4.3 Quick settings from any app
 
 The system gesture (the same swipe that opens quick settings on the home screen) belongs to the system layer in every
@@ -91,5 +98,6 @@ Not built yet (see the upgrade plan):
 - The launcher still exits when an app opens, so the quick settings panel and the system gesture are not available
   inside apps. The supervisor covers sleep and wake meanwhile.
 - No app supports `# Wake: redraw` yet, so apps are restarted on wake.
+- Icons do not follow the theme: the bundled icon set mixes white and black tiles (§4.2).
 - Apps do not follow the system theme yet. The browser keeps its own Night mode, and its chrome does not follow the
   launcher's theme.
