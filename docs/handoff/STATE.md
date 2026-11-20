@@ -13,7 +13,7 @@ The [app directory](../../README.md#the-apps) links all first-party repositories
 | Primitive Browser | 0.2.18. | [Browser release](https://github.com/PrimitiveOS/kindle-primitive-browser/releases/tag/v0.2.18) |
 | Primitive Terminal | 0.1.8. Listed under Developer Tools. | [Terminal release](https://github.com/PrimitiveOS/kindle-primitive-terminal/releases/tag/v0.1.8) |
 | Files | 0.1.2. Browse and organise Kindle files and open supported documents in Reader, Viewer, or KOReader. | [Files release](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.2) |
-| Reader | 0.1.1 in Store. Adds folder browsing, compact reading bars, and a text selection popup for EPUB and PDF. The in-place Oasis 3 installation is verified. | [Reader release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.1) |
+| Reader | 0.1.2 in Store. Adds icon menus, independent top and bottom swipes, facing pages, and live text and scan settings. The in-place Oasis 3 installation is verified. | [Reader release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.2) |
 | Viewer | 0.1.1. Opens PDFs, JPEGs and PNGs offline. Kindle page buttons scroll PDFs and navigate the file picker. | [Viewer release](https://github.com/PrimitiveOS/kindle-primitive-viewer/releases/tag/v0.1.1) |
 | Store catalog | 36 listings, including 35 hosted first-party apps and one KOReader link. The catalog includes a daily snapshot of package download totals. | [Public catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json) · [Collections](https://primitiveos.github.io/kindle-primitive-catalog/v1/collections.json) |
 | Tools and Build | Shared app kit, packager, and reusable release workflow. Apps pin Tools by commit. The Launcher and Store releases allow the organization catalog host. | [Tools repo](https://github.com/PrimitiveOS/kindle-primtitive-tools) · [Build repo](https://github.com/PrimitiveOS/kindle-primitive-build) |
@@ -97,6 +97,9 @@ terms for Terminal, Tools, and earlier releases are recorded in the [licensing a
   smoke rendered the picker and EPUB and PDF controls and selection actions. It checked that opening controls left
   the middle of the page intact and that Done issued an exit. Interactive device checks remain open.
   [Reader 0.1.1 release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.1)
+- Reader 0.1.2 passed 280 desktop tests. Oasis 3 installation preserved Reader state and verified all 23 files.
+  Its offscreen EPUB and PDF previews matched six macOS menu images byte for byte. Live gestures and page-button
+  checks remain open. [Reader 0.1.2 release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.2)
 - The physical-device checks for the eleven Study and work releases remain open. Check Store install or update,
   app launch and exit, touch targets, both portrait orientations, sleep and wake, USB eject, and data persistence.
   Record passing hardware results per release before adding a model to `tested_on`.

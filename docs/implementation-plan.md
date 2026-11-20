@@ -46,7 +46,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Published with desktop previews and ARMHF packages. Device gates remain. |
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
 | [F17 Files and Viewer](#f17-files-and-viewer) | F / Files and Viewer | Viewer opens PDF, JPEG, and PNG offline with continuous PDF scrolling. Files can hand documents to Viewer or KOReader. |
-| [F18 Reader](#f18-reader) | F / Reader | Reader 0.1.1 is live in Store and installed on the Oasis 3. Interactive device checks and the offline feature matrix remain open. |
+| [F18 Reader](#f18-reader) | F / Reader | Reader 0.1.2 is live in Store and installed on the Oasis 3. The icon menus and live settings passed desktop and offscreen checks. Interactive device checks and the remaining parity matrix remain open. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
 | [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.9 adds offline uninstall to Settings. Display previews wallpaper and adjusts opacity for Home, Sleep, and Startup. Detailed device checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
@@ -519,6 +519,18 @@ approved icons. The first-party app directory links every current Store release.
       and selection actions. Verify stable document pixels and the Done action. (Oasis 3, 20 November 2026)
 - [ ] Verify nested folders, both reading bars, EPUB and PDF selection actions, physical page turns, Done and Exit,
       and saved reading position through the Kindle UI.
+- [x] Trace top and bottom controls to KOReader v2026.07.1. Implement native edge gestures, Primitive UI icon grids,
+      live typography and display settings, facing pages, scan controls, and expanded navigation and lookup. Pass 280
+      desktop tests and compile and package ARMHF. (Mac, Reader 0.1.2)
+      [Source and parity checklist](https://github.com/PrimitiveOS/kindle-primitive-reader/blob/main/docs/koreader-controls-parity.md)
+- [x] Install 0.1.2 through the existing Launcher setup and verify all 23 installed files and unchanged Reader state
+      checksums. Run offscreen EPUB and PDF previews and compare six menu images byte for byte with macOS.
+      (Oasis 3, 21 November 2026)
+- [x] Publish the licensed Reader 0.1.2 ZIP and checksum, and verify the live Store listing, icon, five screenshots,
+      package metadata, and current index revision. (Published)
+      [Reader 0.1.2 release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.2)
+      · [Store listing](https://primitiveos.github.io/kindle-primitive-catalog/v1/apps/primitive-reader.json)
+- [ ] Verify on-device edge swipes, live settings, page buttons, and normal exit in Reader 0.1.2.
 - [ ] Repeat final-release sleep, wake, USB eject, and panel refresh checks on the Oasis 3.
 - [ ] Complete the offline reading capability matrix, including scanned reading, specialist formats, and migration.
       [Reader feature plan](https://github.com/PrimitiveOS/kindle-primitive-reader/blob/main/docs/reading-parity-plan.md)
