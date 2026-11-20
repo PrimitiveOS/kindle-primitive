@@ -46,6 +46,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Published with desktop previews and ARMHF packages. Device gates remain. |
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
 | [F17 Files and Viewer](#f17-files-and-viewer) | F / Files and Viewer | Viewer opens PDF, JPEG, and PNG offline with continuous PDF scrolling. Files can hand documents to Viewer or KOReader. |
+| [F18 Reader](#f18-reader) | F / Reader | Native EPUB, fixed-page PDF and comic workflows are in desktop development. The final automated Kindle verification and release are pending. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
 | [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.5 and Store 0.1.7 are published and installed on the Oasis 3. Display previews wallpaper and adjusts opacity for Home, Sleep, and Startup. Detailed device checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
@@ -483,6 +484,16 @@ approved icons. The first-party app directory links every current Store release.
       in the file picker.
 - [ ] Check USB eject, both portrait orientations, and performance on larger documents on the Oasis 3.
 - [x] Publish Viewer and the Files update to GitHub and list both releases in Store. [Viewer plan](viewer-plan.md)
+
+### F18 Reader
+
+- [x] Measure the Rust EPUB engine on Oasis 3 and verify paced page turns, suspend and resume, and USB eject.
+- [x] Implement the native reading library, saved passages, EPUB navigation and reading bars in the Reader repository. (Mac)
+- [x] Add the desktop fixed-page PDF and comics workflows, and native offline text formats. (Mac)
+- [ ] Complete the offline reading capability matrix in `doannt-kindle-reader/docs/reading-parity-plan.md`, including
+      scanned reading, specialist formats, and migration.
+- [ ] Run the consolidated automated Kindle verification on the completed implementation through the existing Launcher,
+      then publish the verified package to GitHub and Store.
 
 ---
 
