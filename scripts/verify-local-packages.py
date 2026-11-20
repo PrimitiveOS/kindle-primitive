@@ -16,7 +16,8 @@ ROOT = Path(__file__).resolve().parents[1]
 local_checkout = runpy.run_path(str(ROOT / "scripts/app-repositories.py"))["local_checkout"]
 SCHEMA = json.loads((ROOT / "schema/manifest.schema.json").read_text())
 MAIN_BINARIES = {"primitive-launcher": "kl-launcher", "primitive-store": "kl-store-app",
-                 "primitive-browser": "kb-kindle", "primitive-terminal": "kt-terminal"}
+                 "primitive-browser": "kb-kindle", "primitive-terminal": "kt-terminal",
+                 "primitive-viewer": "kl-viewer-app"}
 HELPER_EXECUTABLES = {
     "primitive-launcher": "launcher/ssh/bin/dropbear",
     "primitive-browser": "browser/bin/fbink",

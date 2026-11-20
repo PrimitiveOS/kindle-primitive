@@ -1,47 +1,43 @@
 # Viewer for PrimitiveOS
 
-**Viewer** is a proposed standalone Store app for opening PDFs and images offline. It brings the same open, fit,
-zoom, and rotate controls to each format. Apple's Preview is the reference for opening different file types in
-one place and adding page navigation when a document has multiple pages. [Apple Preview guide](https://support.apple.com/en-mide/guide/preview/prvw11470/mac)
+**Viewer** opens PDFs and images offline in one standalone app. The reading view keeps the document close to the
+edges, with compact controls above and below it.
 
 ## Planned first release
 
 | Format | What the reader can do |
 |---|---|
-| PDF | Read a page at a time, use the Kindle page buttons or swipe horizontally, and tap the page number to jump to a page. Resume at the last page. |
-| JPEG | View photos with their embedded orientation and open larger photos at a reduced resolution when the decoder supports it. |
+| PDF | Swipe vertically to scroll through adjacent pages. The Kindle page buttons scroll by most of the visible area. Tap the page indicator to jump to a page. Recent resumes the reading position. |
+| JPEG | View photos with their embedded orientation. The decoder enforces limits on file size and dimensions. |
 | PNG | View screenshots and illustrations, with transparency composited over white. |
 
-The same toolbar offers **Fit screen**, **Fit width**, **Zoom in**, **Zoom out**, and **Rotate** for all three formats.
-Swipe vertically to pan content taller than the viewport. Horizontal swipes pan wide content or turn PDF pages
-when the width fits. The physical page buttons always turn PDF pages. Apply swipes after the finger lifts so the
-e-ink panel redraws once per gesture. The first release opens files read-only and saves reading position in Viewer’s
-own local data. WebP and plain-text previews are candidates for the same interface.
+The bottom bar shows a page indicator for PDFs and **−** and **+** zoom controls. The **View** menu contains
+**Fit screen**, **Fit width**, and **Rotate**. Swipe horizontally to pan content wider than the view. Images can
+pan vertically after zooming. The e-ink screen redraws once after a swipe. Viewer opens files read-only and saves
+reading position in its own local data. WebP and plain-text previews are candidates for the same interface.
 
 ## Opening a file
 
 - **From Launcher.** Open Viewer and choose **Open** to pick a supported file from Kindle user storage. **Recent**
-  reopens a document and restores its saved position.
+  reopens a document and restores its saved position. The Kindle page buttons move through both lists one screen
+  of files at a time.
 - **From Files.** Offer **Open in Viewer** when Viewer is installed and accepts the selected format, and
   **Open in KOReader** for supported documents when KOReader is installed.
 
-Files 0.1.0 already opens PDFs in KOReader. Its handoff replaces the foreground Files process, and the Launcher
-supervisor regains control when the reader exits. Prototype Viewer with a validated document path passed as data
-to a verified installed entry point. Test the return to Launcher first. Returning to the same Files folder and
-scroll position needs a saved Files session and a separate return check. [Files release](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.0)
+Files passes a validated document path directly to the installed Viewer entry point. The handoff keeps the same
+foreground process ID, so the Launcher supervisor continues to manage USB storage. Closing Viewer after opening
+it from Files returns to Launcher. [Files repository](https://github.com/PrimitiveOS/kindle-primitive-files)
 
 ## Rendering on the Kindle
 
-Keep one grayscale viewport for PDFs and images. Each decoder reports the content size and supplies pixels for
-that viewport. Reuse PrimitiveOS’s PNG-to-grayscale and fit routines where their limits fit the input. Prototype
-JPEG with a decoder that supports reduced-size output and explicit limits. Detect the file type from its header
-and check dimensions, decoded bytes, and output limits before allocating image buffers. Use specific messages for
-unsupported, damaged, password-protected, or oversized files. [Shared PNG renderer](https://github.com/PrimitiveOS/kindle-primtitive-tools/blob/main/crates/kl-render/src/image.rs) · [JPEG decoder API](https://docs.rs/jpeg-decoder/latest/jpeg_decoder/struct.Decoder.html)
+Viewer draws one grayscale viewport for PDFs and images. It rasterizes the visible parts of adjacent PDF pages
+and uses the same fit, zoom, and rotation model for JPEGs and PNGs. It detects the format by the file header and
+bounds decoded image and output dimensions. It reports password-protected, damaged, and oversized files.
 
 | PDF engine | Prototype considerations |
 |---|---|
 | PDFium | First candidate. Render to a caller-owned bitmap and read the document through file callbacks. Prototype an ARMHF build with JavaScript and XFA disabled. Measure memory and review the compiled dependencies’ notices before selecting it. [C API](https://pdfium.googlesource.com/pdfium/+/refs/heads/main/public/fpdfview.h) · [Build configuration](https://pdfium.googlesource.com/pdfium/+/refs/heads/main/README.md) · [Licence](https://pdfium.googlesource.com/pdfium/+/refs/heads/main/LICENSE) |
-| Hayro | Pure Rust with MIT or Apache-2.0 licensing. Compare performance and memory on the same fixtures. Its maintainers identify remaining gaps around rendering time and memory use. [Upstream development status](https://github.com/LaurenzV/hayro#development-state) |
+| Hayro | The selected renderer builds for ARMHF and clips to a caller-sized raster. The package includes the upstream notices for Hayro, standard fonts, and Adobe CMaps. [Hayro](https://github.com/LaurenzV/hayro) |
 | MuPDF | Used by KOReader. Artifex distributes MuPDF under AGPL and offers a commercial licence. Review redistribution terms before choosing it for a PolyForm Noncommercial build. [KOReader base](https://github.com/koreader/koreader-base) · [MuPDF releases](https://mupdf.com/releases) |
 
 The Oasis 3 display is 1264 × 1680. One full-screen grayscale buffer occupies about 2 MiB. Render the visible

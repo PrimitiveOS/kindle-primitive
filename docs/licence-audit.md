@@ -49,6 +49,10 @@ installed file inventories. [Release list](education-productivity-apps.md#releas
 
 ## Confirmed policy
 
+Viewer follows the project’s code and artwork licences. Its ARMHF package also includes the notices for Hayro,
+the embedded PDF fonts and Adobe CMaps, and the linked dependencies under `viewer/licenses/`.
+[Viewer notices](https://github.com/PrimitiveOS/kindle-primitive-viewer/tree/main/docs/licenses)
+
 | Material | Licence and scope |
 |---|---|
 | Project-owned software and its compiled distributions | PolyForm Noncommercial 1.0.0 where the project grants it. The umbrella, Build, and Catalog now explicitly state the terms for their own software. |

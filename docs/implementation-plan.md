@@ -1,6 +1,6 @@
 # PrimitiveOS implementation plan
 
-Updated 20 November 2026. The public catalog contains **34 listings**, including **33 first-party apps** and the linked
+Updated 20 November 2026. The public catalog contains **35 listings**, including **34 first-party apps** and the linked
 KOReader entry. Its system releases are Primitive Launcher **0.5.4**, Store **0.1.7**, Primitive Browser **0.2.18**,
 and Primitive Terminal **0.1.8**. These versions describe the public catalog. See the [latest device evidence](handoff/STATE.md)
 for what has been confirmed on the Oasis 3. [Live catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json)
@@ -32,7 +32,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [B2 Our three apps packaged](#b2-our-three-apps-packaged) | B / launcher, browser, terminal | ARMHF releases are listed in Store. Package and installer fixtures passed on the Mac. |
 | [B3 Soft-float builds](#b3-soft-float-builds) | B / launcher, browser, terminal | ARMEL release assets are available. Soft-float Kindle checks remain open. |
 | [C1 Catalog repo and pipeline](#c1-catalog-repo-and-pipeline) | C Catalog / `kindle-primitive-catalog` | The organization’s [catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json) is live. The workflow validates archives and refreshes the download counts. |
-| [C2 Public listings and collections](#c2-public-listings-and-collections) | C / `kindle-primitive-catalog` | 33 first-party apps and the linked KOReader listing are live. |
+| [C2 Public listings and collections](#c2-public-listings-and-collections) | C / `kindle-primitive-catalog` | 34 first-party apps and the linked KOReader listing are live. |
 | [D1 Shared network crate](#d1-shared-network-crate) | D Store / tools | `primitive-net` on tools `main` (`241a527`), tested on the Mac |
 | [D2 Store engine](#d2-store-engine) | D / shared Tools | The engine passes Mac tests for refresh, install, removal, recovery, and signed verification. |
 | [D3 Store screens](#d3-store-screens) | D / standalone Store | Today, Apps, Updates, Search, and product pages are covered by desktop captures in `docs/store-screens/` and the simulation. |
@@ -45,7 +45,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [E5 App template](#e5-app-template) | E / `kindle-primitive-app-template` | Hello 0.1.0 is live in Store. Its desktop driver verifies the lifecycle. |
 | [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Published with desktop previews and ARMHF packages. Device gates remain. |
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
-| [F17 Files and Viewer](#f17-files-and-viewer) | F / Files and Viewer | Files is published and opens documents in KOReader. One standalone Viewer is planned for PDF, JPEG, and PNG. |
+| [F17 Files and Viewer](#f17-files-and-viewer) | F / Files and Viewer | Viewer opens PDF, JPEG, and PNG offline with continuous PDF scrolling. Files can hand documents to Viewer or KOReader. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
 | [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.4 and Store 0.1.7 are published and installed on the Oasis 3. Display includes wallpaper choices for Home, Sleep, and Startup. Detailed device checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
@@ -475,10 +475,14 @@ approved icons. The first-party app directory links every current Store release.
 - [x] Install Files and verify that it opens through the Launcher supervisor on the Oasis 3.
 - [x] Open a sample PDF from Files in KOReader on the Oasis 3. The owner confirmed the page displayed.
 - [ ] Verify the return from KOReader under both device orientations.
-- [ ] Prototype one read-only Viewer for PDF, JPEG, and PNG with shared fit, zoom, pan, and rotation controls.
-      Measure render times and peak memory on the Oasis 3.
-- [ ] Add **Open in Viewer** to Files, verify both entry points and USB eject on the Kindle, then publish Viewer on
-      GitHub and list it in Store. [Viewer plan](viewer-plan.md)
+- [x] Implement one read-only Viewer for PDF, JPEG, and PNG. Scroll PDFs with swipes or Kindle page buttons,
+      resume from Recent, and use compact zoom controls and a View menu. (Mac)
+- [x] Add **Open in Viewer** to Files and keep **Open in KOReader** for its supported formats. (Mac)
+- [x] Install Viewer and Files on the Oasis 3. Verify the Files handoff, swipe and physical-button scrolling, and
+      returning to Launcher. Launch Viewer from its own tile and verify image zoom and physical-button navigation
+      in the file picker.
+- [ ] Check USB eject, both portrait orientations, and performance on larger documents on the Oasis 3.
+- [x] Publish Viewer and the Files update to GitHub and list both releases in Store. [Viewer plan](viewer-plan.md)
 
 ---
 
