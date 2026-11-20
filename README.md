@@ -93,7 +93,7 @@ The Catalog workflow saves reports in Markdown, CSV, and JSON. [Download reports
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Primitive Launcher](https://github.com/PrimitiveOS/kindle-primitive-launcher) | Home screen, wallpaper, quick settings, and device controls. Opens Store and installed apps. | [0.5.4](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.4) |
+| [Primitive Launcher](https://github.com/PrimitiveOS/kindle-primitive-launcher) | Home screen, wallpaper previews, quick settings, and device controls. Opens Store and installed apps. | [0.5.5](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.5) |
 | [Store](https://github.com/PrimitiveOS/kindle-primitive-store) | Browse a scrolling catalog, see app download totals, and install, update, or remove apps. | [0.1.7](https://github.com/PrimitiveOS/kindle-primitive-store/releases/tag/v0.1.7) |
 
 ### Internet

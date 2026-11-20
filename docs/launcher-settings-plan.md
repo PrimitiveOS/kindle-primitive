@@ -4,7 +4,7 @@ Reviewed 20 November 2026 against Primitive Launcher 0.4.10 and its pinned Tools
 **Settings › Battery**. Follow it with controls that improve reading and make existing settings easier to find.
 The initial device target is the Kindle Oasis 3 on firmware 5.18.2. [Implementation milestones](implementation-plan.md#g-launcher-features)
 
-Launcher **0.5.4** and Store **0.1.7** are published and installed on the Oasis 3. Swipe vertically through the grouped Settings
+Launcher **0.5.5** and Store **0.1.7** are published and installed on the Oasis 3. Swipe vertically through the grouped Settings
 list. **Back** returns to the previous position. **Apps › Manage installed apps** opens Store's installed list, and
 **App visibility** is a scrollable list of individual home-screen switches. Grid settings reuse the existing
 preferences in `apps.toml`. **Storage** links to the same installed list and to Store's saved catalog controls.
@@ -14,9 +14,11 @@ Older Store versions still open at Today.
 **Sync** asks the firmware's clock tool to update the time over Wi-Fi. **Refresh** re-reads the configured time zone,
 including a change made in the Kindle interface. The sync runs on request with a timeout. [Date and time milestone](implementation-plan.md#g7-date-and-time)
 
-**Display › Wallpaper** groups the Home Screen, Sleep Screen, and Startup Screen. Each keeps its own choice and can
-return to its default. The sleep picker also offers the existing rotation from `launcher/screensavers/`. Startup shows
-the chosen image when Launcher takes over automatically after the Kindle startup screen. [Wallpaper milestone](implementation-plan.md#g8-wallpaper)
+**Display › Wallpaper** groups the Home Screen, Sleep Screen, and Startup Screen. Tap a picture to preview it,
+adjust **Opacity**, then tap **Apply**. **Back** discards the preview. Each screen keeps its own picture and opacity.
+Home wallpaper extends behind the status bar and page indicator. The sleep picker also rotates images from
+`launcher/screensavers/`. Startup shows the chosen image when Launcher takes over after the Kindle startup screen.
+[Wallpaper milestone](implementation-plan.md#g8-wallpaper)
 
 ## What to take from Apple
 

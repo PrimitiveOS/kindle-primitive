@@ -1,7 +1,7 @@
 # PrimitiveOS implementation plan
 
 Updated 20 November 2026. The public catalog contains **35 listings**, including **34 first-party apps** and the linked
-KOReader entry. Its system releases are Primitive Launcher **0.5.4**, Store **0.1.7**, Primitive Browser **0.2.18**,
+KOReader entry. Its system releases are Primitive Launcher **0.5.5**, Store **0.1.7**, Primitive Browser **0.2.18**,
 and Primitive Terminal **0.1.8**. These versions describe the public catalog. See the [latest device evidence](handoff/STATE.md)
 for what has been confirmed on the Oasis 3. [Live catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json)
 
@@ -47,7 +47,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
 | [F17 Files and Viewer](#f17-files-and-viewer) | F / Files and Viewer | Viewer opens PDF, JPEG, and PNG offline with continuous PDF scrolling. Files can hand documents to Viewer or KOReader. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
-| [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.4 and Store 0.1.7 are published and installed on the Oasis 3. Display includes wallpaper choices for Home, Sleep, and Startup. Detailed device checks remain open. |
+| [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.5 and Store 0.1.7 are published and installed on the Oasis 3. Display previews wallpaper and adjusts opacity for Home, Sleep, and Startup. Detailed device checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
 
 Open release verification starts with the [study and work device checks](#study-and-work-release), using the installed
@@ -544,9 +544,13 @@ approved icons. The first-party app directory links every current Store release.
 
 - [x] Group the Home, Sleep, and Startup pickers under Display. Save each choice locally, support each screen's
       default, preserve the existing sleep rotation, and validate PNGs before use. (Mac)
+- [x] Preview the Home layout and the fitted Sleep and Startup pictures before applying them. Adjust opacity
+      independently for each screen. Cancel leaves the saved choices alone. (Mac)
+- [x] Extend the Home wallpaper behind the status bar and page indicator. Check contrast in both themes. (Mac)
+- [x] Verify the Launcher 0.5.5 in-place update and preservation of wallpaper preferences and PNGs on the Oasis 3.
 - [ ] On the Oasis 3, verify legibility on both Home themes and after turning the device, sleep and wake with a fixed
       image and the Kindle screensaver, and the automatic Launcher startup picture after the firmware splash.
-      Check that wallpaper choices persist and refresh after USB eject.
+      Apply a preview opacity change and confirm it persists. Check the wallpaper gallery again after USB eject.
 
 ---
 

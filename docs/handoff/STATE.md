@@ -8,7 +8,7 @@ The [app directory](../../README.md#the-apps) links all first-party repositories
 | Component | Published state | Source |
 |---|---|---|
 | PrimitiveOS umbrella | App directory and implementation plan under the PrimitiveOS GitHub organization. | [Umbrella repository](https://github.com/PrimitiveOS/kindle-primitive) |
-| Primitive Launcher | 0.5.4. Bootstraps Store from the organization catalog. Includes vertical Settings, device and app controls, clock sync, and wallpapers. | [Launcher release](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.4) |
+| Primitive Launcher | 0.5.5. Previews wallpapers before Apply, keeps separate opacity for each screen, and extends Home wallpaper behind both bars. | [Launcher release](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.5) |
 | Store | 0.1.7. Refreshes from the organization catalog. Scrolls vertically, preloads nearby artwork, and shows the cached download total on app pages. | [Store release](https://github.com/PrimitiveOS/kindle-primitive-store/releases/tag/v0.1.7) |
 | Primitive Browser | 0.2.18. | [Browser release](https://github.com/PrimitiveOS/kindle-primitive-browser/releases/tag/v0.2.18) |
 | Primitive Terminal | 0.1.8. Listed under Developer Tools. | [Terminal release](https://github.com/PrimitiveOS/kindle-primitive-terminal/releases/tag/v0.1.8) |
@@ -67,6 +67,10 @@ terms for Terminal, Tools, and earlier releases are recorded in the [licensing a
 - On the same device, Store 0.1.7 fetched the new public index and showed all 34 listings. It refreshed 33
   listings and reused one with zero listing or artwork failures. The saved index matched the live index
   byte for byte. [Catalog publication run](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/runs/44656500321)
+- Launcher 0.5.5 passed its in-place startup trial on 20 November. The running binary and boot copy matched the
+  verified ARMHF package. Library entry contents, wallpaper settings, and the PNG galleries matched their
+  pre-update hashes. The desktop simulator exercised preview, opacity changes, Back, and Apply. Captures show
+  full-screen Home in both themes.
 - Files 0.1.0 installed and opened through the Launcher supervisor on 20 November. Desktop tests covered file
   operations. The owner opened a sample PDF from Files and confirmed that KOReader displayed the test page.
 - On 20 November, Files 0.1.1 opened a PDF through Viewer 0.1.0 on firmware 5.18.2. The owner confirmed
