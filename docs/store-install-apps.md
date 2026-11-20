@@ -20,12 +20,12 @@ Primitive Launcher is the only manual app install for initial setup. If Launcher
 [Find an app](#3-find-an-app) or [Update apps](#5-update-apps).
 
 1. Download and extract the Launcher ZIP for your Kindle. Check it against the matching `.sha256` file.
-   [Latest Launcher release](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases/latest)
+   [Latest Launcher release](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/latest)
 2. Connect the Kindle by USB while Amazon's Kindle interface is open. Copy `launcher/` to the root of the Kindle
    drive and `documents/Launcher.sh` into your existing Kindle `documents/` folder.
 3. Eject and unplug the Kindle. Open **Launcher** in the Kindle library.
 
-The release includes the full guide and checksum commands. [Launcher installation guide](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/blob/main/docs/INSTALL.md)
+The release includes the full guide and checksum commands. [Launcher installation guide](https://github.com/PrimitiveOS/kindle-primitive-launcher/blob/main/docs/INSTALL.md)
 
 ## 3. Find an app
 
@@ -45,7 +45,7 @@ Four tabs are at the bottom:
 
 Store opens the saved catalog immediately. To fetch new listings, connect to Wi-Fi and tap **Refresh**. If you tap
 **Done** during a refresh, Store stops the refresh safely and returns to Launcher.
-[Live Store collections](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json)
+[Live Store collections](https://primitiveos.github.io/kindle-primitive-catalog/v1/collections.json)
 
 Tap an app to open its page: what it does, pictures of it, what is new, its version history, **What this app changes**,
 and information such as its size, licence and the Kindles it was tested on.

@@ -91,11 +91,11 @@ KindleForge's tags map onto them for imported entries.
 Curated lists in the catalog (`collections.json`) have an ID, a title, a short description, and an ordered list of app
 IDs. The catalog has **Start here**, **Made by Primitive**, and **Study and work**. The study collection groups the 11
 education and productivity releases from 20 November 2026 with Primitive Browser. The catalog repository publishes
-collections independently of Store and Launcher builds. [Live collections](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json)
+collections independently of Store and Launcher builds. [Live collections](https://primitiveos.github.io/kindle-primitive-catalog/v1/collections.json)
 
 ### 4.3 Static API (GitHub Pages)
 
-Base: `https://doannguyentrong.github.io/kindle-primitive-catalog/v1/` (the version in the path changes only when the
+Base: `https://primitiveos.github.io/kindle-primitive-catalog/v1/` (the version in the path changes only when the
 format breaks).
 
 | File | Content | Size target |
@@ -117,7 +117,7 @@ The optional `downloads` object has an `as_of` report timestamp and a `by_app` m
 Store reads the totals from the saved index and shows them offline. The catalog's daily report
 aggregates GitHub release ZIP downloads, including Store downloads, direct downloads, updates, repeat downloads,
 and automated checks. An app with no reported total displays **Unavailable**.
-[Catalog workflow and reports](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/workflows/catalog.yml)
+[Catalog workflow and reports](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/workflows/catalog.yml)
 
 ### 4.4 The app listing: `apps/<id>/app.json`
 
@@ -134,7 +134,7 @@ after checks. Schema version 1:
   "developer": { "name": "Primitive AI", "url": "https://github.com/DoanNguyenTrong" },
   "categories": ["internet"],
   "description": "Several short paragraphs, plain text.",
-  "repo": "https://github.com/DoanNguyenTrong/kindle-primitive-browser",
+  "repo": "https://github.com/PrimitiveOS/kindle-primitive-browser",
   "licence": "AGPL-3.0-only",
   "source": "hosted",
   "icon": "icon.png",
@@ -157,7 +157,7 @@ after checks. Schema version 1:
       "tested_on": ["KindleOasis3"],
       "assets": {
         "armhf": {
-          "url": "https://github.com/DoanNguyenTrong/kindle-primitive-browser/releases/download/v0.2.16/primitive-browser-0.2.16-armhf.zip",
+          "url": "https://github.com/PrimitiveOS/kindle-primitive-browser/releases/download/v0.2.16/primitive-browser-0.2.16-armhf.zip",
           "sha256": "64 hex characters",
           "size": 4500000
         }
@@ -359,7 +359,7 @@ A nightly job re-checks that every asset URL still answers with the same sha256 
 
 The 20 November 2026 deployment passed the CI archive checks and published 33 listings, including 32 hosted apps
 and KOReader as a link. See [local verification](local-verification.md#study-and-work-release-verification) for the
-release and simulator checks. [Published catalog workflow](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/runs/44580696716)
+release and simulator checks. [Published catalog workflow](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/runs/44580696716)
 
 ## 8. Requirements
 

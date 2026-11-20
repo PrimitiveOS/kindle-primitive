@@ -28,7 +28,7 @@ own local data. WebP and plain-text previews are candidates for the same interfa
 Files 0.1.0 already opens PDFs in KOReader. Its handoff replaces the foreground Files process, and the Launcher
 supervisor regains control when the reader exits. Prototype Viewer with a validated document path passed as data
 to a verified installed entry point. Test the return to Launcher first. Returning to the same Files folder and
-scroll position needs a saved Files session and a separate return check. [Files release](https://github.com/DoanNguyenTrong/kindle-primitive-files/releases/tag/v0.1.0)
+scroll position needs a saved Files session and a separate return check. [Files release](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.0)
 
 ## Rendering on the Kindle
 
@@ -36,7 +36,7 @@ Keep one grayscale viewport for PDFs and images. Each decoder reports the conten
 that viewport. Reuse PrimitiveOS’s PNG-to-grayscale and fit routines where their limits fit the input. Prototype
 JPEG with a decoder that supports reduced-size output and explicit limits. Detect the file type from its header
 and check dimensions, decoded bytes, and output limits before allocating image buffers. Use specific messages for
-unsupported, damaged, password-protected, or oversized files. [Shared PNG renderer](https://github.com/DoanNguyenTrong/kindle-primtitive-tools/blob/main/crates/kl-render/src/image.rs) · [JPEG decoder API](https://docs.rs/jpeg-decoder/latest/jpeg_decoder/struct.Decoder.html)
+unsupported, damaged, password-protected, or oversized files. [Shared PNG renderer](https://github.com/PrimitiveOS/kindle-primtitive-tools/blob/main/crates/kl-render/src/image.rs) · [JPEG decoder API](https://docs.rs/jpeg-decoder/latest/jpeg_decoder/struct.Decoder.html)
 
 | PDF engine | Prototype considerations |
 |---|---|
@@ -47,7 +47,7 @@ unsupported, damaged, password-protected, or oversized files. [Shared PNG render
 The Oasis 3 display is 1264 × 1680. One full-screen grayscale buffer occupies about 2 MiB. Render the visible
 area when zoomed and start with one current frame. Bound any adjacent-page cache using device measurements.
 Close decoder handles before USB export. After eject, revalidate the document before restoring its view.
-[Oasis 3 profile](https://github.com/DoanNguyenTrong/kindle-primtitive-tools/blob/main/crates/primitive-device/src/profile.rs)
+[Oasis 3 profile](https://github.com/PrimitiveOS/kindle-primtitive-tools/blob/main/crates/primitive-device/src/profile.rs)
 
 ## Implementation and verification
 

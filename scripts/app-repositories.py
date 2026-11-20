@@ -3,7 +3,7 @@
 import json
 import re
 
-REPOSITORY_BASE = "https://github.com/DoanNguyenTrong/kindle-primitive-"
+REPOSITORY_BASE = "https://github.com/PrimitiveOS/kindle-primitive-"
 REPOSITORY_SLUGS = {
     "primitive-crateshift": "crate-shift",
     "primitive-hello": "app-template",

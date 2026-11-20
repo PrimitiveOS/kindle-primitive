@@ -151,7 +151,7 @@ Stop here: the owner reports what the screen shows. Fix what the logs show as er
 - Check: `sh scripts/check-app.sh apps/primitive-store`, `sh scripts/test.sh` (with the venv python first on PATH),
   `python3 -I scripts/check-assets.py apps/primitive-store` (downloads the asset and checks it). Commit on a branch, merge to
   the catalog's `main` only with the owner's go-ahead (publishing), push. Pages rebuilds in a few minutes; check
-  `https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json` lists `primitive-store`.
+  `https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json` lists `primitive-store`.
 
 ## T9. The launcher's bootstrap (a launcher deploy: a stop point with the owner present; STORE-APP.md 8.10)
 

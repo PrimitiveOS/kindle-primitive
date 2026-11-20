@@ -50,7 +50,7 @@ names are the reference.
 
 ## 2. The network and install work: `crates/store-app/src/store.rs`
 
-- `STORE_CATALOG = "https://doannguyentrong.github.io/kindle-primitive-catalog/v1"`: the catalog's published site.
+- `STORE_CATALOG = "https://primitiveos.github.io/kindle-primitive-catalog/v1"`: the catalog's published site.
 - `NetSource` (implements `kl_store::refresh::Source`): `text(url)` → `primitive_net::fetch_text(url, Policy::store(MAX_INDEX))`;
   `bytes(url, max)` → `primitive_net::fetch_bytes(url, Policy::store(max))`. Errors become strings.
 - `start_store_refresh(tx, dir)`: a thread. Logs `store: refresh started`. Runs

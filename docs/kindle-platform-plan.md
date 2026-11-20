@@ -25,15 +25,15 @@ Component folders are siblings inside the umbrella checkout. New apps have their
 
 | Local folder | GitHub repository | Role and published state |
 |---|---|---|
-| `doannt-kindle` | [kindle-primitive](https://github.com/DoanNguyenTrong/kindle-primitive) | Platform docs, schemas, shared skills, and app directory. |
-| `doannt-kindle-launcher` | [kindle-primitive-launcher](https://github.com/DoanNguyenTrong/kindle-primitive-launcher) | Launcher 0.4.10. Home screen, settings, lifecycle, USB handoff, and Store bootstrap. |
-| `doannt-kindle-store` | [kindle-primitive-store](https://github.com/DoanNguyenTrong/kindle-primitive-store) | Store 0.1.4. Standalone catalog browser and installer. |
-| `doannt-kindle-browser` | [kindle-primitive-browser](https://github.com/DoanNguyenTrong/kindle-primitive-browser) | Primitive Browser 0.2.18. Standalone browsing and offline reading. |
-| `doannt-kindle-terminal` | [kindle-primitive-terminal](https://github.com/DoanNguyenTrong/kindle-primitive-terminal) | Primitive Terminal 0.1.8. Developer tool. |
-| `doannt-kindle-tools` | [kindle-primtitive-tools](https://github.com/DoanNguyenTrong/kindle-primtitive-tools) | Shared Rust device, e-ink, UI, network, and Store crates. Each app pins the Tools revision that it builds against. |
-| `doannt-kindle-build` | [kindle-primitive-build](https://github.com/DoanNguyenTrong/kindle-primitive-build) | Reusable release workflow and package validation. Apps pin the workflow revision. |
-| `doannt-kindle-catalog` | [kindle-primitive-catalog](https://github.com/DoanNguyenTrong/kindle-primitive-catalog) | Listings, collections, icons, and screenshots, published through GitHub Pages. |
-| `doannt-kindle-app-template` | [kindle-primitive-app-template](https://github.com/DoanNguyenTrong/kindle-primitive-app-template) | Native app template and source for Hello 0.1.0. |
+| `doannt-kindle` | [kindle-primitive](https://github.com/PrimitiveOS/kindle-primitive) | Platform docs, schemas, shared skills, and app directory. |
+| `doannt-kindle-launcher` | [kindle-primitive-launcher](https://github.com/PrimitiveOS/kindle-primitive-launcher) | Launcher 0.4.10. Home screen, settings, lifecycle, USB handoff, and Store bootstrap. |
+| `doannt-kindle-store` | [kindle-primitive-store](https://github.com/PrimitiveOS/kindle-primitive-store) | Store 0.1.4. Standalone catalog browser and installer. |
+| `doannt-kindle-browser` | [kindle-primitive-browser](https://github.com/PrimitiveOS/kindle-primitive-browser) | Primitive Browser 0.2.18. Standalone browsing and offline reading. |
+| `doannt-kindle-terminal` | [kindle-primitive-terminal](https://github.com/PrimitiveOS/kindle-primitive-terminal) | Primitive Terminal 0.1.8. Developer tool. |
+| `doannt-kindle-tools` | [kindle-primtitive-tools](https://github.com/PrimitiveOS/kindle-primtitive-tools) | Shared Rust device, e-ink, UI, network, and Store crates. Each app pins the Tools revision that it builds against. |
+| `doannt-kindle-build` | [kindle-primitive-build](https://github.com/PrimitiveOS/kindle-primitive-build) | Reusable release workflow and package validation. Apps pin the workflow revision. |
+| `doannt-kindle-catalog` | [kindle-primitive-catalog](https://github.com/PrimitiveOS/kindle-primitive-catalog) | Listings, collections, icons, and screenshots, published through GitHub Pages. |
+| `doannt-kindle-app-template` | [kindle-primitive-app-template](https://github.com/PrimitiveOS/kindle-primitive-app-template) | Native app template and source for Hello 0.1.0. |
 
 Versions above describe public releases. For licensing boundaries and older versions, see the [licensing audit](licence-audit.md).
 
@@ -101,9 +101,9 @@ See the [Store architecture](store-architecture.md) for cache paths, the install
 |---|---|---|
 | S1 Foundations | Contracts, schemas, and project licence policy are documented. | [Foundations](implementation-plan.md#a-foundations-phase-s1) |
 | S2 Packaging | Tagged releases build through the shared workflow. Launcher, Browser, and Terminal have ARMEL builds that still need soft-float hardware validation. | [Packaging](implementation-plan.md#b-packaging-phase-s2) |
-| S3 Catalog | Pages serves 34 listings, including 33 hosted ARMHF apps and the KOReader link. Scheduled catalog builds include per-app download totals. | [Catalog](implementation-plan.md#c-catalog-phase-s3), [live index](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json) |
+| S3 Catalog | Pages serves 34 listings, including 33 hosted ARMHF apps and the KOReader link. Scheduled catalog builds include per-app download totals. | [Catalog](implementation-plan.md#c-catalog-phase-s3), [live index](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json) |
 | S4–S5 Store and modules | Standalone Store is published. Earlier Oasis 3 checks covered bootstrap, catalog refresh, app install and open, and a Launcher update trial. Remaining device checks are listed in the implementation plan. | [Store](implementation-plan.md#d-store-phases-s4-and-s5) |
-| S6 Native apps | The 2026-11-20 release added seven education and productivity apps and updated Cards, Notes, Focus, and Calculator. All 11 release packages passed desktop Store integration checks. Oasis 3 validation is pending for those versions. | [Release scope](education-productivity-apps.md), [Study and work collection](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json) |
+| S6 Native apps | The 2026-11-20 release added seven education and productivity apps and updated Cards, Notes, Focus, and Calculator. All 11 release packages passed desktop Store integration checks. Oasis 3 validation is pending for those versions. | [Release scope](education-productivity-apps.md), [Study and work collection](https://primitiveos.github.io/kindle-primitive-catalog/v1/collections.json) |
 | S7 Hardening | Package recovery, optional signing, and catalog checks have local or CI coverage. Hardware recovery, broader model coverage, and any production signing rollout have their own gates. | [Hardening](implementation-plan.md#h-hardening-phase-s7) |
 
 The release gate covers published artifacts and catalog checks. The device gate covers what was actually observed on a

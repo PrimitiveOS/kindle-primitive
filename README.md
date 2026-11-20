@@ -13,10 +13,10 @@ Written in Rust, drawn for e-ink, hosted on GitHub.
 
 <table>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/fdd81fd0a76fb596b3094f251e9a93a5e5c08070/docs/images/home.png" alt="Home screen" width="200"><br><sub>Home screen</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/fdd81fd0a76fb596b3094f251e9a93a5e5c08070/docs/images/quick-settings.png" alt="Quick settings" width="200"><br><sub>Quick settings</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/fdd81fd0a76fb596b3094f251e9a93a5e5c08070/docs/images/settings.png" alt="Settings" width="200"><br><sub>Settings</sub></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/DoanNguyenTrong/kindle-primitive-launcher/fdd81fd0a76fb596b3094f251e9a93a5e5c08070/docs/images/dark-home.png" alt="Dark mode" width="200"><br><sub>Dark mode</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/PrimitiveOS/kindle-primitive-launcher/fdd81fd0a76fb596b3094f251e9a93a5e5c08070/docs/images/home.png" alt="Home screen" width="200"><br><sub>Home screen</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/PrimitiveOS/kindle-primitive-launcher/fdd81fd0a76fb596b3094f251e9a93a5e5c08070/docs/images/quick-settings.png" alt="Quick settings" width="200"><br><sub>Quick settings</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/PrimitiveOS/kindle-primitive-launcher/fdd81fd0a76fb596b3094f251e9a93a5e5c08070/docs/images/settings.png" alt="Settings" width="200"><br><sub>Settings</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/PrimitiveOS/kindle-primitive-launcher/fdd81fd0a76fb596b3094f251e9a93a5e5c08070/docs/images/dark-home.png" alt="Dark mode" width="200"><br><sub>Dark mode</sub></td>
   </tr>
 </table>
 
@@ -67,7 +67,7 @@ sleep and wake, rotation, the battery, USB drive mode, power off and restart. Ap
 uninstall on their own, and the standalone Store installs them from the Kindle itself.
 
 Use the **Kindle UI** tile to return to Amazon's interface. Launcher can also restore it if startup fails. The Launcher
-installation guide explains how to remove its files. [Launcher installation guide](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/blob/main/docs/INSTALL.md)
+installation guide explains how to remove its files. [Launcher installation guide](https://github.com/PrimitiveOS/kindle-primitive-launcher/blob/main/docs/INSTALL.md)
 
 ## Inspiration
 
@@ -83,58 +83,58 @@ installation guide explains how to remove its files. [Launcher installation guid
 
 The tables cover every first-party app in Store. App names link to GitHub repositories, and version numbers link to
 the releases currently listed in Store.
-[Live Store catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
+[Live Store catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json)
 
 The catalog's daily report totals GitHub release ZIP downloads for each first-party app. Downloads through Store,
 manual downloads, and automated checks all contribute. Store 0.1.6 shows the total on each app page when available.
-The Catalog workflow saves reports in Markdown, CSV, and JSON. [Download reports](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/workflows/catalog.yml)
+The Catalog workflow saves reports in Markdown, CSV, and JSON. [Download reports](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/workflows/catalog.yml)
 
 ### System
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Primitive Launcher](https://github.com/DoanNguyenTrong/kindle-primitive-launcher) | Home screen, wallpaper, quick settings, and device controls. Opens Store and installed apps. | [0.5.3](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases/tag/v0.5.3) |
-| [Store](https://github.com/DoanNguyenTrong/kindle-primitive-store) | Browse a scrolling catalog, see app download totals, and install, update, or remove apps. | [0.1.6](https://github.com/DoanNguyenTrong/kindle-primitive-store/releases/tag/v0.1.6) |
+| [Primitive Launcher](https://github.com/PrimitiveOS/kindle-primitive-launcher) | Home screen, wallpaper, quick settings, and device controls. Opens Store and installed apps. | [0.5.3](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.3) |
+| [Store](https://github.com/PrimitiveOS/kindle-primitive-store) | Browse a scrolling catalog, see app download totals, and install, update, or remove apps. | [0.1.6](https://github.com/PrimitiveOS/kindle-primitive-store/releases/tag/v0.1.6) |
 
 ### Internet
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Primitive Browser](https://github.com/DoanNguyenTrong/kindle-primitive-browser) | Browse the web with e-ink page controls, night mode, and an image switch. | [0.2.18](https://github.com/DoanNguyenTrong/kindle-primitive-browser/releases/tag/v0.2.18) |
+| [Primitive Browser](https://github.com/PrimitiveOS/kindle-primitive-browser) | Browse the web with e-ink page controls, night mode, and an image switch. | [0.2.18](https://github.com/PrimitiveOS/kindle-primitive-browser/releases/tag/v0.2.18) |
 
 ### Education and study
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Reading Practice](https://github.com/DoanNguyenTrong/kindle-primitive-reading-practice) | Read short passages, answer questions, and retry missed answers. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-reading-practice/releases/tag/v0.1.0) |
-| [Math Practice](https://github.com/DoanNguyenTrong/kindle-primitive-math-practice) | Read examples and practice arithmetic, fractions, and percentages. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-math-practice/releases/tag/v0.1.0) |
-| [Language Practice](https://github.com/DoanNguyenTrong/kindle-primitive-language-practice) | Practice beginner English using Vietnamese prompts and short tap exercises. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-language-practice/releases/tag/v0.1.0) |
+| [Reading Practice](https://github.com/PrimitiveOS/kindle-primitive-reading-practice) | Read short passages, answer questions, and retry missed answers. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-reading-practice/releases/tag/v0.1.0) |
+| [Math Practice](https://github.com/PrimitiveOS/kindle-primitive-math-practice) | Read examples and practice arithmetic, fractions, and percentages. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-math-practice/releases/tag/v0.1.0) |
+| [Language Practice](https://github.com/PrimitiveOS/kindle-primitive-language-practice) | Practice beginner English using Vietnamese prompts and short tap exercises. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-language-practice/releases/tag/v0.1.0) |
 
 ### Productivity
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Cards](https://github.com/DoanNguyenTrong/kindle-primitive-cards) | Create or import flashcards, review on a schedule, and run short self-tests. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-cards/releases/tag/v0.1.1) |
-| [Focus](https://github.com/DoanNguyenTrong/kindle-primitive-focus) | Run focus and break timers, label sessions, and review a weekly study log. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-focus/releases/tag/v0.1.1) |
-| [Notes](https://github.com/DoanNguyenTrong/kindle-primitive-notes) | Write and search plain-text notes, check off lists, and keep a reading journal. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-notes/releases/tag/v0.1.1) |
-| [Agenda](https://github.com/DoanNguyenTrong/kindle-primitive-agenda) | Read a chronological calendar and import supported events from an iCalendar file. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-agenda/releases/tag/v0.1.0) |
-| [Habits](https://github.com/DoanNguyenTrong/kindle-primitive-habits) | Log check-ins and review daily or weekly habits. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-habits/releases/tag/v0.1.0) |
-| [Tasks](https://github.com/DoanNguyenTrong/kindle-primitive-tasks) | Manage today’s tasks, due dates, lists, and repeating items. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-tasks/releases/tag/v0.1.0) |
+| [Cards](https://github.com/PrimitiveOS/kindle-primitive-cards) | Create or import flashcards, review on a schedule, and run short self-tests. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-cards/releases/tag/v0.1.1) |
+| [Focus](https://github.com/PrimitiveOS/kindle-primitive-focus) | Run focus and break timers, label sessions, and review a weekly study log. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-focus/releases/tag/v0.1.1) |
+| [Notes](https://github.com/PrimitiveOS/kindle-primitive-notes) | Write and search plain-text notes, check off lists, and keep a reading journal. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-notes/releases/tag/v0.1.1) |
+| [Agenda](https://github.com/PrimitiveOS/kindle-primitive-agenda) | Read a chronological calendar and import supported events from an iCalendar file. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-agenda/releases/tag/v0.1.0) |
+| [Habits](https://github.com/PrimitiveOS/kindle-primitive-habits) | Log check-ins and review daily or weekly habits. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-habits/releases/tag/v0.1.0) |
+| [Tasks](https://github.com/PrimitiveOS/kindle-primitive-tasks) | Manage today’s tasks, due dates, lists, and repeating items. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-tasks/releases/tag/v0.1.0) |
 
 ### Utilities
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Calculator](https://github.com/DoanNguyenTrong/kindle-primitive-calculator) | Calculate and revisit history, convert units, see worked steps, and plot a graph. | [0.1.3](https://github.com/DoanNguyenTrong/kindle-primitive-calculator/releases/tag/v0.1.3) |
-| [Files](https://github.com/DoanNguyenTrong/kindle-primitive-files) | Browse, find, and organise Kindle files. Open supported documents in KOReader. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-files/releases/tag/v0.1.0) |
-| [Hello](https://github.com/DoanNguyenTrong/kindle-primitive-app-template) | Try a small native example app and use its repository as an app template. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-app-template/releases/tag/v0.1.0) |
-| [Dictionary](https://github.com/DoanNguyenTrong/kindle-primitive-dictionary) | Look up definitions, import a glossary, and export favorites for Cards. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-dictionary/releases/tag/v0.1.1) |
+| [Calculator](https://github.com/PrimitiveOS/kindle-primitive-calculator) | Calculate and revisit history, convert units, see worked steps, and plot a graph. | [0.1.3](https://github.com/PrimitiveOS/kindle-primitive-calculator/releases/tag/v0.1.3) |
+| [Files](https://github.com/PrimitiveOS/kindle-primitive-files) | Browse, find, and organise Kindle files. Open supported documents in KOReader. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.0) |
+| [Hello](https://github.com/PrimitiveOS/kindle-primitive-app-template) | Try a small native example app and use its repository as an app template. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-app-template/releases/tag/v0.1.0) |
+| [Dictionary](https://github.com/PrimitiveOS/kindle-primitive-dictionary) | Look up definitions, import a glossary, and export favorites for Cards. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-dictionary/releases/tag/v0.1.1) |
 
 ### Developer tools
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Primitive Terminal](https://github.com/DoanNguyenTrong/kindle-primitive-terminal) | Run shell commands with the shared on-screen keyboard and command history. | [0.1.8](https://github.com/DoanNguyenTrong/kindle-primitive-terminal/releases/tag/v0.1.8) |
+| [Primitive Terminal](https://github.com/PrimitiveOS/kindle-primitive-terminal) | Run shell commands with the shared on-screen keyboard and command history. | [0.1.8](https://github.com/PrimitiveOS/kindle-primitive-terminal/releases/tag/v0.1.8) |
 
 ### Games
 
@@ -142,38 +142,38 @@ The Catalog workflow saves reports in Markdown, CSV, and JSON. [Download reports
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [2048](https://github.com/DoanNguyenTrong/kindle-primitive-2048) | Swipe the board, merge matching numbers, and beat your best score. | [0.1.2](https://github.com/DoanNguyenTrong/kindle-primitive-2048/releases/tag/v0.1.2) |
-| [Blocks](https://github.com/DoanNguyenTrong/kindle-primitive-blocks) | Place pieces and clear full rows, columns, or 3 × 3 boxes. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-blocks/releases/tag/v0.1.0) |
-| [Crate Shift](https://github.com/DoanNguyenTrong/kindle-primitive-crate-shift) | Swipe to move and push crates onto marked docks across eight puzzles. | [0.1.2](https://github.com/DoanNguyenTrong/kindle-primitive-crate-shift/releases/tag/v0.1.2) |
-| [Crossword](https://github.com/DoanNguyenTrong/kindle-primitive-crossword) | Solve mini crosswords or open your own unlocked `.puz` files. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-crossword/releases/tag/v0.1.0) |
-| [Memory Match](https://github.com/DoanNguyenTrong/kindle-primitive-memory-match) | Turn over cards and find every matching pair in as few attempts as possible. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-memory-match/releases/tag/v0.1.1) |
-| [Minesweeper](https://github.com/DoanNguyenTrong/kindle-primitive-minesweeper) | Flag mines and beat your best time on three board sizes. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-minesweeper/releases/tag/v0.1.0) |
-| [Nonogram](https://github.com/DoanNguyenTrong/kindle-primitive-nonogram) | Reveal pictures by solving row and column clues. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-nonogram/releases/tag/v0.1.1) |
-| [Sudoku](https://github.com/DoanNguyenTrong/kindle-primitive-sudoku) | Solve generated puzzles with pencil marks, mistake checks, and undo. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-sudoku/releases/tag/v0.1.0) |
-| [Switchyard](https://github.com/DoanNguyenTrong/kindle-primitive-switchyard) | Set track junctions and dispatch a train to the depot. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-switchyard/releases/tag/v0.1.0) |
-| [Words](https://github.com/DoanNguyenTrong/kindle-primitive-words) | Solve a daily five-letter word puzzle or play a practice round. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-words/releases/tag/v0.1.0) |
+| [2048](https://github.com/PrimitiveOS/kindle-primitive-2048) | Swipe the board, merge matching numbers, and beat your best score. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-2048/releases/tag/v0.1.2) |
+| [Blocks](https://github.com/PrimitiveOS/kindle-primitive-blocks) | Place pieces and clear full rows, columns, or 3 × 3 boxes. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-blocks/releases/tag/v0.1.0) |
+| [Crate Shift](https://github.com/PrimitiveOS/kindle-primitive-crate-shift) | Swipe to move and push crates onto marked docks across eight puzzles. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-crate-shift/releases/tag/v0.1.2) |
+| [Crossword](https://github.com/PrimitiveOS/kindle-primitive-crossword) | Solve mini crosswords or open your own unlocked `.puz` files. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-crossword/releases/tag/v0.1.0) |
+| [Memory Match](https://github.com/PrimitiveOS/kindle-primitive-memory-match) | Turn over cards and find every matching pair in as few attempts as possible. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-memory-match/releases/tag/v0.1.1) |
+| [Minesweeper](https://github.com/PrimitiveOS/kindle-primitive-minesweeper) | Flag mines and beat your best time on three board sizes. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-minesweeper/releases/tag/v0.1.0) |
+| [Nonogram](https://github.com/PrimitiveOS/kindle-primitive-nonogram) | Reveal pictures by solving row and column clues. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-nonogram/releases/tag/v0.1.1) |
+| [Sudoku](https://github.com/PrimitiveOS/kindle-primitive-sudoku) | Solve generated puzzles with pencil marks, mistake checks, and undo. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-sudoku/releases/tag/v0.1.0) |
+| [Switchyard](https://github.com/PrimitiveOS/kindle-primitive-switchyard) | Set track junctions and dispatch a train to the depot. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-switchyard/releases/tag/v0.1.0) |
+| [Words](https://github.com/PrimitiveOS/kindle-primitive-words) | Solve a daily five-letter word puzzle or play a practice round. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-words/releases/tag/v0.1.0) |
 
 #### Card and board games
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Chess](https://github.com/DoanNguyenTrong/kindle-primitive-chess) | Play against your Kindle at three levels, save games, and export PGN. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-chess/releases/tag/v0.1.0) |
-| [Ships](https://github.com/DoanNguyenTrong/kindle-primitive-ships) | Place your ships and hunt the opposing fleet against your Kindle or a second player. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-ships/releases/tag/v0.1.0) |
-| [Solitaire](https://github.com/DoanNguyenTrong/kindle-primitive-solitaire) | Play draw-one or draw-three Klondike with touch controls and undo. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-solitaire/releases/tag/v0.1.0) |
+| [Chess](https://github.com/PrimitiveOS/kindle-primitive-chess) | Play against your Kindle at three levels, save games, and export PGN. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-chess/releases/tag/v0.1.0) |
+| [Ships](https://github.com/PrimitiveOS/kindle-primitive-ships) | Place your ships and hunt the opposing fleet against your Kindle or a second player. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-ships/releases/tag/v0.1.0) |
+| [Solitaire](https://github.com/PrimitiveOS/kindle-primitive-solitaire) | Play draw-one or draw-three Klondike with touch controls and undo. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-solitaire/releases/tag/v0.1.0) |
 
 #### Arcade games
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Cascade](https://github.com/DoanNguyenTrong/kindle-primitive-cascade) | Guide falling pieces, clear rows, and choose from three speeds. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-cascade/releases/tag/v0.1.0) |
-| [Snake](https://github.com/DoanNguyenTrong/kindle-primitive-snake) | Choose a speed, steer a continuously moving snake, and collect food to grow. | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-snake/releases/tag/v0.1.0) |
-| [Starship](https://github.com/DoanNguyenTrong/kindle-primitive-starship) | Steer in real time, dodge incoming fire, and defeat the flagship. | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-starship/releases/tag/v0.1.1) |
+| [Cascade](https://github.com/PrimitiveOS/kindle-primitive-cascade) | Guide falling pieces, clear rows, and choose from three speeds. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-cascade/releases/tag/v0.1.0) |
+| [Snake](https://github.com/PrimitiveOS/kindle-primitive-snake) | Choose a speed, steer a continuously moving snake, and collect food to grow. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-snake/releases/tag/v0.1.0) |
+| [Starship](https://github.com/PrimitiveOS/kindle-primitive-starship) | Steer in real time, dodge incoming fire, and defeat the flagship. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-starship/releases/tag/v0.1.1) |
 
 Primitive Terminal uses AGPL-3.0-only. The other current app releases use PolyForm Noncommercial 1.0.0.
 
 See the [gameplay references](docs/gameplay-reference.md) for the original rules and Kindle controls.
 
-Shared code: [kindle-primtitive-tools](https://github.com/DoanNguyenTrong/kindle-primtitive-tools) holds the on-screen
+Shared code: [kindle-primtitive-tools](https://github.com/PrimitiveOS/kindle-primtitive-tools) holds the on-screen
 keyboard and the quick settings figures and icons, under AGPL-3.0 or PolyForm Noncommercial 1.0.0 at your choice.
 
 PrimitiveOS has been tested on a **Kindle Oasis 3**. Each Store listing shows its Kindle requirements and device test status.
@@ -206,7 +206,7 @@ Primitive Launcher is the only app you install manually during initial setup. If
 open **Store** from the Launcher home screen and use **Updates** for newer releases.
 
 1. Download and extract the Launcher ZIP for your Kindle. Compare its SHA-256 with the `.sha256` file on the release
-   page. [Latest Launcher release](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases/latest)
+   page. [Latest Launcher release](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/latest)
 2. Connect the Kindle by USB while Amazon's Kindle interface is open. Copy `launcher/` to the root of the Kindle drive
    and `documents/Launcher.sh` into the Kindle's existing `documents/` folder.
 3. Eject the Kindle drive, unplug the cable, and open **Launcher** in the Kindle library.
@@ -231,12 +231,12 @@ open **Store** from the Launcher home screen and use **Updates** for newer relea
 The apps live side by side inside this repository's folder; this repository ignores them, and each keeps its own history:
 
 ```sh
-git clone https://github.com/DoanNguyenTrong/kindle-primitive.git doannt-kindle
+git clone https://github.com/PrimitiveOS/kindle-primitive.git doannt-kindle
 cd doannt-kindle
-git clone --recurse-submodules https://github.com/DoanNguyenTrong/kindle-primitive-launcher.git doannt-kindle-launcher
-git clone --recurse-submodules https://github.com/DoanNguyenTrong/kindle-primitive-browser.git doannt-kindle-browser
-git clone --recurse-submodules https://github.com/DoanNguyenTrong/kindle-primitive-terminal.git doannt-kindle-terminal
-git clone https://github.com/DoanNguyenTrong/kindle-primtitive-tools.git doannt-kindle-tools
+git clone --recurse-submodules https://github.com/PrimitiveOS/kindle-primitive-launcher.git doannt-kindle-launcher
+git clone --recurse-submodules https://github.com/PrimitiveOS/kindle-primitive-browser.git doannt-kindle-browser
+git clone --recurse-submodules https://github.com/PrimitiveOS/kindle-primitive-terminal.git doannt-kindle-terminal
+git clone https://github.com/PrimitiveOS/kindle-primtitive-tools.git doannt-kindle-tools
 ```
 
 Each app builds for the Kindle with `cargo zigbuild` (target `armv7-unknown-linux-musleabihf`) and has a desktop build that

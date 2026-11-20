@@ -106,7 +106,7 @@ Icons are PNG, 256 × 256, grayscale. Screenshots are PNG, 632 × 840 (half the 
 `categories` and `generated_at`. The device fetches it on refresh and caches it; it fetches a listing when the user
 opens an app.
 
-Base URL: `https://doannguyentrong.github.io/kindle-primitive-catalog/v1/`. The `v1` changes only when the format breaks.
+Base URL: `https://primitiveos.github.io/kindle-primitive-catalog/v1/`. The `v1` changes only when the format breaks.
 
 ## 7. Devices and the choice of package
 

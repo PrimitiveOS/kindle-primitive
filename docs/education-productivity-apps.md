@@ -1,6 +1,6 @@
 # Education and productivity apps for PrimitiveOS
 
-Research and release record for 20 November 2026. The three delivery waves shipped together in Store under **Today › Study and work**. The original prioritization began with **Tasks**, **Reading Practice**, and **Cards Self-test**. [Live collection](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json)
+Research and release record for 20 November 2026. The three delivery waves shipped together in Store under **Today › Study and work**. The original prioritization began with **Tasks**, **Reading Practice**, and **Cards Self-test**. [Live collection](https://primitiveos.github.io/kindle-primitive-catalog/v1/collections.json)
 
 ## Widely used reference apps
 
@@ -44,23 +44,23 @@ A controlled study with prose passages found that recall tests improved later re
 | **Focus** | **Subject labels** and a **Study log** | Enter a label when useful, then start the existing timer. Add a **This week** page with minutes by subject and recent sessions. Keep the minute-based display and existing presets. Explore a Tasks handoff after both apps work independently. |
 | **Calculator** | **Convert** first, then **Steps** and **Graph** | Keep arithmetic and history as the opening screen. **Convert** selects source and destination unit with a single number field. **Steps** can reveal one transformation at a time for a supported fraction or linear equation. **Graph** starts with lines and quadratics, using **Plot**, **Table**, and stepped zoom on a static monochrome canvas. |
 
-Cards accepts a two-column TSV alongside the existing text-only Anki import. Browser saves HTML for offline reading, and KOReader handles e-books. Notes is a place for users' excerpts and takeaways, while Reading Practice supplies original questions and feedback. [Cards](https://github.com/DoanNguyenTrong/kindle-primitive-cards) · [Browser](https://github.com/DoanNguyenTrong/kindle-primitive-browser) · [KOReader](https://koreader.rocks/)
+Cards accepts a two-column TSV alongside the existing text-only Anki import. Browser saves HTML for offline reading, and KOReader handles e-books. Notes is a place for users' excerpts and takeaways, while Reading Practice supplies original questions and feedback. [Cards](https://github.com/PrimitiveOS/kindle-primitive-cards) · [Browser](https://github.com/PrimitiveOS/kindle-primitive-browser) · [KOReader](https://koreader.rocks/)
 
 ## Released apps
 
 | App | Type | GitHub release |
 |---|---|---|
-| Tasks | New | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-tasks/releases/tag/v0.1.0) |
-| Reading Practice | New | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-reading-practice/releases/tag/v0.1.0) |
-| Math Practice | New | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-math-practice/releases/tag/v0.1.0) |
-| Language Practice | New | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-language-practice/releases/tag/v0.1.0) |
-| Dictionary | New | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-dictionary/releases/tag/v0.1.1) |
-| Habits | New | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-habits/releases/tag/v0.1.0) |
-| Agenda | New | [0.1.0](https://github.com/DoanNguyenTrong/kindle-primitive-agenda/releases/tag/v0.1.0) |
-| Cards | Update | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-cards/releases/tag/v0.1.1) |
-| Notes | Update | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-notes/releases/tag/v0.1.1) |
-| Focus | Update | [0.1.1](https://github.com/DoanNguyenTrong/kindle-primitive-focus/releases/tag/v0.1.1) |
-| Calculator | Update | [0.1.3](https://github.com/DoanNguyenTrong/kindle-primitive-calculator/releases/tag/v0.1.3) |
+| Tasks | New | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-tasks/releases/tag/v0.1.0) |
+| Reading Practice | New | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-reading-practice/releases/tag/v0.1.0) |
+| Math Practice | New | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-math-practice/releases/tag/v0.1.0) |
+| Language Practice | New | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-language-practice/releases/tag/v0.1.0) |
+| Dictionary | New | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-dictionary/releases/tag/v0.1.1) |
+| Habits | New | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-habits/releases/tag/v0.1.0) |
+| Agenda | New | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-agenda/releases/tag/v0.1.0) |
+| Cards | Update | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-cards/releases/tag/v0.1.1) |
+| Notes | Update | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-notes/releases/tag/v0.1.1) |
+| Focus | Update | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-focus/releases/tag/v0.1.1) |
+| Calculator | Update | [0.1.3](https://github.com/PrimitiveOS/kindle-primitive-calculator/releases/tag/v0.1.3) |
 
 ## Kindle interaction requirements
 
@@ -72,6 +72,6 @@ Cards accepts a two-column TSV alongside the existing text-only Anki import. Bro
 
 ## Release verification
 
-Desktop interaction and persistence checks passed. The ARMHF archives matched their public SHA-256, contained both licence files, and installed and removed successfully after a simulated catalog refresh. The seven new Store icons matched the package entries, and the live Store catalog matched the published listings, screenshots, and collection. [Local verification](local-verification.md) · [Catalog deployment](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/runs/44580696716)
+Desktop interaction and persistence checks passed. The ARMHF archives matched their public SHA-256, contained both licence files, and installed and removed successfully after a simulated catalog refresh. The seven new Store icons matched the package entries, and the live Store catalog matched the published listings, screenshots, and collection. [Local verification](local-verification.md) · [Catalog deployment](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/runs/44580696716)
 
 Physical Oasis 3 checks for these versions remain open. The implementation plan tracks the app-specific checks and shared device gate. [Study and work milestones](implementation-plan.md#study-and-work-release)

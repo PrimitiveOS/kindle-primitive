@@ -3,7 +3,7 @@
 Updated 20 November 2026. The public catalog contains **34 listings**, including **33 first-party apps** and the linked
 KOReader entry. Its system releases are Primitive Launcher **0.5.3**, Store **0.1.6**, Primitive Browser **0.2.18**,
 and Primitive Terminal **0.1.8**. These versions describe the public catalog. See the [latest device evidence](handoff/STATE.md)
-for what has been confirmed on the Oasis 3. [Live catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
+for what has been confirmed on the Oasis 3. [Live catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json)
 
 The platform decisions are in the [platform plan](kindle-platform-plan.md). See the [Store architecture](store-architecture.md),
 [local verification guide](local-verification.md), and [education and productivity app designs](education-productivity-apps.md)
@@ -65,7 +65,7 @@ Launcher. The broader device gates cover [Store](#d4-store-on-the-kindle), [Hell
 - [x] Skills in `.agents/skills` (`primitive-ui`, `kindle-device`, `kindle-eink`), linked as `.claude/skills` (Mac).
 - [x] Umbrella README and the CC BY-NC-SA 4.0 `LICENSE` for docs and skills (Mac).
 - [x] `.gitignore` ignores every app folder by pattern (`/doannt-kindle-*/`), so new app repos need no change.
-- [x] First commit (`8be0056`); remote `https://github.com/DoanNguyenTrong/kindle-primitive.git` (public); pushed.
+- [x] First commit (`8be0056`); remote `https://github.com/PrimitiveOS/kindle-primitive.git` (public); pushed.
 
 ### A2 Contracts and schemas
 
@@ -91,8 +91,8 @@ Launcher. The broader device gates cover [Store](#d4-store-on-the-kindle), [Hell
 - [x] Terminal is published in Store as a developer tool. Its package remains under AGPL-3.0. (Published)
 - [x] All 11 study and work ARMHF releases include `LICENSE` and `LICENSE-DOCS`. The latest public ZIPs match their
       repository licence files and published checksum sidecars. (Mac, Published)
-- [x] The Launcher release jobs completed successfully for [v0.3.12](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/actions/runs/44313351840)
-      and [v0.3.20](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/actions/runs/44438661847).
+- [x] The Launcher release jobs completed successfully for [v0.3.12](https://github.com/PrimitiveOS/kindle-primitive-launcher/actions/runs/44313351840)
+      and [v0.3.20](https://github.com/PrimitiveOS/kindle-primitive-launcher/actions/runs/44438661847).
 - [x] The Browser keeps `deploy/fix-hosts-truyendich.sh` outside the release package. Both ARM package inventories
       were checked locally (R4).
 - [ ] Browser: the untracked `docs/tinhte/` folder is the owner's; commit it or leave it out.
@@ -174,7 +174,7 @@ Repo `kindle-primitive-catalog` (local `doannt-kindle-catalog`).
       allowed roots and paths, find hooks, check the licence against the allow list; post a summary comment.
 - [x] `scripts/build-index.py` writes `site/v1/index.json`, `collections.json`, `apps/<id>.json`, icons, and shots.
 - [x] Build and publish `site/` to GitHub Pages on pushes to `main`. The 20 November workflow passed schema and
-      deep release asset checks before deploying. (Published) [Catalog deployment](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/runs/44580696716)
+      deep release asset checks before deploying. (Published) [Catalog deployment](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/runs/44580696716)
 - [x] `catalog-health.yml` schedules a nightly check of published asset size and SHA-256 and opens an issue on failure.
 - [x] Pull request template with the submission checklist (store-submit-app §1).
 
@@ -183,7 +183,7 @@ Repo `kindle-primitive-catalog` (local `doannt-kindle-catalog`).
 - [x] Launcher, Store, Browser, Terminal, Hello, and the other first-party apps have hosted releases. KOReader is listed
       under Reading as a third-party link. (Published)
 - [x] Start here, Made by Primitive, and Study and work are live. Study and work contains the 11 new or updated apps
-      and Primitive Browser. (Published) [Live collections](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json)
+      and Primitive Browser. (Published) [Live collections](https://primitiveos.github.io/kindle-primitive-catalog/v1/collections.json)
 - [x] **Gate C**. The 33-entry live index matched the generated catalog. The 11 changed listings, their icons and
       screenshots, and the collections file matched the published assets byte for byte. (Published)
 
@@ -250,7 +250,7 @@ Following the `primitive-ui` skill; reviewed as desktop screenshots before any d
 ### D4 Store on the Kindle
 
 - [x] Store 0.1.2 bootstrapped over Wi-Fi, refreshed 19 listings, installed apps, and opened Hello on the Oasis 3 on
-      19 November 2026. [Store test record](https://github.com/DoanNguyenTrong/kindle-primitive-store#status)
+      19 November 2026. [Store test record](https://github.com/PrimitiveOS/kindle-primitive-store#status)
 - [x] Device logs for Store 0.1.4 recorded a faster first frame, a refresh that reused all 19 listings, and return to
       Launcher through **Done** during refresh. The owner confirmed startup was faster. See `build/store-performance/`
       in the local workspace for the run logs.

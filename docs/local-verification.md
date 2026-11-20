@@ -65,8 +65,8 @@ The seven new app scriptlets also matched their approved icons. [Release list](e
 The Store integration fixture refreshed the eleven listings from a local catalog built from the published sources,
 installed and removed every package in temporary Kindle storage, and preserved the fixture's personal document.
 The GitHub Pages deployment passed catalog and archive validation. The public index, eleven listings, icons,
-screenshots, and collections matched the staged catalog. [Public catalog index](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json) ·
-[Catalog workflow](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/runs/44580696716)
+screenshots, and collections matched the staged catalog. [Public catalog index](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json) ·
+[Catalog workflow](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/runs/44580696716)
 
 To repeat the package checks, place each published ZIP and matching SHA-256 sidecar in
 `build/study-and-work/packages/<app-id>/` and run the following from the umbrella checkout with the corresponding

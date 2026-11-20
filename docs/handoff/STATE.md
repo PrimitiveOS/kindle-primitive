@@ -7,36 +7,36 @@ The [app directory](../../README.md#the-apps) links all first-party repositories
 
 | Component | Published state | Source |
 |---|---|---|
-| PrimitiveOS umbrella | App directory and education and productivity design. | [Umbrella release update `9c6fa84`](https://github.com/DoanNguyenTrong/kindle-primitive/commit/9c6fa84) |
-| Primitive Launcher | 0.5.3. Includes vertical Settings, expanded device and app controls, clock sync, and wallpapers. | [Launcher release](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/releases/tag/v0.5.3) |
-| Store | 0.1.6. Scrolls vertically, preloads nearby artwork, and shows the cached download total on app pages. | [Store release](https://github.com/DoanNguyenTrong/kindle-primitive-store/releases/tag/v0.1.6) |
-| Primitive Browser | 0.2.18. | [Browser release](https://github.com/DoanNguyenTrong/kindle-primitive-browser/releases/tag/v0.2.18) |
-| Primitive Terminal | 0.1.8. Listed under Developer Tools. | [Terminal release](https://github.com/DoanNguyenTrong/kindle-primitive-terminal/releases/tag/v0.1.8) |
-| Files | 0.1.0. Browse and organise Kindle files and hand supported documents to KOReader. | [Files release](https://github.com/DoanNguyenTrong/kindle-primitive-files/releases/tag/v0.1.0) |
-| Store catalog | 34 listings, including 33 hosted first-party apps and one KOReader link. The catalog includes a daily snapshot of package download totals. | [Public catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json) · [Collections](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/collections.json) |
-| Tools and Build | Shared app kit, packager, and reusable release workflow. The eleven release builds use the Tools pin at `3d9026c`. | [Tools commit](https://github.com/DoanNguyenTrong/kindle-primtitive-tools/commit/3d9026c) · [Build repo](https://github.com/DoanNguyenTrong/kindle-primitive-build) |
+| PrimitiveOS umbrella | App directory and education and productivity design. | [Umbrella release update `9c6fa84`](https://github.com/PrimitiveOS/kindle-primitive/commit/9c6fa84) |
+| Primitive Launcher | 0.5.3. Includes vertical Settings, expanded device and app controls, clock sync, and wallpapers. | [Launcher release](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.3) |
+| Store | 0.1.6. Scrolls vertically, preloads nearby artwork, and shows the cached download total on app pages. | [Store release](https://github.com/PrimitiveOS/kindle-primitive-store/releases/tag/v0.1.6) |
+| Primitive Browser | 0.2.18. | [Browser release](https://github.com/PrimitiveOS/kindle-primitive-browser/releases/tag/v0.2.18) |
+| Primitive Terminal | 0.1.8. Listed under Developer Tools. | [Terminal release](https://github.com/PrimitiveOS/kindle-primitive-terminal/releases/tag/v0.1.8) |
+| Files | 0.1.0. Browse and organise Kindle files and hand supported documents to KOReader. | [Files release](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.0) |
+| Store catalog | 34 listings, including 33 hosted first-party apps and one KOReader link. The catalog includes a daily snapshot of package download totals. | [Public catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json) · [Collections](https://primitiveos.github.io/kindle-primitive-catalog/v1/collections.json) |
+| Tools and Build | Shared app kit, packager, and reusable release workflow. The eleven release builds use the Tools pin at `3d9026c`. | [Tools commit](https://github.com/PrimitiveOS/kindle-primtitive-tools/commit/3d9026c) · [Build repo](https://github.com/PrimitiveOS/kindle-primitive-build) |
 
 ## Study and work releases
 
 | App | Version | Published changes |
 |---|---|---|
-| [Tasks](https://github.com/DoanNguyenTrong/kindle-primitive-tasks) | 0.1.0 | Today, upcoming items, named lists, repeating tasks, and completion with undo. |
-| [Reading Practice](https://github.com/DoanNguyenTrong/kindle-primitive-reading-practice) | 0.1.0 | Twelve original passages at two levels, saved progress, and a retry for missed questions. |
-| [Math Practice](https://github.com/DoanNguyenTrong/kindle-primitive-math-practice) | 0.1.0 | Worked examples and five-problem sessions for arithmetic, fractions, and percentages. |
-| [Language Practice](https://github.com/DoanNguyenTrong/kindle-primitive-language-practice) | 0.1.0 | Ten beginner English lessons for Vietnamese speakers and review of missed exercises. |
-| [Dictionary](https://github.com/DoanNguyenTrong/kindle-primitive-dictionary) | 0.1.1 | Offline lookup with an original starter glossary, favorites, previewed TSV import, and export for Cards. |
-| [Habits](https://github.com/DoanNguyenTrong/kindle-primitive-habits) | 0.1.0 | Daily and weekly check-ins, editable history, and CSV export. |
-| [Agenda](https://github.com/DoanNguyenTrong/kindle-primitive-agenda) | 0.1.0 | Upcoming appointments and one-way `.ics` import for one-off all-day events and events with local or UTC time. |
-| [Cards](https://github.com/DoanNguyenTrong/kindle-primitive-cards) | 0.1.1 | Self-test with retry and previewed two-column TSV import. Existing scheduled reviews keep their progress. |
-| [Notes](https://github.com/DoanNguyenTrong/kindle-primitive-notes) | 0.1.1 | Plain-text checklists and a reading journal template. |
-| [Focus](https://github.com/DoanNguyenTrong/kindle-primitive-focus) | 0.1.1 | Optional subject labels and a weekly study log. |
-| [Calculator](https://github.com/DoanNguyenTrong/kindle-primitive-calculator) | 0.1.3 | Unit conversions, worked fraction and linear-equation steps, and line and quadratic plots. |
+| [Tasks](https://github.com/PrimitiveOS/kindle-primitive-tasks) | 0.1.0 | Today, upcoming items, named lists, repeating tasks, and completion with undo. |
+| [Reading Practice](https://github.com/PrimitiveOS/kindle-primitive-reading-practice) | 0.1.0 | Twelve original passages at two levels, saved progress, and a retry for missed questions. |
+| [Math Practice](https://github.com/PrimitiveOS/kindle-primitive-math-practice) | 0.1.0 | Worked examples and five-problem sessions for arithmetic, fractions, and percentages. |
+| [Language Practice](https://github.com/PrimitiveOS/kindle-primitive-language-practice) | 0.1.0 | Ten beginner English lessons for Vietnamese speakers and review of missed exercises. |
+| [Dictionary](https://github.com/PrimitiveOS/kindle-primitive-dictionary) | 0.1.1 | Offline lookup with an original starter glossary, favorites, previewed TSV import, and export for Cards. |
+| [Habits](https://github.com/PrimitiveOS/kindle-primitive-habits) | 0.1.0 | Daily and weekly check-ins, editable history, and CSV export. |
+| [Agenda](https://github.com/PrimitiveOS/kindle-primitive-agenda) | 0.1.0 | Upcoming appointments and one-way `.ics` import for one-off all-day events and events with local or UTC time. |
+| [Cards](https://github.com/PrimitiveOS/kindle-primitive-cards) | 0.1.1 | Self-test with retry and previewed two-column TSV import. Existing scheduled reviews keep their progress. |
+| [Notes](https://github.com/PrimitiveOS/kindle-primitive-notes) | 0.1.1 | Plain-text checklists and a reading journal template. |
+| [Focus](https://github.com/PrimitiveOS/kindle-primitive-focus) | 0.1.1 | Optional subject labels and a weekly study log. |
+| [Calculator](https://github.com/PrimitiveOS/kindle-primitive-calculator) | 0.1.3 | Unit conversions, worked fraction and linear-equation steps, and line and quadratic plots. |
 
 All eleven published ARMHF ZIPs passed SHA-256, manifest, and licence-file checks against the app sources. The seven
 new packages carry their approved Launcher icons, which match the public Store artwork. Desktop app checks and the
 Store integration run passed. The integration run refreshed the fixture catalog, installed and removed each public
 package, and preserved a seeded personal document. GitHub Pages served the updated catalog, collection, icons, and
-screenshots. [Catalog publication run](https://github.com/DoanNguyenTrong/kindle-primitive-catalog/actions/runs/44580696716)
+screenshots. [Catalog publication run](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/runs/44580696716)
 
 Each package carries `LICENSE` and `LICENSE-DOCS`. Project-owned code uses PolyForm Noncommercial 1.0.0.
 Project-owned documentation, artwork, and bundled content use CC BY-NC-SA 4.0 where declared. The policy and the

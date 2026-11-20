@@ -95,7 +95,7 @@ on:
     tags: ["v*"]
 jobs:
   release:
-    uses: DoanNguyenTrong/kindle-primitive-build/.github/workflows/package.yml@9533d481058f4d67b29568f40b30017ddcb32c8e
+    uses: PrimitiveOS/kindle-primitive-build/.github/workflows/package.yml@9533d481058f4d67b29568f40b30017ddcb32c8e
     permissions:
       contents: write
     with:
@@ -108,7 +108,7 @@ jobs:
       docs-licence-file: LICENSE-DOCS
 ```
 
-To package locally, use the shared packager with your staged files. [Build guide](https://github.com/DoanNguyenTrong/kindle-primitive-build)
+To package locally, use the shared packager with your staged files. [Build guide](https://github.com/PrimitiveOS/kindle-primitive-build)
 
 ### 3.4 Release
 

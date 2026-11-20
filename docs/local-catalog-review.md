@@ -19,7 +19,7 @@ Candidate listings use `.invalid` asset URLs and leave `tested_on` empty. The ge
 
 For the 20 November 2026 **Study and work** releases, the published packages were checked with a separate fixture
 containing those eleven app IDs. See [the release checks](local-verification.md#study-and-work-release-verification).
-The public index and collections serve the approved listings and artwork. [Live Store catalog](https://doannguyentrong.github.io/kindle-primitive-catalog/v1/index.json)
+The public index and collections serve the approved listings and artwork. [Live Store catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json)
 
 To rebuild the review and repeat the signed verification from existing simulation output, run these commands.
 

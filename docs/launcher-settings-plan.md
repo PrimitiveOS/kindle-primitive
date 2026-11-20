@@ -47,7 +47,7 @@ ways to conserve Kindle battery. Display appearance and front-light level are se
 The released Launcher 0.4.10 layout uses nine fixed-height rows. The current Settings overview and App visibility
 scroll vertically as their content grows. Keep the title and navigation control visible during swipes, and keep tap
 geometry and rendering in sync for partly visible rows, both portrait orientations, and larger text sizes.
-[Settings layout at the released Tools pin](https://github.com/DoanNguyenTrong/kindle-primtitive-tools/blob/107f15a5cd893b66cdacdb406a3144342224b592/crates/kl-core/src/layout.rs#L51)
+[Settings layout at the released Tools pin](https://github.com/PrimitiveOS/kindle-primtitive-tools/blob/107f15a5cd893b66cdacdb406a3144342224b592/crates/kl-core/src/layout.rs#L51)
 
 ## First release
 
@@ -61,7 +61,7 @@ Reuse the Launcher’s existing `powerd` percentage and charging reads and the O
 power directly from the charger. Use USB drive state for storage export.
 Reject out-of-range levels and preserve unknown readings. Use the existing awake status refresh with a redraw of
 the changed card only. The page adds no wake timer. The Oasis 3 log confirms the charger-online and charging flags
-change on plug-in. [Device reads](https://github.com/DoanNguyenTrong/kindle-primtitive-tools/blob/107f15a5cd893b66cdacdb406a3144342224b592/crates/primitive-device/src/lib.rs#L118) · [Oasis 3 USB test](https://github.com/DoanNguyenTrong/kindle-primitive-launcher/blob/v0.4.10/docs/device-notes.md#usb-with-volumd-paused-s5-first-half-2026-11-18-0938)
+change on plug-in. [Device reads](https://github.com/PrimitiveOS/kindle-primtitive-tools/blob/107f15a5cd893b66cdacdb406a3144342224b592/crates/primitive-device/src/lib.rs#L118) · [Oasis 3 USB test](https://github.com/PrimitiveOS/kindle-primitive-launcher/blob/v0.4.10/docs/device-notes.md#usb-with-volumd-paused-s5-first-half-2026-11-18-0938)
 
 **Display.** Keep the existing front-light and warmth levels and their shared values in Quick Settings. Use the same
 tappable scale and single-step buttons in both places. A device capability check controls whether to
