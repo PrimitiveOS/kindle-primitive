@@ -78,6 +78,11 @@ inverted), so the one full update shows the whole screen as it will be. When the
 put the old screen back: it resumes the app and sends the redraw signal, and the app draws itself in the new theme.
 An app that cannot redraw gets its saved screen back and keeps the old theme until it starts again.
 
+Only the theme switch itself flashes the screen. The app's redraw after it must not flash: a GC16 flash shows the
+inverse of what is on the screen for a moment, and the inverse of the new theme is the old one. The app kit
+(`Display::show_calm`) and the browser (`redraw_all_calm`) draw the whole screen with a non-flashing waveform for the
+launcher's redraw request.
+
 App icons follow the theme too. Today an icon is drawn exactly as its PNG, in both themes, and the icon set has two
 styles: some icons are a white tile, others a black tile (Store, Cards, Cascade, Chess, Crossword, Minesweeper,
 Solitaire, Sudoku, Terminal). So the grid looks half light and half dark in either theme (checked on the Kindle,
@@ -92,6 +97,11 @@ app. The system layer saves the screen, draws the panel over the app, and on clo
 app does not need to redraw. Changes that affect the app (the theme, the rotation) end with a redraw signal (§4.1).
 Every system pop-up over an app (quick settings, the power menu, confirmations) is drawn over the app's saved screen,
 never over the home screen: the renderer takes the app's screen as the backdrop (`Renderer::set_backdrop`).
+
+Opening and closing a pop-up over an app does not flash. When the launcher's display resumes over an app it keeps what
+is on the panel as its last frame, so opening quick settings updates only the panel's box; putting the app's screen
+back updates only the box that changed, with a non-flashing waveform. Only a change over most of the screen (the sleep
+picture going on wake) gets one full update, as a calm update there leaves a ghost.
 
 ## 5. What is built today, and what is not
 
