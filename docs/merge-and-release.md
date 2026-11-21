@@ -75,7 +75,7 @@ State after the merge-and-release run on 2026-11-21. "Release" is the GitHub rel
 
 | Repo | Version released | Release run |
 |---|---|---|
-| Launcher | `v0.6.12` | succeeded |
+| Launcher | `v0.6.18` | succeeded (installed on the owner's Kindle Oasis 3; the 0.6.17 run failed on a stale `Cargo.lock`, not published) |
 | Primitive Browser | `v0.2.21` | succeeded (from `feature/system-layer`; same content as `main`) |
 | Store | `v0.1.8` | succeeded (from `feature/system-layer`; same content as `main`) |
 | Terminal | `v0.2.0` | succeeded (app kit; tested on a Kindle Oasis 3) |
