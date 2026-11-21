@@ -1,6 +1,6 @@
 # PrimitiveOS gameplay references
 
-This review covers the seven games in the current lineup. Snake succeeds Trail Carrier, the earlier turn-based parcel routing puzzle. The games use original Kindle interfaces, artwork, and levels. The sources below describe the rules and controls used to check each game. Desktop tests exercise gameplay and inputs. Physical e-ink timing remains unverified.
+This review covers the seven games in the current lineup. The games use original Kindle interfaces, artwork, and levels. The sources below describe the rules and controls used to check each game. Desktop tests exercise gameplay and inputs. Physical e-ink timing remains unverified.
 
 ## 2048
 
@@ -43,7 +43,3 @@ The Kindle version follows the solo rules. A turn consists of two taps, found pa
 Mobile railway games use different rules. Railbound asks players to lay track and couple carriages to a locomotive. Train Switch uses pre-laid tracks and taps to move junctions while trains are approaching. These games share the idea of routing a train to the right destination. [Railbound developer listing](https://play.google.com/store/apps/details?id=com.Afterburn.Railbound) · [Train Switch developer listing](https://play.google.com/store/apps/details?id=com.barmanstudio.traingame)
 
 Switchyard keeps its original one-train puzzle. The player sets points on existing tracks and dispatches the train, then sees the route it took to the depot or buffer. Each of its eight original yards has a tested solution.
-
-## Trail Carrier
-
-Trail Carrier is the earlier, retired game. Each tap moves one square, taking parcels grows the trail, and reaching the exit within a move budget completes the level. Tests cover all ten routes. Snakebird offers a mobile example of growth-based puzzles, with fruit and different movement rules. [Snakebird developer description](https://noumenongames.itch.io/snakebird)

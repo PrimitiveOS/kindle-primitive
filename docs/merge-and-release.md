@@ -106,7 +106,6 @@ State after the merge-and-release run on 2026-11-21. "Release" is the GitHub rel
 | Sudoku | `v0.1.1` | succeeded |
 | Switchyard | `v0.1.1` | succeeded |
 | Tasks | `v0.1.1` | succeeded |
-| Trail Carrier | `v0.1.1` | succeeded |
 | Viewer | `v0.1.2` | succeeded |
 | Words | `v0.1.1` | succeeded |
 | Reader | not released (no release workflow, no `CHANGELOG.md`) | merged to `main` |
