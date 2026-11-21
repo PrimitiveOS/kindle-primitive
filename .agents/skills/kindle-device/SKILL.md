@@ -84,10 +84,12 @@ the supervisor (`deploy/supervisor.sh`) keeps it in charge while an app is open.
   `lipc-set-prop com.lab126.blanket unload screensaver` removes it. The launcher unloads it to show its own sleep
   picture, and loads it back only when the user picks the Kindle UI. Never load it when an app opens: the user then
   sees the stock lock screen, not their wallpaper.
-- **While an app is open** the supervisor follows `lipc-wait-event -m com.lab126.powerd
-  goingToScreenSaver,outOfScreenSaver`: on sleep it runs `kl-launcher --sleep-screen` (draws the sleep wallpaper);
-  on wake it sends `SIGUSR1` to the app's process group when the app's entry has `# Wake: redraw` in its first ten
-  lines, and restarts the app otherwise. Apps start under `setsid`, so the group is the app's own.
+- **When the launcher does not stay over the app** (an older launcher, or after too many launcher crashes) the
+  supervisor follows `lipc-wait-event -m com.lab126.powerd goingToScreenSaver,outOfScreenSaver`: on sleep it runs
+  `kl-launcher --sleep-screen` (draws the sleep wallpaper); on wake it sends `SIGUSR1` to the app's process group
+  when the app's entry has `# Wake: redraw` in its first ten lines (exact line, plain file, not a link), and
+  restarts the app otherwise. Apps start under `setsid`, so the group is the app's own. When the launcher stays (the
+  normal case), it handles sleep and wake itself (next bullets).
 - **An app under the launcher** (`PRIMITIVE_LAUNCHER=1`) must not stop or start the framework, touch the screensaver,
   or put the Kindle to sleep. It redraws its whole screen on `SIGUSR1` and follows the system theme
   (`dark_mode` in `/mnt/us/launcher/settings.txt`).
@@ -100,8 +102,21 @@ the supervisor (`deploy/supervisor.sh`) keeps it in charge while an app is open.
   SIGUSR1, pauses its own drawing, and over the app it owns only the top-edge swipe (quick settings) and the power
   events: it freezes the app (SIGSTOP to its group), saves the screen, draws its panel over the app's picture
   (`Renderer::set_backdrop`), and on close puts the screen back and resumes the app. Log lines: `system layer: ...`.
+  It sends `SIGUSR1` only to an app whose entry declares `# Wake: redraw` (the supervisor marks it with
+  `run/app-redraws`): after a theme or rotation change while its screen was up (then it does not put the old screen
+  back first), when it had no saved screen, and after the launcher started again over the app. On wake it puts the
+  saved screen back; the app draws nothing.
+- **The power menu** (from Power in quick settings, over the home screen or an app) is Cancel, Kindle UI, Restart,
+  Power off (launcher 0.6.8). There is no Kindle UI tile on the home screen any more. Kindle UI over an app: the
+  supervisor ends the app (TERM to its group) before the Kindle UI starts; the dialog is drawn on a plain page.
+- **Only the theme switch flashes.** Pop-ups over an app open and close without a flash (only the changed box is
+  updated). The app's redraw after the launcher's request must not flash: a GC16 flash shows the inverse of the
+  screen for a moment, and the inverse of the new theme is the old one. The kit draws it with `Display::show_calm`
+  (GC16 in partial mode); the browser with `redraw_all_calm` (the page waveform).
 - **Native apps (the `primitive-app` kit, `primitive_app::run`)**: under the launcher the kit turns SIGUSR1 into a
-  full redraw that reads the theme again, and on wake it redraws only if a redraw was asked for while it slept. An app
+  full redraw that reads the theme again (drawn with `show_calm`), and on wake it redraws only if a redraw was asked
+  for while it slept. It drops the swipe down from the top edge (the system's), so the app never sees it. The
+  contract is in the module docs of `crates/primitive-app/src/lib.rs` and in `docs/contracts.md` §1.1. An app
   built with that kit may declare `# Wake: redraw`. Never add the header to an app whose binary does not handle
   SIGUSR1: the signal ends it.
 - **Library entry scripts** under the launcher: put `# Wake: redraw` in the first ten lines (after the other header
@@ -123,6 +138,10 @@ Lessons from the system layer (each cost a device round):
   `PR_SET_PDEATHSIG`; count them with `ps -o pid,ppid,args | grep lipc-wait-event` (parent 1 means orphaned).
 - A new `supervisor.sh` only runs after Launcher is opened again from the Kindle library (or a restart); the
   installer's restart reloads the launcher binary only.
+- An app frozen under quick settings has input queued behind the freeze. If it draws that input before it takes the
+  redraw request, it flashes the old theme (seen in 2048): take the request first, the moment the loop wakes.
+- The app's redraw after a theme switch was a second GC16 flash and showed the old theme for a moment (2048 and the
+  browser): use a non-flashing whole-screen update for the launcher's redraw.
 
 ## Launcher and the library
 
