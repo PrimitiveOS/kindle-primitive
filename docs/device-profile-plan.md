@@ -62,6 +62,18 @@ device values from the kit, never from constants.
 
 ## 5. Phases
 
+Status (2026-11-21): phases 1–4 and the release part of 6 are done. Phase 5 is not built: the kit still uses the
+Oasis 3's screen, touch and battery values for every model, and the launcher and the Store warn "not tested" for other
+models until it is. That is the follow-up that makes another model's apps fit its screen.
+
+- [x] 1. Design (decisions D1–D4 recorded).
+- [x] 2. Store rules: installs by architecture only (`tools` `kl-store`, `e65cb98`); firmware and `tested_on` are information.
+- [x] 3. Launcher: model detected from the platform codename, or chosen from the supported list (`tools` `fe476aa`, launcher 0.6.20); `device.txt` written without the serial.
+- [x] 4. Store UI: apps with no package for the device's arch are hidden; the app page says "Not tested on your Kindle yet" (`tools` `9d76c67`, Store 0.1.10).
+- [ ] 5. Kit: per-model screen, touch and battery values from `device.txt` (follow-up; see the note above).
+- [x] 6. Release: the arch is recorded per asset and per package (the existing manifest and listing format). An `armel` build is added when needed.
+- [ ] 7. Docs and skills: the firmware line in `store-submit-app.md` and the conventions skill's "no device constants" line (follow-up).
+
 1. **Design (this document).** Decisions D1–D4 below.
 2. **Store rules** (`tools` `kl-store`): arch-only `pick_version`; firmware and `tested_on` informational; a test
    per rule. Reads the profile from `device.txt` when present.
