@@ -77,41 +77,41 @@ stays `armhf` only until its `armel` build has been checked on a device. Then ad
 
 ## 6. Which repos publish a release
 
-State after the merge-and-release run on 2026-11-21. "Release" is the GitHub release made by the Release workflow.
+State on 2026-11-22 (the 2026-11-21 run plus the icon and wake releases of 2026-11-22). "Release" is the GitHub release made by the Release workflow.
 
 | Repo | Version released | Release run |
 |---|---|---|
-| Launcher | `v0.6.18` | succeeded (installed on the owner's Kindle Oasis 3; the 0.6.17 run failed on a stale `Cargo.lock`, not published) |
+| Launcher | `v0.6.22` | succeeded |
 | Primitive Browser | `v0.2.21` | succeeded (from `feature/system-layer`; same content as `main`) |
-| Store | `v0.1.8` | succeeded (from `feature/system-layer`; same content as `main`) |
+| Store | `v0.1.10` | succeeded |
 | Terminal | `v0.2.0` | succeeded (app kit; tested on a Kindle Oasis 3) |
 | 2048 | `v0.1.4` | succeeded |
-| Agenda | `v0.1.2` | succeeded |
+| Agenda | `v0.1.3` | succeeded |
 | Blocks | `v0.1.1` | succeeded |
 | Calculator | `v0.1.5` | succeeded |
 | Cards | `v0.1.3` | succeeded |
 | Cascade | `v0.1.1` | succeeded |
 | Chess | `v0.1.1` | succeeded |
-| Crate Shift | `v0.1.3` | succeeded |
+| Crate Shift | `v0.1.4` | succeeded |
 | Crossword | `v0.1.1` | succeeded |
-| Dictionary | `v0.1.3` | succeeded |
+| Dictionary | `v0.1.4` | succeeded |
 | Files | `v0.1.5` | succeeded (see below) |
 | Focus | `v0.1.2` | succeeded |
-| Habits | `v0.1.2` | succeeded |
-| Language Practice | `v0.1.1` | succeeded |
-| Reading Practice | `v0.1.1` | succeeded (added after the first pass; see below) |
-| Math Practice | `v0.1.1` | succeeded |
-| Memory Match | `v0.1.2` | succeeded |
+| Habits | `v0.1.3` | succeeded |
+| Language Practice | `v0.1.2` | succeeded |
+| Reading Practice | `v0.1.2` | succeeded |
+| Math Practice | `v0.1.2` | succeeded |
+| Memory Match | `v0.1.3` | succeeded |
 | Minesweeper | `v0.1.1` | succeeded |
-| Nonogram | `v0.1.2` | succeeded |
+| Nonogram | `v0.1.3` | succeeded |
 | Notes | `v0.1.3` | succeeded |
 | Ships | `v0.1.1` | succeeded |
 | Snake | `v0.1.2` | succeeded |
 | Solitaire | `v0.1.2` | succeeded |
-| Starship | `v0.1.2` | succeeded |
+| Starship | `v0.1.3` | succeeded |
 | Sudoku | `v0.1.1` | succeeded |
-| Switchyard | `v0.1.1` | succeeded |
-| Tasks | `v0.1.2` | succeeded |
+| Switchyard | `v0.1.2` | succeeded |
+| Tasks | `v0.1.3` | succeeded |
 | Viewer | `v0.1.2` | succeeded |
 | Words | `v0.1.1` | succeeded |
 | Reader | `v0.1.4` | succeeded (0.1.3 failed on the workflow's package name; published nothing) |
