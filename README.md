@@ -94,13 +94,13 @@ The Catalog workflow saves reports in Markdown, CSV, and JSON. [Download reports
 | App on GitHub | What it does | Store version |
 |---|---|---|
 | [Primitive Launcher](https://github.com/PrimitiveOS/kindle-primitive-launcher) | Home screen, wallpaper previews, quick settings, and device controls. Uninstall apps from Settings. | [0.5.9](https://github.com/PrimitiveOS/kindle-primitive-launcher/releases/tag/v0.5.9) |
-| [Store](https://github.com/PrimitiveOS/kindle-primitive-store) | Browse a scrolling catalog, see app download totals, and install, update, or remove apps. | [0.1.7](https://github.com/PrimitiveOS/kindle-primitive-store/releases/tag/v0.1.7) |
+| [Store](https://github.com/PrimitiveOS/kindle-primitive-store) | Browse a scrolling catalog, see app download totals, and install, update, or remove apps. | [0.1.8](https://github.com/PrimitiveOS/kindle-primitive-store/releases/tag/v0.1.8) |
 
 ### Internet
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Primitive Browser](https://github.com/PrimitiveOS/kindle-primitive-browser) | Browse the web with e-ink page controls, night mode, and an image switch. | [0.2.18](https://github.com/PrimitiveOS/kindle-primitive-browser/releases/tag/v0.2.18) |
+| [Primitive Browser](https://github.com/PrimitiveOS/kindle-primitive-browser) | Browse the web with e-ink page controls, night mode, and an image switch. | [0.2.21](https://github.com/PrimitiveOS/kindle-primitive-browser/releases/tag/v0.2.21) |
 
 ### Reading
 
@@ -112,36 +112,36 @@ The Catalog workflow saves reports in Markdown, CSV, and JSON. [Download reports
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Reading Practice](https://github.com/PrimitiveOS/kindle-primitive-reading-practice) | Read short passages, answer questions, and retry missed answers. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-reading-practice/releases/tag/v0.1.0) |
-| [Math Practice](https://github.com/PrimitiveOS/kindle-primitive-math-practice) | Read examples and practice arithmetic, fractions, and percentages. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-math-practice/releases/tag/v0.1.0) |
-| [Language Practice](https://github.com/PrimitiveOS/kindle-primitive-language-practice) | Practice beginner English using Vietnamese prompts and short tap exercises. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-language-practice/releases/tag/v0.1.0) |
+| [Reading Practice](https://github.com/PrimitiveOS/kindle-primitive-reading-practice) | Read short passages, answer questions, and retry missed answers. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-reading-practice/releases/tag/v0.1.1) |
+| [Math Practice](https://github.com/PrimitiveOS/kindle-primitive-math-practice) | Read examples and practice arithmetic, fractions, and percentages. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-math-practice/releases/tag/v0.1.1) |
+| [Language Practice](https://github.com/PrimitiveOS/kindle-primitive-language-practice) | Practice beginner English using Vietnamese prompts and short tap exercises. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-language-practice/releases/tag/v0.1.1) |
 
 ### Productivity
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Cards](https://github.com/PrimitiveOS/kindle-primitive-cards) | Create or import flashcards, review on a schedule, and run short self-tests. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-cards/releases/tag/v0.1.1) |
-| [Focus](https://github.com/PrimitiveOS/kindle-primitive-focus) | Run focus and break timers, label sessions, and review a weekly study log. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-focus/releases/tag/v0.1.1) |
-| [Notes](https://github.com/PrimitiveOS/kindle-primitive-notes) | Write and search plain-text notes, check off lists, and keep a reading journal. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-notes/releases/tag/v0.1.1) |
-| [Agenda](https://github.com/PrimitiveOS/kindle-primitive-agenda) | Read a chronological calendar and import supported events from an iCalendar file. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-agenda/releases/tag/v0.1.0) |
-| [Habits](https://github.com/PrimitiveOS/kindle-primitive-habits) | Log check-ins and review daily or weekly habits. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-habits/releases/tag/v0.1.0) |
-| [Tasks](https://github.com/PrimitiveOS/kindle-primitive-tasks) | Manage today’s tasks, due dates, lists, and repeating items. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-tasks/releases/tag/v0.1.0) |
+| [Cards](https://github.com/PrimitiveOS/kindle-primitive-cards) | Create or import flashcards, review on a schedule, and run short self-tests. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-cards/releases/tag/v0.1.2) |
+| [Focus](https://github.com/PrimitiveOS/kindle-primitive-focus) | Run focus and break timers, label sessions, and review a weekly study log. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-focus/releases/tag/v0.1.2) |
+| [Notes](https://github.com/PrimitiveOS/kindle-primitive-notes) | Write and search plain-text notes, check off lists, and keep a reading journal. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-notes/releases/tag/v0.1.2) |
+| [Agenda](https://github.com/PrimitiveOS/kindle-primitive-agenda) | Read a chronological calendar and import supported events from an iCalendar file. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-agenda/releases/tag/v0.1.1) |
+| [Habits](https://github.com/PrimitiveOS/kindle-primitive-habits) | Log check-ins and review daily or weekly habits. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-habits/releases/tag/v0.1.1) |
+| [Tasks](https://github.com/PrimitiveOS/kindle-primitive-tasks) | Manage today’s tasks, due dates, lists, and repeating items. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-tasks/releases/tag/v0.1.1) |
 
 ### Utilities
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Calculator](https://github.com/PrimitiveOS/kindle-primitive-calculator) | Calculate and revisit history, convert units, see worked steps, and plot a graph. | [0.1.3](https://github.com/PrimitiveOS/kindle-primitive-calculator/releases/tag/v0.1.3) |
-| [Files](https://github.com/PrimitiveOS/kindle-primitive-files) | Browse, find, and organise Kindle files. Open supported documents in Reader, Viewer, or KOReader. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.2) |
+| [Calculator](https://github.com/PrimitiveOS/kindle-primitive-calculator) | Calculate and revisit history, convert units, see worked steps, and plot a graph. | [0.1.4](https://github.com/PrimitiveOS/kindle-primitive-calculator/releases/tag/v0.1.4) |
+| [Files](https://github.com/PrimitiveOS/kindle-primitive-files) | Browse, find, and organise Kindle files. Open supported documents in Reader, Viewer, or KOReader. | [0.1.4](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.4) |
 | [Hello](https://github.com/PrimitiveOS/kindle-primitive-app-template) | Try a small native example app and use its repository as an app template. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-app-template/releases/tag/v0.1.0) |
-| [Dictionary](https://github.com/PrimitiveOS/kindle-primitive-dictionary) | Look up definitions, import a glossary, and export favorites for Cards. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-dictionary/releases/tag/v0.1.1) |
-| [Viewer](https://github.com/PrimitiveOS/kindle-primitive-viewer) | Read PDFs with continuous scrolling and open JPEGs and PNGs offline. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-viewer/releases/tag/v0.1.1) |
+| [Dictionary](https://github.com/PrimitiveOS/kindle-primitive-dictionary) | Look up definitions, import a glossary, and export favorites for Cards. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-dictionary/releases/tag/v0.1.2) |
+| [Viewer](https://github.com/PrimitiveOS/kindle-primitive-viewer) | Read PDFs with continuous scrolling and open JPEGs and PNGs offline. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-viewer/releases/tag/v0.1.2) |
 
 ### Developer tools
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Primitive Terminal](https://github.com/PrimitiveOS/kindle-primitive-terminal) | Run shell commands with the shared on-screen keyboard and command history. | [0.1.8](https://github.com/PrimitiveOS/kindle-primitive-terminal/releases/tag/v0.1.8) |
+| [Primitive Terminal](https://github.com/PrimitiveOS/kindle-primitive-terminal) | Run shell commands with the shared on-screen keyboard and command history. | [0.1.9](https://github.com/PrimitiveOS/kindle-primitive-terminal/releases/tag/v0.1.9) |
 
 ### Games
 
@@ -149,32 +149,32 @@ The Catalog workflow saves reports in Markdown, CSV, and JSON. [Download reports
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [2048](https://github.com/PrimitiveOS/kindle-primitive-2048) | Swipe the board, merge matching numbers, and beat your best score. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-2048/releases/tag/v0.1.2) |
-| [Blocks](https://github.com/PrimitiveOS/kindle-primitive-blocks) | Place pieces and clear full rows, columns, or 3 × 3 boxes. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-blocks/releases/tag/v0.1.0) |
-| [Crate Shift](https://github.com/PrimitiveOS/kindle-primitive-crate-shift) | Swipe to move and push crates onto marked docks across eight puzzles. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-crate-shift/releases/tag/v0.1.2) |
-| [Crossword](https://github.com/PrimitiveOS/kindle-primitive-crossword) | Solve mini crosswords or open your own unlocked `.puz` files. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-crossword/releases/tag/v0.1.0) |
-| [Memory Match](https://github.com/PrimitiveOS/kindle-primitive-memory-match) | Turn over cards and find every matching pair in as few attempts as possible. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-memory-match/releases/tag/v0.1.1) |
-| [Minesweeper](https://github.com/PrimitiveOS/kindle-primitive-minesweeper) | Flag mines and beat your best time on three board sizes. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-minesweeper/releases/tag/v0.1.0) |
-| [Nonogram](https://github.com/PrimitiveOS/kindle-primitive-nonogram) | Reveal pictures by solving row and column clues. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-nonogram/releases/tag/v0.1.1) |
-| [Sudoku](https://github.com/PrimitiveOS/kindle-primitive-sudoku) | Solve generated puzzles with pencil marks, mistake checks, and undo. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-sudoku/releases/tag/v0.1.0) |
-| [Switchyard](https://github.com/PrimitiveOS/kindle-primitive-switchyard) | Set track junctions and dispatch a train to the depot. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-switchyard/releases/tag/v0.1.0) |
-| [Words](https://github.com/PrimitiveOS/kindle-primitive-words) | Solve a daily five-letter word puzzle or play a practice round. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-words/releases/tag/v0.1.0) |
+| [2048](https://github.com/PrimitiveOS/kindle-primitive-2048) | Swipe the board, merge matching numbers, and beat your best score. | [0.1.4](https://github.com/PrimitiveOS/kindle-primitive-2048/releases/tag/v0.1.4) |
+| [Blocks](https://github.com/PrimitiveOS/kindle-primitive-blocks) | Place pieces and clear full rows, columns, or 3 × 3 boxes. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-blocks/releases/tag/v0.1.1) |
+| [Crate Shift](https://github.com/PrimitiveOS/kindle-primitive-crate-shift) | Swipe to move and push crates onto marked docks across eight puzzles. | [0.1.3](https://github.com/PrimitiveOS/kindle-primitive-crate-shift/releases/tag/v0.1.3) |
+| [Crossword](https://github.com/PrimitiveOS/kindle-primitive-crossword) | Solve mini crosswords or open your own unlocked `.puz` files. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-crossword/releases/tag/v0.1.1) |
+| [Memory Match](https://github.com/PrimitiveOS/kindle-primitive-memory-match) | Turn over cards and find every matching pair in as few attempts as possible. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-memory-match/releases/tag/v0.1.2) |
+| [Minesweeper](https://github.com/PrimitiveOS/kindle-primitive-minesweeper) | Flag mines and beat your best time on three board sizes. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-minesweeper/releases/tag/v0.1.1) |
+| [Nonogram](https://github.com/PrimitiveOS/kindle-primitive-nonogram) | Reveal pictures by solving row and column clues. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-nonogram/releases/tag/v0.1.2) |
+| [Sudoku](https://github.com/PrimitiveOS/kindle-primitive-sudoku) | Solve generated puzzles with pencil marks, mistake checks, and undo. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-sudoku/releases/tag/v0.1.1) |
+| [Switchyard](https://github.com/PrimitiveOS/kindle-primitive-switchyard) | Set track junctions and dispatch a train to the depot. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-switchyard/releases/tag/v0.1.1) |
+| [Words](https://github.com/PrimitiveOS/kindle-primitive-words) | Solve a daily five-letter word puzzle or play a practice round. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-words/releases/tag/v0.1.1) |
 
 #### Card and board games
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Chess](https://github.com/PrimitiveOS/kindle-primitive-chess) | Play against your Kindle at three levels, save games, and export PGN. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-chess/releases/tag/v0.1.0) |
-| [Ships](https://github.com/PrimitiveOS/kindle-primitive-ships) | Place your ships and hunt the opposing fleet against your Kindle or a second player. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-ships/releases/tag/v0.1.0) |
-| [Solitaire](https://github.com/PrimitiveOS/kindle-primitive-solitaire) | Play draw-one or draw-three Klondike with touch controls and undo. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-solitaire/releases/tag/v0.1.0) |
+| [Chess](https://github.com/PrimitiveOS/kindle-primitive-chess) | Play against your Kindle at three levels, save games, and export PGN. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-chess/releases/tag/v0.1.1) |
+| [Ships](https://github.com/PrimitiveOS/kindle-primitive-ships) | Place your ships and hunt the opposing fleet against your Kindle or a second player. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-ships/releases/tag/v0.1.1) |
+| [Solitaire](https://github.com/PrimitiveOS/kindle-primitive-solitaire) | Play draw-one or draw-three Klondike with touch controls and undo. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-solitaire/releases/tag/v0.1.1) |
 
 #### Arcade games
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Cascade](https://github.com/PrimitiveOS/kindle-primitive-cascade) | Guide falling pieces, clear rows, and choose from three speeds. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-cascade/releases/tag/v0.1.0) |
-| [Snake](https://github.com/PrimitiveOS/kindle-primitive-snake) | Choose a speed, steer a continuously moving snake, and collect food to grow. | [0.1.0](https://github.com/PrimitiveOS/kindle-primitive-snake/releases/tag/v0.1.0) |
-| [Starship](https://github.com/PrimitiveOS/kindle-primitive-starship) | Steer in real time, dodge incoming fire, and defeat the flagship. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-starship/releases/tag/v0.1.1) |
+| [Cascade](https://github.com/PrimitiveOS/kindle-primitive-cascade) | Guide falling pieces, clear rows, and choose from three speeds. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-cascade/releases/tag/v0.1.1) |
+| [Snake](https://github.com/PrimitiveOS/kindle-primitive-snake) | Choose a speed, steer a continuously moving snake, and collect food to grow. | [0.1.1](https://github.com/PrimitiveOS/kindle-primitive-snake/releases/tag/v0.1.1) |
+| [Starship](https://github.com/PrimitiveOS/kindle-primitive-starship) | Steer in real time, dodge incoming fire, and defeat the flagship. | [0.1.2](https://github.com/PrimitiveOS/kindle-primitive-starship/releases/tag/v0.1.2) |
 
 Primitive Terminal uses AGPL-3.0-only. The other current app releases use PolyForm Noncommercial 1.0.0.
 
