@@ -1,8 +1,9 @@
 # PrimitiveOS app, package, and catalog contracts
 
-Status date: 2026-11-19. Status: frozen for the first store release (implementation plan A2). The machine-readable
-versions are in [schema/](../schema/): `app.schema.json` (a listing), `manifest.schema.json` (a package's manifest) and
-`index.schema.json` (the catalog index). Check any file with `python3 schema/scripts/validate.py FILE...`.
+Status date: 2026-11-21. Status: frozen for the first store release (implementation plan A2); §1.1, the system
+layer lines of a library entry, was added on 2026-11-21. The machine-readable versions are in [schema/](../schema/):
+`app.schema.json` (a listing), `manifest.schema.json` (a package's manifest) and `index.schema.json` (the catalog
+index). Check any file with `python3 schema/scripts/validate.py FILE...`.
 
 Changing a contract means a new `schema` number and a note here. Apps keep working with the schema they were published
 with.
@@ -17,10 +18,61 @@ The first lines of a `.sh` file in `/mnt/us/documents/` are its header, in this 
 # Author: Primitive AI
 # Icon: data:image/png;base64,...     (optional: a PNG, used when the app has no icon file)
 # DontUseFBInk
+# Wake: redraw                        (optional: the app redraws when Primitive Launcher asks, §1.1)
 ```
 
 `Name` is the label on the grid. `DontUseFBInk` says the scriptlet draws its own screen. The launcher shows any such
 file on its grid; a `PrimitiveLauncherEntry` line marks entries the launcher itself runs.
+
+### 1.1 Under Primitive Launcher (the system layer)
+
+Primitive Launcher is the system layer over every app ([system architecture](system-architecture.md)). It runs an
+entry with `PRIMITIVE_LAUNCHER=1` in the environment, in the app's own process group, and keeps running while the app
+is open. Entries without the lines below keep working.
+
+`# Wake: redraw` says that the app draws its whole screen again, in the current theme, when it gets `SIGUSR1`
+([system architecture §4.1 and §4.2](system-architecture.md#4-contracts-between-the-system-layer-and-apps)). The
+supervisor looks for this exact line, with nothing after it, in the first ten lines of the entry. The entry must be a
+plain file, not a link. Put the line after the other header lines.
+
+An entry with the line also ignores `SIGUSR1` in its own shell before it starts the app:
+
+```sh
+[ "${PRIMITIVE_LAUNCHER:-0}" = 1 ] && trap '' USR1
+```
+
+The signal goes to the whole process group, and a shell that runs the app as a child (not with `exec`) ends on it
+otherwise. An ignored signal is passed on through `exec`, and the app's own handler replaces it. Opened from the
+Kindle library without the launcher, the line does nothing.
+
+What the system layer does with each kind of entry:
+
+- **With the line.** Over the app, the launcher saves the app's screen for its own screens (quick settings, the power
+  menu, the sleep picture) and puts it back when they close. It sends `SIGUSR1` to the app's process group when the
+  screen must be drawn again: after the theme or the rotation changed while its screen was up, when it could not save
+  the screen, and after the launcher started again over the app. When the supervisor keeps sleep and wake itself (the
+  launcher is not running over the app), it sends `SIGUSR1` on wake.
+- **Without the line.** The app never gets `SIGUSR1`, which would end it. The launcher puts its saved screen back, and
+  after a theme change the app keeps the old theme until it starts again. When the supervisor keeps sleep and wake
+  itself, it restarts the app on wake, so the screen is never left blank.
+
+Never add the line to an app whose program does not handle `SIGUSR1`: the signal ends it. Native apps built on the
+app kit (`primitive_app::run` in Tools) handle it. The Store's check for the line: (Store check: to be confirmed).
+
+An app under the launcher follows these rules. The reasons and the details are in
+[system architecture §4](system-architecture.md#4-contracts-between-the-system-layer-and-apps).
+
+- It follows the system theme (`dark_mode` in `/mnt/us/launcher/settings.txt`) in everything it draws, its chrome and
+  its content. It reads the theme at start and again on `SIGUSR1`. It has no light or dark switch of its own and
+  never overrides the system theme.
+- The swipe down from the top edge belongs to the launcher (quick settings). The app ignores it. Every other touch
+  and the page buttons are the app's.
+- It never puts the Kindle to sleep, never draws a lock screen or its own quick settings, never loads or unloads the
+  stock screensaver, never sets `preventScreenSaver`, and never stops or starts the Kindle framework. It may save its
+  data when the Kindle goes to sleep.
+- Its redraw after the launcher's request does not flash. The launcher has already flashed the screen once for a
+  theme change, and a second full (GC16) flash shows the old theme for a moment. Draw the whole screen with a
+  non-flashing update.
 
 ## 2. The module folder
 
