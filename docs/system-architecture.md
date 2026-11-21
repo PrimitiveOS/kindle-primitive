@@ -52,17 +52,26 @@ the sleep and the theme do.
 
 ### 4.1 Wake: redraw
 
-When the Kindle wakes, the screen shows the lock picture until something draws. The supervisor sends `SIGUSR1` to
-the app's process group, and the app redraws its whole screen.
-
-An app declares support with a line in the first ten lines of its library entry:
+An app declares that it can draw its whole screen again on request with a line in the first ten lines of its library
+entry. The line must match exactly, and the entry must be a plain file (not a link); the script ignores the signal
+itself, as a shell ends on it otherwise ([contracts](contracts.md) §1.1):
 
 ```sh
 # Wake: redraw
+[ "${PRIMITIVE_LAUNCHER:-0}" = 1 ] && trap '' USR1
 ```
 
-An app without the line is restarted on wake, so the screen is never left blank. Apps start in their own process
-group so the signal reaches the app itself, not only its launch script.
+The request is `SIGUSR1` to the app's process group (apps start in their own group, so the signal reaches the app,
+not only its script). While the launcher runs over the app (the normal case), it saves the app's screen when the sleep
+picture or quick settings goes up and puts it back after, so on wake the app usually does not redraw. The launcher
+sends the request only when the saved screen no longer fits or is missing: after a theme or rotation change while its
+screen was up, when it could not save the screen, and after it starts again over the app following a crash. An app
+without the line gets its saved screen back and keeps the old theme until it starts again; SIGUSR1 would end it, so
+it is never sent.
+
+When the launcher is not running over the app (the fallback), the supervisor keeps sleep and wake: it draws the sleep
+picture, and on wake sends `SIGUSR1` to an app with the line and restarts an app without it, so the screen is never
+left blank.
 
 ### 4.2 Theme
 
@@ -115,8 +124,13 @@ Built (launcher 0.6.0 and 0.6.x, browser 0.2.19 and later):
   menu closes the app first. Kindle UI is in the power menu, not on the home screen (0.6.8).
 - The browser follows the contracts: `# Wake: redraw`, the whole browser follows the theme under the launcher, and
   it leaves the top-edge swipe to the launcher.
+- The app kit follows them for every app built on it (tools branch `feature/app-contracts`); the 2048 pilot and the
+  app template declare `# Wake: redraw`.
 
 Not built yet (see the upgrade plan):
 
 - Icons do not follow the theme: the bundled icon set mixes white and black tiles (§4.2).
-- Apps other than the browser do not support `# Wake: redraw` or the theme yet.
+- The other apps declare `# Wake: redraw` only on their rollout branches, not in a release; Reader, Solitaire,
+  Terminal and the Store need their own changes (see the upgrade plan, Phase 5).
+- Under the launcher the kit still lets an app's own `dark_mode` setting or `preferred_dark_mode` override the system
+  theme, and its redraw request does not read the rotation again.

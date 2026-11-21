@@ -72,7 +72,12 @@ on the Kindle Oasis 3 with the owner present.
 - [x] Pilot: 2048 on the app kit branch (`feature/app-contracts`): wake, theme and quick settings pass on the Kindle.
 - [ ] Every other Primitive app supports `# Wake: redraw` and the theme contract.
 - [ ] Apps drop their own sleep, screensaver and quick settings code.
-- [ ] [Contracts](contracts.md) §1 gains the `Wake: redraw` header; the store's checks require it for new apps.
+- [x] [Contracts](contracts.md) §1 gains the `Wake: redraw` header (`a660aa8`).
+- [ ] The Store's checks require it for new apps.
+- [ ] Kit: under the launcher, ignore an app's own `dark_mode` and `preferred_dark_mode`, and read the rotation again
+  on the redraw request.
+- [x] Docs and sample code: the app template, the browser docs, the kit's module docs and the skills describe the
+  contracts (2026-11-21).
 - [ ] Releases of each app.
 
 ## Risks
