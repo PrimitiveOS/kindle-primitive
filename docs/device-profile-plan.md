@@ -62,15 +62,15 @@ device values from the kit, never from constants.
 
 ## 5. Phases
 
-Status (2026-11-21): phases 1–4, 6 and 7 are done. Phase 5 is not built: the kit still uses the
-Oasis 3's screen, touch and battery values for every model, and the launcher and the Store warn "not tested" for other
-models until it is. That is the follow-up that makes another model's apps fit its screen.
+Status (2026-11-22): phases 1–4, 6 and 7 are done. Phase 5 is deferred: the owner has no second Kindle to test a
+model on, so it is not built. The kit still uses the Oasis 3's screen, touch and battery values for every model, and
+the Store says "Not tested on your Kindle yet" for other models. Phase 5 starts when a second Kindle is available.
 
 - [x] 1. Design (decisions D1–D4 recorded).
 - [x] 2. Store rules: installs by architecture only (`tools` `kl-store`, `e65cb98`); firmware and `tested_on` are information.
 - [x] 3. Launcher: model detected from the platform codename, or chosen from the supported list (`tools` `fe476aa`, launcher 0.6.20); `device.txt` written without the serial.
 - [x] 4. Store UI: apps with no package for the device's arch are hidden; the app page says "Not tested on your Kindle yet" (`tools` `9d76c67`, Store 0.1.10).
-- [ ] 5. Kit: per-model screen, touch and battery values from `device.txt` (follow-up; see the note above).
+- [-] 5. Kit: per-model screen, touch and battery values from `device.txt`. Deferred 2026-11-22: no second Kindle to test on (see the status above).
 - [x] 6. Release: the arch is recorded per asset and per package (the existing manifest and listing format). An `armel` build is added when needed. `check-assets.py` checks each manifest's arch against its listing asset; the schema checks the `tested_on` names.
 - [x] 7. Docs and skills: `store-submit-app.md` and `store-architecture.md` say firmware and `tested_on` never block an install; the conventions skill has the "device values come from the kit" line.
 
@@ -89,7 +89,7 @@ models until it is. That is the follow-up that makes another model's apps fit it
    device constants), `device-profile-plan.md` ticked as done per phase.
 
 Each phase ends with a device check on the Oasis 3 (the owner present). Phase 5 needs a second Kindle to test a
-second model; without it, that model stays "untested".
+second model; until one is available it stays deferred and that model stays "untested".
 
 ## 6. Decisions needed
 
