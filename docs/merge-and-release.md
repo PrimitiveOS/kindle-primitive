@@ -89,7 +89,7 @@ State after the merge-and-release run on 2026-11-21. "Release" is the GitHub rel
 | Crate Shift | `v0.1.3` | succeeded |
 | Crossword | `v0.1.1` | succeeded |
 | Dictionary | `v0.1.2` | succeeded |
-| Files | `v0.1.4` | pending (see below) |
+| Files | `v0.1.4` | succeeded (see below) |
 | Focus | `v0.1.2` | succeeded |
 | Habits | `v0.1.1` | succeeded |
 | Language Practice | `v0.1.1` | succeeded |
@@ -126,3 +126,11 @@ start for a moment. The application code did not change.
 - The GitHub release has the zip and its `.sha256` for each architecture.
 - The Kindle device build matches the release version (the device build bumps the same number).
 - If a Kindle is on an older build than its release, say so in the release notes.
+
+## 8. Store listings
+
+Each release is added to its Store listing (`apps/<id>/app.json` in the catalog) through a pull request. The listing
+takes the zip's URL, sha256 and size from the release, and `tested_on` lists the Kindle the app was run on. The
+catalog's own checks (`sh scripts/test.sh` and `sh scripts/check-app.sh apps/<id>`) must pass. Merging the pull request
+publishes to every Store user, so it waits for a maintainer's approval.
+
