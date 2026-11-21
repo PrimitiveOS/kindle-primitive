@@ -250,6 +250,15 @@ Each app builds for the Kindle with `cargo zigbuild` (target `armv7-unknown-linu
 renders its screens to PNG. New screens follow the `primitive-ui` skill. Every device build bumps the patch version, a new
 phase bumps the minor, and release tags are never moved.
 
+## Known exceptions to the app kit
+
+Every app is built on the shared app kit (`primitive-app`): the same run loop, redraw on wake, theme, press feedback and
+system swipe. These are the exceptions, tracked here until they move:
+
+| App | Why it is not on the kit yet | Plan |
+|---|---|---|
+| Primitive Browser | It has its own run loop and page engine. Kept as it is for now. | Move to the kit after the next browser release. |
+
 ## Roadmap
 
 | Track | What | State |
