@@ -114,12 +114,15 @@ State on 2026-11-22 (the 2026-11-21 run plus the icon and wake releases of 2026-
 | Tasks | `v0.1.3` | succeeded |
 | Viewer | `v0.1.2` | succeeded |
 | Words | `v0.1.1` | succeeded |
+| Hello (app template) | `v0.1.2` | succeeded (wake header; the 0.1.1 run failed its test step and published nothing) ||
 | Reader | `v0.1.4` | succeeded (0.1.3 failed on the workflow's package name; published nothing) |
 | Tools | not released (no release workflow) | merged to `main` |
 | Catalog | not released (no release workflow, no `CHANGELOG.md`) | merged to `main` |
 | Umbrella docs | not released | merged to `main` |
 
 Failed releases publish nothing. Fix them on `main`, then bump the patch and tag the new version. Never move a tag.
+
+**Icon and wake releases (2026-11-22).** Thirteen apps were released with a dark library icon (`# IconDark:`, the light icon inverted), and Hello with the wake header. Each release was tested on a Kindle Oasis 3 before its catalog listing was marked tested. The 0.1.1 Hello tag failed its test step: its lock file was resolved against a local tools checkout, not the pinned commit, so 0.1.2 replaced it. Tags are never moved.
 
 **Tap-feedback pass (2026-11-21).** Ten apps (agenda, habits, tasks, notes, cards, files, calculator, dictionary, snake, solitaire) and the Terminal were released with taps that reverse black and white, as the kit's controls do. The tools commit c1e758b (the kl-render test casts) lets `clippy --workspace --all-targets -D warnings` pass. The Terminal and the launcher pin it; the apps don't run clippy in CI. The launcher's pin moved on `main` without a release.
 
