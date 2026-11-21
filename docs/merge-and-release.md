@@ -108,7 +108,7 @@ State after the merge-and-release run on 2026-11-21. "Release" is the GitHub rel
 | Tasks | `v0.1.2` | succeeded |
 | Viewer | `v0.1.2` | succeeded |
 | Words | `v0.1.1` | succeeded |
-| Reader | not released (no release workflow, no `CHANGELOG.md`) | merged to `main` |
+| Reader | `v0.1.4` | succeeded (0.1.3 failed on the workflow's package name; published nothing) |
 | Tools | not released (no release workflow) | merged to `main` |
 | Catalog | not released (no release workflow, no `CHANGELOG.md`) | merged to `main` |
 | Umbrella docs | not released | merged to `main` |

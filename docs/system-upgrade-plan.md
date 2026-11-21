@@ -18,7 +18,7 @@ on the Kindle Oasis 3 with the owner present.
 
 - [x] Find why the icons look dark in light mode: the icon artwork. Nine bundled icons are black tiles and the rest
   white tiles, and icons are drawn as-is in both themes (screen captures in both themes, 2026-11-21).
-- [ ] Icon forms: a light and a dark form for every bundled icon (design first, the owner approves the set), and the
+- [x] Icon forms: a light and a dark form for every bundled icon (design first, the owner approves the set), and the Done 2026-11-21: the owner approved the set; the launcher picks the form for the theme.
   launcher picks the form for the theme (`icon.png`, `icon-dark.png`).
 - [x] Theme contract (§4.2): apps read `dark_mode` from `launcher/settings.txt` at start and on `SIGUSR1` (browser
   `be41f3b`).
@@ -26,7 +26,7 @@ on the Kindle Oasis 3 with the owner present.
   no Day and Night; standalone, Night works as before (owner's choice; browser `016fdc0`).
 - [x] Theme switch over an app: two updates, not three (the app shown inverted under the panel at the switch; no
   old-screen restore before the app redraws).
-- [ ] Browser release (owner's go-ahead).
+- [x] Browser release (owner's go-ahead). Done: its theme commits are in v0.2.21.
 - [x] Device check: switch the theme in launcher Settings, open the browser, both match. Passed from quick settings over the browser,
   2026-11-21.
 
@@ -56,29 +56,29 @@ on the Kindle Oasis 3 with the owner present.
   (EVIOCGRAB), the screen saved, the panel drawn over the app's picture; back at Home the screen is put back, touch
   released and the app resumed (launcher 0.6.1).
 - [x] A theme change from the panel ends with the redraw signal, for apps that declare `# Wake: redraw`.
-- [ ] Settings from the panel over an app: it opens full screen; check it returns to the app.
+- [x] Settings from the panel over an app: it opens full screen; check it returns to the app. Done 2026-11-21: the owner confirmed it returns to the app.
 - [x] Power from the panel over an app: the power menu (Cancel, Kindle UI, Restart, Power off; launcher 0.6.8) is
   drawn over the app's screen; Cancel returns to the app.
 - [x] Quick settings opens and closes over an app without a full flash (launcher 0.6.5); the app's redraw after a
   theme switch does not flash (kit `7cdc39b`, browser 0.2.21). Device check passed in the browser and 2048.
 - [x] Device check in the browser: light, Airplane, Power then Cancel, and the theme from quick settings; the browser
   stays behind the panel and comes back intact (2026-11-21, launcher 0.6.2, browser 0.2.20).
-- [ ] Device check in the Store (it does not declare `# Wake: redraw` yet).
+- [x] Device check in the Store (it does not declare `# Wake: redraw` yet). Done 2026-11-21: the owner confirmed the Store 0.1.9 check (it declares `# Wake: redraw`).
 
 ## Phase 5: apps follow the contracts
 
 - [x] Primitive Browser supports `# Wake: redraw` and the theme contract, and leaves the top-edge swipe to the
   launcher (`be41f3b`).
 - [x] Pilot: 2048 on the app kit branch (`feature/app-contracts`): wake, theme and quick settings pass on the Kindle.
-- [ ] Every other Primitive app supports `# Wake: redraw` and the theme contract.
-- [ ] Apps drop their own sleep, screensaver and quick settings code.
+- [x] Every other Primitive app supports `# Wake: redraw` and the theme contract. Done: all 30 kit apps, the Terminal, the Store and the Reader declare it, and handle USR1.
+- [x] Apps drop their own sleep, screensaver and quick settings code. Done: a search of the app repos finds no power, screensaver or quick-settings code.
 - [x] [Contracts](contracts.md) §1 gains the `Wake: redraw` header (`a660aa8`).
-- [ ] The Store's checks require it for new apps.
-- [ ] Kit: under the launcher, ignore an app's own `dark_mode` and `preferred_dark_mode`, and read the rotation again
+- [x] The Store's checks require it for new apps. Done: the catalog check requires it for apps listed after 2026-11-21.
+- [x] Kit: under the launcher, ignore an app's own `dark_mode` and `preferred_dark_mode`, and read the rotation again Done: the kit ignores an app's own dark mode under the launcher, and re-reads the rotation on the redraw request when auto-rotation is off.
   on the redraw request.
 - [x] Docs and sample code: the app template, the browser docs, the kit's module docs and the skills describe the
   contracts (2026-11-21).
-- [ ] Releases of each app.
+- [x] Releases of each app. Done: the Reader 0.1.4 is released; the other apps are released, or have only README and CI changes since their tag.
 
 ## Risks
 
