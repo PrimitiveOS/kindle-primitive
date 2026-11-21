@@ -1,6 +1,6 @@
 # System upgrade plan: making the launcher the system layer
 
-Status date: 2026-11-21. Design: [system architecture](system-architecture.md). Each phase ends with a device check
+Status date: 2026-11-21. **Closed 2026-11-21:** every feature of this plan is implemented; the follow-up is in [device-profile-plan.md](device-profile-plan.md) §5 (per-model screen values in the kit). Design: [system architecture](system-architecture.md). Each phase ends with a device check
 on the Kindle Oasis 3 with the owner present.
 
 ## Phase 1: the supervisor keeps sleep and wake (launcher 0.6.0)
