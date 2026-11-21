@@ -111,6 +111,8 @@ Built (launcher 0.6.0 and 0.6.x, browser 0.2.19 and later):
 - Opening an app or the Store no longer hands the stock screensaver back. Only the Kindle UI does.
 - The launcher stays running while an app is open (0.6.1): it owns the top-edge swipe and the power events over the
   app, freezes the app while quick settings or the sleep picture is up, and puts the app's screen back after.
+- A launcher crash while an app is open starts the launcher again over the app (0.6.6), and Kindle UI from the power
+  menu closes the app first. Kindle UI is in the power menu, not on the home screen (0.6.8).
 - The browser follows the contracts: `# Wake: redraw`, the whole browser follows the theme under the launcher, and
   it leaves the top-edge swipe to the launcher.
 
@@ -118,4 +120,3 @@ Not built yet (see the upgrade plan):
 
 - Icons do not follow the theme: the bundled icon set mixes white and black tiles (§4.2).
 - Apps other than the browser do not support `# Wake: redraw` or the theme yet.
-- If the launcher crashes while an app is open, it starts again only when the app ends.
