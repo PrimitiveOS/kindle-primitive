@@ -53,6 +53,9 @@ Kindle
 ```
 
 Store runs as a standalone program. Launcher owns the home screen, Store bootstrap, and app supervision.
+The launcher is the system layer over every app: it keeps the power button, sleep, the lock screen, quick settings
+and the theme while an app is open ([system architecture](system-architecture.md),
+[upgrade plan](system-upgrade-plan.md)).
 Both share the Store engine (`kl-store`) from Tools. The other shared crates are compiled into app binaries.
 The catalog publishes metadata and artwork. GitHub Releases serve package binaries.
 [Store architecture](store-architecture.md)

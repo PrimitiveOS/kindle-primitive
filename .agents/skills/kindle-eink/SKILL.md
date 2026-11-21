@@ -24,6 +24,10 @@ is in the `kindle-device` skill.
   (FBInk, `pan` 0,0) reads upright to the user at rotation 2, so the app must NOT turn its frames. A rotation
   check that only accepted 0 sent every update to FBInk, which cannot show images, so the screen went blank.
   Accept rotation 2 for in-process drawing. Rotations 1 and 3 (landscape) are not supported.
+- **Screen capture** (to see what the user sees): `cat /dev/fb0 > /var/tmp/fb.raw` on the device, copy it to the Mac
+  (ssh `cat`), then take 1680 rows of 1264 pixels from row `yoffset`, with 1280 bytes per row. The memory holds two
+  pages (3584 rows); the visible one starts at `yoffset` (0 in every capture so far). Write it as an 8-bit gray PNG and
+  look at it. Delete the raw file on the device after (it is 4.5 MB in the small `/var`).
 
 ## Update ioctl (Zelda platform)
 
