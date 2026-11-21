@@ -46,7 +46,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Published with desktop previews and ARMHF packages. Device gates remain. |
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
 | [F17 Files and Viewer](#f17-files-and-viewer) | F / Files and Viewer | Viewer opens PDF, JPEG, and PNG offline with continuous PDF scrolling. Files can hand documents to Viewer or KOReader. |
-| [F18 Reader](#f18-reader) | F / Reader | Reader 0.1.2 is live in Store and installed on the Oasis 3. The icon menus and live settings passed desktop and offscreen checks. Interactive device checks and the remaining parity matrix remain open. |
+| [F18 Reader](#f18-reader) | F / Reader | Reader 0.1.6 is live in Store and installed on the Oasis 3. In the original Documents collection, 117 of 130 entries opened and resumed, and 13 point to Kindle Library. The remaining reading and physical interaction checks are tracked below. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
 | [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.9 adds offline uninstall to Settings. Display previews wallpaper and adjusts opacity for Home, Sleep, and Startup. Detailed device checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
@@ -530,8 +530,15 @@ approved icons. The first-party app directory links every current Store release.
       package metadata, and current index revision. (Published)
       [Reader 0.1.2 release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.2)
       · [Store listing](https://primitiveos.github.io/kindle-primitive-catalog/v1/apps/primitive-reader.json)
-- [ ] Verify on-device edge swipes, live settings, page buttons, and normal exit in Reader 0.1.2.
+- [ ] Verify edge swipes, live settings, physical page-button delivery and normal exit together on the current release.
 - [ ] Repeat final-release sleep, wake, USB eject, and panel refresh checks on the Oasis 3.
+- [x] Compare the tagged KOReader source on the Oasis with the Rust implementation. The inventory checks 324 module, plugin, menu and provider entries. Track implementation and device evidence separately for each behavior.
+- [x] Reproduce document-opening failures on the physical Oasis with books already in Documents. The 0.1.5 reference opened 14 of 31 EPUBs and none of 16 AZW3s. Preserve the originals and use an isolated profile for page, resume and navigation checks.
+- [x] Add package recovery, illustrated reflow, extracted EPUB browsing and chapter navigation. Exercise the two scan engines, reading footer, saved menus, custom contents, gesture choices and lookup sheets on the simulator. [Reader verification](https://github.com/PrimitiveOS/kindle-primitive-reader/blob/main/docs/real-document-verification.md)
+- [x] Publish Reader 0.1.6 to GitHub and Store. Verify the hosted 18,060,658-byte ARMHF ZIP, both project licences, dependency notices and OCR assets. Match the live listing, icon and five screenshots to the catalog source.
+      [GitHub release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.6) · [Store deployment](https://github.com/PrimitiveOS/kindle-primitive-catalog/actions/runs/44941069992)
+- [x] Update Reader in place and verify all 23 installed files against the public ZIP. All three existing Reader data files retained their pre-update checksums. The release source passed 342 automated tests on the Mac and the Oasis.
+- [x] Compare the installed KOReader engines with Reader using the same originals. KOReader detected a damaged EPUB as plain text. Reader recovered the chapter order and all 48 surviving chapters. On the large PDF, KOReader painted the cover in 8.42 seconds; the instrumented Reader 0.1.6 run took 45.7 seconds from the Documents picker. [Document and engine results](https://github.com/PrimitiveOS/kindle-primitive-reader/blob/v0.1.6/docs/real-document-verification.md)
 - [ ] Complete the offline reading capability matrix, including scanned reading, specialist formats, and migration.
       [Reader feature plan](https://github.com/PrimitiveOS/kindle-primitive-reader/blob/main/docs/reading-parity-plan.md)
 
