@@ -93,6 +93,7 @@ State after the merge-and-release run on 2026-11-21. "Release" is the GitHub rel
 | Focus | `v0.1.2` | succeeded |
 | Habits | `v0.1.1` | succeeded |
 | Language Practice | `v0.1.1` | succeeded |
+| Reading Practice | `v0.1.1` | succeeded (added after the first pass; see below) |
 | Math Practice | `v0.1.1` | succeeded |
 | Memory Match | `v0.1.2` | succeeded |
 | Minesweeper | `v0.1.1` | succeeded |
@@ -134,3 +135,6 @@ takes the zip's URL, sha256 and size from the release, and `tested_on` lists the
 catalog's own checks (`sh scripts/test.sh` and `sh scripts/check-app.sh apps/<id>`) must pass. Merging the pull request
 publishes to every Store user, so it waits for a maintainer's approval.
 
+**Gap found after the first pass.** Reading Practice was merged but missing from the release list, so it stayed at
+`v0.1.0`. It was released as `v0.1.1` afterwards and added to the Store catalog. Check every repo on `main` against its
+latest tag before calling a release pass finished.
