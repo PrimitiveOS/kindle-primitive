@@ -18,15 +18,17 @@ on the Kindle Oasis 3 with the owner present.
 
 - [x] Find why the icons look dark in light mode: the icon artwork. Nine bundled icons are black tiles and the rest
   white tiles, and icons are drawn as-is in both themes (screen captures in both themes, 2026-11-21).
-- [ ] Icon forms: a light and a dark form for every bundled icon (design first, the owner approves the set), and the
-  launcher picks the form for the theme (`icon.png`, `icon-dark.png`).
+- [x] Icon forms: a light and a dark form for every bundled icon (design first, the owner approves the set), and the
+  launcher picks the form for the theme (`icon.png`, `icon-dark.png`). Done 2026-11-22: the dark form is the light form with
+  its colours inverted (checked on the 15 bundled pairs); every app's entry carries `# IconDark:`; the owner checked the
+  dark app grid on the Kindle and it looks right.
 - [x] Theme contract (§4.2): apps read `dark_mode` from `launcher/settings.txt` at start and on `SIGUSR1` (browser
   `be41f3b`).
 - [x] Browser: under the launcher the whole browser (bars and pages) follows dark mode, and the Display sheet has
   no Day and Night; standalone, Night works as before (owner's choice; browser `016fdc0`).
 - [x] Theme switch over an app: two updates, not three (the app shown inverted under the panel at the switch; no
   old-screen restore before the app redraws).
-- [ ] Browser release (owner's go-ahead).
+- [x] Browser release (owner's go-ahead). Done: `v0.2.21` contains the phase 2 changes, and `main` contains everything on the browser branch (no commits since the tag; the later changes are README only).
 - [x] Device check: switch the theme in launcher Settings, open the browser, both match. Passed from quick settings over the browser,
   2026-11-21.
 
@@ -56,29 +58,34 @@ on the Kindle Oasis 3 with the owner present.
   (EVIOCGRAB), the screen saved, the panel drawn over the app's picture; back at Home the screen is put back, touch
   released and the app resumed (launcher 0.6.1).
 - [x] A theme change from the panel ends with the redraw signal, for apps that declare `# Wake: redraw`.
-- [ ] Settings from the panel over an app: it opens full screen; check it returns to the app.
+- [x] Settings from the panel over an app: it opens full screen; check it returns to the app. Done 2026-11-22 on the Kindle with the owner: Snake (launcher log 00:50, quick settings over the app and back).
 - [x] Power from the panel over an app: the power menu (Cancel, Kindle UI, Restart, Power off; launcher 0.6.8) is
   drawn over the app's screen; Cancel returns to the app.
 - [x] Quick settings opens and closes over an app without a full flash (launcher 0.6.5); the app's redraw after a
   theme switch does not flash (kit `7cdc39b`, browser 0.2.21). Device check passed in the browser and 2048.
 - [x] Device check in the browser: light, Airplane, Power then Cancel, and the theme from quick settings; the browser
   stays behind the panel and comes back intact (2026-11-21, launcher 0.6.2, browser 0.2.20).
-- [ ] Device check in the Store (it does not declare `# Wake: redraw` yet).
+- [x] Device check in the Store (it does not declare `# Wake: redraw` yet). Done 2026-11-22 on the Kindle with the owner: the theme switch redraws the Store (launcher log, dark mode on then off), and sleep and wake over the Store return to it (log 21:53 and 00:51).
 
 ## Phase 5: apps follow the contracts
 
 - [x] Primitive Browser supports `# Wake: redraw` and the theme contract, and leaves the top-edge swipe to the
   launcher (`be41f3b`).
 - [x] Pilot: 2048 on the app kit branch (`feature/app-contracts`): wake, theme and quick settings pass on the Kindle.
-- [ ] Every other Primitive app supports `# Wake: redraw` and the theme contract.
-- [ ] Apps drop their own sleep, screensaver and quick settings code.
+- [x] Every other Primitive app supports `# Wake: redraw` and the theme contract. Done 2026-11-22: all 33 apps declare the header in their
+  entry (Hello 0.1.2 was the last one); the kit handles SIGUSR1 and reads the theme on redraw.
+- [x] Apps drop their own sleep, screensaver and quick settings code. Done 2026-11-22: a review of every app repo found no sleep,
+  screensaver or quick-settings code. Terminal's status-bar toggle runs only when opened from the stock library, not under the launcher.
 - [x] [Contracts](contracts.md) §1 gains the `Wake: redraw` header (`a660aa8`).
-- [ ] The Store's checks require it for new apps.
-- [ ] Kit: under the launcher, ignore an app's own `dark_mode` and `preferred_dark_mode`, and read the rotation again
+- [x] The Store's checks require it for new apps. Done: `check-assets.py` fails any listing whose package lacks the header, except the apps listed before the rule (`WAKE_REDRAW_OPTIONAL`).
+- [x] Kit: under the launcher, ignore an app's own `dark_mode` and `preferred_dark_mode`, and read the rotation again
   on the redraw request.
+  Done: the kit's `effective_dark` gives the system theme under the launcher, and the redraw handler reads `dark_mode` and rotation again (`primitive-app`).
 - [x] Docs and sample code: the app template, the browser docs, the kit's module docs and the skills describe the
   contracts (2026-11-21).
-- [ ] Releases of each app.
+- [x] Releases of each app. Done 2026-11-22: the 13 apps that needed a change are released (Hello 0.1.2, Agenda 0.1.3, Dictionary 0.1.4,
+  Habits 0.1.3, Tasks 0.1.3, Crate Shift 0.1.4, Memory Pairs 0.1.3, Switchyard 0.1.2, Language Practice 0.1.2, Math Practice 0.1.2,
+  Reading Practice 0.1.2, Starship 0.1.3, Picture Logic 0.1.3) and tested on the Oasis 3.
 
 ## Risks
 
