@@ -24,10 +24,10 @@ codename we do not know is shown as "unknown model" and the owner chooses the mo
 - **The launcher** detects the profile at start and writes `launcher/device.txt` (plain `key=value`):
   `model`, `model_source` (`detected` or `selected`), `firmware`, `arch`, `codename`. The file never holds the serial.
 - **Settings › Device** (launcher): shows the detected values. If the model is unknown it lists the supported
-  devices (the list is data in the launcher, `supported_devices.txt`) for the owner to pick. The pick is saved in
+  devices (the launcher's model table, `kl-core/src/models.rs`) for the owner to pick. The pick is saved in
   `settings.txt` as `device_model=<id>`, and it wins over detection only when detection failed.
-- **The Store** reads `launcher/device.txt` instead of deriving the profile itself. It falls back to its own
-  detection only when the file is missing (a Store run without the launcher).
+- **The Store** reads the model from `launcher/device.txt`. It takes the architecture and firmware from the same files
+  the launcher reads (`/lib/ld-linux-armhf.so.3`, `/etc/prettyversion.txt`), so the two agree.
 - **The app kit** does not decide installs. It reads the same profile when it starts (section 4).
 
 ## 3. Install rules (what the Store does)
@@ -36,8 +36,8 @@ codename we do not know is shown as "unknown model" and the owner chooses the mo
    device's `arch`. The newest such version is offered.
 2. Firmware: `firmware.min` and `firmware.max` are informational. They are shown on the app page
    ("Tested on firmware 5.18.2 and later"), not enforced.
-3. `tested_on` is informational. An app page for a model not in `tested_on` says "Not tested on your Kindle yet"
-   and the install button still works.
+3. `tested_on` is the list of Kindle models the app was verified on, by catalog name (the schema checks the names). An
+   app page for a model not in `tested_on` says "Not tested on your Kindle yet" and the install button still works.
 4. A listing with no asset for the device's arch is hidden from the list (proposal; see decision D2).
 5. Withdrawn versions are still skipped, as today.
 
@@ -62,7 +62,7 @@ device values from the kit, never from constants.
 
 ## 5. Phases
 
-Status (2026-11-21): phases 1–4 and the release part of 6 are done. Phase 5 is not built: the kit still uses the
+Status (2026-11-21): phases 1–4, 6 and 7 are done. Phase 5 is not built: the kit still uses the
 Oasis 3's screen, touch and battery values for every model, and the launcher and the Store warn "not tested" for other
 models until it is. That is the follow-up that makes another model's apps fit its screen.
 
@@ -71,14 +71,14 @@ models until it is. That is the follow-up that makes another model's apps fit it
 - [x] 3. Launcher: model detected from the platform codename, or chosen from the supported list (`tools` `fe476aa`, launcher 0.6.20); `device.txt` written without the serial.
 - [x] 4. Store UI: apps with no package for the device's arch are hidden; the app page says "Not tested on your Kindle yet" (`tools` `9d76c67`, Store 0.1.10).
 - [ ] 5. Kit: per-model screen, touch and battery values from `device.txt` (follow-up; see the note above).
-- [x] 6. Release: the arch is recorded per asset and per package (the existing manifest and listing format). An `armel` build is added when needed.
-- [ ] 7. Docs and skills: the firmware line in `store-submit-app.md` and the conventions skill's "no device constants" line (follow-up).
+- [x] 6. Release: the arch is recorded per asset and per package (the existing manifest and listing format). An `armel` build is added when needed. `check-assets.py` checks each manifest's arch against its listing asset; the schema checks the `tested_on` names.
+- [x] 7. Docs and skills: `store-submit-app.md` and `store-architecture.md` say firmware and `tested_on` never block an install; the conventions skill has the "device values come from the kit" line.
 
 1. **Design (this document).** Decisions D1–D4 below.
 2. **Store rules** (`tools` `kl-store`): arch-only `pick_version`; firmware and `tested_on` informational; a test
    per rule. Reads the profile from `device.txt` when present.
 3. **Launcher** (`tools` `kl-kindle` profile detection, `kl-core` Settings › Device page, `kl-render` drawing, the
-   `device.txt` writer, `supported_devices.txt`); tests for detection, the unknown-model path and the saved choice.
+   `device.txt` writer, the model table in `kl-core/src/models.rs`); tests for detection, the unknown-model path and the saved choice.
 4. **Store UI** (`store-app`): reads `device.txt`; shows the device line; hides arch mismatches (per D2); the
    "Not tested on your Kindle yet" note.
 5. **Kit** (`tools` `primitive-device`): a runtime profile chosen from `device.txt`, Oasis 3 as the built-in default;
@@ -96,7 +96,7 @@ second model; without it, that model stays "untested".
 - **D1 — installs on untested models.** Allow with the warning (the owner's rule), or require a profile first?
   Recommendation: allow, with the warning, and say which models have a profile.
 - **D2 — listings for the other arch.** Hide them, or show them disabled ("no armel build yet")? Recommendation: hide.
-- **D3 — the supported list.** Which models go in `supported_devices.txt` now? Only the Oasis 3 (`zelda`) is
+- **D3 — the supported list.** Which models go in the launcher's model table now? Only the Oasis 3 (`zelda`) is
   confirmed. The owner should name the other jailbreakable models; their codenames and values are read on the
   device when available.
 - **D4 — the serial.** Keep it out of every file and every request (recommendation), so no device identity leaves

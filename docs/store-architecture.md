@@ -180,7 +180,8 @@ Field rules:
   gets `"withdrawn": "<reason>"`: the store stops offering it and offers the next older version that is not
   withdrawn.
 - `assets`: one entry per architecture the version supports: `armhf` (hard-float, firmware 5.16.3 and later) and/or
-  `armel` (soft-float, older firmware). The firmware boundary must be confirmed on devices before the first release.
+  `armel` (soft-float, older firmware). The firmware boundary must be confirmed on devices before the first release. The
+  firmware range is information for the owner: it never blocks an install.
 - `requires`: other store apps by id with a version range. Only `>=` ranges in schema 1.
 - `changes`: the facts for What this app changes (§5.3). CI checks them against the package where it can (for example,
   hooks present means `hooks: true`).
@@ -284,8 +285,8 @@ sheet and need a second tap to confirm.
 
 ### 6.1 Install
 
-1. **Resolve**: pick the newest version whose `assets` has the device's architecture and whose `firmware` range includes
-   the device. Resolve `requires`; offer to install missing requirements first, newest compatible version.
+1. **Resolve**: pick the newest version whose `assets` has the device's architecture and that is not withdrawn. The
+   `firmware` range and `tested_on` never block an install (owner decision, 2026-11-21). Resolve `requires`; offer to install missing requirements first, newest compatible version.
 2. **Check space**: package size × 3 (zip, staging, installed) must fit on `/mnt/us`.
 3. **Download** over HTTPS from an allowed host (§8) to `downloads/<file>.part`; rename when complete. Resume if the
    server allows it.
@@ -373,7 +374,7 @@ release and simulator checks. [Published catalog workflow](https://github.com/Pr
 | FR-3 | Search apps by name, subtitle, developer and category, with the shared keyboard. | M |
 | FR-4 | Show an app page with icon, subtitle, action, screenshots, description, What's New, version history, What this app changes, and Information. | M |
 | FR-5 | Install a hosted or upstream app: resolve, check space, download, verify sha256, unpack safely, move into place, register, record. | M |
-| FR-6 | Refuse an app whose architecture or firmware range does not include the device, and say why. | M |
+| FR-6 | Refuse an app with no package for the device's architecture, and say why. Show whether the owner's Kindle is in `tested_on`. | M |
 | FR-7 | Install required apps first, after asking. | M |
 | FR-8 | Show installed apps and their versions; remove an app exactly. | M |
 | FR-9 | Find updates when the store opens (Wi-Fi on) and show them in Updates; update one or all. | M |
