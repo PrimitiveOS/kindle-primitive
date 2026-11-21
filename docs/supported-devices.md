@@ -1,6 +1,6 @@
 # Jailbreakable Kindles: the supported-devices list
 
-Status date: 2026-11-21. Written for: the launcher's "select your Kindle" list (`supported_devices.txt`) and anyone
+Status date: 2026-11-21. Written for: the launcher's "select your Kindle" model table (`kl-core/src/models.rs`, the list the owner picks from) and anyone
 adding a model. Decision D3 of [device-profile-plan.md](device-profile-plan.md).
 
 ## How to read the table

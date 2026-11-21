@@ -69,6 +69,12 @@ Rules:
    pinned tools; check the pin first.
 5. A failed release publishes nothing. Fix it on `main`, bump the patch and tag the new version.
 
+### Architectures
+
+`release.yml` builds and packages each architecture named in its `arches` input (default `armhf`, the Oasis 3). An app
+stays `armhf` only until its `armel` build has been checked on a device. Then add `armel` to `arches`; the listing gets an
+`armel` asset. The zip's manifest `arch` must equal its listing asset key; `check-assets.py` checks it.
+
 ## 6. Which repos publish a release
 
 State after the merge-and-release run on 2026-11-21. "Release" is the GitHub release made by the Release workflow.

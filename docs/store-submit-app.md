@@ -15,7 +15,8 @@ Your app can be listed when:
 - [ ] It downloads nothing during installation. Everything it installs is in the package.
 - [ ] It contains no secrets (passwords, keys, tokens), no tracking, and nothing that targets a specific website or
       service in a way the reviewers cannot explain on the app page.
-- [ ] It has been run on at least one Kindle model, which you will list in `tested_on`.
+- [ ] It has been run on at least one Kindle model, which you will list in `tested_on` by its catalog name (for example
+      `KindleOasis3`; the schema lists the names). The list tells owners what is verified. It never blocks an install.
 - [ ] It meets the **quality bar**: a real touch interface (nothing to type in a terminal and no configuration files to
       edit to use it); simple for someone who has never jailbroken a device; a kind of app that is popular on iOS or
       Android (productivity, games, everyday tools); and it works with **Primitive Launcher in front**, the Kindle's own
@@ -144,7 +145,7 @@ The full schema and an example are in [store-architecture.md](store-architecture
 | `repo`, `licence` | Your repo URL and the SPDX id of your licence. |
 | `source` | `hosted`, `upstream` or `link` (§2). |
 | `changes` | The facts for "What this app changes" (§4.5). |
-| `versions` | Newest first: version, date, What's New (one to five lines), firmware range, requirements, `tested_on`, and for each architecture the asset URL, sha256 and size. |
+| `versions` | Newest first: version, date, What's New (one to five lines), firmware range, requirements, `tested_on` (the Kindle models it was run on), and for each architecture the asset URL, sha256 and size. |
 
 For a `link` app, `versions` holds the current version without `assets`, and `description` ends with the steps to
 install it by hand.
