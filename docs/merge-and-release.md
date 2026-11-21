@@ -78,34 +78,34 @@ State after the merge-and-release run on 2026-11-21. "Release" is the GitHub rel
 | Launcher | `v0.6.12` | succeeded |
 | Primitive Browser | `v0.2.21` | succeeded (from `feature/system-layer`; same content as `main`) |
 | Store | `v0.1.8` | succeeded (from `feature/system-layer`; same content as `main`) |
-| Terminal | `v0.1.9` | succeeded |
+| Terminal | `v0.2.0` | succeeded (app kit; tested on a Kindle Oasis 3) |
 | 2048 | `v0.1.4` | succeeded |
-| Agenda | `v0.1.1` | succeeded |
+| Agenda | `v0.1.2` | succeeded |
 | Blocks | `v0.1.1` | succeeded |
-| Calculator | `v0.1.4` | succeeded |
-| Cards | `v0.1.2` | succeeded |
+| Calculator | `v0.1.5` | succeeded |
+| Cards | `v0.1.3` | succeeded |
 | Cascade | `v0.1.1` | succeeded |
 | Chess | `v0.1.1` | succeeded |
 | Crate Shift | `v0.1.3` | succeeded |
 | Crossword | `v0.1.1` | succeeded |
-| Dictionary | `v0.1.2` | succeeded |
-| Files | `v0.1.4` | succeeded (see below) |
+| Dictionary | `v0.1.3` | succeeded |
+| Files | `v0.1.5` | succeeded (see below) |
 | Focus | `v0.1.2` | succeeded |
-| Habits | `v0.1.1` | succeeded |
+| Habits | `v0.1.2` | succeeded |
 | Language Practice | `v0.1.1` | succeeded |
 | Reading Practice | `v0.1.1` | succeeded (added after the first pass; see below) |
 | Math Practice | `v0.1.1` | succeeded |
 | Memory Match | `v0.1.2` | succeeded |
 | Minesweeper | `v0.1.1` | succeeded |
 | Nonogram | `v0.1.2` | succeeded |
-| Notes | `v0.1.2` | succeeded |
+| Notes | `v0.1.3` | succeeded |
 | Ships | `v0.1.1` | succeeded |
-| Snake | `v0.1.1` | succeeded |
-| Solitaire | `v0.1.1` | succeeded |
+| Snake | `v0.1.2` | succeeded |
+| Solitaire | `v0.1.2` | succeeded |
 | Starship | `v0.1.2` | succeeded |
 | Sudoku | `v0.1.1` | succeeded |
 | Switchyard | `v0.1.1` | succeeded |
-| Tasks | `v0.1.1` | succeeded |
+| Tasks | `v0.1.2` | succeeded |
 | Viewer | `v0.1.2` | succeeded |
 | Words | `v0.1.1` | succeeded |
 | Reader | not released (no release workflow, no `CHANGELOG.md`) | merged to `main` |
@@ -114,6 +114,8 @@ State after the merge-and-release run on 2026-11-21. "Release" is the GitHub rel
 | Umbrella docs | not released | merged to `main` |
 
 Failed releases publish nothing. Fix them on `main`, then bump the patch and tag the new version. Never move a tag.
+
+**Tap-feedback pass (2026-11-21).** Ten apps (agenda, habits, tasks, notes, cards, files, calculator, dictionary, snake, solitaire) and the Terminal were released with taps that reverse black and white, as the kit's controls do. The tools commit c1e758b (the kl-render test casts) lets `clippy --workspace --all-targets -D warnings` pass. The Terminal and the launcher pin it; the apps don't run clippy in CI. The launcher's pin moved on `main` without a release.
 
 **Files `v0.1.3` failure, and its fix (`v0.1.4`).** The test
 `reader::tests::stages_the_installed_viewer_and_passes_one_literal_document_argument` starts a script that it has just
