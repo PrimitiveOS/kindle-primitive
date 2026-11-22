@@ -106,7 +106,7 @@ The Catalog workflow saves reports in Markdown, CSV, and JSON. [Download reports
 
 | App on GitHub | What it does | Store version |
 |---|---|---|
-| [Reader](https://github.com/PrimitiveOS/kindle-primitive-reader) | Read EPUB, compatible Kindle books, PDFs and comics offline. Read illustrated EPUBs, set dictionary order per book, and search with ordinary punctuation or regular expressions. | [0.1.14](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.14) |
+| [Reader](https://github.com/PrimitiveOS/kindle-primitive-reader) | Read EPUB, compatible Kindle books, PDFs and comics offline. Follow printed references, read with the publisher’s fonts, and browse up to 5,000 text matches. | [0.1.15](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.15) |
 
 ### Education and study
 
