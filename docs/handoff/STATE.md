@@ -23,6 +23,8 @@ and all 176 release assets, including the package ZIPs and their checksum files.
 
 Reader development is currently desktop-only because the owner is taking the Kindle offline. Preserve that instruction until the owner reconnects it. The newer candidate is on `feature/reader-workflow-simulation`; its aggregate hardware acceptance and release remain pending. The previous prepared 0.1.23 delivery scripts must not publish or install without checking the final accepted source and current device gates.
 
+The b8ab53a6 candidate has a fresh 48-edition Mac replay: 1,509 sections, 28,075 painted frames, 28,065 exact page anchors and 33,405 resolved fragments, with original hashes unchanged. The ordinary run exercised 696 library cases (one screenshot-directory retry), 14 package tests and four system tests. The real catalog-worker driver needs replay after its elapsed-time correction. Original-file sync, bulk-edit and hidden-flow/browser/export scenarios pass. Static ARM production/native tests compile and the draft package verifies 26 files and 325 notices. None of those native binaries has executed on the disconnected device. Full backup, global document defaults and content DPI retain separate work and gates.
+
 Storage cleanup archived 7,932 device QA receipts on the Mac and removed obsolete temporary builds and transfer chunks. The last measurement before disconnect showed 33% used and 4,270,976 KiB available on `/mnt/us`. Installed applications, original documents and saved data were retained. Future checksum-verified uploads remove their transfer chunks after assembly.
 
 ## Study and work releases
