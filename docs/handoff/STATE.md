@@ -13,13 +13,17 @@ The [app directory](../../README.md#the-apps) links all first-party repositories
 | Primitive Browser | 0.2.18. | [Browser release](https://github.com/PrimitiveOS/kindle-primitive-browser/releases/tag/v0.2.18) |
 | Primitive Terminal | 0.1.8. Listed under Developer Tools. | [Terminal release](https://github.com/PrimitiveOS/kindle-primitive-terminal/releases/tag/v0.1.8) |
 | Files | 0.1.2. Browse and organise Kindle files and open supported documents in Reader, Viewer, or KOReader. | [Files release](https://github.com/PrimitiveOS/kindle-primitive-files/releases/tag/v0.1.2) |
-| Reader | 0.1.18 in GitHub and Store, installed on the Oasis 3. All 26 package files matched. Of 130 original Documents entries, 117 opened and resumed, and 13 directed the reader to Kindle Library. | [Reader release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.18) · [Verification](https://github.com/PrimitiveOS/kindle-primitive-reader/blob/v0.1.18/docs/real-document-verification.md) |
+| Reader | 0.1.22 in GitHub and Store, installed in place on Oasis 3. All 26 package files matched and existing state checksums were preserved. The current original-file sweep has 37 end-prompt comparisons awaiting a corrected replay. | [Reader release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.22) · [Earlier complete original-file acceptance](https://github.com/PrimitiveOS/kindle-primitive-reader/blob/v0.1.18/docs/real-document-verification.md) |
 | Viewer | 0.1.1. Opens PDFs, JPEGs and PNGs offline. Kindle page buttons scroll PDFs and navigate the file picker. | [Viewer release](https://github.com/PrimitiveOS/kindle-primitive-viewer/releases/tag/v0.1.1) |
 | Store catalog | 36 listings, including 35 hosted first-party apps and one KOReader link. The catalog includes a daily snapshot of package download totals. | [Public catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json) · [Collections](https://primitiveos.github.io/kindle-primitive-catalog/v1/collections.json) |
 | Tools and Build | Shared app kit, packager, and reusable release workflow. Apps pin Tools by commit. The Launcher and Store releases allow the organization catalog host. | [Tools repo](https://github.com/PrimitiveOS/kindle-primtitive-tools) · [Build repo](https://github.com/PrimitiveOS/kindle-primitive-build) |
 
 The migration moved 38 existing project repositories to the PrimitiveOS organization. The transfer preserved 70 existing GitHub releases
 and all 176 release assets, including the package ZIPs and their checksum files. [Organization profile](https://github.com/PrimitiveOS)
+
+Reader development is currently desktop-only because the owner is taking the Kindle offline. Preserve that instruction until the owner reconnects it. The newer candidate is on `feature/reader-workflow-simulation`; its aggregate hardware acceptance and release remain pending. The previous prepared 0.1.23 delivery scripts must not publish or install without checking the final accepted source and current device gates.
+
+Storage cleanup archived 7,932 device QA receipts on the Mac and removed obsolete temporary builds and transfer chunks. The last measurement before disconnect showed 33% used and 4,270,976 KiB available on `/mnt/us`. Installed applications, original documents and saved data were retained. Future checksum-verified uploads remove their transfer chunks after assembly.
 
 ## Study and work releases
 

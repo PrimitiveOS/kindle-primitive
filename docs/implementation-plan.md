@@ -46,7 +46,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Published with desktop previews and ARMHF packages. Device gates remain. |
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
 | [F17 Files and Viewer](#f17-files-and-viewer) | F / Files and Viewer | Viewer opens PDF, JPEG, and PNG offline with continuous PDF scrolling. Files can hand documents to Viewer or KOReader. |
-| [F18 Reader](#f18-reader) | F / Reader | Reader 0.1.18 is live in GitHub and Store and verified on the Oasis 3. All 117 readable entries in the original Documents collection opened and resumed. The remaining format and interaction checks are listed below. |
+| [F18 Reader](#f18-reader) | F / Reader | Reader 0.1.22 is live in GitHub and Store and installed in place on Oasis 3. The newer reading-parity candidate is undergoing desktop simulation while the Kindle is disconnected. Current-package original-file and hardware gates remain open. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
 | [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.9 adds offline uninstall to Settings. Display previews wallpaper and adjusts opacity for Home, Sleep, and Startup. Detailed device checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
@@ -575,6 +575,16 @@ approved icons. The first-party app directory links every current Store release.
 - [x] Release and install the 18,911,088-byte Reader 0.1.18 package. Check all 26 installed files and existing reading data. Verify the public Store download, icon and five screenshots. In the original Documents collection, all 117 readable entries opened and resumed, and 212 interior sections loaded. [GitHub release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.18) · [Store listing](https://primitiveos.github.io/kindle-primitive-catalog/v1/apps/primitive-reader.json)
 - [ ] Complete the offline reading capability matrix, including scanned reading, specialist formats, and migration.
       [Reader feature plan](https://github.com/PrimitiveOS/kindle-primitive-reader/blob/main/docs/reading-parity-plan.md)
+
+Reader checkpoint, 22 November 2026
+
+- [x] Publish Reader 0.1.22 and verify the live Store version, 19,103,778-byte ARMHF package and SHA-256. Install it in place and match all 26 installed files while retaining reading-state checksums. The source passed 550 Mac and 550 native automated tests. [Release](https://github.com/PrimitiveOS/kindle-primitive-reader/releases/tag/v0.1.22)
+- [x] Replay the combined desktop development candidate across 48 cached original reflow editions, 1,509 sections, 28,075 painted frames and 28,065 exact text anchors. This records the candidate before the latest numeric-font, custom-flow and character-reference changes. Keep each later aggregate replay separate.
+- [x] Verify combined bookmark metadata workflows on 46 cached original documents. Independently checked publisher fields match, with all source SHA-256 values unchanged. The tested metadata aggregate passed 576 library, 14 package and four system tests on the Mac.
+- [x] Remove obsolete device QA builds and upload chunks after retaining a verified local evidence archive. Last measurement before disconnect showed 33% used and 4,270,976 KiB available. Books, installed apps and saved reading data were retained.
+- [ ] Finish and verify the combined desktop candidate with numeric font controls, custom hidden reading flows, numeric-reference compatibility, vocabulary review and saved-mark appearance. Compare normal controls, source positions and retained state across these features. [Development simulation review](https://github.com/PrimitiveOS/kindle-primitive-reader/blob/feature/reader-workflow-simulation/docs/simulation-review.md)
+- [ ] Run the corrected resume checker on the 37 original JPEG/XHTML cases whose earlier sweep compared the end-of-book prompt with bare content. Keep the previous complete 117-document acceptance as historical evidence.
+- [ ] After the Kindle reconnects, run the current aggregate native, lifecycle, foreground, performance and installed-package checks. Verify the release and Store download after those gates pass. No device deployment runs while the owner is away.
 
 ---
 
