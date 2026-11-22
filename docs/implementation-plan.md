@@ -1,6 +1,6 @@
 # PrimitiveOS implementation plan
 
-Updated 22 November 2026. The public catalog contains **36 listings**, including **35 first-party apps** and the linked
+Updated 23 November 2026. The public catalog contains **36 listings**, including **35 first-party apps** and the linked
 KOReader entry. Its system releases are Primitive Launcher **0.5.9**, Store **0.1.7**, Primitive Browser **0.2.18**,
 and Primitive Terminal **0.1.8**. These versions describe the public catalog. See the [latest device evidence](handoff/STATE.md)
 for what has been confirmed on the Oasis 3. [Live catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json)
@@ -46,7 +46,7 @@ public releases and listings. Record device findings in the relevant repo's `doc
 | [F1–F13 Native apps](#f-native-apps-phase-s6) | F / one repo each | Published with desktop previews and ARMHF packages. Device gates remain. |
 | [F14–F16 Study and work](#study-and-work-release) | F / apps and catalog | Seven new apps and four updates published and verified on the Mac. Oasis 3 release checks remain open. |
 | [F17 Files and Viewer](#f17-files-and-viewer) | F / Files and Viewer | Viewer opens PDF, JPEG, and PNG offline with continuous PDF scrolling. Files can hand documents to Viewer or KOReader. |
-| [F18 Reader](#f18-reader) | F / Reader | Reader 0.1.22 is live in GitHub and Store and installed in place on Oasis 3. The newer reading-parity candidate is undergoing desktop simulation while the Kindle is disconnected. Current-package original-file and hardware gates remain open. |
+| [F18 Reader](#f18-reader) | F / Reader | Reading-only parity: document access/rendering, navigation/layout, search/lookup, annotations, accessibility, offline scans, and local reading data. General extensions/plugins, Terminal, unrelated utilities, acquisition, and remote services are excluded. Hold selection, select mode and per-mark style/color prompts have desktop coverage. Reader source commit `d0887f18` passes 904 library tests (62 ignored), package/system tests, and builds as ARMHF against pinned input commit `d3caf142`. This is a development candidate; the owner's real-file replay and Kindle acceptance remain open while the device is disconnected. |
 | [G1–G3 Launcher features](#g-launcher-features) | G / launcher | Wi-Fi file transfer passes host loopback checks. G1 and G3 depend on device findings. |
 | [G4–G8 Launcher settings](#g4-battery) | G / Launcher, Store, and Tools | Launcher 0.5.9 adds offline uninstall to Settings. Display previews wallpaper and adjusts opacity for Home, Sleep, and Startup. Detailed device checks remain open. |
 | [H1–H5 Hardening](#h-hardening-phase-s7) | H / all | Host coverage for install recovery, reviewed hooks, signed catalog and package verification, and package safety. Device and publication gates remain open. |
@@ -486,6 +486,29 @@ approved icons. The first-party app directory links every current Store release.
 - [x] Publish Viewer and the Files update to GitHub and list both releases in Store. [Viewer plan](viewer-plan.md)
 
 ### F18 Reader
+
+**Active goal:** build PrimitiveOS Reader as a focused Kindle reading app and match KOReader feature by feature for supported reading workflows: document opening and rendering, navigation and layout, search and lookup, bookmarks and annotations, accessibility, offline scan reading, and local reading data. Keep an optional capability only when it directly supports reading, finding a book, or managing local reading data. Implement it natively even when KOReader delivers it through a plug-in.
+
+The Reader parity goal excludes a general extension/plugin runtime, extension manager or catalogue, Terminal/shell, RSS/news, HTTP inspectors or servers, patch management, unrelated developer utilities, online book acquisition, and remote reading services. These exclusions are closed scope, not parity gaps or completion blockers. This scope applies to the Reader project only; Primitive Terminal remains a separate PrimitiveOS application. Kindle-wide settings stay in Launcher. See the [Reader scope and completion checklist](../doannt-kindle-reader/docs/reading-parity-plan.md#scope-and-completion-checklist), [feature requirements](../doannt-kindle-reader/docs/requirements.md), and [KOReader control matrix](../doannt-kindle-reader/docs/koreader-sdl-reference-controls.json).
+
+**Reader completion checklist**
+
+- [x] Limit the goal and parity denominator to document access/rendering, navigation/layout, search/lookup, bookmarks/annotations, accessibility, offline scan reading, and local reading data.
+- [x] Exclude general extension/plugin infrastructure, Terminal/shell, unrelated utilities, acquisition and remote services from Reader implementation, testing, parity counts, and release gates.
+- [x] Remove OPDS acquisition and WebDAV progress-sync modules, UI paths, and worker entry points from the current Reader source. Preserve local reading-data backup and migration; historical implementation notes are archived.
+- [x] Route manual fixed-page buttons and tap zones through per-book overlap, axis order and reading-direction movement before a page change. Run the pan and return regressions; capture `fixed-manual-pan.png` on the Mac simulator.
+- [x] Match KOReader selection-dialog positions in Reader with Top, Center, Bottom and selected-text choices, and capture the centered simulator state. Kindle comparison remains open.
+- [x] Implement all nine KOReader text-hold actions, stock single-word dictionary behavior, and a dedicated Select mode with only Highlight/Cancel. Reflowable text and same-page PDF extension/save/cancel pass desktop workflow tests. [Select-mode screenshot and remaining gesture gaps](../doannt-kindle-reader/docs/long-press-behavior.md)
+- [x] Add KOReader's optional Off/Style/Color/Style and color highlight prompt. Cover EPUB and PDF, cancellation, touch targets, settings persistence, and per-mark appearance without changing the book defaults. [Chooser screenshots and behavior](../doannt-kindle-reader/docs/long-press-behavior.md)
+- [x] Implement KOReader-style temporary highlight, hold-release/hold-pan, configurable very-long-press timing and corner auto-scroll. Desktop EPUB/PDF tests and the temporary-selection screenshot pass; fixed PDF selection remains page-local. Compare gesture timing and cross-page requirements on Kindle.
+- [x] Run the current desktop Reader suite against pinned input commit `d3caf14241facf307699d3ecc37414671496bd1a`: 904 library tests passed, 62 ignored; Kindle binary, package and layout targets passed. Shared-input tests passed (140 `kl-core`, eight `primitive-app`, four `primitive-input`). The opt-in highlight workflow passed against redistributable Alice EPUB and preserved source bytes; the owner's Documents corpus remains pending.
+- [x] Commit Reader source as `d0887f18b0ab5e5831302a06eeec856ce8e67a94` and rebuild the static ARMHF development candidate against the pinned input revision. `file` confirms a stripped 32-bit ARM EABI5 ELF; SHA-256 `7f8d07911053b3d5a91a00dba4381ee932038a64513603a962fbdf494d62e11b`. Kindle installation and acceptance remain open.
+- [ ] Close the remaining in-scope feature gaps against pinned KOReader source and interface references; keep implementation and device evidence distinct in the control matrix.
+- [ ] Replay supported formats from the owner's real Kindle Documents collection and finish the automated Kindle workflow checks, including page controls, state restore, sleep/wake, USB handoff, and exit.
+- [ ] Capture and compare current Reader and KOReader screenshots for the reading surface, top and bottom controls, selection and lookup popups, and relevant settings.
+- [ ] Publish and list only the candidate that passes the required desktop and Kindle gates; record release checksums, Store state, screenshots, and device evidence.
+
+The detailed feature history and current open checks follow. Historical release entries below remain evidence for their named versions; they do not imply that the current parity candidate has passed the open gates.
 
 - [x] Measure the Rust EPUB engine on Oasis 3 and verify paced page turns, suspend and resume, and USB eject.
 - [x] Implement the native reading library, saved passages, EPUB navigation and reading bars in the Reader repository. (Mac)
