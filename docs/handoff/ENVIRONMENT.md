@@ -93,3 +93,28 @@ exit [lindex $result 3]
 - GitHub Pages: the workflow cannot enable Pages itself; the owner sets Source to GitHub Actions once.
 - GitHub release assets redirect to `release-assets.githubusercontent.com` (signed). The store's allow list includes it.
   Any new host a download goes through must be added to `primitive-net`'s `Policy::store` and to the store's documentation.
+
+## Build-artifact retention
+
+The 22 November cleanup reclaimed about 31 GB of completed compiler targets and
+obsolete executable copies. Repository source, original documents, screenshots,
+logs, source manifests and verification receipts were retained. Do not recreate
+the retired `reader-target`, `reader-arm-target` or per-feature host caches.
+
+- Use one coordinated temporary Reader target. Check available disk space before
+  building; keep at least 10 GiB free and use source review or remote CI while
+  cleaning up if that reserve is unavailable.
+- Retain the current aggregate executable set and only the component currently
+  undergoing acceptance. Once a newer aggregate is verified, remove older raw
+  executables and executable-only gzip archives; keep their hashes and receipts.
+- Remove the generated target after its output copies are verified and all cache
+  owners have released it. Keep `CARGO_INCREMENTAL=0` and debug information off
+  for these QA builds. Never grow several parallel worktree targets.
+- Keep original publications and sidecars, tracked/uncommitted source, approved
+  artwork, current screenshots and compact evidence. Compiler caches are
+  reproducible; these records are the test history.
+- Preserve the pinned KOReader runtime's source, loader libraries and symlink
+  targets. Its frozen file manifest must still verify after any cleanup.
+
+The private cleanup inventory and before/after measurements are retained under
+`doannt-kindle-reader/build/parity-review/simulation-current/`.
