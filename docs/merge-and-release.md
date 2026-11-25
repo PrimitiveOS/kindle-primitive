@@ -81,7 +81,7 @@ State on 2026-11-22 (the 2026-11-21 run plus the icon and wake releases of 2026-
 
 | Repo | Version released | Release run |
 |---|---|---|
-| Launcher | `v0.6.22` | succeeded |
+| Launcher | `v0.8.3` | succeeded (2026-11-25; Bluetooth release, armhf and armel packages) |
 | Primitive Browser | `v0.3.0` | succeeded (merged `fix/page-chord` into `main`, tagged `v0.3.0`; listed in Store on 2026-11-25) |
 | Store | `v0.1.10` | succeeded |
 | Terminal | `v0.2.0` | succeeded (app kit; tested on a Kindle Oasis 3) |
@@ -121,6 +121,11 @@ State on 2026-11-22 (the 2026-11-21 run plus the icon and wake releases of 2026-
 | Umbrella docs | not released | merged to `main` |
 
 Failed releases publish nothing. Fix them on `main`, then bump the patch and tag the new version. Never move a tag.
+
+**Launcher `v0.8.3` (2026-11-25).** The first Release run failed at `gh release create` with HTTP 500, which left an
+empty release. The owner then deleted that release, which also removed the tag. The tag was restored on the same commit
+(`f879f0c`; the tag was not moved), and the release published on the next run with the armhf and armel packages and
+their checksums. The catalog listing for 0.8.3 is `b2770b1`.
 
 **Icon and wake releases (2026-11-22).** Thirteen apps were released with a dark library icon (`# IconDark:`, the light icon inverted), and Hello with the wake header. Each release was tested on a Kindle Oasis 3 before its catalog listing was marked tested. The 0.1.1 Hello tag failed its test step: its lock file was resolved against a local tools checkout, not the pinned commit, so 0.1.2 replaced it. Tags are never moved.
 
