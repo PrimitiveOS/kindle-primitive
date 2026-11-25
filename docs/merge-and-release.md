@@ -82,7 +82,7 @@ State on 2026-11-22 (the 2026-11-21 run plus the icon and wake releases of 2026-
 | Repo | Version released | Release run |
 |---|---|---|
 | Launcher | `v0.6.22` | succeeded |
-| Primitive Browser | `v0.2.21` | succeeded (from `feature/system-layer`; same content as `main`) |
+| Primitive Browser | `v0.3.0` | succeeded (merged `fix/page-chord` into `main`, tagged `v0.3.0`; listed in Store on 2026-11-25) |
 | Store | `v0.1.10` | succeeded |
 | Terminal | `v0.2.0` | succeeded (app kit; tested on a Kindle Oasis 3) |
 | 2048 | `v0.1.4` | succeeded |
