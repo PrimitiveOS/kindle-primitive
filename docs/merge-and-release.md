@@ -77,11 +77,12 @@ stays `armhf` only until its `armel` build has been checked on a device. Then ad
 
 ## 6. Which repos publish a release
 
-State on 2026-11-22 (the 2026-11-21 run plus the icon and wake releases of 2026-11-22). "Release" is the GitHub release made by the Release workflow.
+State on 2026-11-26 (the 2026-11-21 run, the icon and wake releases of 2026-11-22, and the launcher and Music releases of 2026-11-26). "Release" is the GitHub release made by the Release workflow.
 
 | Repo | Version released | Release run |
 |---|---|---|
-| Launcher | `v0.8.3` | succeeded (2026-11-25; Bluetooth release, armhf and armel packages) |
+| Launcher | `v0.8.8` | succeeded (2026-11-26; armhf package, checksum checked against the download) |
+| Music | `v0.1.0` | tag on `main` (2026-11-26); its run and package could not be checked, because the repository is private |
 | Primitive Browser | `v0.3.0` | succeeded (merged `fix/page-chord` into `main`, tagged `v0.3.0`; listed in Store on 2026-11-25) |
 | Store | `v0.1.10` | succeeded |
 | Terminal | `v0.2.0` | succeeded (app kit; tested on a Kindle Oasis 3) |
@@ -116,7 +117,7 @@ State on 2026-11-22 (the 2026-11-21 run plus the icon and wake releases of 2026-
 | Words | `v0.1.1` | succeeded |
 | Hello (app template) | `v0.1.2` | succeeded (wake header; the 0.1.1 run failed its test step and published nothing) ||
 | Reader | `v0.1.4` | succeeded (0.1.3 failed on the workflow's package name; published nothing) |
-| Tools | not released (no release workflow) | merged to `main` |
+| Tools | not released (no release workflow; apps and the launcher pin it) | merged to `main` (`3364de5`, 2026-11-26) |
 | Catalog | not released (no release workflow, no `CHANGELOG.md`) | merged to `main` |
 | Umbrella docs | not released | merged to `main` |
 
@@ -126,6 +127,14 @@ Failed releases publish nothing. Fix them on `main`, then bump the patch and tag
 empty release. The owner then deleted that release, which also removed the tag. The tag was restored on the same commit
 (`f879f0c`; the tag was not moved), and the release published on the next run with the armhf and armel packages and
 their checksums. The catalog listing for 0.8.3 is `b2770b1`.
+
+**Launcher `v0.8.8` and Music `v0.1.0` (2026-11-26).** The launcher's Store listing takes the `v0.8.8` package: the
+media card and the sound row in quick settings, the media volume applied by the Music player, and the installer's
+restart fix. Its catalog listing is `ca357fb`, and the public index serves 0.8.8 with the checksum of the package.
+Music `v0.1.0` is the first Music release. Its Store listing was not published, because the repository is private: the
+release package cannot be downloaded from the public site until the repository is public. Music's `release.yml` pins
+tools `3364de5`, and its `ci.yml` runs the tests, clippy and the desktop previews with the same tools and launcher
+commits. Tags are never moved.
 
 **Icon and wake releases (2026-11-22).** Thirteen apps were released with a dark library icon (`# IconDark:`, the light icon inverted), and Hello with the wake header. Each release was tested on a Kindle Oasis 3 before its catalog listing was marked tested. The 0.1.1 Hello tag failed its test step: its lock file was resolved against a local tools checkout, not the pinned commit, so 0.1.2 replaced it. Tags are never moved.
 
