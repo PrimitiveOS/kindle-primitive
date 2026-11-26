@@ -5,7 +5,8 @@ layer lines of a library entry, was added on 2026-11-21. The machine-readable ve
 `app.schema.json` (a listing), `manifest.schema.json` (a package's manifest) and `index.schema.json` (the catalog
 index). Check any file with `python3 schema/scripts/validate.py FILE...`.
 
-Changing a contract means a new `schema` number and a note here. Apps keep working with the schema they were published
+Changing a contract means a new `schema` number and a note here. §1.2 (the media session) is an addition: no existing
+app or listing changes. Apps keep working with the schema they were published
 with.
 
 ## 1. The library entry (a scriptlet in `documents/`)
@@ -73,6 +74,39 @@ An app under the launcher follows these rules. The reasons and the details are i
 - Its redraw after the launcher's request does not flash. The launcher has already flashed the screen once for a
   theme change, and a second full (GC16) flash shows the old theme for a moment. Draw the whole screen with a
   non-flashing update.
+
+### 1.2 Media session (optional, under Primitive Launcher)
+
+An app that plays audio in the background shows its session in quick settings (the title, play or pause, previous and
+next) by writing two files in `/var/tmp/media/` (RAM: cleared when the Kindle restarts). Apps that play no media do
+nothing. The launcher only reads the first file and writes the second; it never runs app code.
+
+`<app>.now` (the app's id, lower case letters, digits and `-`), written atomically (a temporary name, then a rename),
+with one `key value` line each:
+
+```text
+app music
+name Music
+state playing           (playing | paused; a stopped session is removed or written as "state stopped")
+title Evening Bells     (the track, as shown; may be empty)
+artist                  (optional)
+position 83             (seconds)
+length 203              (seconds; 0 when unknown)
+pid 20561               (the player's process id: the launcher shows the session only while it exists)
+```
+
+`<app>.cmd`, appended to by the launcher, one command per line. The app takes the file away when it reads it (a rename,
+then the read, then the delete) and ignores lines it does not know:
+
+```text
+toggle                  (play when paused or stopped, pause when playing)
+pause
+next
+previous
+```
+
+The launcher shows the card with the first session that plays, then the first that is paused. Commands for an app
+without a live session are ignored. An app keeps the files current while its audio runs, once a second is enough.
 
 ## 2. The module folder
 
