@@ -105,6 +105,11 @@ next
 previous
 ```
 
+`/var/tmp/media/volume`: the media volume, one line with a level from 1 (quietest) to 8 (full). The launcher's sound row
+reads and sets it while headphones are connected; a player applies it to its audio (it scales the samples; the stock
+speaker level is not used, because the Bluetooth stack overrides it). No file means 8. A player reads it about once
+a second, and restarts the segment it plays when it changes.
+
 The launcher shows the card with the first session that plays, then the first that is paused. Commands for an app
 without a live session are ignored. An app keeps the files current while its audio runs, once a second is enough.
 
