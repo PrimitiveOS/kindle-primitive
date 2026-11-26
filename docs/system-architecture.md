@@ -112,6 +112,23 @@ is on the panel as its last frame, so opening quick settings updates only the pa
 back updates only the box that changed, with a non-flashing waveform. Only a change over most of the screen (the sleep
 picture going on wake) gets one full update, as a calm update there leaves a ghost.
 
+### 4.4 Media from any app (now playing and its controls)
+
+An app that plays audio in the background (music, audiobooks) keeps playing when its screen closes, and the system
+layer shows it in quick settings: the title, whether it plays, and previous, play or pause, and next. The launcher
+does not know any app. It reads the files of the contract and writes commands to them; each app writes its own files.
+So an app that does not play media does nothing, and a new media app needs no change to the launcher.
+
+- The app writes `/var/tmp/media/<app>.now` while it plays or is paused (`state playing` or `state paused`), with
+  its process id. It removes the file when the audio ends, or writes `state stopped`.
+- The app's player reads `/var/tmp/media/<app>.cmd` (lines `toggle`, `pause`, `next`, `previous`), takes the file away
+  as it reads it, and ignores lines it does not know.
+- Quick settings shows a card while a session is playing or paused and its process still runs. Several sessions: the
+  one that plays wins.
+
+The exact file format is in [contracts](contracts.md) §1.2. The player keeps playing when the app closes; the card is
+the only control outside the app.
+
 ## 5. What is built today, and what is not
 
 Built (launcher 0.6.0 and 0.6.x, browser 0.2.19 and later):
